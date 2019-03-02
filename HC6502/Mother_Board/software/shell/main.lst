@@ -1,0 +1,269 @@
+ca65 V2.17 - Git 180bb082
+Main file   : main.s65
+Current file: main.s65
+
+000000r 1                                     .setcpu "6502"
+000000r 1                                     .include "zeropage.inc65"
+000000r 2               RES = $00
+000000r 2               R0 = $02
+000000r 2               R1 = $04
+000000r 2               TMP0 = $06
+000000r 2               TMP1 = $08
+000000r 2               
+000000r 1                                     .include "acia.inc65"
+000000r 2               .import acia_init
+000000r 2               .import acia_getc
+000000r 2               .import acia_gets
+000000r 2               .import acia_gets_buffer
+000000r 2               .import acia_putc
+000000r 2               .import acia_puts
+000000r 2               .import acia_put_newline
+000000r 2               
+000000r 1                                     .include "string.inc65"
+000000r 2               .import fmt_hex_char
+000000r 2               .import fmt_bin_string
+000000r 2               .import fmt_hex_string
+000000r 2               .import scan_hex_char
+000000r 2               .import scan_hex
+000000r 2               .import scan_hex16
+000000r 2               
+000000r 1                                     .include "macros.inc65"
+000000r 2               ; Push A and X, destroys A
+000000r 2               .macro phax
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and Y, destroys A
+000000r 2               .macro phay
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A, X and Y, destroys A
+000000r 2               .macro phaxy
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and X
+000000r 2               .macro plax
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and Y
+000000r 2               .macro play
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A, X and Y
+000000r 2               .macro plaxy
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Load zero page register reg/reg+1 with the 16-bit value, destroys A
+000000r 2               .macro ld16 reg, value
+000000r 2                 lda #<(value)
+000000r 2                 sta reg
+000000r 2                 lda #>(value)
+000000r 2                 sta reg + 1
+000000r 2               .endmacro
+000000r 2               
+000000r 1               
+000000r 1                                     .segment "VECTORS"
+000000r 1               
+000000r 1  rr rr                              .word   nmi
+000002r 1  rr rr                              .word   reset
+000004r 1  rr rr                              .word   irq
+000006r 1               
+000006r 1                                     .bss
+000000r 1               
+000000r 1                                     BUFFER_LENGTH = 80
+000000r 1  00 00 00 00  buffer:               .res BUFFER_LENGTH + 1, 0
+000004r 1  00 00 00 00  
+000008r 1  00 00 00 00  
+000051r 1               
+000051r 1                                     .code
+000000r 1               
+000000r 1  4C rr rr     reset:                jmp main
+000003r 1               
+000003r 1  40           nmi:                  rti
+000004r 1               
+000004r 1  40           irq:                  rti
+000005r 1               
+000005r 1  D8           main:                 cld
+000006r 1  A2 FF                              ldx #$ff
+000008r 1  9A                                 txs
+000009r 1               
+000009r 1  20 rr rr                           jsr acia_init
+00000Cr 1               
+00000Cr 1  A9 rr 85 02                        ld16 R0, msg_welcome
+000010r 1  A9 rr 85 03  
+000014r 1  20 rr rr                           jsr acia_puts
+000017r 1               
+000017r 1  A9 rr 85 02  loop:                 ld16 R0, prompt
+00001Br 1  A9 rr 85 03  
+00001Fr 1  20 rr rr                           jsr acia_puts
+000022r 1  A9 rr 85 02                        ld16 R0, buffer
+000026r 1  A9 rr 85 03  
+00002Ar 1  A9 50                              lda #BUFFER_LENGTH
+00002Cr 1  20 rr rr                           jsr acia_gets
+00002Fr 1  AD rr rr                           lda buffer
+000032r 1  C9 6D                              cmp #'m'
+000034r 1  D0 06                              bne @not_cmd_m
+000036r 1  20 rr rr                           jsr cmd_memory
+000039r 1  4C rr rr                           jmp loop
+00003Cr 1  C9 77        @not_cmd_m:           cmp #'w'
+00003Er 1  D0 06                              bne @not_cmd_w
+000040r 1  20 rr rr                           jsr cmd_write
+000043r 1  4C rr rr                           jmp loop
+000046r 1  C9 6A        @not_cmd_w:           cmp #'j'
+000048r 1  D0 06                              bne @not_cmd_j
+00004Ar 1  20 rr rr                           jsr cmd_jump
+00004Dr 1  4C rr rr                           jmp loop
+000050r 1  A9 rr 85 02  @not_cmd_j:           ld16 R0, msg_unknown_command
+000054r 1  A9 rr 85 03  
+000058r 1  20 rr rr                           jsr acia_puts
+00005Br 1  4C rr rr                           jmp loop
+00005Er 1               
+00005Er 1  3E 20 00     prompt:               .byte "> ", $00
+000061r 1  20 3C 2D 20  assign_arrow:         .byte " <- ", $00
+000065r 1  00           
+000066r 1  0A 0A 57 65  msg_welcome:          .byte $0a, $0a, "Welcome to the 6502 monitor program!", $0a, $00
+00006Ar 1  6C 63 6F 6D  
+00006Er 1  65 20 74 6F  
+00008Er 1  55 6E 6B 6E  msg_unknown_command:  .byte "Unknown command", $0a, $00
+000092r 1  6F 77 6E 20  
+000096r 1  63 6F 6D 6D  
+00009Fr 1               
+00009Fr 1               ; Display a range of memory as hex numbers and characters
+00009Fr 1               ; m <start-address>
+00009Fr 1  A9 rr 85 02  cmd_memory:           ld16 R0, buffer + 2
+0000A3r 1  A9 rr 85 03  
+0000A7r 1  20 rr rr                           jsr scan_hex16
+0000AAr 1               
+0000AAr 1  A9 rr 85 02  @print_address:       ld16 R0, buffer
+0000AEr 1  A9 rr 85 03  
+0000B2r 1  A5 01                              lda RES + 1
+0000B4r 1  20 rr rr                           jsr fmt_hex_string
+0000B7r 1  A9 rr 85 02                        ld16 R0, buffer + 2
+0000BBr 1  A9 rr 85 03  
+0000BFr 1  A5 00                              lda RES
+0000C1r 1  20 rr rr                           jsr fmt_hex_string
+0000C4r 1  A9 rr 85 02                        ld16 R0, buffer
+0000C8r 1  A9 rr 85 03  
+0000CCr 1  20 rr rr                           jsr acia_puts
+0000CFr 1  A9 20                              lda #' '
+0000D1r 1  20 rr rr                           jsr acia_putc
+0000D4r 1  20 rr rr                           jsr acia_putc
+0000D7r 1               
+0000D7r 1  A0 00        print_bytes:          ldy #0
+0000D9r 1  A9 rr 85 02                        ld16 R0, buffer
+0000DDr 1  A9 rr 85 03  
+0000E1r 1  B1 00        @next_byte:           lda (RES),y
+0000E3r 1  20 rr rr                           jsr fmt_hex_string
+0000E6r 1  20 rr rr                           jsr acia_puts
+0000E9r 1  A9 20                              lda #' '
+0000EBr 1  20 rr rr                           jsr acia_putc
+0000EEr 1  C0 07                              cpy #7
+0000F0r 1  D0 03                              bne @skip_mid_sep
+0000F2r 1  20 rr rr                           jsr acia_putc
+0000F5r 1  C8           @skip_mid_sep:        iny
+0000F6r 1  C0 10                              cpy #16
+0000F8r 1  D0 E7                              bne @next_byte
+0000FAr 1               
+0000FAr 1  A9 20        @print_chars:         lda #' '
+0000FCr 1  20 rr rr                           jsr acia_putc
+0000FFr 1  20 rr rr                           jsr acia_putc
+000102r 1  A9 7C                              lda #'|'
+000104r 1  20 rr rr                           jsr acia_putc
+000107r 1  A0 00                              ldy #0
+000109r 1  B1 00        @next_char:           lda (RES),y
+00010Br 1  C9 20                              cmp #$20
+00010Dr 1  90 07                              bcc @non_printable
+00010Fr 1  C9 7E                              cmp #$7e
+000111r 1  B0 03                              bcs @non_printable
+000113r 1  4C rr rr                           jmp @printable
+000116r 1  A9 2E        @non_printable:       lda #'.'
+000118r 1  20 rr rr     @printable:           jsr acia_putc
+00011Br 1  C8                                 iny
+00011Cr 1  C0 10                              cpy #16
+00011Er 1  D0 E9                              bne @next_char
+000120r 1  A9 7C                              lda #'|'
+000122r 1  20 rr rr                           jsr acia_putc
+000125r 1  20 rr rr                           jsr acia_put_newline
+000128r 1  60                                 rts
+000129r 1               
+000129r 1               ; Write a byte to memory
+000129r 1               ; w <address> <byte>
+000129r 1  A9 rr 85 02  cmd_write:            ld16 R0, buffer + 2
+00012Dr 1  A9 rr 85 03  
+000131r 1  20 rr rr                           jsr scan_hex16
+000134r 1               
+000134r 1  A9 rr 85 02  @print_address:       ld16 R0, buffer
+000138r 1  A9 rr 85 03  
+00013Cr 1  A5 01                              lda RES + 1
+00013Er 1  20 rr rr                           jsr fmt_hex_string
+000141r 1  A9 rr 85 02                        ld16 R0, buffer + 2
+000145r 1  A9 rr 85 03  
+000149r 1  A5 00                              lda RES
+00014Br 1  20 rr rr                           jsr fmt_hex_string
+00014Er 1  A9 rr 85 02                        ld16 R0, buffer
+000152r 1  A9 rr 85 03  
+000156r 1  20 rr rr                           jsr acia_puts
+000159r 1               
+000159r 1  A9 3A                              lda #':'
+00015Br 1  20 rr rr                           jsr acia_putc
+00015Er 1               
+00015Er 1  A9 rr 85 02  @read_and_print_byte: ld16 R0, buffer + 7
+000162r 1  A9 rr 85 03  
+000166r 1  20 rr rr                           jsr scan_hex
+000169r 1  A8                                 tay
+00016Ar 1  A9 rr 85 02                        ld16 R0, buffer
+00016Er 1  A9 rr 85 03  
+000172r 1  98                                 tya
+000173r 1  20 rr rr                           jsr fmt_hex_string
+000176r 1  20 rr rr                           jsr acia_puts
+000179r 1  20 rr rr                           jsr acia_put_newline
+00017Cr 1  98                                 tya
+00017Dr 1               
+00017Dr 1  A0 00        @store_value:         ldy #0
+00017Fr 1  91 00                              sta (RES),y
+000181r 1  60                                 rts
+000182r 1               
+000182r 1               ; Jump to address
+000182r 1               ; j <address>
+000182r 1  A9 rr 85 02  cmd_jump:             ld16 R0, buffer + 2
+000186r 1  A9 rr 85 03  
+00018Ar 1  20 rr rr                           jsr scan_hex16
+00018Dr 1               
+00018Dr 1  A9 2A        @print_address:       lda #'*'
+00018Fr 1  20 rr rr                           jsr acia_putc
+000192r 1  A9 rr 85 02                        ld16 R0, buffer
+000196r 1  A9 rr 85 03  
+00019Ar 1  A5 01                              lda RES + 1
+00019Cr 1  20 rr rr                           jsr fmt_hex_string
+00019Fr 1  A9 rr 85 02                        ld16 R0, buffer + 2
+0001A3r 1  A9 rr 85 03  
+0001A7r 1  A5 00                              lda RES
+0001A9r 1  20 rr rr                           jsr fmt_hex_string
+0001ACr 1  A9 rr 85 02                        ld16 R0, buffer
+0001B0r 1  A9 rr 85 03  
+0001B4r 1  20 rr rr                           jsr acia_puts
+0001B7r 1  20 rr rr                           jsr acia_put_newline
+0001BAr 1               
+0001BAr 1  6C 00 00     @jump:                jmp (RES)
+0001BAr 1               

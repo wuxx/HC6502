@@ -1,0 +1,317 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
+                                      4 ; This file was generated Mon Dec  3 20:03:33 2018
+                                      5 ;--------------------------------------------------------
+                                      6 	.module uart
+                                      7 	.optsdcc -mstm8
+                                      8 	
+                                      9 ;--------------------------------------------------------
+                                     10 ; Public variables in this module
+                                     11 ;--------------------------------------------------------
+                                     12 	.globl _main
+                                     13 	.globl _system_clock_init
+                                     14 	.globl _strlen
+                                     15 	.globl _uart_puts
+                                     16 	.globl _uart_init
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area DATA
+                                     21 ;--------------------------------------------------------
+                                     22 ; ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area INITIALIZED
+                                     25 ;--------------------------------------------------------
+                                     26 ; Stack segment in internal ram 
+                                     27 ;--------------------------------------------------------
+                                     28 	.area	SSEG
+      000000                         29 __start__stack:
+      000000                         30 	.ds	1
+                                     31 
+                                     32 ;--------------------------------------------------------
+                                     33 ; absolute external ram data
+                                     34 ;--------------------------------------------------------
+                                     35 	.area DABS (ABS)
+                                     36 ;--------------------------------------------------------
+                                     37 ; interrupt vector 
+                                     38 ;--------------------------------------------------------
+                                     39 	.area HOME
+      000000                         40 __interrupt_vect:
+      000000 82v00u00u00             41 	int s_GSINIT ;reset
+      000004 82 00 00 00             42 	int 0x0000 ;trap
+      000008 82 00 00 00             43 	int 0x0000 ;int0
+      00000C 82 00 00 00             44 	int 0x0000 ;int1
+      000010 82 00 00 00             45 	int 0x0000 ;int2
+      000014 82 00 00 00             46 	int 0x0000 ;int3
+      000018 82 00 00 00             47 	int 0x0000 ;int4
+      00001C 82 00 00 00             48 	int 0x0000 ;int5
+      000020 82 00 00 00             49 	int 0x0000 ;int6
+      000024 82 00 00 00             50 	int 0x0000 ;int7
+      000028 82 00 00 00             51 	int 0x0000 ;int8
+      00002C 82 00 00 00             52 	int 0x0000 ;int9
+      000030 82 00 00 00             53 	int 0x0000 ;int10
+      000034 82 00 00 00             54 	int 0x0000 ;int11
+      000038 82 00 00 00             55 	int 0x0000 ;int12
+      00003C 82 00 00 00             56 	int 0x0000 ;int13
+      000040 82 00 00 00             57 	int 0x0000 ;int14
+      000044 82 00 00 00             58 	int 0x0000 ;int15
+      000048 82 00 00 00             59 	int 0x0000 ;int16
+      00004C 82 00 00 00             60 	int 0x0000 ;int17
+      000050 82 00 00 00             61 	int 0x0000 ;int18
+      000054 82 00 00 00             62 	int 0x0000 ;int19
+      000058 82 00 00 00             63 	int 0x0000 ;int20
+      00005C 82 00 00 00             64 	int 0x0000 ;int21
+      000060 82 00 00 00             65 	int 0x0000 ;int22
+      000064 82 00 00 00             66 	int 0x0000 ;int23
+      000068 82 00 00 00             67 	int 0x0000 ;int24
+      00006C 82 00 00 00             68 	int 0x0000 ;int25
+      000070 82 00 00 00             69 	int 0x0000 ;int26
+      000074 82 00 00 00             70 	int 0x0000 ;int27
+      000078 82 00 00 00             71 	int 0x0000 ;int28
+      00007C 82 00 00 00             72 	int 0x0000 ;int29
+                                     73 ;--------------------------------------------------------
+                                     74 ; global & static initialisations
+                                     75 ;--------------------------------------------------------
+                                     76 	.area HOME
+                                     77 	.area GSINIT
+                                     78 	.area GSFINAL
+                                     79 	.area GSINIT
+      000000                         80 __sdcc_gs_init_startup:
+      000000                         81 __sdcc_init_data:
+                                     82 ; stm8_genXINIT() start
+      000000 AEr00r00         [ 2]   83 	ldw x, #l_DATA
+      000003 27 07            [ 1]   84 	jreq	00002$
+      000005                         85 00001$:
+      000005 72 4FuFFuFF      [ 1]   86 	clr (s_DATA - 1, x)
+      000009 5A               [ 2]   87 	decw x
+      00000A 26 F9            [ 1]   88 	jrne	00001$
+      00000C                         89 00002$:
+      00000C AEr00r00         [ 2]   90 	ldw	x, #l_INITIALIZER
+      00000F 27 09            [ 1]   91 	jreq	00004$
+      000011                         92 00003$:
+      000011 D6uFFuFF         [ 1]   93 	ld	a, (s_INITIALIZER - 1, x)
+      000014 D7uFFuFF         [ 1]   94 	ld	(s_INITIALIZED - 1, x), a
+      000017 5A               [ 2]   95 	decw	x
+      000018 26 F7            [ 1]   96 	jrne	00003$
+      00001A                         97 00004$:
+                                     98 ; stm8_genXINIT() end
+                                     99 	.area GSFINAL
+      000000 CCr00r80         [ 2]  100 	jp	__sdcc_program_startup
+                                    101 ;--------------------------------------------------------
+                                    102 ; Home
+                                    103 ;--------------------------------------------------------
+                                    104 	.area HOME
+                                    105 	.area HOME
+      000080                        106 __sdcc_program_startup:
+      000080 CCr00r95         [ 2]  107 	jp	_main
+                                    108 ;	return from main will return to caller
+                                    109 ;--------------------------------------------------------
+                                    110 ; code
+                                    111 ;--------------------------------------------------------
+                                    112 	.area CODE
+                                    113 ;	uart.c: 50: void system_clock_init()
+                                    114 ;	-----------------------------------------
+                                    115 ;	 function system_clock_init
+                                    116 ;	-----------------------------------------
+      000000                        117 _system_clock_init:
+                                    118 ;	uart.c: 52: nointerrupts();
+      000000 9B               [ 1]  119 	sim 
+                                    120 ;	uart.c: 53: CLK_ICKR = 0;
+      000001 35 00 50 C0      [ 1]  121 	mov	0x50c0+0, #0x00
+                                    122 ;	uart.c: 54: CLK_ICKR |= CLK_ICKR_HSIEN;
+      000005 72 10 50 C0      [ 1]  123 	bset	0x50c0, #0
+                                    124 ;	uart.c: 55: CLK_ECKR = 0;
+      000009 35 00 50 C1      [ 1]  125 	mov	0x50c1+0, #0x00
+                                    126 ;	uart.c: 56: CLK_SWR = CLK_SWR_HSI;
+      00000D 35 E1 50 C4      [ 1]  127 	mov	0x50c4+0, #0xe1
+                                    128 ;	uart.c: 57: while (0 == (CLK_ICKR & CLK_ICKR_HSIRDY));
+      000011                        129 00101$:
+      000011 AE 50 C0         [ 2]  130 	ldw	x, #0x50c0
+      000014 F6               [ 1]  131 	ld	a, (x)
+      000015 A5 02            [ 1]  132 	bcp	a, #0x02
+      000017 27 F8            [ 1]  133 	jreq	00101$
+                                    134 ;	uart.c: 58: CLK_CKDIVR = 0;
+      000019 35 00 50 C6      [ 1]  135 	mov	0x50c6+0, #0x00
+                                    136 ;	uart.c: 59: CLK_PCKENR1 = 0xFF;
+      00001D 35 FF 50 C7      [ 1]  137 	mov	0x50c7+0, #0xff
+                                    138 ;	uart.c: 60: CLK_PCKENR2 = 0xFF;
+      000021 35 FF 50 CA      [ 1]  139 	mov	0x50ca+0, #0xff
+                                    140 ;	uart.c: 61: CLK_CCOR = 0;
+      000025 35 00 50 C9      [ 1]  141 	mov	0x50c9+0, #0x00
+                                    142 ;	uart.c: 62: CLK_HSITRIMR = 0;
+      000029 35 00 50 CC      [ 1]  143 	mov	0x50cc+0, #0x00
+                                    144 ;	uart.c: 63: CLK_SWIMCCR = 0;
+      00002D 35 00 50 CD      [ 1]  145 	mov	0x50cd+0, #0x00
+                                    146 ;	uart.c: 65: CLK_SWCR = 0;
+      000031 35 00 50 C5      [ 1]  147 	mov	0x50c5+0, #0x00
+                                    148 ;	uart.c: 66: CLK_SWCR |= CLK_SWCR_SWEN;
+      000035 AE 50 C5         [ 2]  149 	ldw	x, #0x50c5
+      000038 F6               [ 1]  150 	ld	a, (x)
+      000039 AA 02            [ 1]  151 	or	a, #0x02
+      00003B F7               [ 1]  152 	ld	(x), a
+                                    153 ;	uart.c: 67: while (0 != (CLK_SWCR & CLK_SWCR_SWBSY));
+      00003C                        154 00104$:
+      00003C AE 50 C5         [ 2]  155 	ldw	x, #0x50c5
+      00003F F6               [ 1]  156 	ld	a, (x)
+      000040 44               [ 1]  157 	srl	a
+      000041 25 F9            [ 1]  158 	jrc	00104$
+                                    159 ;	uart.c: 68: interrupts();
+      000043 9A               [ 1]  160 	rim 
+      000044 81               [ 4]  161 	ret
+                                    162 ;	uart.c: 77: int uart_puts(const char *s) {
+                                    163 ;	-----------------------------------------
+                                    164 ;	 function uart_puts
+                                    165 ;	-----------------------------------------
+      000045                        166 _uart_puts:
+      000045 52 03            [ 2]  167 	sub	sp, #3
+                                    168 ;	uart.c: 79: for(i = 0; i < strlen(s); i++) {
+      000047 0F 01            [ 1]  169 	clr	(0x01, sp)
+      000049                        170 00106$:
+      000049 1E 06            [ 2]  171 	ldw	x, (0x06, sp)
+      00004B 89               [ 2]  172 	pushw	x
+      00004C CDr00r00         [ 4]  173 	call	_strlen
+      00004F 5B 02            [ 2]  174 	addw	sp, #2
+      000051 1F 02            [ 2]  175 	ldw	(0x02, sp), x
+      000053 5F               [ 1]  176 	clrw	x
+      000054 7B 01            [ 1]  177 	ld	a, (0x01, sp)
+      000056 97               [ 1]  178 	ld	xl, a
+      000057 13 02            [ 2]  179 	cpw	x, (0x02, sp)
+      000059 24 17            [ 1]  180 	jrnc	00104$
+                                    181 ;	uart.c: 80: while(!(UART1_SR & UART_SR_TXE));
+      00005B                        182 00101$:
+      00005B AE 52 30         [ 2]  183 	ldw	x, #0x5230
+      00005E F6               [ 1]  184 	ld	a, (x)
+      00005F 4D               [ 1]  185 	tnz	a
+      000060 2A F9            [ 1]  186 	jrpl	00101$
+                                    187 ;	uart.c: 81: UART1_DR = s[i];
+      000062 5F               [ 1]  188 	clrw	x
+      000063 7B 01            [ 1]  189 	ld	a, (0x01, sp)
+      000065 97               [ 1]  190 	ld	xl, a
+      000066 72 FB 06         [ 2]  191 	addw	x, (0x06, sp)
+      000069 F6               [ 1]  192 	ld	a, (x)
+      00006A AE 52 31         [ 2]  193 	ldw	x, #0x5231
+      00006D F7               [ 1]  194 	ld	(x), a
+                                    195 ;	uart.c: 79: for(i = 0; i < strlen(s); i++) {
+      00006E 0C 01            [ 1]  196 	inc	(0x01, sp)
+      000070 20 D7            [ 2]  197 	jra	00106$
+      000072                        198 00104$:
+                                    199 ;	uart.c: 84: return(i);
+      000072 5F               [ 1]  200 	clrw	x
+      000073 7B 01            [ 1]  201 	ld	a, (0x01, sp)
+      000075 97               [ 1]  202 	ld	xl, a
+      000076 5B 03            [ 2]  203 	addw	sp, #3
+      000078 81               [ 4]  204 	ret
+                                    205 ;	uart.c: 90: void uart_init() {
+                                    206 ;	-----------------------------------------
+                                    207 ;	 function uart_init
+                                    208 ;	-----------------------------------------
+      000079                        209 _uart_init:
+                                    210 ;	uart.c: 92: PD_DDR = 0xBF;
+      000079 35 BF 50 11      [ 1]  211 	mov	0x5011+0, #0xbf
+                                    212 ;	uart.c: 93: PD_CR1 = 0xFF;
+      00007D 35 FF 50 12      [ 1]  213 	mov	0x5012+0, #0xff
+                                    214 ;	uart.c: 96: UART1_CR2 = UART_CR2_TEN | UART_CR2_REN;
+      000081 35 0C 52 35      [ 1]  215 	mov	0x5235+0, #0x0c
+                                    216 ;	uart.c: 98: UART1_CR3 &= ~(UART_CR3_STOP1 | UART_CR3_STOP0);
+      000085 AE 52 36         [ 2]  217 	ldw	x, #0x5236
+      000088 F6               [ 1]  218 	ld	a, (x)
+      000089 A4 CF            [ 1]  219 	and	a, #0xcf
+      00008B F7               [ 1]  220 	ld	(x), a
+                                    221 ;	uart.c: 100: UART1_BRR2 = 0x0B;
+      00008C 35 0B 52 33      [ 1]  222 	mov	0x5233+0, #0x0b
+                                    223 ;	uart.c: 101: UART1_BRR1 = 0x08;
+      000090 35 08 52 32      [ 1]  224 	mov	0x5232+0, #0x08
+      000094 81               [ 4]  225 	ret
+                                    226 ;	uart.c: 104: int main() {
+                                    227 ;	-----------------------------------------
+                                    228 ;	 function main
+                                    229 ;	-----------------------------------------
+      000095                        230 _main:
+      000095 52 08            [ 2]  231 	sub	sp, #8
+                                    232 ;	uart.c: 25: PA_ODR = 0x00;
+      000097 35 00 50 00      [ 1]  233 	mov	0x5000+0, #0x00
+                                    234 ;	uart.c: 26: PA_DDR = 0xFF;
+      00009B 35 FF 50 02      [ 1]  235 	mov	0x5002+0, #0xff
+                                    236 ;	uart.c: 27: PA_CR1 = 0xFF;
+      00009F 35 FF 50 03      [ 1]  237 	mov	0x5003+0, #0xff
+                                    238 ;	uart.c: 28: PA_CR2 = 0x00;
+      0000A3 35 00 50 04      [ 1]  239 	mov	0x5004+0, #0x00
+                                    240 ;	uart.c: 30: PB_ODR = 0x00;
+      0000A7 35 00 50 05      [ 1]  241 	mov	0x5005+0, #0x00
+                                    242 ;	uart.c: 31: PB_DDR = 0xFF;
+      0000AB 35 FF 50 07      [ 1]  243 	mov	0x5007+0, #0xff
+                                    244 ;	uart.c: 32: PB_CR1 = 0xFF;
+      0000AF 35 FF 50 08      [ 1]  245 	mov	0x5008+0, #0xff
+                                    246 ;	uart.c: 33: PB_CR2 = 0x00;
+      0000B3 35 00 50 09      [ 1]  247 	mov	0x5009+0, #0x00
+                                    248 ;	uart.c: 35: PC_ODR = 0x00;
+      0000B7 35 00 50 0A      [ 1]  249 	mov	0x500a+0, #0x00
+                                    250 ;	uart.c: 36: PC_DDR = 0xFF;
+      0000BB 35 FF 50 0C      [ 1]  251 	mov	0x500c+0, #0xff
+                                    252 ;	uart.c: 37: PC_CR1 = 0xFF;
+      0000BF 35 FF 50 0D      [ 1]  253 	mov	0x500d+0, #0xff
+                                    254 ;	uart.c: 38: PC_CR2 = 0x00;
+      0000C3 35 00 50 0E      [ 1]  255 	mov	0x500e+0, #0x00
+                                    256 ;	uart.c: 40: PD_ODR = 0x00;
+      0000C7 35 00 50 0F      [ 1]  257 	mov	0x500f+0, #0x00
+                                    258 ;	uart.c: 41: PD_DDR = 0xFF;
+      0000CB 35 FF 50 11      [ 1]  259 	mov	0x5011+0, #0xff
+                                    260 ;	uart.c: 42: PD_CR1 = 0xFF;
+      0000CF 35 FF 50 12      [ 1]  261 	mov	0x5012+0, #0xff
+                                    262 ;	uart.c: 43: PD_CR2 = 0x00;
+      0000D3 35 00 50 13      [ 1]  263 	mov	0x5013+0, #0x00
+                                    264 ;	uart.c: 106: system_clock_init();
+      0000D7 CDr00r00         [ 4]  265 	call	_system_clock_init
+                                    266 ;	uart.c: 107: uart_init();
+      0000DA CDr00r79         [ 4]  267 	call	_uart_init
+                                    268 ;	uart.c: 109: while(1) {
+      0000DD                        269 00103$:
+                                    270 ;	uart.c: 110: uart_puts("STM8S at 115200 baud. Welcome and keep up the good work!\r\n");
+      0000DD AEr01r14         [ 2]  271 	ldw	x, #___str_0+0
+      0000E0 89               [ 2]  272 	pushw	x
+      0000E1 CDr00r45         [ 4]  273 	call	_uart_puts
+      0000E4 5B 02            [ 2]  274 	addw	sp, #2
+                                    275 ;	uart.c: 111: __delay();
+      0000E6 AE 09 00         [ 2]  276 	ldw	x, #0x0900
+      0000E9 1F 03            [ 2]  277 	ldw	(0x03, sp), x
+      0000EB A6 3D            [ 1]  278 	ld	a, #0x3d
+      0000ED 0F 01            [ 1]  279 	clr	(0x01, sp)
+      0000EF                        280 00108$:
+      0000EF 9D               [ 1]  281 	nop 
+      0000F0 1E 03            [ 2]  282 	ldw	x, (0x03, sp)
+      0000F2 1D 00 01         [ 2]  283 	subw	x, #0x0001
+      0000F5 1F 07            [ 2]  284 	ldw	(0x07, sp), x
+      0000F7 A2 00            [ 1]  285 	sbc	a, #0x00
+      0000F9 97               [ 1]  286 	ld	xl, a
+      0000FA 7B 01            [ 1]  287 	ld	a, (0x01, sp)
+      0000FC A2 00            [ 1]  288 	sbc	a, #0x00
+      0000FE 95               [ 1]  289 	ld	xh, a
+      0000FF 02               [ 1]  290 	rlwa	x
+      000100 6B 01            [ 1]  291 	ld	(0x01, sp), a
+      000102 01               [ 1]  292 	rrwa	x
+      000103 16 07            [ 2]  293 	ldw	y, (0x07, sp)
+      000105 17 03            [ 2]  294 	ldw	(0x03, sp), y
+      000107 9F               [ 1]  295 	ld	a, xl
+      000108 16 07            [ 2]  296 	ldw	y, (0x07, sp)
+      00010A 26 E3            [ 1]  297 	jrne	00108$
+      00010C 5D               [ 2]  298 	tnzw	x
+      00010D 27 CE            [ 1]  299 	jreq	00103$
+      00010F 20 DE            [ 2]  300 	jra	00108$
+      000111 5B 08            [ 2]  301 	addw	sp, #8
+      000113 81               [ 4]  302 	ret
+                                    303 	.area CODE
+      000114                        304 ___str_0:
+      000114 53 54 4D 38 53 20 61   305 	.ascii "STM8S at 115200 baud. Welcome and keep up the good work!"
+             74 20 31 31 35 32 30
+             30 20 62 61 75 64 2E
+             20 57 65 6C 63 6F 6D
+             65 20 61 6E 64 20 6B
+             65 65 70 20 75 70 20
+             74 68 65 20 67 6F 6F
+             64 20 77 6F 72 6B 21
+      00014C 0D                     306 	.db 0x0D
+      00014D 0A                     307 	.db 0x0A
+      00014E 00                     308 	.db 0x00
+                                    309 	.area INITIALIZER
+                                    310 	.area CABS (ABS)

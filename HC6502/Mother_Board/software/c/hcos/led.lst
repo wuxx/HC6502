@@ -1,0 +1,355 @@
+ca65 V2.17 - Git 180bb082
+Main file   : led.s65
+Current file: led.s65
+
+000000r 1                           .include "io.inc65"
+000000r 2               ; CPU frequency
+000000r 2               
+000000r 2               F_CPU = 1000000
+000000r 2               
+000000r 2               ; ACIA registers
+000000r 2               
+000000r 2               ACIA_BASE    = $7f00
+000000r 2               ACIA_DATA    = ACIA_BASE
+000000r 2               ACIA_STATUS  = ACIA_BASE + 1
+000000r 2               ACIA_COMMAND = ACIA_BASE + 2
+000000r 2               ACIA_CONTROL = ACIA_BASE + 3
+000000r 2               
+000000r 2               ; ACIA control register bit values
+000000r 2               
+000000r 2               ACIA_STOP_BITS_1 = %00000000
+000000r 2               ACIA_STOP_BITS_2 = %10000000
+000000r 2               ACIA_DATA_BITS_8 = %00000000
+000000r 2               ACIA_DATA_BITS_7 = %00100000
+000000r 2               ACIA_DATA_BITS_6 = %01000000
+000000r 2               ACIA_DATA_BITS_5 = %01100000
+000000r 2               ACIA_CLOCK_EXT   = %00000000
+000000r 2               ACIA_CLOCK_INT   = %00010000
+000000r 2               ACIA_BAUD_16XEXT = %00000000
+000000r 2               ACIA_BAUD_50     = %00000001
+000000r 2               ACIA_BAUD_75     = %00000010
+000000r 2               ACIA_BAUD_109    = %00000011
+000000r 2               ACIA_BAUD_134    = %00000100
+000000r 2               ACIA_BAUD_150    = %00000101
+000000r 2               ACIA_BAUD_300    = %00000110
+000000r 2               ACIA_BAUD_600    = %00000111
+000000r 2               ACIA_BAUD_1200   = %00001000
+000000r 2               ACIA_BAUD_1800   = %00001001
+000000r 2               ACIA_BAUD_2400   = %00001010
+000000r 2               ACIA_BAUD_3600   = %00001011
+000000r 2               ACIA_BAUD_4800   = %00001100
+000000r 2               ACIA_BAUD_7200   = %00001101
+000000r 2               ACIA_BAUD_9600   = %00001110
+000000r 2               ACIA_BAUD_19200  = %00001111
+000000r 2               
+000000r 2               ; ACIA command register bit values
+000000r 2               
+000000r 2               ACIA_PARITY_ODD              = %00000000
+000000r 2               ACIA_PARITY_EVEN             = %01000000
+000000r 2               ACIA_PARITY_MARK             = %10000000
+000000r 2               ACIA_PARITY_SPACE            = %11000000
+000000r 2               ACIA_PARITY_DISABLE          = %00000000
+000000r 2               ACIA_PARITY_ENABLE           = %00100000
+000000r 2               ACIA_ECHO_DISABLE            = %00000000
+000000r 2               ACIA_ECHO_ENABLE             = %00010000
+000000r 2               ACIA_TX_INT_DISABLE_RTS_HIGH = %00000000
+000000r 2               ACIA_TX_INT_ENABLE_RTS_LOW   = %00000100
+000000r 2               ACIA_TX_INT_DISABLE_RTS_LOW  = %00001000
+000000r 2               ACIA_TX_INT_DISABLE_BREAK    = %00001100
+000000r 2               ACIA_RX_INT_ENABLE           = %00000000
+000000r 2               ACIA_RX_INT_DISABLE          = %00000010
+000000r 2               ACIA_DTR_HIGH                = %00000000
+000000r 2               ACIA_DTR_LOW                 = %00000001
+000000r 2               
+000000r 2               ; ACIA status register bit masks
+000000r 2               
+000000r 2               ACIA_STATUS_IRQ        = 1 << 7
+000000r 2               ACIA_STATUS_DSR        = 1 << 6
+000000r 2               ACIA_STATUS_DCD        = 1 << 5
+000000r 2               ACIA_STATUS_TX_EMPTY   = 1 << 4
+000000r 2               ACIA_STATUS_RX_FULL    = 1 << 3
+000000r 2               ACIA_STATUS_OVERRUN    = 1 << 2
+000000r 2               ACIA_STATUS_FRAME_ERR  = 1 << 1
+000000r 2               ACIA_STATUS_PARITY_ERR = 1 << 0
+000000r 2               
+000000r 2               ; VIA registers
+000000r 2               
+000000r 2               VIA1_BASE   = $7f20
+000000r 2               VIA1_ORB    = VIA1_BASE
+000000r 2               VIA1_IRB    = VIA1_BASE
+000000r 2               VIA1_ORA    = VIA1_BASE + 1
+000000r 2               VIA1_IRA    = VIA1_BASE + 1
+000000r 2               VIA1_DDRB   = VIA1_BASE + 2
+000000r 2               VIA1_DDRA   = VIA1_BASE + 3
+000000r 2               VIA1_T1C_L  = VIA1_BASE + 4
+000000r 2               VIA1_T1C_H  = VIA1_BASE + 5
+000000r 2               VIA1_T1L_L  = VIA1_BASE + 6
+000000r 2               VIA1_T1L_H  = VIA1_BASE + 7
+000000r 2               VIA1_T2C_L  = VIA1_BASE + 8
+000000r 2               VIA1_T2C_H  = VIA1_BASE + 9
+000000r 2               VIA1_SR     = VIA1_BASE + 10
+000000r 2               VIA1_ACR    = VIA1_BASE + 11
+000000r 2               VIA1_PCR    = VIA1_BASE + 12
+000000r 2               VIA1_IFR    = VIA1_BASE + 13
+000000r 2               VIA1_IER    = VIA1_BASE + 14
+000000r 2               VIA1_ORA_NH = VIA1_BASE + 15
+000000r 2               VIA1_IRA_NH = VIA1_BASE + 15
+000000r 2               
+000000r 2               VIA2_BASE   = $7f40
+000000r 2               VIA2_ORB    = VIA2_BASE
+000000r 2               VIA2_IRB    = VIA2_BASE
+000000r 2               VIA2_ORA    = VIA2_BASE + 1
+000000r 2               VIA2_IRA    = VIA2_BASE + 1
+000000r 2               VIA2_DDRB   = VIA2_BASE + 2
+000000r 2               VIA2_DDRA   = VIA2_BASE + 3
+000000r 2               VIA2_T1C_L  = VIA2_BASE + 4
+000000r 2               VIA2_T1C_H  = VIA2_BASE + 5
+000000r 2               VIA2_T1L_L  = VIA2_BASE + 6
+000000r 2               VIA2_T1L_H  = VIA2_BASE + 7
+000000r 2               VIA2_T2C_L  = VIA2_BASE + 8
+000000r 2               VIA2_T2C_H  = VIA2_BASE + 9
+000000r 2               VIA2_SR     = VIA2_BASE + 10
+000000r 2               VIA2_ACR    = VIA2_BASE + 11
+000000r 2               VIA2_PCR    = VIA2_BASE + 12
+000000r 2               VIA2_IFR    = VIA2_BASE + 13
+000000r 2               VIA2_IER    = VIA2_BASE + 14
+000000r 2               VIA2_ORA_NH = VIA2_BASE + 15
+000000r 2               VIA2_IRA_NH = VIA2_BASE + 15
+000000r 2               
+000000r 2               ; Port bits
+000000r 2               
+000000r 2               VIA_PA0 = (1 << 0)
+000000r 2               VIA_PA1 = (1 << 1)
+000000r 2               VIA_PA2 = (1 << 2)
+000000r 2               VIA_PA3 = (1 << 3)
+000000r 2               VIA_PA4 = (1 << 4)
+000000r 2               VIA_PA5 = (1 << 5)
+000000r 2               VIA_PA6 = (1 << 6)
+000000r 2               VIA_PA7 = (1 << 7)
+000000r 2               
+000000r 2               ; Port bits
+000000r 2               
+000000r 2               VIA_PB0 = 1 << 0
+000000r 2               VIA_PB1 = 1 << 1
+000000r 2               VIA_PB2 = 1 << 2
+000000r 2               VIA_PB3 = 1 << 3
+000000r 2               VIA_PB4 = 1 << 4
+000000r 2               VIA_PB5 = 1 << 5
+000000r 2               VIA_PB6 = 1 << 6
+000000r 2               VIA_PB7 = 1 << 7
+000000r 2               
+000000r 2               ; SID registers
+000000r 2               
+000000r 2               SID_BASE = $7f60
+000000r 2               SID_VOICE1_FREQ_L = SID_BASE
+000000r 2               SID_VOICE1_FREQ_H = SID_BASE + 1
+000000r 2               SID_VOICE1_PW_L   = SID_BASE + 2
+000000r 2               SID_VOICE1_PW_H   = SID_BASE + 3
+000000r 2               SID_VOICE1_CTRL   = SID_BASE + 4
+000000r 2               SID_VOICE1_AD     = SID_BASE + 5
+000000r 2               SID_VOICE1_SR     = SID_BASE + 6
+000000r 2               SID_VOICE2_FREQ_L = SID_BASE + 7
+000000r 2               SID_VOICE2_FREQ_H = SID_BASE + 8
+000000r 2               SID_VOICE2_PW_L   = SID_BASE + 9
+000000r 2               SID_VOICE2_PW_H   = SID_BASE + 10
+000000r 2               SID_VOICE2_CTRL   = SID_BASE + 11
+000000r 2               SID_VOICE2_AD     = SID_BASE + 12
+000000r 2               SID_VOICE2_SR     = SID_BASE + 13
+000000r 2               SID_VOICE3_FREQ_L = SID_BASE + 14
+000000r 2               SID_VOICE3_FREQ_H = SID_BASE + 15
+000000r 2               SID_VOICE3_PW_L   = SID_BASE + 16
+000000r 2               SID_VOICE3_PW_H   = SID_BASE + 17
+000000r 2               SID_VOICE3_CTRL   = SID_BASE + 18
+000000r 2               SID_VOICE3_AD     = SID_BASE + 19
+000000r 2               SID_VOICE3_SR     = SID_BASE + 20
+000000r 2               SID_FC_L          = SID_BASE + 21
+000000r 2               SID_FC_H          = SID_BASE + 22
+000000r 2               SID_RES_FILT      = SID_BASE + 23
+000000r 2               SID_MODE_VOLUME   = SID_BASE + 24
+000000r 2               SID_POTX          = SID_BASE + 25
+000000r 2               SID_POTY          = SID_BASE + 26
+000000r 2               SID_OSC3          = SID_BASE + 27
+000000r 2               SID_ENV3          = SID_BASE + 28
+000000r 2               
+000000r 2               ; LED
+000000r 2               
+000000r 2               LED_DDR = VIA1_DDRA
+000000r 2               LED_OUT = VIA1_ORA
+000000r 2               LED     = VIA_PA7
+000000r 2               
+000000r 1                           .include "zeropage.inc65"
+000000r 2               .globalzp sp
+000000r 2               .globalzp sreg
+000000r 2               .globalzp regsave
+000000r 2               .globalzp regbank
+000000r 2               .globalzp tmp1
+000000r 2               .globalzp tmp2
+000000r 2               .globalzp tmp3
+000000r 2               .globalzp tmp4
+000000r 2               .globalzp tmpstack
+000000r 2               .globalzp ptr1
+000000r 2               .globalzp ptr2
+000000r 2               .globalzp ptr3
+000000r 2               .globalzp ptr4
+000000r 2               .globalzp _millis
+000000r 2               .globalzp _jiffies
+000000r 2               .globalzp _seconds
+000000r 2               .globalzp _minutes
+000000r 2               .globalzp _hours
+000000r 2               .globalzp key_code
+000000r 2               .globalzp key_modifiers
+000000r 2               .globalzp key_tmp1
+000000r 2               .globalzp key_tmp2
+000000r 2               .globalzp lcd_enable_bits
+000000r 2               .globalzp lcd_cursor
+000000r 2               .globalzp lcd_row
+000000r 2               .globalzp lcd_column
+000000r 2               .globalzp _interrupted
+000000r 2               
+000000r 1                           .include "macros.inc65"
+000000r 2               ; Push X
+000000r 2               .macro phx
+000000r 2                 sta tmpstack
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push Y
+000000r 2               .macro phy
+000000r 2                 sta tmpstack
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push X and Y
+000000r 2               .macro phxy
+000000r 2                 sta tmpstack
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and X
+000000r 2               .macro phax
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and Y
+000000r 2               .macro phay
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A, X and Y
+000000r 2               .macro phaxy
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull X
+000000r 2               .macro plx
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull Y
+000000r 2               .macro ply
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull X and Y
+000000r 2               .macro plxy
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and X
+000000r 2               .macro plax
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and Y
+000000r 2               .macro play
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A, X and Y
+000000r 2               .macro plaxy
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Load zero page register reg/reg+1 with the 16-bit value, destroys A
+000000r 2               .macro ld16 reg, value
+000000r 2                 lda #<(value)
+000000r 2                 sta reg
+000000r 2                 lda #>(value)
+000000r 2                 sta reg + 1
+000000r 2               .endmacro
+000000r 2               
+000000r 1               
+000000r 1                           .export _led_init
+000000r 1                           .export _led_set
+000000r 1               
+000000r 1                           .import popa
+000000r 1                           .import incsp1
+000000r 1               
+000000r 1                           .code
+000000r 1               
+000000r 1               ; void led_init()
+000000r 1               ; Initialize the LED VIA pin.
+000000r 1               ; Initially the LED is turned off.
+000000r 1  AD 23 7F     _led_init:  lda LED_DDR
+000003r 1  09 80                    ora #LED
+000005r 1  8D 23 7F                 sta LED_DDR
+000008r 1  AD 21 7F                 lda LED_OUT
+00000Br 1  29 7F                    and #<~LED
+00000Dr 1  8D 21 7F                 sta LED_OUT
+000010r 1  60                       rts
+000011r 1               
+000011r 1               ; void led_set(char state)
+000011r 1               ; Set the LED on (state != 0) or off (state == 0)
+000011r 1               ; @in A (state) turns the LED off, any other value turns it on
+000011r 1  C9 00        _led_set:   cmp #0
+000013r 1  D0 09                    bne @on
+000015r 1  AD 21 7F     @off:       lda LED_OUT
+000018r 1  29 7F                    and #<~LED
+00001Ar 1  8D 21 7F                 sta LED_OUT
+00001Dr 1  60                       rts
+00001Er 1  AD 21 7F     @on:        lda LED_OUT
+000021r 1  09 80                    ora #LED
+000023r 1  8D 21 7F                 sta LED_OUT
+000026r 1  60                       rts
+000026r 1               

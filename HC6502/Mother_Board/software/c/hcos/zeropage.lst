@@ -1,0 +1,65 @@
+ca65 V2.17 - Git 180bb082
+Main file   : zeropage.s65
+Current file: zeropage.s65
+
+000000r 1                                 .include "zeropage.inc65"
+000000r 2               .globalzp sp
+000000r 2               .globalzp sreg
+000000r 2               .globalzp regsave
+000000r 2               .globalzp regbank
+000000r 2               .globalzp tmp1
+000000r 2               .globalzp tmp2
+000000r 2               .globalzp tmp3
+000000r 2               .globalzp tmp4
+000000r 2               .globalzp tmpstack
+000000r 2               .globalzp ptr1
+000000r 2               .globalzp ptr2
+000000r 2               .globalzp ptr3
+000000r 2               .globalzp ptr4
+000000r 2               .globalzp _millis
+000000r 2               .globalzp _jiffies
+000000r 2               .globalzp _seconds
+000000r 2               .globalzp _minutes
+000000r 2               .globalzp _hours
+000000r 2               .globalzp key_code
+000000r 2               .globalzp key_modifiers
+000000r 2               .globalzp key_tmp1
+000000r 2               .globalzp key_tmp2
+000000r 2               .globalzp lcd_enable_bits
+000000r 2               .globalzp lcd_cursor
+000000r 2               .globalzp lcd_row
+000000r 2               .globalzp lcd_column
+000000r 2               .globalzp _interrupted
+000000r 2               
+000000r 1               
+000000r 1                                 .zeropage
+000000r 1               
+000000r 1  xx xx        sp:               .res 2
+000002r 1  xx xx        sreg:             .res 2
+000004r 1  xx xx xx xx  regsave:          .res 4
+000008r 1  xx xx        ptr1:             .res 2
+00000Ar 1  xx xx        ptr2:             .res 2
+00000Cr 1  xx xx        ptr3:             .res 2
+00000Er 1  xx xx        ptr4:             .res 2
+000010r 1  xx           tmp1:             .res 1
+000011r 1  xx           tmp2:             .res 1
+000012r 1  xx           tmp3:             .res 1
+000013r 1  xx           tmp4:             .res 1
+000014r 1  xx xx xx xx  regbank:          .res 6
+000018r 1  xx xx        
+00001Ar 1  xx           tmpstack:         .res 1
+00001Br 1  xx xx xx xx  _millis:          .res 4
+00001Fr 1  xx           _jiffies:         .res 1
+000020r 1  xx           _seconds:         .res 1
+000021r 1  xx           _minutes:         .res 1
+000022r 1  xx           _hours:           .res 1
+000023r 1  xx           key_code:         .res 1
+000024r 1  xx           key_modifiers:    .res 1
+000025r 1  xx           key_tmp1:         .res 1
+000026r 1  xx           key_tmp2:         .res 1
+000027r 1  xx           lcd_enable_bits:  .res 1
+000028r 1  xx           lcd_cursor:       .res 1
+000029r 1  xx           lcd_row:          .res 1
+00002Ar 1  xx           lcd_column:       .res 1
+00002Br 1  xx           _interrupted:     .res 1
+00002Br 1               

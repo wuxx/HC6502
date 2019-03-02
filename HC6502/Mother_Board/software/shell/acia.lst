@@ -1,0 +1,216 @@
+ca65 V2.17 - Git 180bb082
+Main file   : acia.s65
+Current file: acia.s65
+
+000000r 1                                 .setcpu "6502"
+000000r 1                                 .include "zeropage.inc65"
+000000r 2               RES = $00
+000000r 2               R0 = $02
+000000r 2               R1 = $04
+000000r 2               TMP0 = $06
+000000r 2               TMP1 = $08
+000000r 2               
+000000r 1                                 .include "io.inc65"
+000000r 2               ; CPU frequency
+000000r 2               
+000000r 2               F_CPU = 1000000
+000000r 2               
+000000r 2               ; ACIA registers
+000000r 2               
+000000r 2               ACIA_BASE    = $7f00
+000000r 2               ACIA_DATA    = ACIA_BASE
+000000r 2               ACIA_STATUS  = ACIA_BASE + 1
+000000r 2               ACIA_COMMAND = ACIA_BASE + 2
+000000r 2               ACIA_CONTROL = ACIA_BASE + 3
+000000r 2               
+000000r 2               ; ACIA control register bit values
+000000r 2               
+000000r 2               ACIA_STOP_BITS_1 = %00000000
+000000r 2               ACIA_STOP_BITS_2 = %10000000
+000000r 2               ACIA_DATA_BITS_8 = %00000000
+000000r 2               ACIA_DATA_BITS_7 = %00100000
+000000r 2               ACIA_DATA_BITS_6 = %01000000
+000000r 2               ACIA_DATA_BITS_5 = %01100000
+000000r 2               ACIA_CLOCK_EXT   = %00000000
+000000r 2               ACIA_CLOCK_INT   = %00010000
+000000r 2               ACIA_BAUD_16XEXT = %00000000
+000000r 2               ACIA_BAUD_50     = %00000001
+000000r 2               ACIA_BAUD_75     = %00000010
+000000r 2               ACIA_BAUD_109    = %00000011
+000000r 2               ACIA_BAUD_134    = %00000100
+000000r 2               ACIA_BAUD_150    = %00000101
+000000r 2               ACIA_BAUD_300    = %00000110
+000000r 2               ACIA_BAUD_600    = %00000111
+000000r 2               ACIA_BAUD_1200   = %00001000
+000000r 2               ACIA_BAUD_1800   = %00001001
+000000r 2               ACIA_BAUD_2400   = %00001010
+000000r 2               ACIA_BAUD_3600   = %00001011
+000000r 2               ACIA_BAUD_4800   = %00001100
+000000r 2               ACIA_BAUD_7200   = %00001101
+000000r 2               ACIA_BAUD_9600   = %00001110
+000000r 2               ACIA_BAUD_19200  = %00001111
+000000r 2               
+000000r 2               ; ACIA command register bit values
+000000r 2               
+000000r 2               ACIA_PARITY_ODD              = %00000000
+000000r 2               ACIA_PARITY_EVEN             = %01000000
+000000r 2               ACIA_PARITY_MARK             = %10000000
+000000r 2               ACIA_PARITY_SPACE            = %11000000
+000000r 2               ACIA_PARITY_DISABLE          = %00000000
+000000r 2               ACIA_PARITY_ENABLE           = %00100000
+000000r 2               ACIA_ECHO_DISABLE            = %00000000
+000000r 2               ACIA_ECHO_ENABLE             = %00010000
+000000r 2               ACIA_TX_INT_DISABLE_RTS_HIGH = %00000000
+000000r 2               ACIA_TX_INT_ENABLE_RTS_LOW   = %00000100
+000000r 2               ACIA_TX_INT_DISABLE_RTS_LOW  = %00001000
+000000r 2               ACIA_TX_INT_DISABLE_BREAK    = %00001100
+000000r 2               ACIA_RX_INT_ENABLE           = %00000000
+000000r 2               ACIA_RX_INT_DISABLE          = %00000010
+000000r 2               ACIA_DTR_HIGH                = %00000000
+000000r 2               ACIA_DTR_LOW                 = %00000001
+000000r 2               
+000000r 2               ; ACIA status register bit masks
+000000r 2               
+000000r 2               ACIA_STATUS_IRQ        = 1 << 7
+000000r 2               ACIA_STATUS_DSR        = 1 << 6
+000000r 2               ACIA_STATUS_DCD        = 1 << 5
+000000r 2               ACIA_STATUS_TX_EMPTY   = 1 << 4
+000000r 2               ACIA_STATUS_RX_FULL    = 1 << 3
+000000r 2               ACIA_STATUS_OVERRUN    = 1 << 2
+000000r 2               ACIA_STATUS_FRAME_ERR  = 1 << 1
+000000r 2               ACIA_STATUS_PARITY_ERR = 1 << 0
+000000r 2               
+000000r 1                                 .include "macros.inc65"
+000000r 2               ; Push A and X, destroys A
+000000r 2               .macro phax
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and Y, destroys A
+000000r 2               .macro phay
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A, X and Y, destroys A
+000000r 2               .macro phaxy
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and X
+000000r 2               .macro plax
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and Y
+000000r 2               .macro play
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A, X and Y
+000000r 2               .macro plaxy
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Load zero page register reg/reg+1 with the 16-bit value, destroys A
+000000r 2               .macro ld16 reg, value
+000000r 2                 lda #<(value)
+000000r 2                 sta reg
+000000r 2                 lda #>(value)
+000000r 2                 sta reg + 1
+000000r 2               .endmacro
+000000r 2               
+000000r 1               
+000000r 1                                 ACIA_BUFFER_LENGTH = 10
+000000r 1               
+000000r 1                                 .export acia_init
+000000r 1                                 .export acia_getc
+000000r 1                                 .export acia_gets
+000000r 1                                 .export acia_gets_buffer
+000000r 1                                 .export acia_putc
+000000r 1                                 .export acia_puts
+000000r 1                                 .export acia_put_newline
+000000r 1               
+000000r 1                                 .bss
+000000r 1               
+000000r 1  00 00 00 00  acia_gets_buffer: .res ACIA_BUFFER_LENGTH + 1, 0
+000004r 1  00 00 00 00  
+000008r 1  00 00 00     
+00000Br 1               
+00000Br 1                                 .code
+000000r 1               
+000000r 1               ; Initialize the ACIA
+000000r 1  48           acia_init:        pha
+000001r 1  A9 0B                          lda #(ACIA_PARITY_DISABLE | ACIA_ECHO_DISABLE | ACIA_TX_INT_DISABLE_RTS_LOW | ACIA_RX_INT_DISABLE | ACIA_DTR_LOW)
+000003r 1  8D 02 7F                       sta ACIA_COMMAND
+000006r 1  A9 1F                          lda #(ACIA_STOP_BITS_1 | ACIA_DATA_BITS_8 | ACIA_CLOCK_INT | ACIA_BAUD_19200)
+000008r 1  8D 03 7F                       sta ACIA_CONTROL
+00000Br 1  68                             pla
+00000Cr 1  60                             rts
+00000Dr 1               
+00000Dr 1               ; Send the character in A
+00000Dr 1  48           acia_putc:        pha
+00000Er 1  AD 01 7F     wait_txd_empty:   lda ACIA_STATUS
+000011r 1  29 10                          and #ACIA_STATUS_TX_EMPTY
+000013r 1  F0 F9                          beq wait_txd_empty
+000015r 1  68                             pla
+000016r 1  8D 00 7F                       sta ACIA_DATA
+000019r 1  60                             rts
+00001Ar 1               
+00001Ar 1               ; Send the zero terminated string pointed to by R0
+00001Ar 1  48 98 48     acia_puts:        phay
+00001Dr 1  A0 FF                          ldy #$ff
+00001Fr 1  C8           next_char:        iny
+000020r 1  B1 02                          lda (R0),y
+000022r 1  20 rr rr                       jsr acia_putc
+000025r 1  D0 F8                          bne next_char
+000027r 1  68 A8 68                       play
+00002Ar 1  60                             rts
+00002Br 1               
+00002Br 1               ; Wait until a character was reveiced and return it in A
+00002Br 1               acia_getc:
+00002Br 1  AD 01 7F     wait_rxd_full:    lda ACIA_STATUS
+00002Er 1  29 08                          and #ACIA_STATUS_RX_FULL
+000030r 1  F0 F9                          beq wait_rxd_full
+000032r 1  AD 00 7F                       lda ACIA_DATA
+000035r 1  60                             rts
+000036r 1               
+000036r 1               ; Wait until a \n terminated string was received and store it at (R0)
+000036r 1               ; The accu contains the size of the buffer
+000036r 1               ; The \n is removed and the string is zero terminated
+000036r 1               ; After receiving buffer size - 1 characters, any following characters are discarded
+000036r 1  85 06        acia_gets:        sta TMP0
+000038r 1  48 98 48                       phay
+00003Br 1  A0 00                          ldy #0
+00003Dr 1  20 rr rr     gets_next_char:   jsr acia_getc
+000040r 1  C9 0A                          cmp #$0a
+000042r 1  F0 0A                          beq gets_eos
+000044r 1  C4 06                          cpy TMP0
+000046r 1  F0 F5                          beq gets_next_char
+000048r 1  91 02                          sta (R0),y
+00004Ar 1  C8                             iny
+00004Br 1  4C rr rr                       jmp gets_next_char
+00004Er 1  A9 00        gets_eos:         lda #0
+000050r 1  91 02                          sta (R0),y
+000052r 1  68 A8 68                       play
+000055r 1  60                             rts
+000056r 1               
+000056r 1               ; Send a newline character
+000056r 1  A9 0A        acia_put_newline: lda #$0a
+000058r 1  4C rr rr                       jmp acia_putc
+000058r 1               

@@ -1,0 +1,413 @@
+ca65 V2.17 - Git 180bb082
+Main file   : interrupt.s65
+Current file: interrupt.s65
+
+000000r 1                                 .include "zeropage.inc65"
+000000r 2               .globalzp sp
+000000r 2               .globalzp sreg
+000000r 2               .globalzp regsave
+000000r 2               .globalzp regbank
+000000r 2               .globalzp tmp1
+000000r 2               .globalzp tmp2
+000000r 2               .globalzp tmp3
+000000r 2               .globalzp tmp4
+000000r 2               .globalzp tmpstack
+000000r 2               .globalzp ptr1
+000000r 2               .globalzp ptr2
+000000r 2               .globalzp ptr3
+000000r 2               .globalzp ptr4
+000000r 2               .globalzp _millis
+000000r 2               .globalzp _jiffies
+000000r 2               .globalzp _seconds
+000000r 2               .globalzp _minutes
+000000r 2               .globalzp _hours
+000000r 2               .globalzp key_code
+000000r 2               .globalzp key_modifiers
+000000r 2               .globalzp key_tmp1
+000000r 2               .globalzp key_tmp2
+000000r 2               .globalzp lcd_enable_bits
+000000r 2               .globalzp lcd_cursor
+000000r 2               .globalzp lcd_row
+000000r 2               .globalzp lcd_column
+000000r 2               .globalzp _interrupted
+000000r 2               
+000000r 1                                 .include "io.inc65"
+000000r 2               ; CPU frequency
+000000r 2               
+000000r 2               F_CPU = 1000000
+000000r 2               
+000000r 2               ; ACIA registers
+000000r 2               
+000000r 2               ACIA_BASE    = $7f00
+000000r 2               ACIA_DATA    = ACIA_BASE
+000000r 2               ACIA_STATUS  = ACIA_BASE + 1
+000000r 2               ACIA_COMMAND = ACIA_BASE + 2
+000000r 2               ACIA_CONTROL = ACIA_BASE + 3
+000000r 2               
+000000r 2               ; ACIA control register bit values
+000000r 2               
+000000r 2               ACIA_STOP_BITS_1 = %00000000
+000000r 2               ACIA_STOP_BITS_2 = %10000000
+000000r 2               ACIA_DATA_BITS_8 = %00000000
+000000r 2               ACIA_DATA_BITS_7 = %00100000
+000000r 2               ACIA_DATA_BITS_6 = %01000000
+000000r 2               ACIA_DATA_BITS_5 = %01100000
+000000r 2               ACIA_CLOCK_EXT   = %00000000
+000000r 2               ACIA_CLOCK_INT   = %00010000
+000000r 2               ACIA_BAUD_16XEXT = %00000000
+000000r 2               ACIA_BAUD_50     = %00000001
+000000r 2               ACIA_BAUD_75     = %00000010
+000000r 2               ACIA_BAUD_109    = %00000011
+000000r 2               ACIA_BAUD_134    = %00000100
+000000r 2               ACIA_BAUD_150    = %00000101
+000000r 2               ACIA_BAUD_300    = %00000110
+000000r 2               ACIA_BAUD_600    = %00000111
+000000r 2               ACIA_BAUD_1200   = %00001000
+000000r 2               ACIA_BAUD_1800   = %00001001
+000000r 2               ACIA_BAUD_2400   = %00001010
+000000r 2               ACIA_BAUD_3600   = %00001011
+000000r 2               ACIA_BAUD_4800   = %00001100
+000000r 2               ACIA_BAUD_7200   = %00001101
+000000r 2               ACIA_BAUD_9600   = %00001110
+000000r 2               ACIA_BAUD_19200  = %00001111
+000000r 2               
+000000r 2               ; ACIA command register bit values
+000000r 2               
+000000r 2               ACIA_PARITY_ODD              = %00000000
+000000r 2               ACIA_PARITY_EVEN             = %01000000
+000000r 2               ACIA_PARITY_MARK             = %10000000
+000000r 2               ACIA_PARITY_SPACE            = %11000000
+000000r 2               ACIA_PARITY_DISABLE          = %00000000
+000000r 2               ACIA_PARITY_ENABLE           = %00100000
+000000r 2               ACIA_ECHO_DISABLE            = %00000000
+000000r 2               ACIA_ECHO_ENABLE             = %00010000
+000000r 2               ACIA_TX_INT_DISABLE_RTS_HIGH = %00000000
+000000r 2               ACIA_TX_INT_ENABLE_RTS_LOW   = %00000100
+000000r 2               ACIA_TX_INT_DISABLE_RTS_LOW  = %00001000
+000000r 2               ACIA_TX_INT_DISABLE_BREAK    = %00001100
+000000r 2               ACIA_RX_INT_ENABLE           = %00000000
+000000r 2               ACIA_RX_INT_DISABLE          = %00000010
+000000r 2               ACIA_DTR_HIGH                = %00000000
+000000r 2               ACIA_DTR_LOW                 = %00000001
+000000r 2               
+000000r 2               ; ACIA status register bit masks
+000000r 2               
+000000r 2               ACIA_STATUS_IRQ        = 1 << 7
+000000r 2               ACIA_STATUS_DSR        = 1 << 6
+000000r 2               ACIA_STATUS_DCD        = 1 << 5
+000000r 2               ACIA_STATUS_TX_EMPTY   = 1 << 4
+000000r 2               ACIA_STATUS_RX_FULL    = 1 << 3
+000000r 2               ACIA_STATUS_OVERRUN    = 1 << 2
+000000r 2               ACIA_STATUS_FRAME_ERR  = 1 << 1
+000000r 2               ACIA_STATUS_PARITY_ERR = 1 << 0
+000000r 2               
+000000r 2               ; VIA registers
+000000r 2               
+000000r 2               VIA1_BASE   = $7f20
+000000r 2               VIA1_ORB    = VIA1_BASE
+000000r 2               VIA1_IRB    = VIA1_BASE
+000000r 2               VIA1_ORA    = VIA1_BASE + 1
+000000r 2               VIA1_IRA    = VIA1_BASE + 1
+000000r 2               VIA1_DDRB   = VIA1_BASE + 2
+000000r 2               VIA1_DDRA   = VIA1_BASE + 3
+000000r 2               VIA1_T1C_L  = VIA1_BASE + 4
+000000r 2               VIA1_T1C_H  = VIA1_BASE + 5
+000000r 2               VIA1_T1L_L  = VIA1_BASE + 6
+000000r 2               VIA1_T1L_H  = VIA1_BASE + 7
+000000r 2               VIA1_T2C_L  = VIA1_BASE + 8
+000000r 2               VIA1_T2C_H  = VIA1_BASE + 9
+000000r 2               VIA1_SR     = VIA1_BASE + 10
+000000r 2               VIA1_ACR    = VIA1_BASE + 11
+000000r 2               VIA1_PCR    = VIA1_BASE + 12
+000000r 2               VIA1_IFR    = VIA1_BASE + 13
+000000r 2               VIA1_IER    = VIA1_BASE + 14
+000000r 2               VIA1_ORA_NH = VIA1_BASE + 15
+000000r 2               VIA1_IRA_NH = VIA1_BASE + 15
+000000r 2               
+000000r 2               VIA2_BASE   = $7f40
+000000r 2               VIA2_ORB    = VIA2_BASE
+000000r 2               VIA2_IRB    = VIA2_BASE
+000000r 2               VIA2_ORA    = VIA2_BASE + 1
+000000r 2               VIA2_IRA    = VIA2_BASE + 1
+000000r 2               VIA2_DDRB   = VIA2_BASE + 2
+000000r 2               VIA2_DDRA   = VIA2_BASE + 3
+000000r 2               VIA2_T1C_L  = VIA2_BASE + 4
+000000r 2               VIA2_T1C_H  = VIA2_BASE + 5
+000000r 2               VIA2_T1L_L  = VIA2_BASE + 6
+000000r 2               VIA2_T1L_H  = VIA2_BASE + 7
+000000r 2               VIA2_T2C_L  = VIA2_BASE + 8
+000000r 2               VIA2_T2C_H  = VIA2_BASE + 9
+000000r 2               VIA2_SR     = VIA2_BASE + 10
+000000r 2               VIA2_ACR    = VIA2_BASE + 11
+000000r 2               VIA2_PCR    = VIA2_BASE + 12
+000000r 2               VIA2_IFR    = VIA2_BASE + 13
+000000r 2               VIA2_IER    = VIA2_BASE + 14
+000000r 2               VIA2_ORA_NH = VIA2_BASE + 15
+000000r 2               VIA2_IRA_NH = VIA2_BASE + 15
+000000r 2               
+000000r 2               ; Port bits
+000000r 2               
+000000r 2               VIA_PA0 = (1 << 0)
+000000r 2               VIA_PA1 = (1 << 1)
+000000r 2               VIA_PA2 = (1 << 2)
+000000r 2               VIA_PA3 = (1 << 3)
+000000r 2               VIA_PA4 = (1 << 4)
+000000r 2               VIA_PA5 = (1 << 5)
+000000r 2               VIA_PA6 = (1 << 6)
+000000r 2               VIA_PA7 = (1 << 7)
+000000r 2               
+000000r 2               ; Port bits
+000000r 2               
+000000r 2               VIA_PB0 = 1 << 0
+000000r 2               VIA_PB1 = 1 << 1
+000000r 2               VIA_PB2 = 1 << 2
+000000r 2               VIA_PB3 = 1 << 3
+000000r 2               VIA_PB4 = 1 << 4
+000000r 2               VIA_PB5 = 1 << 5
+000000r 2               VIA_PB6 = 1 << 6
+000000r 2               VIA_PB7 = 1 << 7
+000000r 2               
+000000r 2               ; SID registers
+000000r 2               
+000000r 2               SID_BASE = $7f60
+000000r 2               SID_VOICE1_FREQ_L = SID_BASE
+000000r 2               SID_VOICE1_FREQ_H = SID_BASE + 1
+000000r 2               SID_VOICE1_PW_L   = SID_BASE + 2
+000000r 2               SID_VOICE1_PW_H   = SID_BASE + 3
+000000r 2               SID_VOICE1_CTRL   = SID_BASE + 4
+000000r 2               SID_VOICE1_AD     = SID_BASE + 5
+000000r 2               SID_VOICE1_SR     = SID_BASE + 6
+000000r 2               SID_VOICE2_FREQ_L = SID_BASE + 7
+000000r 2               SID_VOICE2_FREQ_H = SID_BASE + 8
+000000r 2               SID_VOICE2_PW_L   = SID_BASE + 9
+000000r 2               SID_VOICE2_PW_H   = SID_BASE + 10
+000000r 2               SID_VOICE2_CTRL   = SID_BASE + 11
+000000r 2               SID_VOICE2_AD     = SID_BASE + 12
+000000r 2               SID_VOICE2_SR     = SID_BASE + 13
+000000r 2               SID_VOICE3_FREQ_L = SID_BASE + 14
+000000r 2               SID_VOICE3_FREQ_H = SID_BASE + 15
+000000r 2               SID_VOICE3_PW_L   = SID_BASE + 16
+000000r 2               SID_VOICE3_PW_H   = SID_BASE + 17
+000000r 2               SID_VOICE3_CTRL   = SID_BASE + 18
+000000r 2               SID_VOICE3_AD     = SID_BASE + 19
+000000r 2               SID_VOICE3_SR     = SID_BASE + 20
+000000r 2               SID_FC_L          = SID_BASE + 21
+000000r 2               SID_FC_H          = SID_BASE + 22
+000000r 2               SID_RES_FILT      = SID_BASE + 23
+000000r 2               SID_MODE_VOLUME   = SID_BASE + 24
+000000r 2               SID_POTX          = SID_BASE + 25
+000000r 2               SID_POTY          = SID_BASE + 26
+000000r 2               SID_OSC3          = SID_BASE + 27
+000000r 2               SID_ENV3          = SID_BASE + 28
+000000r 2               
+000000r 2               ; LED
+000000r 2               
+000000r 2               LED_DDR = VIA1_DDRA
+000000r 2               LED_OUT = VIA1_ORA
+000000r 2               LED     = VIA_PA7
+000000r 2               
+000000r 1                                 .include "macros.inc65"
+000000r 2               ; Push X
+000000r 2               .macro phx
+000000r 2                 sta tmpstack
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push Y
+000000r 2               .macro phy
+000000r 2                 sta tmpstack
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push X and Y
+000000r 2               .macro phxy
+000000r 2                 sta tmpstack
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and X
+000000r 2               .macro phax
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and Y
+000000r 2               .macro phay
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A, X and Y
+000000r 2               .macro phaxy
+000000r 2                 sta tmpstack
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull X
+000000r 2               .macro plx
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull Y
+000000r 2               .macro ply
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull X and Y
+000000r 2               .macro plxy
+000000r 2                 sta tmpstack
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 lda tmpstack
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and X
+000000r 2               .macro plax
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and Y
+000000r 2               .macro play
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A, X and Y
+000000r 2               .macro plaxy
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Load zero page register reg/reg+1 with the 16-bit value, destroys A
+000000r 2               .macro ld16 reg, value
+000000r 2                 lda #<(value)
+000000r 2                 sta reg
+000000r 2                 lda #>(value)
+000000r 2                 sta reg + 1
+000000r 2               .endmacro
+000000r 2               
+000000r 1               
+000000r 1                                 .export nmi_handler
+000000r 1                                 .export irq_handler
+000000r 1                                 .export irq_init
+000000r 1               
+000000r 1                                 .code
+000000r 1               
+000000r 1  A9 00        irq_init:         lda #0
+000002r 1  85 rr                          sta _interrupted
+000004r 1  85 rr                          sta _millis
+000006r 1  85 rr                          sta _millis + 1
+000008r 1  85 rr                          sta _millis + 2
+00000Ar 1  85 rr                          sta _millis + 3
+00000Cr 1  85 rr                          sta _jiffies
+00000Er 1  85 rr                          sta _seconds
+000010r 1  85 rr                          sta _minutes
+000012r 1  85 rr                          sta _hours
+000014r 1  A9 40                          lda #%01000000
+000016r 1  8D 2B 7F                       sta VIA1_ACR
+000019r 1  A9 C0                          lda #%11000000
+00001Br 1  8D 2E 7F                       sta VIA1_IER
+00001Er 1  A9 10                          lda #<10000
+000020r 1  8D 24 7F                       sta VIA1_T1C_L
+000023r 1  A9 27                          lda #>10000
+000025r 1  8D 25 7F                       sta VIA1_T1C_H
+000028r 1  60                             rts
+000029r 1               
+000029r 1  48           nmi_handler:      pha
+00002Ar 1  A9 FF                          lda #$ff
+00002Cr 1  85 rr                          sta _interrupted
+00002Er 1  68                             pla
+00002Fr 1  40                             rti
+000030r 1               
+000030r 1  48           irq_handler:      pha
+000031r 1  8A                             txa
+000032r 1  48                             pha
+000033r 1  98                             tya
+000034r 1  48                             pha
+000035r 1  4C rr rr                       jmp timer1_irq
+000038r 1               
+000038r 1  A5 rr        timer1_irq:       lda _millis
+00003Ar 1  18                             clc
+00003Br 1  69 0A                          adc #10
+00003Dr 1  85 rr                          sta _millis
+00003Fr 1  90 0A                          bcc @l1
+000041r 1  E6 rr                          inc _millis + 1
+000043r 1  D0 06                          bne @l1
+000045r 1  E6 rr                          inc _millis + 2
+000047r 1  D0 02                          bne @l1
+000049r 1  E6 rr                          inc _millis + 3
+00004Br 1  A5 rr        @l1:              lda _jiffies
+00004Dr 1  18                             clc
+00004Er 1  69 01                          adc #1
+000050r 1  85 rr                          sta _jiffies
+000052r 1  C9 64                          cmp #100
+000054r 1  D0 31                          bne @l2
+000056r 1  A9 00                          lda #0
+000058r 1  85 rr                          sta _jiffies
+00005Ar 1  A5 rr                          lda _seconds
+00005Cr 1  18                             clc
+00005Dr 1  69 01                          adc #1
+00005Fr 1  85 rr                          sta _seconds
+000061r 1  C9 3C                          cmp #60
+000063r 1  D0 22                          bne @l2
+000065r 1  A9 00                          lda #0
+000067r 1  85 rr                          sta _seconds
+000069r 1  A5 rr                          lda _minutes
+00006Br 1  18                             clc
+00006Cr 1  69 01                          adc #1
+00006Er 1  85 rr                          sta _minutes
+000070r 1  C9 3C                          cmp #60
+000072r 1  D0 13                          bne @l2
+000074r 1  A9 00                          lda #0
+000076r 1  85 rr                          sta _minutes
+000078r 1  A5 rr                          lda _hours
+00007Ar 1  18                             clc
+00007Br 1  69 01                          adc #1
+00007Dr 1  85 rr                          sta _hours
+00007Fr 1  C9 18                          cmp #24
+000081r 1  D0 04                          bne @l2
+000083r 1  A9 00                          lda #0
+000085r 1  85 rr                          sta _hours
+000087r 1  AD 24 7F     @l2:              lda VIA1_T1C_L
+00008Ar 1  4C rr rr                       jmp irq_handler_end
+00008Dr 1               
+00008Dr 1  68           irq_handler_end:  pla
+00008Er 1  A8                             tay
+00008Fr 1  68                             pla
+000090r 1  AA                             tax
+000091r 1  68                             pla
+000092r 1  40                             rti
+000092r 1               

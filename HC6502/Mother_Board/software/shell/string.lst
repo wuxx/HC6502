@@ -1,0 +1,212 @@
+ca65 V2.17 - Git 180bb082
+Main file   : string.s65
+Current file: string.s65
+
+000000r 1                                   .setcpu "6502"
+000000r 1                                   .include "macros.inc65"
+000000r 2               ; Push A and X, destroys A
+000000r 2               .macro phax
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A and Y, destroys A
+000000r 2               .macro phay
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Push A, X and Y, destroys A
+000000r 2               .macro phaxy
+000000r 2                 pha
+000000r 2                 txa
+000000r 2                 pha
+000000r 2                 tya
+000000r 2                 pha
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and X
+000000r 2               .macro plax
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A and Y
+000000r 2               .macro play
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Pull A, X and Y
+000000r 2               .macro plaxy
+000000r 2                 pla
+000000r 2                 tay
+000000r 2                 pla
+000000r 2                 tax
+000000r 2                 pla
+000000r 2               .endmacro
+000000r 2               
+000000r 2               ; Load zero page register reg/reg+1 with the 16-bit value, destroys A
+000000r 2               .macro ld16 reg, value
+000000r 2                 lda #<(value)
+000000r 2                 sta reg
+000000r 2                 lda #>(value)
+000000r 2                 sta reg + 1
+000000r 2               .endmacro
+000000r 2               
+000000r 1                                   .include "zeropage.inc65"
+000000r 2               RES = $00
+000000r 2               R0 = $02
+000000r 2               R1 = $04
+000000r 2               TMP0 = $06
+000000r 2               TMP1 = $08
+000000r 2               
+000000r 1               
+000000r 1                                   .export fmt_hex_char
+000000r 1                                   .export fmt_bin_string
+000000r 1                                   .export fmt_hex_string
+000000r 1                                   .export scan_hex_char
+000000r 1                                   .export scan_hex
+000000r 1                                   .export scan_hex16
+000000r 1               
+000000r 1                                   .code
+000000r 1               
+000000r 1               ; Format the value of the accu as a binary string
+000000r 1               ; The string is written into (R0)..(R0)+8 (9 bytes)
+000000r 1  85 06        fmt_bin_string:     sta TMP0
+000002r 1  48 98 48                         phay
+000005r 1  A0 08                            ldy #8
+000007r 1  A9 00                            lda #0
+000009r 1  91 02                            sta (R0),y
+00000Br 1  88                               dey
+00000Cr 1  46 06        @next_bit:          lsr TMP0
+00000Er 1  B0 05                            bcs @bit_is_1
+000010r 1  A9 30        @bit_is_0:          lda #'0'
+000012r 1  4C rr rr                         jmp @store_char
+000015r 1  A9 31        @bit_is_1:          lda #'1'
+000017r 1  91 02        @store_char:        sta (R0),y
+000019r 1  88                               dey
+00001Ar 1  10 F0                            bpl @next_bit
+00001Cr 1  68 A8 68                         play
+00001Fr 1  60                               rts
+000020r 1               
+000020r 1               ; Convert the 4-bit value of the accu into it's hex ascii character
+000020r 1               ; The hex ascii character is returned in the accu
+000020r 1  C9 0A        fmt_hex_char:       cmp #10
+000022r 1  90 07                            bcc @less_then_10
+000024r 1  38           @greater_then_10:   sec
+000025r 1  E9 0A                            sbc #10
+000027r 1  18                               clc
+000028r 1  69 41                            adc #'A'
+00002Ar 1  60                               rts
+00002Br 1  18           @less_then_10:      clc
+00002Cr 1  69 30                            adc #'0'
+00002Er 1  60                               rts
+00002Fr 1               
+00002Fr 1               ; Format the value of the accu as a hex string
+00002Fr 1               ; The string is written into (R0)..(R0)+2 (3 bytes)
+00002Fr 1  85 06        fmt_hex_string:     sta TMP0
+000031r 1  48 98 48                         phay
+000034r 1  A0 00                            ldy #0
+000036r 1  A5 06                            lda TMP0
+000038r 1  4A                               lsr
+000039r 1  4A                               lsr
+00003Ar 1  4A                               lsr
+00003Br 1  4A                               lsr
+00003Cr 1  20 rr rr                         jsr fmt_hex_char
+00003Fr 1  91 02                            sta (R0),y
+000041r 1  C8                               iny
+000042r 1  A5 06                            lda TMP0
+000044r 1  29 0F                            and #$0f
+000046r 1  20 rr rr                         jsr fmt_hex_char
+000049r 1  91 02                            sta (R0),y
+00004Br 1  C8                               iny
+00004Cr 1  A9 00                            lda #0
+00004Er 1  91 02                            sta (R0),y
+000050r 1  68 A8 68                         play
+000053r 1  60                               rts
+000054r 1               
+000054r 1               ; Convert the hex character in the accu to its integer value
+000054r 1               ; The integer value is returned in the accu
+000054r 1  C9 30        scan_hex_char:      cmp #'0'
+000056r 1  90 20                            bcc @invalid
+000058r 1  C9 3A                            cmp #('9' + 1)
+00005Ar 1  B0 04                            bcs @no_digit
+00005Cr 1  38                               sec
+00005Dr 1  E9 30                            sbc #'0'
+00005Fr 1  60                               rts
+000060r 1  C9 41        @no_digit:          cmp #'A'
+000062r 1  90 14                            bcc @invalid
+000064r 1  C9 47                            cmp #('F' + 1)
+000066r 1  B0 04                            bcs @no_upper_hex
+000068r 1  38                               sec
+000069r 1  E9 37                            sbc #('A' - 10)
+00006Br 1  60                               rts
+00006Cr 1  C9 61        @no_upper_hex:      cmp #'a'
+00006Er 1  90 08                            bcc @invalid
+000070r 1  C9 67                            cmp #('f' + 1)
+000072r 1  B0 04                            bcs @invalid
+000074r 1  38                               sec
+000075r 1  E9 57                            sbc #('a' - 10)
+000077r 1  60                               rts
+000078r 1  A9 00        @invalid:           lda #0
+00007Ar 1  60                               rts
+00007Br 1               
+00007Br 1               ; Convert two hex characters starting at (R0) into an integer value
+00007Br 1               ; The integer value is returned in the accu
+00007Br 1  98           scan_hex:           tya
+00007Cr 1  48                               pha
+00007Dr 1  A0 00                            ldy #0
+00007Fr 1  B1 02                            lda (R0),y
+000081r 1  20 rr rr                         jsr scan_hex_char
+000084r 1  0A                               asl
+000085r 1  0A                               asl
+000086r 1  0A                               asl
+000087r 1  0A                               asl
+000088r 1  85 06                            sta TMP0
+00008Ar 1  C8                               iny
+00008Br 1  B1 02                            lda (R0),y
+00008Dr 1  20 rr rr                         jsr scan_hex_char
+000090r 1  05 06                            ora TMP0
+000092r 1  85 06                            sta TMP0
+000094r 1  68                               pla
+000095r 1  A8                               tay
+000096r 1  A5 06                            lda TMP0
+000098r 1  60                               rts
+000099r 1               
+000099r 1               ; Convert four hex characters starting at (R0) into an integer value
+000099r 1               ; The integer value is returned in RES..RES+1
+000099r 1  48 98 48     scan_hex16:         phay
+00009Cr 1  A0 00                            ldy #0
+00009Er 1  B1 02                            lda (R0),y
+0000A0r 1  20 rr rr                         jsr scan_hex_char
+0000A3r 1  0A                               asl
+0000A4r 1  0A                               asl
+0000A5r 1  0A                               asl
+0000A6r 1  0A                               asl
+0000A7r 1  85 01                            sta RES + 1
+0000A9r 1  C8                               iny
+0000AAr 1  B1 02                            lda (R0),y
+0000ACr 1  20 rr rr                         jsr scan_hex_char
+0000AFr 1  05 01                            ora RES + 1
+0000B1r 1  85 01                            sta RES + 1
+0000B3r 1  C8                               iny
+0000B4r 1  B1 02                            lda (R0),y
+0000B6r 1  20 rr rr                         jsr scan_hex_char
+0000B9r 1  0A                               asl
+0000BAr 1  0A                               asl
+0000BBr 1  0A                               asl
+0000BCr 1  0A                               asl
+0000BDr 1  85 00                            sta RES
+0000BFr 1  C8                               iny
+0000C0r 1  B1 02                            lda (R0),y
+0000C2r 1  20 rr rr                         jsr scan_hex_char
+0000C5r 1  05 00                            ora RES
+0000C7r 1  85 00                            sta RES
+0000C9r 1  68 A8 68                         play
+0000CCr 1  60                               rts
+0000CCr 1               

@@ -1,0 +1,34 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (STMicroelectronics STM8), page 1.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000001 L
+  7 _EXTI_DeInit                                                   000000 GR
+  7 _EXTI_GetExtIntSensitivity                                     00011E GR
+  7 _EXTI_GetTLISensitivity                                        0001A6 GR
+  7 _EXTI_SetExtIntSensitivity                                     000009 GR
+  7 _EXTI_SetTLISensitivity                                        0000F1 GR
+  7 ___str_0                                                       0001AD R
+    _assert_failed                                                 ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (STMicroelectronics STM8), page 2.
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size      0   flags    0
+   1 DATA                                       size      0   flags    0
+   2 INITIALIZED                                size      0   flags    0
+   3 DABS                                       size      0   flags    8
+   4 HOME                                       size      0   flags    0
+   5 GSINIT                                     size      0   flags    0
+   6 GSFINAL                                    size      0   flags    0
+   7 CODE                                       size    1C1   flags    0
+   8 INITIALIZER                                size      0   flags    0
+   9 CABS                                       size      0   flags    8
+

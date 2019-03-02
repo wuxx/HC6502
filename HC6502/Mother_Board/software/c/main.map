@@ -1,0 +1,87 @@
+Modules list:
+-------------
+startup.o:
+    CODE              Offs=000000  Size=000008  Align=00001  Fill=0000
+    VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
+main.o:
+    CODE              Offs=000008  Size=000008  Align=00001  Fill=0000
+/home/pi/oss/cc65/lib/none.lib(condes.o):
+    CODE              Offs=000010  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+/home/pi/oss/cc65/lib/none.lib(crt0.o):
+    STARTUP           Offs=000000  Size=000017  Align=00001  Fill=0000
+/home/pi/oss/cc65/lib/none.lib(zerobss.o):
+    CODE              Offs=00001C  Size=000023  Align=00001  Fill=0000
+/home/pi/oss/cc65/lib/none.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000000  000019  00001A  00001
+DATA                  000200  000224  000025  00001
+ONCE                  000225  000230  00000C  00001
+STARTUP               008000  008016  000017  00001
+CODE                  008017  008055  00003F  00001
+VECTORS               00FFFA  00FFFF  000006  00001
+
+
+Exports list by name:
+---------------------
+__BSS_RUN__               000225 RLA    __BSS_SIZE__              000000 REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     008017 RLA    
+__DESTRUCTOR_COUNT__      000000 REA    __DESTRUCTOR_TABLE__      008017 RLA    
+__STACKSTART__            008000 REA    __STARTUP__               000001 REA    
+_main                     00801F RLA    donelib                   008027 RLA    
+initlib                   000225 RLA    ptr1                      000008 RLZ    
+sp                        000000 RLZ    zerobss                   008033 RLA    
+
+
+
+Exports list by value:
+----------------------
+__BSS_SIZE__              000000 REA    __CONSTRUCTOR_COUNT__     000000 REA    
+__DESTRUCTOR_COUNT__      000000 REA    sp                        000000 RLZ    
+__STARTUP__               000001 REA    ptr1                      000008 RLZ    
+__BSS_RUN__               000225 RLA    initlib                   000225 RLA    
+__STACKSTART__            008000 REA    __CONSTRUCTOR_TABLE__     008017 RLA    
+__DESTRUCTOR_TABLE__      008017 RLA    _main                     00801F RLA    
+donelib                   008027 RLA    zerobss                   008033 RLA    
+
+
+
+Imports list:
+-------------
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__STACKSTART__ ([linker generated]):
+    crt0.o                    none/crt0.s(5)
+__STARTUP__ (crt0.o):
+    main.o                    main.s(13)
+_main (main.o):
+    crt0.o                    none/crt0.s(3)
+    startup.o                 startup.s(3)
+donelib (condes.o):
+    crt0.o                    none/crt0.s(4)
+initlib (condes.o):
+    crt0.o                    none/crt0.s(4)
+ptr1 (zeropage.o):
+    zerobss.o                 common/zerobss.s(9)
+sp (zeropage.o):
+    crt0.o                    /home/pi/oss/cc65/asminc/zeropage.inc(11)
+zerobss (zerobss.o):
+    crt0.o                    none/crt0.s(3)
+
