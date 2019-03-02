@@ -1,1 +1,6 @@
-obj/
+obj/*.o
+obj/*.d
+obj/*.crf
+obj/*.dep
+obj/*.htm
+obj/*.lnp
