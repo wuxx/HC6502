@@ -30,4 +30,4 @@ write:
 # Rebuild the firmware and use minpro to burn the EEPROM
 flash: clean all
 	@#minipro -p at28c256 -w firmware
-	../../../../EEPROM_Programmer/linux/at28_program/main -c 44 -d /dev/ttyUSB0 -g 256 -i firmware
+	../../../../EEPROM_Programmer/linux/at28_program/main -c 44 -d /dev/ttyUSB0 -g 256 -i firmware -n

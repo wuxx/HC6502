@@ -121,10 +121,13 @@ int main(int argc, char **argv)
         exit(0);
     }
 
-    if(serial_init(device) == -1)
-    {
-        printf("serialinit fail!\n");
-        exit(0);
+    if (!justprint) {
+        if(serial_init(device) == -1)
+        {
+            printf("serialinit fail!\n");
+            exit(0);
+        }
+
     }
 
     if (test) {
