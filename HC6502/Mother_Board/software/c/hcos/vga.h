@@ -10,8 +10,8 @@
 #include "uart.h"
 #include "gpio.h"
 
-#define X_MAX   (40) /* FIXME: */
-#define Y_MAX   (20) /* FIXME: */   
+#define X_MAX   (63)
+#define Y_MAX   (20)
 
 enum VGA_CMD_E {
     VC_CLEAR = 0x80,
