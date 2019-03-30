@@ -8,7 +8,7 @@
 #include "gpio.h"
 
 #include "ps2.h"
-
+#include "vga.h"
 
 #define HC6502_REV  "v1.0"
 
@@ -52,6 +52,7 @@ long main()
   uart_printf("VIA1_PA0: %lx \r\n", VIA1_PA0);
 
   ps2_init();
+  vga_init();
 
   while(1) {
     //c = uart_getc();

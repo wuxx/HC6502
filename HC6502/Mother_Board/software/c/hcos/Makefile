@@ -1,4 +1,4 @@
-C_SOURCES = main.c uart.c gpio.c shell.c ps2.c
+C_SOURCES = main.c uart.c gpio.c shell.c ps2.c vga.c
 ASM_SOURCES = zeropage.s65 interrupt.s65 startup.s65 utils.s65 acia.s65 led.s65 
 
 # Compilation of C files
