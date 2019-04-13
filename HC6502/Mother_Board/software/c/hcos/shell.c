@@ -320,7 +320,7 @@ static s32 cmd_vga()
         x  = strtoul(argv[2], 0, 0);
         y  = strtoul(argv[3], 0, 0);
         ch = strtoul(argv[4], 0, 0);
-        vga_ctrl(VC_CLEAR);
+        vga_ctrl(VC_SET_CH, x, y, ch);
     }
 
     return 0;

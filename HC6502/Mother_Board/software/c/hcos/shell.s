@@ -224,7 +224,7 @@ L0271:
 L0260:
 	.byte	$75,$6E,$6B,$6E,$6F,$77,$6E,$20,$6D,$6F,$64,$65,$20,$5B,$25,$73
 	.byte	$5D,$0D,$0A,$00
-L034D:
+L0350:
 	.byte	$69,$6C,$6C,$65,$67,$61,$6C,$20,$63,$6D,$64,$20,$5B,$25,$73,$5D
 	.byte	$20,$0D,$0A,$00
 L0077:
@@ -239,17 +239,17 @@ L029D:
 L012A:
 	.byte	$0D,$0A,$5B,$30,$78,$25,$30,$34,$78,$5D,$3A,$20,$00
 L00D6	:=	L012A+0
-L0358:
+L035B:
 	.byte	$72,$65,$74,$75,$72,$6E,$20,$30,$78,$25,$78,$00
 L00BF	:=	L012A+2
 L00FB	:=	L012A+2
-L02E0:
+L02E3:
 	.byte	$25,$73,$3A,$09,$09,$25,$73,$0D,$0A,$00
 L0043:
 	.byte	$5B,$30,$78,$25,$78,$5D,$3A,$20,$00
 L00CB:
 	.byte	$30,$78,$25,$30,$34,$78,$20,$00
-L035D:
+L0360:
 	.byte	$0D,$0A,$68,$63,$6F,$73,$23,$00
 L004C	:=	L00A5+39
 L0022:
@@ -282,7 +282,7 @@ L002C:
 	.byte	$70,$73,$32,$00
 L02BA:
 	.byte	$73,$65,$74,$00
-L0342	:=	L00A5+43
+L0345	:=	L00A5+43
 L028E	:=	L00A5+43
 L00DB	:=	L00A5+43
 L014D	:=	L014A+1
@@ -293,7 +293,7 @@ L024D:
 	.byte	$69,$6E,$00
 L0119	:=	L014A+1
 L0158	:=	L0124+0
-L0018	:=	L0358+10
+L0018	:=	L035B+10
 L0013	:=	L001D+4
 L0283:
 	.byte	$30,$00
@@ -366,13 +366,13 @@ _argc:
 	ldx     #$00
 	lda     _argc
 	cmp     #$03
-	bcs     L0360
+	bcs     L0363
 	dex
 	stx     sreg
 	stx     sreg+1
 	txa
 	jmp     incsp7
-L0360:	lda     _argc
+L0363:	lda     _argc
 	jsr     decax2
 	ldy     #$01
 	jsr     staxysp
@@ -396,7 +396,7 @@ L005B:	ldy     #$01
 	jsr     staxysp
 	ldx     #$00
 	txa
-L0362:	ldy     #$05
+L0365:	ldy     #$05
 	jsr     staxysp
 	ldy     #$01
 	cmp     (sp),y
@@ -456,7 +456,7 @@ L0362:	ldy     #$05
 	ldy     #$06
 	jsr     ldaxysp
 	jsr     incax1
-	jmp     L0362
+	jmp     L0365
 L0064:	ldx     #$00
 	stx     sreg
 	stx     sreg+1
@@ -944,7 +944,7 @@ L0132:	ldy     #$1D
 	lda     (ptr1,x)
 	jsr     pusha0
 	ldy     #$04
-	jmp     L0363
+	jmp     L0366
 L013A:	lda     #$08
 	jsr     leaa0sp
 	ldy     #$1A
@@ -962,7 +962,7 @@ L013A:	lda     #$08
 	ldx     #>(L014A)
 	jsr     pushax
 	ldy     #$02
-L0363:	jsr     _uart_printf
+L0366:	jsr     _uart_printf
 	ldy     #$1D
 	jsr     ldeaxysp
 	jsr     saveeax
@@ -1205,14 +1205,14 @@ L0266:	lda     _argv+2
 	jsr     ldeaxidx
 	jsr     pusheax
 	lda     #$00
-	jmp     L0365
+	jmp     L0368
 L027F:	ldy     #$02
 	jsr     ldaxysp
 	ldy     #$13
 	jsr     ldeaxidx
 	jsr     pusheax
 	lda     #$01
-L0365:	jsr     pusha
+L0368:	jsr     pusha
 	jsr     _gpio_write
 L0289:	lda     #<(L028E)
 	ldx     #>(L028E)
@@ -1309,7 +1309,7 @@ L0295:	lda     _argv+2
 	lda     (sp),y
 	jsr     pusha0
 	ldy     #$06
-	jmp     L0366
+	jmp     L0369
 L02A5:	lda     _argv+2
 	ldx     _argv+2+1
 	jsr     pushax
@@ -1319,7 +1319,7 @@ L02A5:	lda     _argv+2
 	cpx     #$00
 	bne     L02B6
 	cmp     #$00
-	bne     L0367
+	bne     L036A
 	lda     _argv+4
 	ldx     _argv+4+1
 	jsr     pushax
@@ -1342,12 +1342,21 @@ L02A5:	lda     _argv+2
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$00
-	lda     #$80
+	lda     #$82
 	jsr     push0ax
-	ldy     #$04
-L0366:	jsr     _vga_ctrl
+	ldy     #$0C
+	jsr     ldeaxysp
+	jsr     pusheax
+	ldy     #$0C
+	jsr     ldeaxysp
+	jsr     pusheax
+	ldy     #$0C
+	lda     (sp),y
+	jsr     pusha0
+	ldy     #$0E
+L0369:	jsr     _vga_ctrl
 L02B6:	ldx     #$00
-L0367:	stx     sreg
+L036A:	stx     sreg
 	stx     sreg+1
 	txa
 	ldy     #$09
@@ -1371,7 +1380,7 @@ L0367:	stx     sreg
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-L02D3:	jsr     ldeax0sp
+L02D6:	jsr     ldeax0sp
 	cmp     #$09
 	txa
 	sbc     #$00
@@ -1379,9 +1388,9 @@ L02D3:	jsr     ldeax0sp
 	sbc     #$00
 	lda     sreg+1
 	sbc     #$00
-	bcs     L02D4
-	lda     #<(L02E0)
-	ldx     #>(L02E0)
+	bcs     L02D7
+	lda     #<(L02E3)
+	ldx     #>(L02E3)
 	jsr     pushax
 	ldy     #$05
 	jsr     ldeaxysp
@@ -1414,8 +1423,8 @@ L02D3:	jsr     ldeax0sp
 	jsr     inceaxy
 	jsr     steax0sp
 	jsr     resteax
-	jmp     L02D3
-L02D4:	ldx     #$00
+	jmp     L02D6
+L02D7:	ldx     #$00
 	stx     sreg
 	stx     sreg+1
 	txa
@@ -1437,12 +1446,12 @@ L02D4:	ldx     #$00
 	lda     (sp),y
 	cmp     #$20
 	ldx     #$00
-	bcc     L036B
+	bcc     L036E
 	lda     (sp),y
 	cmp     #$7F
-	bcs     L036B
+	bcs     L036E
 	jmp     incsp1
-L036B:	lda     #$2E
+L036E:	lda     #$2E
 	jmp     incsp1
 
 .endproc
@@ -1467,7 +1476,7 @@ L036B:	lda     #$2E
 	jmp     incsp4
 L0213:	ldx     #$00
 	txa
-L036E:	jsr     stax0sp
+L0371:	jsr     stax0sp
 	ldy     #$01
 	lda     (sp),y
 	cmp     #$00
@@ -1507,7 +1516,7 @@ L0221:	bcs     L0218
 	jmp     incsp4
 L0219:	jsr     ldax0sp
 	jsr     incax1
-	jmp     L036E
+	jmp     L0371
 L0218:	ldx     #$00
 	txa
 	jmp     incsp4
@@ -1531,9 +1540,9 @@ L0218:	ldx     #$00
 	sta     ptr1
 	lda     #$00
 	ldy     #$0B
-L036F:	sta     (ptr1),y
+L0372:	sta     (ptr1),y
 	dey
-	bpl     L036F
+	bpl     L0372
 	ldx     #$00
 	stx     sreg
 	stx     sreg+1
@@ -1541,7 +1550,7 @@ L036F:	sta     (ptr1),y
 	jsr     steax0sp
 	ldy     #$04
 	jsr     steaxysp
-L02F1:	ldy     #$0B
+L02F4:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1550,9 +1559,9 @@ L02F1:	ldy     #$0B
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	bne     L02FB
-	jmp     L0374
-L02F9:	ldy     #$07
+	bne     L02FE
+	jmp     L0377
+L02FC:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1560,7 +1569,7 @@ L02F9:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-L02FB:	ldy     #$0B
+L02FE:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1570,7 +1579,7 @@ L02FB:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	beq     L02F9
+	beq     L02FC
 	jsr     ldeax0sp
 	jsr     saveeax
 	ldy     #$01
@@ -1600,9 +1609,9 @@ L02FB:	ldy     #$0B
 	stx     sreg+1
 	lda     #$06
 	jsr     toseqeax
-	beq     L0308
-	jmp     L02F2
-L0306:	ldy     #$07
+	beq     L030B
+	jmp     L02F5
+L0309:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1610,7 +1619,7 @@ L0306:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-L0308:	ldy     #$0B
+L030B:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1620,7 +1629,7 @@ L0308:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	jeq     L02F1
+	jeq     L02F4
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1630,10 +1639,10 @@ L0308:	ldy     #$0B
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	bne     L0306
-	jmp     L02F1
-L02F2:	ldy     #$00
-L0374:	lda     (sp),y
+	bne     L0309
+	jmp     L02F4
+L02F5:	ldy     #$00
+L0377:	lda     (sp),y
 	sta     _argc
 	ldx     #$00
 	stx     sreg
@@ -1641,7 +1650,7 @@ L0374:	lda     (sp),y
 	txa
 	ldy     #$04
 	jsr     steaxysp
-L0311:	ldy     #$0B
+L0314:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1650,7 +1659,7 @@ L0311:	ldy     #$0B
 	stx     ptr1+1
 	ldx     #$00
 	lda     (ptr1,x)
-	beq     L0375
+	beq     L0378
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1661,7 +1670,7 @@ L0311:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	bne     L0313
+	bne     L0316
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1672,7 +1681,7 @@ L0311:	ldy     #$0B
 	lda     #$00
 	tay
 	sta     (sreg),y
-L0313:	ldy     #$07
+L0316:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1680,8 +1689,8 @@ L0313:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-	jmp     L0311
-L0375:	sta     sreg
+	jmp     L0314
+L0378:	sta     sreg
 	sta     sreg+1
 	ldy     #$0A
 	jmp     addysp
@@ -1704,7 +1713,7 @@ L0375:	sta     sreg
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-L0322:	jsr     ldeax0sp
+L0325:	jsr     ldeax0sp
 	cmp     #$09
 	txa
 	sbc     #$00
@@ -1712,7 +1721,7 @@ L0322:	jsr     ldeax0sp
 	sbc     #$00
 	lda     sreg+1
 	sbc     #$00
-	bcs     L0323
+	bcs     L0326
 	jsr     ldeax0sp
 	jsr     mulax6
 	clc
@@ -1727,19 +1736,19 @@ L0322:	jsr     ldeax0sp
 	jsr     ldaxysp
 	jsr     _strcmp
 	cpx     #$00
-	bne     L0324
+	bne     L0327
 	cmp     #$00
-	bne     L0324
+	bne     L0327
 	jsr     ldeax0sp
 	jmp     incsp6
-L0324:	jsr     ldeax0sp
+L0327:	jsr     ldeax0sp
 	jsr     saveeax
 	ldy     #$01
 	jsr     inceaxy
 	jsr     steax0sp
 	jsr     resteax
-	jmp     L0322
-L0323:	ldx     #$FF
+	jmp     L0325
+L0326:	ldx     #$FF
 	stx     sreg
 	stx     sreg+1
 	txa
@@ -1757,9 +1766,9 @@ L0323:	ldx     #$FF
 
 .segment	"RODATA"
 
-L0340:
+L0343:
 	.word	$0000
-L0353:
+L0356:
 	.word	$0000
 
 .segment	"CODE"
@@ -1780,13 +1789,13 @@ L0353:
 	stx     sreg+1
 	txa
 	jsr     toseqeax
-	beq     L033B
+	beq     L033E
 	ldx     #$00
 	txa
 	jsr     steax0sp
-	jmp     L033F
-L033B:	lda     #<(L0342)
-	ldx     #>(L0342)
+	jmp     L0342
+L033E:	lda     #<(L0345)
+	ldx     #>(L0345)
 	jsr     pushax
 	ldy     #$02
 	jsr     _uart_printf
@@ -1805,9 +1814,9 @@ L033B:	lda     #<(L0342)
 	stx     sreg+1
 	txa
 	jsr     toseqeax
-	beq     L0346
-	lda     #<(L034D)
-	ldx     #>(L034D)
+	beq     L0349
+	lda     #<(L0350)
+	ldx     #>(L0350)
 	jsr     pushax
 	lda     _argv
 	ldx     _argv+1
@@ -1819,8 +1828,8 @@ L033B:	lda     #<(L0342)
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-	jmp     L033F
-L0346:	ldy     #$0B
+	jmp     L0342
+L0349:	ldy     #$0B
 	jsr     ldeaxysp
 	jsr     mulax6
 	clc
@@ -1834,16 +1843,16 @@ L0346:	ldy     #$0B
 	jsr     ldaxidx
 	jsr     callax
 	jsr     steax0sp
-	lda     #<(L0358)
-	ldx     #>(L0358)
+	lda     #<(L035B)
+	ldx     #>(L035B)
 	jsr     pushax
 	ldy     #$05
 	jsr     ldeaxysp
 	jsr     pusheax
 	ldy     #$06
 	jsr     _uart_printf
-L033F:	lda     #<(L035D)
-	ldx     #>(L035D)
+L0342:	lda     #<(L0360)
+	ldx     #>(L0360)
 	jsr     pushax
 	ldy     #$02
 	jsr     _uart_printf
