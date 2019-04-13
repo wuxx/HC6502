@@ -23,7 +23,7 @@ u8 vga_write(u8 data)
 
     mdelay(100);
 
-    uart_printf("wait rsp ready...\n");
+    uart_printf("wait rsp ready1...\n");
 
     while(1) {
         if (gpio_read(vi.rsp_status) == VC_RSP_READY) {
@@ -41,7 +41,7 @@ u8 vga_write(u8 data)
     }
 
     gpio_write(vi.cmd_status, VC_REQ_READY);
-    uart_printf("wait rsp ready...\n");
+    uart_printf("wait rsp ready2...\n");
 
     while(1) {
         if (gpio_read(vi.rsp_status) == VC_RSP_READY) {
@@ -49,7 +49,7 @@ u8 vga_write(u8 data)
         }
     }
 
-    uart_printf("ok");
+    uart_printf("ok.\n");
     gpio_write(vi.cmd_status, VC_REQ_BUSY);
 
     return data;
@@ -62,7 +62,7 @@ s32 vga_ctrl(u32 cmd, ...)
     u8 ch;
     va_list args;
 
-    uart_printf("enter %s \n", __func__);
+    uart_printf("enter %s cmd: %d\n", __func__, cmd);
 
     va_start(args, cmd);
 
@@ -73,6 +73,8 @@ s32 vga_ctrl(u32 cmd, ...)
             vga_write(cmd);
             break;
         case (VC_FILL):
+            ch = va_arg(args, u8);
+            uart_printf("fill: (%x)(%c)\n", ch, ch);
             vga_write(cmd);
             vga_write(ch);
             break;
@@ -107,7 +109,7 @@ void vga_init()
     gpio_init(vi.rsp_status, 0);
 
     for(i = 0; i < 8; i++) {
-        gpio_init(vi.cd[i], 0);
+        gpio_init(vi.cd[i], 1);
     }
 
     gpio_write(vi.cmd_status, VC_REQ_BUSY);
