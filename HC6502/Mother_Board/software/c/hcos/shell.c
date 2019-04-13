@@ -306,7 +306,23 @@ static s32 cmd_ps2()
 
 static s32 cmd_vga()
 {
-    vga_ctrl(VC_CLEAR);
+    u32 x, y;
+    u8 ch;
+
+	if (strcmp(argv[1], "clear") == 0) {
+		uart_printf("vga clear start\r\n");
+        vga_ctrl(VC_CLEAR);
+		uart_printf("vga clear end  \r\n");
+    } else if (strcmp(argv[1], "fill") == 0) {
+        ch = strtoul(argv[2], 0, 0);
+        vga_ctrl(VC_FILL, ch);
+    } else if (strcmp(argv[1], "set") == 0) {
+        x  = strtoul(argv[2], 0, 0);
+        y  = strtoul(argv[3], 0, 0);
+        ch = strtoul(argv[4], 0, 0);
+        vga_ctrl(VC_CLEAR);
+    }
+
     return 0;
 }
 

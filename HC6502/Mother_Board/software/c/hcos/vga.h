@@ -16,8 +16,7 @@
 enum VGA_CMD_E {
     VC_CLEAR = 0x80,
     VC_FILL,
-    VC_SET_X,
-    VC_SET_Y,
+    VC_SET_CH,
     VC_SCROLL_UP,
     VC_SCROLL_DOWN,
 };

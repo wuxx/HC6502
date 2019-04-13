@@ -40,15 +40,19 @@ L0060:
 	.byte	$77,$61,$69,$74,$20,$72,$73,$70,$20,$72,$65,$61,$64,$79,$2E,$2E
 	.byte	$2E,$0A,$00
 L003C	:=	L0060+0
+L00AE:
+	.byte	$70,$6F,$73,$5F,$79,$3A,$20,$25,$64,$0A,$00
+L00B2:
+	.byte	$63,$68,$3A,$20,$20,$20,$20,$25,$63,$0A,$00
+L00AA:
+	.byte	$70,$6F,$73,$5F,$78,$3A,$20,$25,$64,$0A,$00
 L0072:
 	.byte	$65,$6E,$74,$65,$72,$20,$25,$73,$20,$0A,$00
-L00A2:
+L00BD:
 	.byte	$65,$78,$69,$74,$20,$25,$73,$20,$0A,$00
-L009B:
-	.byte	$70,$6F,$73,$3A,$20,$25,$64,$0A,$00
 L0074:
 	.byte	$76,$67,$61,$5F,$63,$74,$72,$6C,$00
-L00A4	:=	L0074+0
+L00BF	:=	L0074+0
 L0046:
 	.byte	$6F,$6B,$2E,$0A,$00
 L006A:
@@ -65,7 +69,8 @@ L006A:
 .segment	"CODE"
 
 	jsr     enter
-	jsr     decsp3
+	ldy     #$0B
+	jsr     subysp
 	lda     #<(L0072)
 	ldx     #>(L0072)
 	jsr     pushax
@@ -74,51 +79,74 @@ L006A:
 	jsr     pushax
 	ldy     #$04
 	jsr     _uart_printf
-	ldy     #$03
+	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
+	jsr     incax8
 	jsr     stax0sp
-	ldy     #$03
+	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
+	jsr     incax8
 	jsr     ldeaxi
 	ldy     sreg+1
 	cpy     #$00
-	bne     L007C
+	jne     L007C
 	ldy     sreg
 	cpy     #$00
-	bne     L007C
+	jne     L007C
 	cpx     #$00
-	bne     L007C
+	jne     L007C
 	cmp     #$80
 	beq     L007F
 	cmp     #$81
-	beq     L007F
+	beq     L008A
 	cmp     #$82
-	beq     L008D
+	beq     L0091
 	cmp     #$83
-	beq     L008D
-	cmp     #$84
 	beq     L007F
-	cmp     #$85
-	bne     L007C
-L007F:	ldy     #$03
+	cmp     #$84
+	jne     L007C
+L007F:	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
+	jsr     incax8
 	sta     ptr1
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	jmp     L00BE
-L008D:	ldy     #$03
+	jmp     L00D9
+L008A:	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
+	jsr     incax8
+	sta     ptr1
+	stx     ptr1+1
+	ldy     #$00
+	lda     (ptr1),y
+	jmp     L00DD
+L0091:	ldy     #$0B
+	lda     (sp),y
+	jsr     leaa0sp
+	jsr     incax8
 	sta     ptr1
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
 	jsr     pusha
 	jsr     _vga_write
+	ldx     #$00
+	lda     #$04
+	jsr     subeq0sp
+	jsr     ldeaxi
+	ldy     #$07
+	jsr     steaxysp
+	ldx     #$00
+	lda     #$04
+	jsr     subeq0sp
+	jsr     ldeaxi
+	ldy     #$03
+	jsr     steaxysp
 	ldx     #$00
 	lda     #$02
 	jsr     subeq0sp
@@ -128,23 +156,47 @@ L008D:	ldy     #$03
 	lda     (ptr1),y
 	ldy     #$02
 	sta     (sp),y
-	lda     #<(L009B)
-	ldx     #>(L009B)
+	lda     #<(L00AA)
+	ldx     #>(L00AA)
+	jsr     pushax
+	ldy     #$0C
+	jsr     ldeaxysp
+	jsr     pusheax
+	ldy     #$06
+	jsr     _uart_printf
+	lda     #<(L00AE)
+	ldx     #>(L00AE)
+	jsr     pushax
+	ldy     #$08
+	jsr     ldeaxysp
+	jsr     pusheax
+	ldy     #$06
+	jsr     _uart_printf
+	lda     #<(L00B2)
+	ldx     #>(L00B2)
 	jsr     pushax
 	ldy     #$04
 	lda     (sp),y
 	jsr     pusha0
 	ldy     #$04
 	jsr     _uart_printf
+	ldy     #$07
+	lda     (sp),y
+	jsr     pusha
+	jsr     _vga_write
+	ldy     #$03
+	lda     (sp),y
+L00DD:	jsr     pusha
+	jsr     _vga_write
 	ldy     #$02
 	lda     (sp),y
-L00BE:	jsr     pusha
+L00D9:	jsr     pusha
 	jsr     _vga_write
-L007C:	lda     #<(L00A2)
-	ldx     #>(L00A2)
+L007C:	lda     #<(L00BD)
+	ldx     #>(L00BD)
 	jsr     pushax
-	lda     #<(L00A4)
-	ldx     #>(L00A4)
+	lda     #<(L00BF)
+	ldx     #>(L00BF)
 	jsr     pushax
 	ldy     #$04
 	jsr     _uart_printf
@@ -152,7 +204,7 @@ L007C:	lda     #<(L00A2)
 	stx     sreg
 	stx     sreg+1
 	txa
-	ldy     #$03
+	ldy     #$0B
 	jmp     leavey
 
 .endproc
@@ -190,9 +242,9 @@ L007C:	lda     #<(L00A2)
 	jsr     _gpio_init
 	lda     #$00
 	tay
-L00C1:	sta     (sp),y
+L00E0:	sta     (sp),y
 	cmp     #$08
-	bcs     L00AF
+	bcs     L00CA
 	ldx     #$00
 	lda     (sp),y
 	jsr     aslax2
@@ -212,8 +264,8 @@ L00C1:	sta     (sp),y
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L00C1
-L00AF:	lda     _vi+3
+	jmp     L00E0
+L00CA:	lda     _vi+3
 	sta     sreg+1
 	lda     _vi+2
 	sta     sreg
@@ -273,7 +325,7 @@ L003E:	lda     _vi+4+3
 	jsr     _uart_printf
 	lda     #$00
 	tay
-L00C6:	sta     (sp),y
+L00E5:	sta     (sp),y
 	cmp     #$08
 	bcs     L0049
 	lda     (sp),y
@@ -299,7 +351,7 @@ L00C6:	sta     (sp),y
 	jsr     ldeaxi
 	jsr     pusheax
 	lda     #$01
-	jmp     L00C5
+	jmp     L00E4
 L0050:	tax
 	lda     (sp,x)
 	jsr     aslax2
@@ -313,13 +365,13 @@ L0050:	tax
 	jsr     ldeaxi
 	jsr     pusheax
 	lda     #$00
-L00C5:	jsr     pusha
+L00E4:	jsr     pusha
 	jsr     _gpio_write
 	ldy     #$00
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L00C6
+	jmp     L00E5
 L0049:	lda     _vi+3
 	sta     sreg+1
 	lda     _vi+2

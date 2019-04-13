@@ -58,7 +58,8 @@ u8 vga_write(u8 data)
 
 s32 vga_ctrl(u32 cmd, ...)
 {
-    u8 pos;
+    u32 pos_x, pos_y;
+    u8 ch;
     va_list args;
 
     uart_printf("enter %s \n", __func__);
@@ -67,17 +68,25 @@ s32 vga_ctrl(u32 cmd, ...)
 
     switch (cmd) {
         case (VC_CLEAR):
-        case (VC_FILL):
         case (VC_SCROLL_UP):
         case (VC_SCROLL_DOWN):
             vga_write(cmd);
             break;
-        case (VC_SET_X):
-        case (VC_SET_Y):
+        case (VC_FILL):
             vga_write(cmd);
-            pos = va_arg(args, u8);
-            uart_printf("pos: %d\n", pos);
-            vga_write(pos);
+            vga_write(ch);
+            break;
+        case (VC_SET_CH):
+            vga_write(cmd);
+            pos_x = va_arg(args, u32);
+            pos_y = va_arg(args, u32);
+            ch    = va_arg(args, u8);
+            uart_printf("pos_x: %d\n", pos_x);
+            uart_printf("pos_y: %d\n", pos_y);
+            uart_printf("ch:    %c\n", ch);
+            vga_write(pos_x);
+            vga_write(pos_y);
+            vga_write(ch);
             break;
         default:
             break;
