@@ -19,8 +19,6 @@
 	.import		_uart_printf
 	.import		_uart_handler
 	.export		_mdelay
-	.import		_ps2_init
-	.import		_vga_init
 	.export		_sys_banner
 	.export		_main
 
@@ -28,8 +26,8 @@
 
 _sys_banner:
 	.byte	$68,$63,$36,$35,$30,$32,$20,$73,$79,$73,$74,$65,$6D,$20,$62,$75
-	.byte	$69,$6C,$64,$74,$69,$6D,$65,$20,$5B,$32,$30,$3A,$33,$33,$3A,$32
-	.byte	$37,$20,$41,$70,$72,$20,$32,$35,$20,$32,$30,$31,$39,$5D,$20,$72
+	.byte	$69,$6C,$64,$74,$69,$6D,$65,$20,$5B,$31,$39,$3A,$33,$39,$3A,$33
+	.byte	$37,$20,$41,$70,$72,$20,$32,$38,$20,$32,$30,$31,$39,$5D,$20,$72
 	.byte	$65,$76,$20,$76,$31,$2E,$30,$00
 
 .segment	"RODATA"
@@ -180,13 +178,9 @@ L001C:	jsr     ldax0sp
 	jsr     pusheax
 	ldy     #$06
 	jsr     _uart_printf
-	ldy     #$00
-	jsr     _ps2_init
-	ldy     #$00
-	jsr     _vga_init
-L004C:	ldy     #$00
+L004A:	ldy     #$00
 	jsr     _uart_handler
-	jmp     L004C
+	jmp     L004A
 
 .endproc
 

@@ -27,7 +27,12 @@ gen:
 write:
 	../../../../EEPROM_Programmer/linux/at28_program/main -i firmware
 
+scp:
+
 # Rebuild the firmware and use minpro to burn the EEPROM
+# check the programmer shell with $minicom -D /dev/ttyS0 -b 115200
 flash: clean all
 	@#minipro -p at28c256 -w firmware
-	../../../../EEPROM_Programmer/linux/at28_program/main -c 44 -d /dev/ttyUSB0 -g 256 -i firmware -n
+	@#../../../../EEPROM_Programmer/linux/at28_program/main -c 44 -d /dev/ttyUSB0 -g 256 -i firmware -n
+	#scp root@123.56.12.242:/home/share/oss/HC6502/HC6502/Mother_Board/software/c/hcos/firmware .
+	../../../EEPROM_Programmer/linux/at28_program/main -c 50 -d /dev/ttyS0 -g 256 -i firmware

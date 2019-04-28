@@ -92,6 +92,8 @@ void uart_handler()
 
 	ch = uart_getc();   
 
+    //uart_printf("get %x [%c]\r\n", ch, ch);
+
 	if (ch == '\n') {   /* sscom will send '\r\n' we ignore the '\n' */
 		return;
 	}

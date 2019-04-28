@@ -216,6 +216,7 @@ int main(int argc, char **argv)
                 } else {
                     printf("__FAIL__\n");
                     fail++;
+                    exit(-1);
                 }
 
             } else {

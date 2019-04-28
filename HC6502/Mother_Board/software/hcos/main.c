@@ -21,7 +21,6 @@ void mdelay(int ms)
 
 long main() 
 {
-#if 1
   int count = 10;
 
   uart_init();
@@ -62,8 +61,6 @@ long main()
     //ps2_process();
 
   }
-
-#endif
 
   return 0;
 }
