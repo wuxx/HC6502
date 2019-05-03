@@ -28,38 +28,37 @@
 
 _sys_banner:
 	.byte	$68,$63,$36,$35,$30,$32,$20,$73,$79,$73,$74,$65,$6D,$20,$62,$75
-	.byte	$69,$6C,$64,$74,$69,$6D,$65,$20,$5B,$31,$38,$3A,$30,$36,$3A,$31
-	.byte	$39,$20,$4D,$61,$79,$20,$20,$33,$20,$32,$30,$31,$39,$5D,$20,$72
+	.byte	$69,$6C,$64,$74,$69,$6D,$65,$20,$5B,$32,$32,$3A,$31,$30,$3A,$34
+	.byte	$34,$20,$4D,$61,$79,$20,$20,$33,$20,$32,$30,$31,$39,$5D,$20,$72
 	.byte	$65,$76,$20,$76,$31,$2E,$30,$00
 
 .segment	"RODATA"
 
-L0018:
+L001E:
 	.byte	$36,$35,$30,$32,$20,$48,$6F,$6D,$65,$43,$6F,$6D,$70,$75,$74,$65
 	.byte	$72,$20,$72,$65,$61,$64,$79,$2E,$0D,$0A,$00
-L0021	:=	L0018+0
-L0030:
+L002D:
 	.byte	$75,$61,$72,$74,$5F,$70,$72,$69,$6E,$74,$66,$20,$74,$65,$73,$74
 	.byte	$20,$5B,$25,$73,$5D,$0D,$0A,$00
-L0034:
-	.byte	$73,$69,$7A,$65,$6F,$66,$28,$63,$68,$61,$72,$29,$3A,$20,$20,$25
-	.byte	$64,$20,$0D,$0A,$00
-L0038:
+L0035:
 	.byte	$73,$69,$7A,$65,$6F,$66,$28,$73,$68,$6F,$72,$74,$29,$3A,$20,$25
 	.byte	$64,$20,$0D,$0A,$00
-L0040:
+L0031:
+	.byte	$73,$69,$7A,$65,$6F,$66,$28,$63,$68,$61,$72,$29,$3A,$20,$20,$25
+	.byte	$64,$20,$0D,$0A,$00
+L003D:
 	.byte	$73,$69,$7A,$65,$6F,$66,$28,$6C,$6F,$6E,$67,$29,$3A,$20,$25,$64
 	.byte	$20,$0D,$0A,$00
-L002A:
+L0027:
 	.byte	$75,$61,$72,$74,$20,$74,$65,$73,$74,$20,$73,$74,$61,$72,$74,$2E
 	.byte	$0D,$0A,$00
-L003C:
+L0039:
 	.byte	$73,$69,$7A,$65,$6F,$66,$28,$69,$6E,$74,$29,$3A,$20,$25,$64,$20
 	.byte	$0D,$0A,$00
-L0044:
+L0041:
 	.byte	$56,$49,$41,$31,$5F,$50,$41,$30,$3A,$20,$25,$6C,$78,$20,$0D,$0A
 	.byte	$00
-L002D:
+L002A:
 	.byte	$75,$61,$72,$74,$20,$74,$65,$73,$74,$20,$6F,$6B,$2E,$0D,$0A,$00
 
 ; ---------------------------------------------------------------
@@ -89,21 +88,17 @@ L002D:
 
 .segment	"CODE"
 
-	lda     #$0A
+	lda     #$05
 	jsr     pusha0
 	ldy     #$00
 	jsr     _uart_init
 	ldy     #$00
 	jsr     _led_init
-	lda     #<(L0018)
-	ldx     #>(L0018)
-	jsr     pushax
-	jsr     _uart_puts
-	jmp     L001C
-L001A:	lda     #$01
+	jmp     L0019
+L0017:	lda     #$01
 	jsr     _led_set
-	lda     #<(L0021)
-	ldx     #>(L0021)
+	lda     #<(L001E)
+	ldx     #>(L001E)
 	jsr     pushax
 	jsr     _uart_puts
 	ldx     #$01
@@ -116,14 +111,18 @@ L001A:	lda     #$01
 	lda     #$F4
 	jsr     pushax
 	jsr     _mdelay
-L001C:	jsr     ldax0sp
+L0019:	jsr     ldax0sp
 	sta     regsave
 	stx     regsave+1
 	jsr     decax1
 	jsr     stax0sp
 	lda     regsave
 	ora     regsave+1
-	bne     L001A
+	bne     L0017
+	lda     #<(L0027)
+	ldx     #>(L0027)
+	jsr     pushax
+	jsr     _uart_puts
 	lda     #<(L002A)
 	ldx     #>(L002A)
 	jsr     pushax
@@ -131,45 +130,41 @@ L001C:	jsr     ldax0sp
 	lda     #<(L002D)
 	ldx     #>(L002D)
 	jsr     pushax
-	jsr     _uart_puts
-	lda     #<(L0030)
-	ldx     #>(L0030)
-	jsr     pushax
 	lda     #<(_sys_banner)
 	ldx     #>(_sys_banner)
 	jsr     pushax
 	ldy     #$04
 	jsr     _uart_printf
-	lda     #<(L0034)
-	ldx     #>(L0034)
+	lda     #<(L0031)
+	ldx     #>(L0031)
 	jsr     pushax
 	lda     #$01
 	jsr     pusha0
 	ldy     #$04
 	jsr     _uart_printf
-	lda     #<(L0038)
-	ldx     #>(L0038)
+	lda     #<(L0035)
+	ldx     #>(L0035)
 	jsr     pushax
 	lda     #$02
 	jsr     pusha0
 	ldy     #$04
 	jsr     _uart_printf
-	lda     #<(L003C)
-	ldx     #>(L003C)
+	lda     #<(L0039)
+	ldx     #>(L0039)
 	jsr     pushax
 	lda     #$02
 	jsr     pusha0
 	ldy     #$04
 	jsr     _uart_printf
-	lda     #<(L0040)
-	ldx     #>(L0040)
+	lda     #<(L003D)
+	ldx     #>(L003D)
 	jsr     pushax
 	lda     #$04
 	jsr     pusha0
 	tay
 	jsr     _uart_printf
-	lda     #<(L0044)
-	ldx     #>(L0044)
+	lda     #<(L0041)
+	ldx     #>(L0041)
 	jsr     pushax
 	ldx     #$00
 	lda     #$20
@@ -184,9 +179,9 @@ L001C:	jsr     ldax0sp
 	jsr     _ps2_init
 	ldy     #$00
 	jsr     _vga_init
-L004C:	ldy     #$00
+L0049:	ldy     #$00
 	jsr     _uart_handler
-	jmp     L004C
+	jmp     L0049
 
 .endproc
 

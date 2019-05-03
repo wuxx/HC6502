@@ -21,13 +21,10 @@ void mdelay(int ms)
 
 long main() 
 {
-  int count = 10;
+  int count = 5;
 
   uart_init();
-
   led_init();
-
-  uart_puts("6502 HomeComputer ready.\r\n");
 
   while(count--) {
     led_set(1);
@@ -47,7 +44,6 @@ long main()
   uart_printf("sizeof(short): %d \r\n", sizeof(short));
   uart_printf("sizeof(int): %d \r\n", sizeof(int));
   uart_printf("sizeof(long): %d \r\n", sizeof(long));
-
   uart_printf("VIA1_PA0: %lx \r\n", VIA1_PA0);
 
   ps2_init();
@@ -57,8 +53,6 @@ long main()
     //c = uart_getc();
     //uart_putc(c);
     uart_handler();
-
-    //ps2_process();
 
   }
 

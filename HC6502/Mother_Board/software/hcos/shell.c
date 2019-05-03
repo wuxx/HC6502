@@ -330,6 +330,18 @@ static s32 cmd_vga()
         while(1) {
             ch = ps2_getc();
 
+            if (ch == '\r') {
+                x = 0;
+                y++;
+
+                if (y == Y_MAX) {
+                    y = 0;
+                }
+
+                continue;
+            }
+
+
             vga_ctrl(VC_SET_CH, x, y, ch);
             x++;
 
@@ -341,6 +353,7 @@ static s32 cmd_vga()
             if (y == Y_MAX) {
                 y = 0;
             }
+
         }
 
         vga_ctrl(VC_SET_CH, x, y, ch);
