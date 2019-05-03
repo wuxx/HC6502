@@ -40,6 +40,7 @@ struct vga_info {
 
 extern void mdelay(int ms);
 
+int vga_printf(const char *format, ...);
 s32 vga_ctrl(u32 cmd, ...);
 void vga_init();
 

@@ -1,4 +1,9 @@
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
 #include "vga.h"
+
 
 //#define debug uart_printf
 #define debug(...)
@@ -102,6 +107,56 @@ s32 vga_ctrl(u32 cmd, ...)
     debug("exit %s \n", __func__);
 
     return 0;
+}
+
+void vga_putc(char ch)
+{
+    static u32 x = 0, y = 0;
+
+
+    if (ch == '\r') {
+        x = 0;
+        y++;
+
+        if (y == Y_MAX) {
+            y = 0;
+        }
+        return;
+    }
+
+    if (ch == '\n') {
+        return;
+    }
+
+
+    vga_ctrl(VC_SET_CH, x, y, ch);
+    x++;
+}
+
+void vga_puts(char *s)
+{
+    int i;
+
+    for(i = 0; s[i]; i++) {
+        vga_putc(s[i]);
+    }
+}
+
+int vga_printf(const char *format, ...)
+{
+
+    u32 len;
+    va_list args;
+    static char format_buf[128] = {0};
+
+    va_start(args, format);
+    len = vsnprintf(format_buf, sizeof(format_buf), format, args);
+    va_end(args);
+
+    vga_puts(format_buf);
+
+    return len;
+
 }
 
 void vga_init()

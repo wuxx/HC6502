@@ -23,6 +23,7 @@
 	.import		_gpio_read
 	.import		_ps2_process
 	.import		_ps2_getc
+	.import		_vga_printf
 	.import		_vga_ctrl
 	.export		_shell_cmd
 	.export		_argc
@@ -233,89 +234,96 @@ L023F:
 L027B:
 	.byte	$67,$70,$69,$6F,$20,$72,$65,$61,$64,$20,$72,$65,$74,$75,$72,$6E
 	.byte	$20,$25,$64,$0D,$0A,$00
+L039C:
+	.byte	$69,$6C,$6C,$65,$67,$61,$6C,$20,$63,$6D,$64,$20,$5B,$25,$73,$5D
+	.byte	$20,$0D,$0A,$00
 L026A:
 	.byte	$75,$6E,$6B,$6E,$6F,$77,$6E,$20,$6D,$6F,$64,$65,$20,$5B,$25,$73
 	.byte	$5D,$0D,$0A,$00
-L038A:
-	.byte	$69,$6C,$6C,$65,$67,$61,$6C,$20,$63,$6D,$64,$20,$5B,$25,$73,$5D
-	.byte	$20,$0D,$0A,$00
 L0081:
 	.byte	$5B,$30,$78,$25,$78,$5D,$20,$3C,$2D,$20,$28,$30,$78,$25,$78,$29
 	.byte	$0D,$0A,$00
-L02AC:
-	.byte	$76,$67,$61,$20,$63,$6C,$65,$61,$72,$20,$65,$6E,$64,$20,$20,$0D
+L030F:
+	.byte	$76,$67,$61,$5F,$70,$72,$69,$6E,$74,$66,$20,$5B,$25,$73,$5D,$0D
 	.byte	$0A,$00
 L02A7:
 	.byte	$76,$67,$61,$20,$63,$6C,$65,$61,$72,$20,$73,$74,$61,$72,$74,$0D
 	.byte	$0A,$00
+L02AC:
+	.byte	$76,$67,$61,$20,$63,$6C,$65,$61,$72,$20,$65,$6E,$64,$20,$20,$0D
+	.byte	$0A,$00
 L00E0:
 	.byte	$0D,$0A,$5B,$30,$78,$25,$30,$34,$78,$5D,$3A,$20,$00
 L0134	:=	L00E0+0
-L0395:
+L03A7:
 	.byte	$72,$65,$74,$75,$72,$6E,$20,$30,$78,$25,$78,$00
 L00C9	:=	L00E0+2
-L0309:
+L031B:
 	.byte	$25,$64,$3A,$25,$64,$3A,$25,$64,$0D,$0A,$00
 L0105	:=	L00E0+2
-L031D:
+L032F:
 	.byte	$25,$73,$3A,$09,$09,$25,$73,$0D,$0A,$00
 L004D:
 	.byte	$5B,$30,$78,$25,$78,$5D,$3A,$20,$00
+L03AC:
+	.byte	$0D,$0A,$68,$63,$6F,$73,$23,$00
 L00D5:
 	.byte	$30,$78,$25,$30,$34,$78,$20,$00
-L039A:
-	.byte	$0D,$0A,$68,$63,$6F,$73,$23,$00
 L0056	:=	L00AF+39
 L003B:
 	.byte	$75,$70,$74,$69,$6D,$65,$00
+L030B:
+	.byte	$70,$72,$69,$6E,$74,$66,$00
 L011E:
 	.byte	$25,$30,$32,$78,$20,$00
 L014B	:=	L011E+0
 L02E3:
 	.byte	$73,$68,$65,$6C,$6C,$00
-L0027:
-	.byte	$64,$75,$6D,$70,$62,$00
+L0022:
+	.byte	$64,$75,$6D,$70,$77,$00
 L02A3:
 	.byte	$63,$6C,$65,$61,$72,$00
 L0283:
 	.byte	$77,$72,$69,$74,$65,$00
-L0022:
-	.byte	$64,$75,$6D,$70,$77,$00
+L0027:
+	.byte	$64,$75,$6D,$70,$62,$00
 L0248:
 	.byte	$69,$6E,$69,$74,$00
 L02B3:
 	.byte	$66,$69,$6C,$6C,$00
+L002C	:=	L002F+47
 L0274:
 	.byte	$72,$65,$61,$64,$00
-L002C	:=	L002F+47
 L0040:
 	.byte	$68,$65,$6C,$70,$00
 L0036:
 	.byte	$76,$67,$61,$00
-L0031:
-	.byte	$70,$73,$32,$00
 L0154:
 	.byte	$20,$20,$20,$00
+L0314:
+	.byte	$25,$73,$0A,$00
+L0031:
+	.byte	$70,$73,$32,$00
 L02C4:
 	.byte	$73,$65,$74,$00
 L0262:
 	.byte	$6F,$75,$74,$00
+L0168	:=	L00AF+43
+L00E5	:=	L00AF+43
 L0162:
 	.byte	$25,$63,$00
-L0257:
-	.byte	$69,$6E,$00
-L00E5	:=	L00AF+43
 L0157	:=	L0154+1
-L037F	:=	L00AF+43
-L0168	:=	L00AF+43
-L012E	:=	L0162+0
 L0123	:=	L0154+1
 L0298	:=	L00AF+43
+L0391	:=	L00AF+43
+L012E	:=	L0162+0
+L0257:
+	.byte	$69,$6E,$00
 L0013	:=	L0016+53
-L001D	:=	L0395+10
-L0018	:=	L0022+4
+L001D	:=	L03A7+10
 L028D:
 	.byte	$30,$00
+L0018	:=	L0022+4
 
 .segment	"BSS"
 
@@ -384,13 +392,13 @@ _argc:
 	ldx     #$00
 	lda     _argc
 	cmp     #$03
-	bcs     L039D
+	bcs     L03AF
 	dex
 	stx     sreg
 	stx     sreg+1
 	txa
 	jmp     incsp7
-L039D:	lda     _argc
+L03AF:	lda     _argc
 	jsr     decax2
 	ldy     #$01
 	jsr     staxysp
@@ -414,7 +422,7 @@ L0065:	ldy     #$01
 	jsr     staxysp
 	ldx     #$00
 	txa
-L039F:	ldy     #$05
+L03B1:	ldy     #$05
 	jsr     staxysp
 	ldy     #$01
 	cmp     (sp),y
@@ -474,7 +482,7 @@ L039F:	ldy     #$05
 	ldy     #$06
 	jsr     ldaxysp
 	jsr     incax1
-	jmp     L039F
+	jmp     L03B1
 L006E:	ldx     #$00
 	stx     sreg
 	stx     sreg+1
@@ -962,7 +970,7 @@ L013C:	ldy     #$1D
 	lda     (ptr1,x)
 	jsr     pusha0
 	ldy     #$04
-	jmp     L03A0
+	jmp     L03B2
 L0144:	lda     #$08
 	jsr     leaa0sp
 	ldy     #$1A
@@ -980,7 +988,7 @@ L0144:	lda     #$08
 	ldx     #>(L0154)
 	jsr     pushax
 	ldy     #$02
-L03A0:	jsr     _uart_printf
+L03B2:	jsr     _uart_printf
 	ldy     #$1D
 	jsr     ldeaxysp
 	jsr     saveeax
@@ -1223,14 +1231,14 @@ L0270:	lda     _argv+2
 	jsr     ldeaxidx
 	jsr     pusheax
 	lda     #$00
-	jmp     L03A2
+	jmp     L03B4
 L0289:	ldy     #$02
 	jsr     ldaxysp
 	ldy     #$13
 	jsr     ldeaxidx
 	jsr     pusheax
 	lda     #$01
-L03A2:	jsr     pusha
+L03B4:	jsr     pusha
 	jsr     _gpio_write
 L0293:	lda     #<(L0298)
 	ldx     #>(L0298)
@@ -1302,7 +1310,7 @@ L0293:	lda     #<(L0298)
 	jsr     pushax
 	ldy     #$02
 	jsr     _uart_printf
-	jmp     L02DF
+	jmp     L0307
 L029F:	lda     _argv+2
 	ldx     _argv+2+1
 	jsr     pushax
@@ -1328,7 +1336,7 @@ L029F:	lda     _argv+2
 	jsr     pusha0
 	ldy     #$06
 	jsr     _vga_ctrl
-	jmp     L02DF
+	jmp     L0307
 L02AF:	lda     _argv+2
 	ldx     _argv+2+1
 	jsr     pushax
@@ -1374,7 +1382,7 @@ L02AF:	lda     _argv+2
 	jsr     pusha0
 	ldy     #$0E
 	jsr     _vga_ctrl
-	jmp     L02DF
+	jmp     L0307
 L02C0:	lda     _argv+2
 	ldx     _argv+2+1
 	jsr     pushax
@@ -1384,12 +1392,12 @@ L02C0:	lda     _argv+2
 	cpx     #$00
 	jne     L02DF
 	cmp     #$00
-	jne     L03A5
+	jne     L02DF
 	sta     sreg
 	sta     sreg+1
 	ldy     #$05
 	jsr     steaxysp
-L03A4:	ldy     #$01
+L03B6:	ldy     #$01
 	jsr     steaxysp
 L02EA:	ldy     #$00
 	jsr     _ps2_getc
@@ -1449,9 +1457,35 @@ L02F6:	ldy     #$04
 	jeq     L02EA
 	ldx     #$00
 	txa
-	jmp     L03A4
-L02DF:	ldx     #$00
-L03A5:	stx     sreg
+	jmp     L03B6
+L02DF:	lda     _argv+2
+	ldx     _argv+2+1
+	jsr     pushax
+	lda     #<(L030B)
+	ldx     #>(L030B)
+	jsr     _strcmp
+	cpx     #$00
+	bne     L0307
+	cmp     #$00
+	bne     L03B7
+	lda     #<(L030F)
+	ldx     #>(L030F)
+	jsr     pushax
+	lda     _argv+4
+	ldx     _argv+4+1
+	jsr     pushax
+	ldy     #$04
+	jsr     _uart_printf
+	lda     #<(L0314)
+	ldx     #>(L0314)
+	jsr     pushax
+	lda     _argv+4
+	ldx     _argv+4+1
+	jsr     pushax
+	ldy     #$04
+	jsr     _vga_printf
+L0307:	ldx     #$00
+L03B7:	stx     sreg
 	stx     sreg+1
 	txa
 	ldy     #$09
@@ -1469,8 +1503,8 @@ L03A5:	stx     sreg
 
 .segment	"CODE"
 
-	lda     #<(L0309)
-	ldx     #>(L0309)
+	lda     #<(L031B)
+	ldx     #>(L031B)
 	jsr     pushax
 	lda     _hours
 	jsr     pusha0
@@ -1504,7 +1538,7 @@ L03A5:	stx     sreg
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-L0310:	jsr     ldeax0sp
+L0322:	jsr     ldeax0sp
 	cmp     #$0A
 	txa
 	sbc     #$00
@@ -1512,9 +1546,9 @@ L0310:	jsr     ldeax0sp
 	sbc     #$00
 	lda     sreg+1
 	sbc     #$00
-	bcs     L0311
-	lda     #<(L031D)
-	ldx     #>(L031D)
+	bcs     L0323
+	lda     #<(L032F)
+	ldx     #>(L032F)
 	jsr     pushax
 	ldy     #$05
 	jsr     ldeaxysp
@@ -1547,8 +1581,8 @@ L0310:	jsr     ldeax0sp
 	jsr     inceaxy
 	jsr     steax0sp
 	jsr     resteax
-	jmp     L0310
-L0311:	ldx     #$00
+	jmp     L0322
+L0323:	ldx     #$00
 	stx     sreg
 	stx     sreg+1
 	txa
@@ -1570,12 +1604,12 @@ L0311:	ldx     #$00
 	lda     (sp),y
 	cmp     #$20
 	ldx     #$00
-	bcc     L03A9
+	bcc     L03BB
 	lda     (sp),y
 	cmp     #$7F
-	bcs     L03A9
+	bcs     L03BB
 	jmp     incsp1
-L03A9:	lda     #$2E
+L03BB:	lda     #$2E
 	jmp     incsp1
 
 .endproc
@@ -1600,7 +1634,7 @@ L03A9:	lda     #$2E
 	jmp     incsp4
 L021D:	ldx     #$00
 	txa
-L03AC:	jsr     stax0sp
+L03BE:	jsr     stax0sp
 	ldy     #$01
 	lda     (sp),y
 	cmp     #$00
@@ -1640,7 +1674,7 @@ L022B:	bcs     L0222
 	jmp     incsp4
 L0223:	jsr     ldax0sp
 	jsr     incax1
-	jmp     L03AC
+	jmp     L03BE
 L0222:	ldx     #$00
 	txa
 	jmp     incsp4
@@ -1664,9 +1698,9 @@ L0222:	ldx     #$00
 	sta     ptr1
 	lda     #$00
 	ldy     #$0B
-L03AD:	sta     (ptr1),y
+L03BF:	sta     (ptr1),y
 	dey
-	bpl     L03AD
+	bpl     L03BF
 	ldx     #$00
 	stx     sreg
 	stx     sreg+1
@@ -1674,7 +1708,7 @@ L03AD:	sta     (ptr1),y
 	jsr     steax0sp
 	ldy     #$04
 	jsr     steaxysp
-L032E:	ldy     #$0B
+L0340:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1683,9 +1717,9 @@ L032E:	ldy     #$0B
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	bne     L0338
-	jmp     L03B2
-L0336:	ldy     #$07
+	bne     L034A
+	jmp     L03C4
+L0348:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1693,7 +1727,7 @@ L0336:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-L0338:	ldy     #$0B
+L034A:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1703,7 +1737,7 @@ L0338:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	beq     L0336
+	beq     L0348
 	jsr     ldeax0sp
 	jsr     saveeax
 	ldy     #$01
@@ -1733,9 +1767,9 @@ L0338:	ldy     #$0B
 	stx     sreg+1
 	lda     #$06
 	jsr     toseqeax
-	beq     L0345
-	jmp     L032F
-L0343:	ldy     #$07
+	beq     L0357
+	jmp     L0341
+L0355:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1743,7 +1777,7 @@ L0343:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-L0345:	ldy     #$0B
+L0357:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1753,7 +1787,7 @@ L0345:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	jeq     L032E
+	jeq     L0340
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1763,10 +1797,10 @@ L0345:	ldy     #$0B
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	bne     L0343
-	jmp     L032E
-L032F:	ldy     #$00
-L03B2:	lda     (sp),y
+	bne     L0355
+	jmp     L0340
+L0341:	ldy     #$00
+L03C4:	lda     (sp),y
 	sta     _argc
 	ldx     #$00
 	stx     sreg
@@ -1774,7 +1808,7 @@ L03B2:	lda     (sp),y
 	txa
 	ldy     #$04
 	jsr     steaxysp
-L034E:	ldy     #$0B
+L0360:	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
 	jsr     ldeaxysp
@@ -1783,7 +1817,7 @@ L034E:	ldy     #$0B
 	stx     ptr1+1
 	ldx     #$00
 	lda     (ptr1,x)
-	beq     L03B3
+	beq     L03C5
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1794,7 +1828,7 @@ L034E:	ldy     #$0B
 	ldy     #$00
 	lda     (ptr1),y
 	cmp     #$20
-	bne     L0350
+	bne     L0362
 	ldy     #$0B
 	jsr     pushwysp
 	ldy     #$09
@@ -1805,7 +1839,7 @@ L034E:	ldy     #$0B
 	lda     #$00
 	tay
 	sta     (sreg),y
-L0350:	ldy     #$07
+L0362:	ldy     #$07
 	jsr     ldeaxysp
 	jsr     saveeax
 	ldy     #$01
@@ -1813,8 +1847,8 @@ L0350:	ldy     #$07
 	ldy     #$04
 	jsr     steaxysp
 	jsr     resteax
-	jmp     L034E
-L03B3:	sta     sreg
+	jmp     L0360
+L03C5:	sta     sreg
 	sta     sreg+1
 	ldy     #$0A
 	jmp     addysp
@@ -1837,7 +1871,7 @@ L03B3:	sta     sreg
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-L035F:	jsr     ldeax0sp
+L0371:	jsr     ldeax0sp
 	cmp     #$0A
 	txa
 	sbc     #$00
@@ -1845,7 +1879,7 @@ L035F:	jsr     ldeax0sp
 	sbc     #$00
 	lda     sreg+1
 	sbc     #$00
-	bcs     L0360
+	bcs     L0372
 	jsr     ldeax0sp
 	jsr     mulax6
 	clc
@@ -1860,19 +1894,19 @@ L035F:	jsr     ldeax0sp
 	jsr     ldaxysp
 	jsr     _strcmp
 	cpx     #$00
-	bne     L0361
+	bne     L0373
 	cmp     #$00
-	bne     L0361
+	bne     L0373
 	jsr     ldeax0sp
 	jmp     incsp6
-L0361:	jsr     ldeax0sp
+L0373:	jsr     ldeax0sp
 	jsr     saveeax
 	ldy     #$01
 	jsr     inceaxy
 	jsr     steax0sp
 	jsr     resteax
-	jmp     L035F
-L0360:	ldx     #$FF
+	jmp     L0371
+L0372:	ldx     #$FF
 	stx     sreg
 	stx     sreg+1
 	txa
@@ -1890,9 +1924,9 @@ L0360:	ldx     #$FF
 
 .segment	"RODATA"
 
-L037D:
+L038F:
 	.word	$0000
-L0390:
+L03A2:
 	.word	$0000
 
 .segment	"CODE"
@@ -1913,13 +1947,13 @@ L0390:
 	stx     sreg+1
 	txa
 	jsr     toseqeax
-	beq     L0378
+	beq     L038A
 	ldx     #$00
 	txa
 	jsr     steax0sp
-	jmp     L037C
-L0378:	lda     #<(L037F)
-	ldx     #>(L037F)
+	jmp     L038E
+L038A:	lda     #<(L0391)
+	ldx     #>(L0391)
 	jsr     pushax
 	ldy     #$02
 	jsr     _uart_printf
@@ -1938,9 +1972,9 @@ L0378:	lda     #<(L037F)
 	stx     sreg+1
 	txa
 	jsr     toseqeax
-	beq     L0383
-	lda     #<(L038A)
-	ldx     #>(L038A)
+	beq     L0395
+	lda     #<(L039C)
+	ldx     #>(L039C)
 	jsr     pushax
 	lda     _argv
 	ldx     _argv+1
@@ -1952,8 +1986,8 @@ L0378:	lda     #<(L037F)
 	stx     sreg+1
 	txa
 	jsr     steax0sp
-	jmp     L037C
-L0383:	ldy     #$0B
+	jmp     L038E
+L0395:	ldy     #$0B
 	jsr     ldeaxysp
 	jsr     mulax6
 	clc
@@ -1967,16 +2001,16 @@ L0383:	ldy     #$0B
 	jsr     ldaxidx
 	jsr     callax
 	jsr     steax0sp
-	lda     #<(L0395)
-	ldx     #>(L0395)
+	lda     #<(L03A7)
+	ldx     #>(L03A7)
 	jsr     pushax
 	ldy     #$05
 	jsr     ldeaxysp
 	jsr     pusheax
 	ldy     #$06
 	jsr     _uart_printf
-L037C:	lda     #<(L039A)
-	ldx     #>(L039A)
+L038E:	lda     #<(L03AC)
+	ldx     #>(L03AC)
 	jsr     pushax
 	ldy     #$02
 	jsr     _uart_printf

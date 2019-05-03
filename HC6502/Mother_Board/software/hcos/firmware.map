@@ -25,198 +25,198 @@ uart.o:
 gpio.o:
     CODE              Offs=000425  Size=00024F  Align=00001  Fill=0000
 shell.o:
-    CODE              Offs=000674  Size=000D6B  Align=00001  Fill=0000
-    RODATA            Offs=0000C7  Size=00039A  Align=00001  Fill=0000
+    CODE              Offs=000674  Size=000DAD  Align=00001  Fill=0000
+    RODATA            Offs=0000C7  Size=0003B7  Align=00001  Fill=0000
     BSS               Offs=000202  Size=000001  Align=00001  Fill=0000
     DATA              Offs=000138  Size=0002CA  Align=00001  Fill=0000
 ps2.o:
-    CODE              Offs=0013DF  Size=0001A2  Align=00001  Fill=0000
-    RODATA            Offs=000461  Size=00001B  Align=00001  Fill=0000
+    CODE              Offs=001421  Size=0001A2  Align=00001  Fill=0000
+    RODATA            Offs=00047E  Size=00001B  Align=00001  Fill=0000
     DATA              Offs=000402  Size=000028  Align=00001  Fill=0000
 vga.o:
-    CODE              Offs=001581  Size=00027E  Align=00001  Fill=0000
-    DATA              Offs=00042A  Size=000028  Align=00001  Fill=0000
+    CODE              Offs=0015C3  Size=0003EF  Align=00001  Fill=0000
+    DATA              Offs=00042A  Size=0000B0  Align=00001  Fill=0000
 cc65.lib(_hextab.o):
-    RODATA            Offs=00047C  Size=000010  Align=00001  Fill=0000
+    RODATA            Offs=000499  Size=000010  Align=00001  Fill=0000
 cc65.lib(_longminstr.o):
-    RODATA            Offs=00048C  Size=00000C  Align=00001  Fill=0000
+    RODATA            Offs=0004A9  Size=00000C  Align=00001  Fill=0000
 cc65.lib(_printf.o):
-    CODE              Offs=0017FF  Size=0003A5  Align=00001  Fill=0000
+    CODE              Offs=0019B2  Size=0003A5  Align=00001  Fill=0000
     BSS               Offs=000203  Size=00002B  Align=00001  Fill=0000
-    DATA              Offs=000452  Size=000003  Align=00001  Fill=0000
+    DATA              Offs=0004DA  Size=000003  Align=00001  Fill=0000
 cc65.lib(_seterrno.o):
-    CODE              Offs=001BA4  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001D57  Size=000009  Align=00001  Fill=0000
 cc65.lib(add.o):
-    CODE              Offs=001BAD  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=001D60  Size=00001A  Align=00001  Fill=0000
 cc65.lib(addeqsp.o):
-    CODE              Offs=001BC7  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=001D7A  Size=000011  Align=00001  Fill=0000
 cc65.lib(addysp.o):
-    CODE              Offs=001BD8  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=001D8B  Size=00000E  Align=00001  Fill=0000
 cc65.lib(aslax1.o):
-    CODE              Offs=001BE6  Size=000008  Align=00001  Fill=0000
+    CODE              Offs=001D99  Size=000008  Align=00001  Fill=0000
 cc65.lib(aslax2.o):
-    CODE              Offs=001BEE  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001DA1  Size=00000B  Align=00001  Fill=0000
 cc65.lib(asleax4.o):
-    CODE              Offs=001BF9  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=001DAC  Size=000011  Align=00001  Fill=0000
 cc65.lib(axlong.o):
-    CODE              Offs=001C0A  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=001DBD  Size=000012  Align=00001  Fill=0000
 cc65.lib(call.o):
-    CODE              Offs=001C1C  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001DCF  Size=000007  Align=00001  Fill=0000
 cc65.lib(condes.o):
-    CODE              Offs=001C23  Size=00000C  Align=00001  Fill=0000
-    DATA              Offs=000455  Size=000025  Align=00001  Fill=0000
+    CODE              Offs=001DD6  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=0004DD  Size=000025  Align=00001  Fill=0000
     INIT              Offs=000000  Size=00000C  Align=00001  Fill=0000
 cc65.lib(copydata.o):
-    CODE              Offs=001C2F  Size=00002D  Align=00001  Fill=0000
+    CODE              Offs=001DE2  Size=00002D  Align=00001  Fill=0000
 cc65.lib(ctype.o):
-    RODATA            Offs=000498  Size=000100  Align=00001  Fill=0000
+    RODATA            Offs=0004B5  Size=000100  Align=00001  Fill=0000
 cc65.lib(decax1.o):
-    CODE              Offs=001C5C  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E0F  Size=000007  Align=00001  Fill=0000
 cc65.lib(decax2.o):
-    CODE              Offs=001C63  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E16  Size=000007  Align=00001  Fill=0000
 cc65.lib(decaxy.o):
-    CODE              Offs=001C6A  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001E1D  Size=000009  Align=00001  Fill=0000
 cc65.lib(decsp1.o):
-    CODE              Offs=001C73  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001E26  Size=000009  Align=00001  Fill=0000
 cc65.lib(decsp2.o):
-    CODE              Offs=001C7C  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E2F  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp3.o):
-    CODE              Offs=001C89  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E3C  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp4.o):
-    CODE              Offs=001C96  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E49  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp6.o):
-    CODE              Offs=001CA3  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E56  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp7.o):
-    CODE              Offs=001CB0  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E63  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp8.o):
-    CODE              Offs=001CBD  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E70  Size=00000D  Align=00001  Fill=0000
 cc65.lib(enter.o):
-    CODE              Offs=001CCA  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=001E7D  Size=00000E  Align=00001  Fill=0000
 cc65.lib(errno.o):
     BSS               Offs=00022E  Size=000002  Align=00001  Fill=0000
 cc65.lib(incax1.o):
-    CODE              Offs=001CD8  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E8B  Size=000007  Align=00001  Fill=0000
 cc65.lib(incax2.o):
-    CODE              Offs=001CDF  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E92  Size=000007  Align=00001  Fill=0000
 cc65.lib(incax3.o):
-    CODE              Offs=001CE6  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001E99  Size=000005  Align=00001  Fill=0000
 cc65.lib(incax5.o):
-    CODE              Offs=001CEB  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001E9E  Size=000005  Align=00001  Fill=0000
 cc65.lib(incax8.o):
-    CODE              Offs=001CF0  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EA3  Size=000005  Align=00001  Fill=0000
 cc65.lib(incaxy.o):
-    CODE              Offs=001CF5  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001EA8  Size=00000B  Align=00001  Fill=0000
 cc65.lib(incsp1.o):
-    CODE              Offs=001D00  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001EB3  Size=000007  Align=00001  Fill=0000
 cc65.lib(incsp2.o):
-    CODE              Offs=001D07  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=001EBA  Size=000016  Align=00001  Fill=0000
 cc65.lib(incsp3.o):
-    CODE              Offs=001D1D  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001ED0  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp4.o):
-    CODE              Offs=001D22  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001ED5  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp6.o):
-    CODE              Offs=001D27  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EDA  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp7.o):
-    CODE              Offs=001D2C  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EDF  Size=000005  Align=00001  Fill=0000
 cc65.lib(isdigit.o):
-    CODE              Offs=001D31  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001EE4  Size=00000F  Align=00001  Fill=0000
 cc65.lib(islower.o):
-    CODE              Offs=001D40  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001EF3  Size=00000F  Align=00001  Fill=0000
 cc65.lib(isspace.o):
-    CODE              Offs=001D4F  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001F02  Size=00000F  Align=00001  Fill=0000
 cc65.lib(isupper.o):
-    CODE              Offs=001D5E  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001F11  Size=00000F  Align=00001  Fill=0000
 cc65.lib(ladd.o):
-    CODE              Offs=001D6D  Size=000025  Align=00001  Fill=0000
+    CODE              Offs=001F20  Size=000025  Align=00001  Fill=0000
 cc65.lib(land.o):
-    CODE              Offs=001D92  Size=000024  Align=00001  Fill=0000
+    CODE              Offs=001F45  Size=000024  Align=00001  Fill=0000
 cc65.lib(lcmp.o):
-    CODE              Offs=001DB6  Size=00003B  Align=00001  Fill=0000
+    CODE              Offs=001F69  Size=00003B  Align=00001  Fill=0000
 cc65.lib(ldaxi.o):
-    CODE              Offs=001DF1  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001FA4  Size=00000D  Align=00001  Fill=0000
 cc65.lib(ldaxsp.o):
-    CODE              Offs=001DFE  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001FB1  Size=000009  Align=00001  Fill=0000
 cc65.lib(ldeaxi.o):
-    CODE              Offs=001E07  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=001FBA  Size=000017  Align=00001  Fill=0000
 cc65.lib(ldeaxysp.o):
-    CODE              Offs=001E1E  Size=000013  Align=00001  Fill=0000
+    CODE              Offs=001FD1  Size=000013  Align=00001  Fill=0000
 cc65.lib(leaaxsp.o):
-    CODE              Offs=001E31  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=001FE4  Size=00000C  Align=00001  Fill=0000
 cc65.lib(leave.o):
-    CODE              Offs=001E3D  Size=00001D  Align=00001  Fill=0000
+    CODE              Offs=001FF0  Size=00001D  Align=00001  Fill=0000
 cc65.lib(leq.o):
-    CODE              Offs=001E5A  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=00200D  Size=000006  Align=00001  Fill=0000
 cc65.lib(linc.o):
-    CODE              Offs=001E60  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=002013  Size=000011  Align=00001  Fill=0000
 cc65.lib(lmul.o):
-    CODE              Offs=001E71  Size=00005C  Align=00001  Fill=0000
+    CODE              Offs=002024  Size=00005C  Align=00001  Fill=0000
 cc65.lib(lne.o):
-    CODE              Offs=001ECD  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=002080  Size=000006  Align=00001  Fill=0000
 cc65.lib(lneg.o):
-    CODE              Offs=001ED3  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=002086  Size=00001E  Align=00001  Fill=0000
 cc65.lib(lpush.o):
-    CODE              Offs=001EF1  Size=000021  Align=00001  Fill=0000
+    CODE              Offs=0020A4  Size=000021  Align=00001  Fill=0000
 cc65.lib(lsave.o):
-    CODE              Offs=001F12  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=0020C5  Size=00001C  Align=00001  Fill=0000
 cc65.lib(ltoa.o):
-    CODE              Offs=001F2E  Size=0000AF  Align=00001  Fill=0000
+    CODE              Offs=0020E1  Size=0000AF  Align=00001  Fill=0000
 cc65.lib(ludiv.o):
-    CODE              Offs=001FDD  Size=00007A  Align=00001  Fill=0000
+    CODE              Offs=002190  Size=00007A  Align=00001  Fill=0000
 cc65.lib(lugt.o):
-    CODE              Offs=002057  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=00220A  Size=000006  Align=00001  Fill=0000
 cc65.lib(lult.o):
-    CODE              Offs=00205D  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=002210  Size=000006  Align=00001  Fill=0000
 cc65.lib(lumod.o):
-    CODE              Offs=002063  Size=000019  Align=00001  Fill=0000
+    CODE              Offs=002216  Size=000019  Align=00001  Fill=0000
 cc65.lib(makebool.o):
-    CODE              Offs=00207C  Size=000031  Align=00001  Fill=0000
+    CODE              Offs=00222F  Size=000031  Align=00001  Fill=0000
 cc65.lib(memcpy.o):
-    CODE              Offs=0020AD  Size=000041  Align=00001  Fill=0000
+    CODE              Offs=002260  Size=000041  Align=00001  Fill=0000
 cc65.lib(mul8.o):
-    CODE              Offs=0020EE  Size=00003A  Align=00001  Fill=0000
+    CODE              Offs=0022A1  Size=00003A  Align=00001  Fill=0000
 cc65.lib(mulax6.o):
-    CODE              Offs=002128  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0022DB  Size=000016  Align=00001  Fill=0000
 cc65.lib(or.o):
-    CODE              Offs=00213E  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=0022F1  Size=000012  Align=00001  Fill=0000
 cc65.lib(popsreg.o):
-    CODE              Offs=002150  Size=000010  Align=00001  Fill=0000
+    CODE              Offs=002303  Size=000010  Align=00001  Fill=0000
 cc65.lib(push1.o):
-    CODE              Offs=002160  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=002313  Size=000005  Align=00001  Fill=0000
 cc65.lib(pusha.o):
-    CODE              Offs=002165  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=002318  Size=000016  Align=00001  Fill=0000
 cc65.lib(pushax.o):
-    CODE              Offs=00217B  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=00232E  Size=00001A  Align=00001  Fill=0000
 cc65.lib(pushw.o):
-    CODE              Offs=002195  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=002348  Size=00000F  Align=00001  Fill=0000
 cc65.lib(pushwsp.o):
-    CODE              Offs=0021A4  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=002357  Size=00001C  Align=00001  Fill=0000
 cc65.lib(shl.o):
-    CODE              Offs=0021C0  Size=000033  Align=00001  Fill=0000
+    CODE              Offs=002373  Size=000033  Align=00001  Fill=0000
 cc65.lib(shrax4.o):
-    CODE              Offs=0021F3  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=0023A6  Size=000011  Align=00001  Fill=0000
 cc65.lib(staspidx.o):
-    CODE              Offs=002204  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0023B7  Size=000016  Align=00001  Fill=0000
 cc65.lib(staxsp.o):
-    CODE              Offs=00221A  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=0023CD  Size=00000B  Align=00001  Fill=0000
 cc65.lib(staxspi.o):
-    CODE              Offs=002225  Size=00001B  Align=00001  Fill=0000
+    CODE              Offs=0023D8  Size=00001B  Align=00001  Fill=0000
 cc65.lib(steaxsp.o):
-    CODE              Offs=002240  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=0023F3  Size=000015  Align=00001  Fill=0000
 cc65.lib(strcmp.o):
-    CODE              Offs=002255  Size=000027  Align=00001  Fill=0000
+    CODE              Offs=002408  Size=000027  Align=00001  Fill=0000
 cc65.lib(strlen.o):
-    CODE              Offs=00227C  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=00242F  Size=000016  Align=00001  Fill=0000
 cc65.lib(strlower.o):
-    CODE              Offs=002292  Size=000028  Align=00001  Fill=0000
+    CODE              Offs=002445  Size=000028  Align=00001  Fill=0000
 cc65.lib(strtoul.o):
-    CODE              Offs=0022BA  Size=000238  Align=00001  Fill=0000
+    CODE              Offs=00246D  Size=000238  Align=00001  Fill=0000
 cc65.lib(subeqsp.o):
-    CODE              Offs=0024F2  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=0026A5  Size=000015  Align=00001  Fill=0000
 cc65.lib(subysp.o):
-    CODE              Offs=002507  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0026BA  Size=00000D  Align=00001  Fill=0000
 cc65.lib(vsnprintf.o):
-    CODE              Offs=002514  Size=0000C8  Align=00001  Fill=0000
-    DATA              Offs=00047A  Size=000008  Align=00001  Fill=0000
+    CODE              Offs=0026C7  Size=0000C8  Align=00001  Fill=0000
+    DATA              Offs=000502  Size=000008  Align=00001  Fill=0000
 cc65.lib(zerobss.o):
     INIT              Offs=00000C  Size=000023  Align=00001  Fill=0000
 
@@ -226,99 +226,100 @@ Segment list:
 Name                   Start     End    Size  Align
 ----------------------------------------------------
 ZEROPAGE              000000  00002B  00002C  00001
-DATA                  000200  000681  000482  00001
-BSS                   000682  0008B1  000230  00001
-STARTUP               008482  0084A4  000023  00001
-INIT                  0084A5  0084D3  00002F  00001
-CODE                  008500  00AADB  0025DC  00100
-RODATA                00AADC  00B073  000598  00001
+DATA                  000200  000709  00050A  00001
+BSS                   00070A  000939  000230  00001
+STARTUP               00850A  00852C  000023  00001
+INIT                  00852D  00855B  00002F  00001
+CODE                  008600  00AD8E  00278F  00100
+RODATA                00AD8F  00B343  0005B5  00001
 VECTORS               00FFFA  00FFFF  000006  00001
 
 
 Exports list by name:
 ---------------------
-__BSS_RUN__               000682 RLA    __BSS_SIZE__              000230 REA    
-__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     0084A5 RLA    
+__BSS_RUN__               00070A RLA    __BSS_SIZE__              000230 REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     00852D RLA    
 __DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA    
-__DATA_SIZE__             000482 REA    __DESTRUCTOR_COUNT__      000000 REA    
-__DESTRUCTOR_TABLE__      0084A5 RLA    __RAM_SIZE__              007D00 REA    
+__DATA_SIZE__             00050A REA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      00852D RLA    __RAM_SIZE__              007D00 REA    
 __RAM_START__             000200 RLA    __STARTUP__               000001 REA    
-__ctype                   00AF74 RLA    __errno                   0008B0 RLA    
-__hextab                  00AF58 RLA    __longminstr              00AF68 RLA    
-__printf                  009DF2 RLA    __seterrno                00A0A4 RLA    
-_delay_ms                 008600 RLA    _gpio_init                008925 RLA    
-_gpio_read                008AE4 RLA    _gpio_write               008A21 RLA    
+__ctype                   00B244 RLA    __errno                   000938 RLA    
+__hextab                  00B228 RLA    __longminstr              00B238 RLA    
+__printf                  00A0A5 RLA    __seterrno                00A357 RLA    
+_delay_ms                 008700 RLA    _gpio_init                008A25 RLA    
+_gpio_read                008BE4 RLA    _gpio_write               008B21 RLA    
 _hours                    000022 RLZ    _interrupted              00002B RLZ    
-_isdigit                  00A231 RLA    _islower                  00A240 RLA    
-_isspace                  00A24F RLA    _isupper                  00A25E RLA    
-_jiffies                  00001F RLZ    _led_init                 008692 RLA    
-_led_set                  0086A3 RLA    _ltoa                     00A44A RLA    
-_main                     0086C3 RLA    _mdelay                   0086B9 RLA    
-_memcpy                   00A5AD RLA    _millis                   00001B RLZ    
-_minutes                  000021 RLZ    _ps2_getc                 0099A1 RLA    
-_ps2_init                 009919 RLA    _ps2_process              0098DF RLA    
-_seconds                  000020 RLZ    _strcmp                   00A755 RLA    
-_strlen                   00A77C RLA    _strlower                 00A792 RLA    
-_strtoul                  00A7BA RLA    _uart_handler             008891 RLA    
-_uart_init                0087B1 RLA    _uart_printf              00883E RLA    
-_uart_puts                0087FC RLA    _uart_shell               009812 RLA    
-_ultoa                    00A4A1 RLA    _vga_ctrl                 009A81 RLA    
-_vga_init                 009B81 RLA    _vsnprintf                00AA14 RLA    
-addeqysp                  00A0C9 RLA    addysp                    00A0D9 RLA    
-addysp1                   00A0D8 RLA    aslax1                    00A0E6 RLA    
-aslax2                    00A0EE RLA    aslaxy                    00A6C7 RLA    
-axlong                    00A111 RLA    axulong                   00A10A RLA    
-booleq                    00A582 RLA    boolne                    00A57C RLA    
-boolugt                   00A5A0 RLA    boolult                   00A59A RLA    
-callax                    00A11C RLA    copydata                  00A12F RLA    
-decax1                    00A15C RLA    decax2                    00A163 RLA    
-decaxy                    00A16A RLA    decsp1                    00A173 RLA    
-decsp2                    00A17C RLA    decsp3                    00A189 RLA    
-decsp4                    00A196 RLA    decsp6                    00A1A3 RLA    
-decsp7                    00A1B0 RLA    decsp8                    00A1BD RLA    
-donelib                   00A123 RLA    enter                     00A1CA RLA    
-getlop                    00A4EE RLA    incax1                    00A1D8 RLA    
-incax2                    00A1DF RLA    incax3                    00A1E6 RLA    
-incax5                    00A1EB RLA    incax8                    00A1F0 RLA    
-incaxy                    00A1F7 RLA    inceaxy                   00A360 RLA    
-incsp1                    00A200 RLA    incsp2                    00A20F RLA    
-incsp3                    00A21D RLA    incsp4                    00A222 RLA    
-incsp6                    00A227 RLA    incsp7                    00A22C RLA    
-initlib                   0084A5 RLA    irq_handler               008530 RLA    
-irq_init                  008500 RLA    ldax0sp                   00A2FE RLA    
-ldaxidx                   00A2F3 RLA    ldaxysp                   00A300 RLA    
-ldeax0sp                  00A31E RLA    ldeaxi                    00A307 RLA    
-ldeaxidx                  00A309 RLA    ldeaxysp                  00A320 RLA    
-leaa0sp                   00A331 RLA    leavey                    00A347 RLA    
-mulax6                    00A628 RLA    negeax                    00A3D3 RLA    
-nmi_handler               008529 RLA    popax                     00A207 RLA    
-popsreg                   00A650 RLA    ptr1                      000008 RLZ    
-ptr2                      00000A RLZ    ptr3                      00000C RLZ    
-ptr4                      00000E RLZ    push0                     00A67B RLA    
-push0ax                   00A3F4 RLA    push1                     00A660 RLA    
-pusha                     00A669 RLA    pusha0                    00A67D RLA    
-pushax                    00A67F RLA    pusheax                   00A3FA RLA    
-pushl0                    00A3F1 RLA    pushw                     00A695 RLA    
-pushw0sp                  00A6A4 RLA    pushwidx                  00A697 RLA    
-pushwysp                  00A6A6 RLA    regbank                   000014 RLZ    
-regsave                   000004 RLZ    resteax                   00A421 RLA    
-saveeax                   00A412 RLA    shleax4                   00A0F9 RLA    
-shrax4                    00A6F3 RLA    sp                        000000 RLZ    
-sreg                      000002 RLZ    staspidx                  00A704 RLA    
-stax0sp                   00A71A RLA    staxspidx                 00A725 RLA    
-staxysp                   00A71C RLA    steax0sp                  00A740 RLA    
-steaxysp                  00A742 RLA    subeq0sp                  00A9F2 RLA    
-subysp                    00AA07 RLA    tmp1                      000010 RLZ    
-tmp2                      000011 RLZ    tmp3                      000012 RLZ    
-tmp4                      000013 RLZ    tmpstack                  00001A RLZ    
-tosaddax                  00A0AF RLA    tosaddeax                 00A273 RLA    
-tosand0ax                 00A292 RLA    toseqeax                  00A35A RLA    
-toslcmp                   00A2B6 RLA    tosmula0                  00A5EE RLA    
-tosneeax                  00A3CD RLA    tosorax                   00A640 RLA    
-tosudiveax                00A4E3 RLA    tosugteax                 00A557 RLA    
-tosulteax                 00A55D RLA    tosumodeax                00A569 RLA    
-tosumuleax                00A377 RLA    udiv32                    00A512 RLA    
-zerobss                   0084B1 RLA    
+_isdigit                  00A4E4 RLA    _islower                  00A4F3 RLA    
+_isspace                  00A502 RLA    _isupper                  00A511 RLA    
+_jiffies                  00001F RLZ    _led_init                 008792 RLA    
+_led_set                  0087A3 RLA    _ltoa                     00A6FD RLA    
+_main                     0087C3 RLA    _mdelay                   0087B9 RLA    
+_memcpy                   00A860 RLA    _millis                   00001B RLZ    
+_minutes                  000021 RLZ    _ps2_getc                 009AE3 RLA    
+_ps2_init                 009A5B RLA    _ps2_process              009A21 RLA    
+_seconds                  000020 RLZ    _strcmp                   00AA08 RLA    
+_strlen                   00AA2F RLA    _strlower                 00AA45 RLA    
+_strtoul                  00AA6D RLA    _uart_handler             008991 RLA    
+_uart_init                0088B1 RLA    _uart_printf              00893E RLA    
+_uart_puts                0088FC RLA    _uart_shell               009954 RLA    
+_ultoa                    00A754 RLA    _vga_ctrl                 009C14 RLA    
+_vga_init                 009D14 RLA    _vga_printf               009BC3 RLA    
+_vsnprintf                00ACC7 RLA    addeqysp                  00A37C RLA    
+addysp                    00A38C RLA    addysp1                   00A38B RLA    
+aslax1                    00A399 RLA    aslax2                    00A3A1 RLA    
+aslaxy                    00A97A RLA    axlong                    00A3C4 RLA    
+axulong                   00A3BD RLA    booleq                    00A835 RLA    
+boolne                    00A82F RLA    boolugt                   00A853 RLA    
+boolult                   00A84D RLA    callax                    00A3CF RLA    
+copydata                  00A3E2 RLA    decax1                    00A40F RLA    
+decax2                    00A416 RLA    decaxy                    00A41D RLA    
+decsp1                    00A426 RLA    decsp2                    00A42F RLA    
+decsp3                    00A43C RLA    decsp4                    00A449 RLA    
+decsp6                    00A456 RLA    decsp7                    00A463 RLA    
+decsp8                    00A470 RLA    donelib                   00A3D6 RLA    
+enter                     00A47D RLA    getlop                    00A7A1 RLA    
+incax1                    00A48B RLA    incax2                    00A492 RLA    
+incax3                    00A499 RLA    incax5                    00A49E RLA    
+incax8                    00A4A3 RLA    incaxy                    00A4AA RLA    
+inceaxy                   00A613 RLA    incsp1                    00A4B3 RLA    
+incsp2                    00A4C2 RLA    incsp3                    00A4D0 RLA    
+incsp4                    00A4D5 RLA    incsp6                    00A4DA RLA    
+incsp7                    00A4DF RLA    initlib                   00852D RLA    
+irq_handler               008630 RLA    irq_init                  008600 RLA    
+ldax0sp                   00A5B1 RLA    ldaxidx                   00A5A6 RLA    
+ldaxysp                   00A5B3 RLA    ldeax0sp                  00A5D1 RLA    
+ldeaxi                    00A5BA RLA    ldeaxidx                  00A5BC RLA    
+ldeaxysp                  00A5D3 RLA    leaa0sp                   00A5E4 RLA    
+leavey                    00A5FA RLA    mulax6                    00A8DB RLA    
+negeax                    00A686 RLA    nmi_handler               008629 RLA    
+popax                     00A4BA RLA    popsreg                   00A903 RLA    
+ptr1                      000008 RLZ    ptr2                      00000A RLZ    
+ptr3                      00000C RLZ    ptr4                      00000E RLZ    
+push0                     00A92E RLA    push0ax                   00A6A7 RLA    
+push1                     00A913 RLA    pusha                     00A91C RLA    
+pusha0                    00A930 RLA    pushax                    00A932 RLA    
+pusheax                   00A6AD RLA    pushl0                    00A6A4 RLA    
+pushw                     00A948 RLA    pushw0sp                  00A957 RLA    
+pushwidx                  00A94A RLA    pushwysp                  00A959 RLA    
+regbank                   000014 RLZ    regsave                   000004 RLZ    
+resteax                   00A6D4 RLA    saveeax                   00A6C5 RLA    
+shleax4                   00A3AC RLA    shrax4                    00A9A6 RLA    
+sp                        000000 RLZ    sreg                      000002 RLZ    
+staspidx                  00A9B7 RLA    stax0sp                   00A9CD RLA    
+staxspidx                 00A9D8 RLA    staxysp                   00A9CF RLA    
+steax0sp                  00A9F3 RLA    steaxysp                  00A9F5 RLA    
+subeq0sp                  00ACA5 RLA    subysp                    00ACBA RLA    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+tmpstack                  00001A RLZ    tosaddax                  00A362 RLA    
+tosaddeax                 00A526 RLA    tosand0ax                 00A545 RLA    
+toseqeax                  00A60D RLA    toslcmp                   00A569 RLA    
+tosmula0                  00A8A1 RLA    tosneeax                  00A680 RLA    
+tosorax                   00A8F3 RLA    tosudiveax                00A796 RLA    
+tosugteax                 00A80A RLA    tosulteax                 00A810 RLA    
+tosumodeax                00A81C RLA    tosumuleax                00A62A RLA    
+udiv32                    00A7C5 RLA    zerobss                   008539 RLA    
+
 
 
 Exports list by value:
@@ -335,76 +336,77 @@ _millis                   00001B RLZ    _jiffies                  00001F RLZ
 _seconds                  000020 RLZ    _minutes                  000021 RLZ    
 _hours                    000022 RLZ    _interrupted              00002B RLZ    
 __DATA_RUN__              000200 RLA    __RAM_START__             000200 RLA    
-__BSS_SIZE__              000230 REA    __DATA_SIZE__             000482 REA    
-__BSS_RUN__               000682 RLA    __errno                   0008B0 RLA    
+__BSS_SIZE__              000230 REA    __DATA_SIZE__             00050A REA    
+__BSS_RUN__               00070A RLA    __errno                   000938 RLA    
 __RAM_SIZE__              007D00 REA    __DATA_LOAD__             008000 RLA    
-__CONSTRUCTOR_TABLE__     0084A5 RLA    __DESTRUCTOR_TABLE__      0084A5 RLA    
-initlib                   0084A5 RLA    zerobss                   0084B1 RLA    
-irq_init                  008500 RLA    nmi_handler               008529 RLA    
-irq_handler               008530 RLA    _delay_ms                 008600 RLA    
-_led_init                 008692 RLA    _led_set                  0086A3 RLA    
-_mdelay                   0086B9 RLA    _main                     0086C3 RLA    
-_uart_init                0087B1 RLA    _uart_puts                0087FC RLA    
-_uart_printf              00883E RLA    _uart_handler             008891 RLA    
-_gpio_init                008925 RLA    _gpio_write               008A21 RLA    
-_gpio_read                008AE4 RLA    _uart_shell               009812 RLA    
-_ps2_process              0098DF RLA    _ps2_init                 009919 RLA    
-_ps2_getc                 0099A1 RLA    _vga_ctrl                 009A81 RLA    
-_vga_init                 009B81 RLA    __printf                  009DF2 RLA    
-__seterrno                00A0A4 RLA    tosaddax                  00A0AF RLA    
-addeqysp                  00A0C9 RLA    addysp1                   00A0D8 RLA    
-addysp                    00A0D9 RLA    aslax1                    00A0E6 RLA    
-aslax2                    00A0EE RLA    shleax4                   00A0F9 RLA    
-axulong                   00A10A RLA    axlong                    00A111 RLA    
-callax                    00A11C RLA    donelib                   00A123 RLA    
-copydata                  00A12F RLA    decax1                    00A15C RLA    
-decax2                    00A163 RLA    decaxy                    00A16A RLA    
-decsp1                    00A173 RLA    decsp2                    00A17C RLA    
-decsp3                    00A189 RLA    decsp4                    00A196 RLA    
-decsp6                    00A1A3 RLA    decsp7                    00A1B0 RLA    
-decsp8                    00A1BD RLA    enter                     00A1CA RLA    
-incax1                    00A1D8 RLA    incax2                    00A1DF RLA    
-incax3                    00A1E6 RLA    incax5                    00A1EB RLA    
-incax8                    00A1F0 RLA    incaxy                    00A1F7 RLA    
-incsp1                    00A200 RLA    popax                     00A207 RLA    
-incsp2                    00A20F RLA    incsp3                    00A21D RLA    
-incsp4                    00A222 RLA    incsp6                    00A227 RLA    
-incsp7                    00A22C RLA    _isdigit                  00A231 RLA    
-_islower                  00A240 RLA    _isspace                  00A24F RLA    
-_isupper                  00A25E RLA    tosaddeax                 00A273 RLA    
-tosand0ax                 00A292 RLA    toslcmp                   00A2B6 RLA    
-ldaxidx                   00A2F3 RLA    ldax0sp                   00A2FE RLA    
-ldaxysp                   00A300 RLA    ldeaxi                    00A307 RLA    
-ldeaxidx                  00A309 RLA    ldeax0sp                  00A31E RLA    
-ldeaxysp                  00A320 RLA    leaa0sp                   00A331 RLA    
-leavey                    00A347 RLA    toseqeax                  00A35A RLA    
-inceaxy                   00A360 RLA    tosumuleax                00A377 RLA    
-tosneeax                  00A3CD RLA    negeax                    00A3D3 RLA    
-pushl0                    00A3F1 RLA    push0ax                   00A3F4 RLA    
-pusheax                   00A3FA RLA    saveeax                   00A412 RLA    
-resteax                   00A421 RLA    _ltoa                     00A44A RLA    
-_ultoa                    00A4A1 RLA    tosudiveax                00A4E3 RLA    
-getlop                    00A4EE RLA    udiv32                    00A512 RLA    
-tosugteax                 00A557 RLA    tosulteax                 00A55D RLA    
-tosumodeax                00A569 RLA    boolne                    00A57C RLA    
-booleq                    00A582 RLA    boolult                   00A59A RLA    
-boolugt                   00A5A0 RLA    _memcpy                   00A5AD RLA    
-tosmula0                  00A5EE RLA    mulax6                    00A628 RLA    
-tosorax                   00A640 RLA    popsreg                   00A650 RLA    
-push1                     00A660 RLA    pusha                     00A669 RLA    
-push0                     00A67B RLA    pusha0                    00A67D RLA    
-pushax                    00A67F RLA    pushw                     00A695 RLA    
-pushwidx                  00A697 RLA    pushw0sp                  00A6A4 RLA    
-pushwysp                  00A6A6 RLA    aslaxy                    00A6C7 RLA    
-shrax4                    00A6F3 RLA    staspidx                  00A704 RLA    
-stax0sp                   00A71A RLA    staxysp                   00A71C RLA    
-staxspidx                 00A725 RLA    steax0sp                  00A740 RLA    
-steaxysp                  00A742 RLA    _strcmp                   00A755 RLA    
-_strlen                   00A77C RLA    _strlower                 00A792 RLA    
-_strtoul                  00A7BA RLA    subeq0sp                  00A9F2 RLA    
-subysp                    00AA07 RLA    _vsnprintf                00AA14 RLA    
-__hextab                  00AF58 RLA    __longminstr              00AF68 RLA    
-__ctype                   00AF74 RLA    
+__CONSTRUCTOR_TABLE__     00852D RLA    __DESTRUCTOR_TABLE__      00852D RLA    
+initlib                   00852D RLA    zerobss                   008539 RLA    
+irq_init                  008600 RLA    nmi_handler               008629 RLA    
+irq_handler               008630 RLA    _delay_ms                 008700 RLA    
+_led_init                 008792 RLA    _led_set                  0087A3 RLA    
+_mdelay                   0087B9 RLA    _main                     0087C3 RLA    
+_uart_init                0088B1 RLA    _uart_puts                0088FC RLA    
+_uart_printf              00893E RLA    _uart_handler             008991 RLA    
+_gpio_init                008A25 RLA    _gpio_write               008B21 RLA    
+_gpio_read                008BE4 RLA    _uart_shell               009954 RLA    
+_ps2_process              009A21 RLA    _ps2_init                 009A5B RLA    
+_ps2_getc                 009AE3 RLA    _vga_printf               009BC3 RLA    
+_vga_ctrl                 009C14 RLA    _vga_init                 009D14 RLA    
+__printf                  00A0A5 RLA    __seterrno                00A357 RLA    
+tosaddax                  00A362 RLA    addeqysp                  00A37C RLA    
+addysp1                   00A38B RLA    addysp                    00A38C RLA    
+aslax1                    00A399 RLA    aslax2                    00A3A1 RLA    
+shleax4                   00A3AC RLA    axulong                   00A3BD RLA    
+axlong                    00A3C4 RLA    callax                    00A3CF RLA    
+donelib                   00A3D6 RLA    copydata                  00A3E2 RLA    
+decax1                    00A40F RLA    decax2                    00A416 RLA    
+decaxy                    00A41D RLA    decsp1                    00A426 RLA    
+decsp2                    00A42F RLA    decsp3                    00A43C RLA    
+decsp4                    00A449 RLA    decsp6                    00A456 RLA    
+decsp7                    00A463 RLA    decsp8                    00A470 RLA    
+enter                     00A47D RLA    incax1                    00A48B RLA    
+incax2                    00A492 RLA    incax3                    00A499 RLA    
+incax5                    00A49E RLA    incax8                    00A4A3 RLA    
+incaxy                    00A4AA RLA    incsp1                    00A4B3 RLA    
+popax                     00A4BA RLA    incsp2                    00A4C2 RLA    
+incsp3                    00A4D0 RLA    incsp4                    00A4D5 RLA    
+incsp6                    00A4DA RLA    incsp7                    00A4DF RLA    
+_isdigit                  00A4E4 RLA    _islower                  00A4F3 RLA    
+_isspace                  00A502 RLA    _isupper                  00A511 RLA    
+tosaddeax                 00A526 RLA    tosand0ax                 00A545 RLA    
+toslcmp                   00A569 RLA    ldaxidx                   00A5A6 RLA    
+ldax0sp                   00A5B1 RLA    ldaxysp                   00A5B3 RLA    
+ldeaxi                    00A5BA RLA    ldeaxidx                  00A5BC RLA    
+ldeax0sp                  00A5D1 RLA    ldeaxysp                  00A5D3 RLA    
+leaa0sp                   00A5E4 RLA    leavey                    00A5FA RLA    
+toseqeax                  00A60D RLA    inceaxy                   00A613 RLA    
+tosumuleax                00A62A RLA    tosneeax                  00A680 RLA    
+negeax                    00A686 RLA    pushl0                    00A6A4 RLA    
+push0ax                   00A6A7 RLA    pusheax                   00A6AD RLA    
+saveeax                   00A6C5 RLA    resteax                   00A6D4 RLA    
+_ltoa                     00A6FD RLA    _ultoa                    00A754 RLA    
+tosudiveax                00A796 RLA    getlop                    00A7A1 RLA    
+udiv32                    00A7C5 RLA    tosugteax                 00A80A RLA    
+tosulteax                 00A810 RLA    tosumodeax                00A81C RLA    
+boolne                    00A82F RLA    booleq                    00A835 RLA    
+boolult                   00A84D RLA    boolugt                   00A853 RLA    
+_memcpy                   00A860 RLA    tosmula0                  00A8A1 RLA    
+mulax6                    00A8DB RLA    tosorax                   00A8F3 RLA    
+popsreg                   00A903 RLA    push1                     00A913 RLA    
+pusha                     00A91C RLA    push0                     00A92E RLA    
+pusha0                    00A930 RLA    pushax                    00A932 RLA    
+pushw                     00A948 RLA    pushwidx                  00A94A RLA    
+pushw0sp                  00A957 RLA    pushwysp                  00A959 RLA    
+aslaxy                    00A97A RLA    shrax4                    00A9A6 RLA    
+staspidx                  00A9B7 RLA    stax0sp                   00A9CD RLA    
+staxysp                   00A9CF RLA    staxspidx                 00A9D8 RLA    
+steax0sp                  00A9F3 RLA    steaxysp                  00A9F5 RLA    
+_strcmp                   00AA08 RLA    _strlen                   00AA2F RLA    
+_strlower                 00AA45 RLA    _strtoul                  00AA6D RLA    
+subeq0sp                  00ACA5 RLA    subysp                    00ACBA RLA    
+_vsnprintf                00ACC7 RLA    __hextab                  00B228 RLA    
+__longminstr              00B238 RLA    __ctype                   00B244 RLA    
+
 
 
 Imports list:
@@ -452,15 +454,15 @@ __seterrno (_seterrno.o):
 _delay_ms (utils.o):
     main.o                    main.s(16)
 _gpio_init (gpio.o):
-    vga.o                     vga.s(13)
+    vga.o                     vga.s(14)
     ps2.o                     ps2.s(14)
     shell.o                   shell.s(21)
 _gpio_read (gpio.o):
-    vga.o                     vga.s(15)
+    vga.o                     vga.s(16)
     ps2.o                     ps2.s(16)
     shell.o                   shell.s(23)
 _gpio_write (gpio.o):
-    vga.o                     vga.s(14)
+    vga.o                     vga.s(15)
     ps2.o                     ps2.s(15)
     shell.o                   shell.s(22)
 _hours (zeropage.o):
@@ -487,7 +489,7 @@ _ltoa (ltoa.o):
 _main (main.o):
     startup.o                 startup.s65(9)
 _mdelay (main.o):
-    vga.o                     vga.s(16)
+    vga.o                     vga.s(17)
     ps2.o                     ps2.s(17)
 _memcpy (memcpy.o):
     vsnprintf.o               common/vsnprintf.s(9)
@@ -529,10 +531,13 @@ _uart_shell (shell.o):
 _ultoa (ltoa.o):
     _printf.o                 common/_printf.s(12)
 _vga_ctrl (vga.o):
-    shell.o                   shell.s(26)
+    shell.o                   shell.s(27)
 _vga_init (vga.o):
     main.o                    main.s(23)
+_vga_printf (vga.o):
+    shell.o                   shell.s(26)
 _vsnprintf (vsnprintf.o):
+    vga.o                     vga.s(13)
     uart.o                    uart.s(13)
 addeqysp (addeqsp.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
@@ -543,12 +548,12 @@ addysp (addysp.o):
     incsp6.o                  runtime/incsp6.s(8)
     incsp4.o                  runtime/incsp4.s(8)
     incsp3.o                  runtime/incsp3.s(8)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
@@ -559,16 +564,16 @@ addysp1 (addysp.o):
     land.o                    runtime/land.s(8)
     ladd.o                    runtime/ladd.s(8)
 aslax1 (aslax1.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 aslax2 (aslax2.o):
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
 aslaxy (shl.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
@@ -576,13 +581,14 @@ aslaxy (shl.o):
 axlong (axlong.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 axulong (axlong.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 booleq (makebool.o):
     leq.o                     runtime/leq.s(8)
 boolne (makebool.o):
@@ -592,19 +598,19 @@ boolugt (makebool.o):
 boolult (makebool.o):
     lult.o                    runtime/lult.s(8)
 callax (call.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 copydata (copydata.o):
     startup.o                 startup.s65(11)
 decax1 (decax1.o):
     main.o                    main.s(192)
 decax2 (decax2.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 decaxy (decaxy.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
 decsp1 (decsp1.o):
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
@@ -613,42 +619,46 @@ decsp1 (decsp1.o):
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
 decsp2 (decsp2.o):
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
 decsp3 (decsp3.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 decsp4 (decsp4.o):
     lpush.o                   runtime/lpush.s(11)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 decsp6 (decsp6.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 decsp7 (decsp7.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 decsp8 (decsp8.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 donelib (condes.o):
     startup.o                 startup.s65(13)
 enter (enter.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 getlop (ludiv.o):
     lumod.o                   runtime/lumod.s(8)
 incax1 (incax1.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
 incax2 (incax2.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
@@ -657,26 +667,30 @@ incax3 (incax3.o):
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
 incax5 (incax5.o):
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 incax8 (incax8.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
 incaxy (incaxy.o):
     incax8.o                  runtime/incax8.s(8)
     incax5.o                  runtime/incax5.s(8)
     incax3.o                  runtime/incax3.s(8)
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 inceaxy (linc.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 incsp1 (incsp1.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
 incsp2 (incsp2.o):
@@ -684,25 +698,26 @@ incsp2 (incsp2.o):
     staxspi.o                 runtime/staxspi.s(8)
     staspidx.o                runtime/staspidx.s(8)
     popsreg.o                 runtime/popsreg.s(8)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
     main.o                    main.s(192)
 incsp3 (incsp3.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 incsp4 (incsp4.o):
     lcmp.o                    runtime/lcmp.s(9)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
 incsp6 (incsp6.o):
     vsnprintf.o               common/vsnprintf.s(8)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 incsp7 (incsp7.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 initlib (condes.o):
     startup.o                 startup.s65(12)
 irq_handler (interrupt.o):
@@ -710,63 +725,67 @@ irq_handler (interrupt.o):
 irq_init (interrupt.o):
     startup.o                 startup.s65(16)
 ldax0sp (ldaxsp.o):
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     main.o                    main.s(192)
 ldaxidx (ldaxi.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 ldaxysp (ldaxsp.o):
     vsnprintf.o               common/vsnprintf.s(8)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     uart.o                    uart.s(279)
 ldeax0sp (ldeaxysp.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 ldeaxi (ldeaxi.o):
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
 ldeaxidx (ldeaxi.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 ldeaxysp (ldeaxysp.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
 leaa0sp (leaaxsp.o):
-    vga.o                     vga.s(344)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
 leavey (leave.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     uart.o                    uart.s(279)
 mulax6 (mulax6.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 negeax (lneg.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
 nmi_handler (interrupt.o):
@@ -828,100 +847,107 @@ ptr4 (zeropage.o):
     linc.o                    runtime/linc.s(8)
 push0 (pushax.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 push0ax (lpush.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 push1 (push1.o):
     _printf.o                 common/_printf.s(11)
 pusha (pusha.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
 pusha0 (pushax.o):
     push1.o                   runtime/push1.s(8)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     main.o                    main.s(192)
 pushax (pushax.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
     pushw.o                   runtime/pushw.s(8)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
     main.o                    main.s(192)
 pusheax (lpush.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    vga.o                     vga.s(344)
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
     ps2.o                     ps2.s(274)
     ps2.o                     ps2.s(274)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     main.o                    main.s(192)
 pushl0 (lpush.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 pushw (pushw.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
 pushw0sp (pushwsp.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 pushwidx (pushw.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 pushwysp (pushwsp.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 regbank (zeropage.o):
     _printf.o                 /home/grappendorf/cc65/asminc/zeropage.inc(14)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(10)
@@ -929,23 +955,25 @@ regsave (zeropage.o):
     lsave.o                   runtime/lsave.s(8)
     main.o                    main.s(10)
 resteax (lsave.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 saveeax (lsave.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 shleax4 (asleax4.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 shrax4 (shrax4.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 sp (zeropage.o):
     memcpy.o                  common/memcpy.s(15)
     ludiv.o                   runtime/ludiv.s(9)
@@ -1019,52 +1047,55 @@ sreg (zeropage.o):
     gpio.o                    gpio.s(10)
     main.o                    main.s(10)
 staspidx (staspidx.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 stax0sp (staxsp.o):
-    vga.o                     vga.s(344)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
     main.o                    main.s(192)
 staxspidx (staxspi.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 staxysp (staxsp.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
 steax0sp (steaxsp.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 steaxysp (steaxsp.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    vga.o                     vga.s(344)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     uart.o                    uart.s(279)
 subeq0sp (subeqsp.o):
-    vga.o                     vga.s(344)
+    vga.o                     vga.s(550)
 subysp (subysp.o):
-    vga.o                     vga.s(344)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
@@ -1100,31 +1131,32 @@ tmp4 (zeropage.o):
 tmpstack (zeropage.o):
     acia.o                    zeropage.inc65(9)
 tosaddax (add.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 tosaddeax (ladd.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 tosand0ax (land.o):
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
 toseqeax (leq.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    vga.o                     vga.s(550)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 toslcmp (lcmp.o):
     lugt.o                    runtime/lugt.s(8)
     lult.o                    runtime/lult.s(8)
     lne.o                     runtime/lne.s(8)
     leq.o                     runtime/leq.s(8)
 tosmula0 (mul8.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 tosneeax (lne.o):
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
 tosorax (or.o):
     ps2.o                     ps2.s(274)
 tosudiveax (ludiv.o):
@@ -1132,8 +1164,8 @@ tosudiveax (ludiv.o):
 tosugteax (lugt.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
 tosulteax (lult.o):
-    shell.o                   shell.s(1988)
-    shell.o                   shell.s(1988)
+    shell.o                   shell.s(2022)
+    shell.o                   shell.s(2022)
 tosumodeax (lumod.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
 tosumuleax (lmul.o):

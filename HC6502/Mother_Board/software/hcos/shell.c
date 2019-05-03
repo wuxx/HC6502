@@ -344,6 +344,9 @@ static s32 cmd_vga()
         }
 
         vga_ctrl(VC_SET_CH, x, y, ch);
+    } else if (strcmp(argv[1], "printf") == 0) {
+        uart_printf("vga_printf [%s]\r\n", argv[2]);
+        vga_printf("%s\n", argv[2]);
     }
 
     return 0;
