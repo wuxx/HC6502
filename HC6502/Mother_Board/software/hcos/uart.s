@@ -17,7 +17,7 @@
 	.export		_uart_puts
 	.export		_uart_printf
 	.export		_uart_handler
-	.import		_shell
+	.import		_uart_shell
 	.export		_urb_index
 	.export		_uart_recv_buf
 
@@ -251,7 +251,7 @@ L008D:	lda     (sp),y
 	lda     #<(_uart_recv_buf)
 	ldx     #>(_uart_recv_buf)
 	jsr     pushax
-	jsr     _shell
+	jsr     _uart_shell
 	lda     #$00
 	sta     _urb_index
 	sta     _urb_index+1

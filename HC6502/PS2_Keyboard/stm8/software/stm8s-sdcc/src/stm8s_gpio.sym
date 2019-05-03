@@ -7,17 +7,17 @@ Symbol Table
     .__.ABS.                                                    =  000000 G
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000001 L
-  7 _GPIO_DeInit                                                   000000 GR
-  7 _GPIO_ExternalPullUpConfig                                     000131 GR
-  7 _GPIO_Init                                                     00001B GR
-  7 _GPIO_ReadInputData                                            000125 GR
-  7 _GPIO_ReadInputPin                                             00012A GR
-  7 _GPIO_ReadOutputData                                           000121 GR
-  7 _GPIO_Write                                                    0000FF GR
-  7 _GPIO_WriteHigh                                                000105 GR
-  7 _GPIO_WriteLow                                                 00010C GR
-  7 _GPIO_WriteReverse                                             00011A GR
-  7 ___str_0                                                       00017C R
+  9 _GPIO_DeInit                                                   000000 GR
+  9 _GPIO_ExternalPullUpConfig                                     00011E GR
+  9 _GPIO_Init                                                     00000F GR
+  9 _GPIO_ReadInputData                                            000112 GR
+  9 _GPIO_ReadInputPin                                             000117 GR
+  9 _GPIO_ReadOutputData                                           00010E GR
+  9 _GPIO_Write                                                    0000EC GR
+  9 _GPIO_WriteHigh                                                0000F2 GR
+  9 _GPIO_WriteLow                                                 0000F9 GR
+  9 _GPIO_WriteReverse                                             000107 GR
+  7 ___str_0                                                       000000 R
     _assert_failed                                                 ****** GX
 
 
@@ -33,7 +33,8 @@ Area Table
    4 HOME                                       size      0   flags    0
    5 GSINIT                                     size      0   flags    0
    6 GSFINAL                                    size      0   flags    0
-   7 CODE                                       size    190   flags    0
+   7 CONST                                      size     14   flags    0
    8 INITIALIZER                                size      0   flags    0
-   9 CABS                                       size      0   flags    8
+   9 CODE                                       size    165   flags    0
+   A CABS                                       size      0   flags    8
 

@@ -32,5 +32,6 @@ struct ps2_info
 
 void ps2_process();
 void ps2_init();
+u8 ps2_getc();
 
 #endif /* __PS2_H__ */

@@ -1,7 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
-; This file was generated Wed Jan  2 15:12:28 2019
+; Version 3.8.0 #10562 (Linux)
 ;--------------------------------------------------------
 	.module stm8s_uart1
 	.optsdcc -mstm8
@@ -48,6 +47,15 @@
 ; absolute external ram data
 ;--------------------------------------------------------
 	.area DABS (ABS)
+
+; default segment ordering for linker
+	.area HOME
+	.area GSINIT
+	.area GSFINAL
+	.area CONST
+	.area INITIALIZER
+	.area CODE
+
 ;--------------------------------------------------------
 ; global & static initialisations
 ;--------------------------------------------------------
@@ -70,11 +78,9 @@
 ;	-----------------------------------------
 _UART1_DeInit:
 ;	../src/stm8s_uart1.c: 57: (void)UART1->SR;
-	ldw	x, #0x5230
-	ld	a, (x)
+	ld	a, 0x5230
 ;	../src/stm8s_uart1.c: 58: (void)UART1->DR;
-	ldw	x, #0x5231
-	ld	a, (x)
+	ld	a, 0x5231
 ;	../src/stm8s_uart1.c: 60: UART1->BRR2 = UART1_BRR2_RESET_VALUE;  /* Set UART1_BRR2 to reset value 0x00 */
 	mov	0x5233+0, #0x00
 ;	../src/stm8s_uart1.c: 61: UART1->BRR1 = UART1_BRR1_RESET_VALUE;  /* Set UART1_BRR1 to reset value 0x00 */
@@ -93,226 +99,212 @@ _UART1_DeInit:
 	mov	0x5239+0, #0x00
 ;	../src/stm8s_uart1.c: 70: UART1->PSCR = UART1_PSCR_RESET_VALUE;
 	mov	0x523a+0, #0x00
+;	../src/stm8s_uart1.c: 71: }
 	ret
 ;	../src/stm8s_uart1.c: 90: void UART1_Init(uint32_t BaudRate, UART1_WordLength_TypeDef WordLength, 
 ;	-----------------------------------------
 ;	 function UART1_Init
 ;	-----------------------------------------
 _UART1_Init:
-	sub	sp, #33
+	sub	sp, #29
 ;	../src/stm8s_uart1.c: 97: assert_param(IS_UART1_BAUDRATE_OK(BaudRate));
 	ldw	x, #0x8968
-	cpw	x, (0x26, sp)
+	cpw	x, (0x22, sp)
 	ld	a, #0x09
-	sbc	a, (0x25, sp)
+	sbc	a, (0x21, sp)
 	clr	a
-	sbc	a, (0x24, sp)
+	sbc	a, (0x20, sp)
 	jrnc	00113$
-	ldw	y, #___str_0+0
 	push	#0x61
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00113$:
 ;	../src/stm8s_uart1.c: 98: assert_param(IS_UART1_WORDLENGTH_OK(WordLength));
-	tnz	(0x28, sp)
+	tnz	(0x24, sp)
 	jreq	00115$
-	ld	a, (0x28, sp)
+	ld	a, (0x24, sp)
 	cp	a, #0x10
 	jreq	00115$
-	ldw	y, #___str_0+0
 	push	#0x62
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00115$:
 ;	../src/stm8s_uart1.c: 99: assert_param(IS_UART1_STOPBITS_OK(StopBits));
-	tnz	(0x29, sp)
+	tnz	(0x25, sp)
 	jreq	00120$
-	ld	a, (0x29, sp)
+	ld	a, (0x25, sp)
 	cp	a, #0x10
 	jreq	00120$
-	ld	a, (0x29, sp)
+	ld	a, (0x25, sp)
 	cp	a, #0x20
 	jreq	00120$
-	ld	a, (0x29, sp)
+	ld	a, (0x25, sp)
 	cp	a, #0x30
 	jreq	00120$
-	ldw	y, #___str_0+0
 	push	#0x63
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00120$:
 ;	../src/stm8s_uart1.c: 100: assert_param(IS_UART1_PARITY_OK(Parity));
-	tnz	(0x2a, sp)
+	tnz	(0x26, sp)
 	jreq	00131$
-	ld	a, (0x2a, sp)
+	ld	a, (0x26, sp)
 	cp	a, #0x04
 	jreq	00131$
-	ld	a, (0x2a, sp)
+	ld	a, (0x26, sp)
 	cp	a, #0x06
 	jreq	00131$
-	ldw	y, #___str_0+0
 	push	#0x64
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00131$:
 ;	../src/stm8s_uart1.c: 101: assert_param(IS_UART1_MODE_OK((uint8_t)Mode));
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x08
 	jreq	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x40
 	jreq	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x04
 	jreq	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x80
 	jreq	00139$
-	ld	a, (0x2c, sp)
-	cp	a, #0x0c
-	jrne	00314$
-	ld	a, #0x01
+	ld	a, (0x28, sp)
+	sub	a, #0x0c
+	jrne	00339$
+	inc	a
 	.byte 0x21
-00314$:
+00339$:
 	clr	a
-00315$:
+00340$:
 	tnz	a
 	jrne	00139$
 	tnz	a
 	jrne	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x44
 	jreq	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0xc0
 	jreq	00139$
-	ld	a, (0x2c, sp)
+	ld	a, (0x28, sp)
 	cp	a, #0x88
 	jreq	00139$
-	ldw	y, #___str_0+0
 	push	#0x65
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00139$:
 ;	../src/stm8s_uart1.c: 102: assert_param(IS_UART1_SYNCMODE_OK((uint8_t)SyncMode));
-	ld	a, (0x2b, sp)
+	ld	a, (0x27, sp)
 	and	a, #0x88
 	cp	a, #0x88
 	jreq	00167$
-	ld	a, (0x2b, sp)
+	ld	a, (0x27, sp)
 	and	a, #0x44
 	cp	a, #0x44
 	jreq	00167$
-	ld	a, (0x2b, sp)
+	ld	a, (0x27, sp)
 	and	a, #0x22
 	cp	a, #0x22
 	jreq	00167$
-	ld	a, (0x2b, sp)
+	ld	a, (0x27, sp)
 	and	a, #0x11
 	cp	a, #0x11
 	jrne	00165$
 00167$:
-	ldw	y, #___str_0+0
 	push	#0x66
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00165$:
 ;	../src/stm8s_uart1.c: 105: UART1->CR1 &= (uint8_t)(~UART1_CR1_M);  
-	ldw	x, #0x5234
-	ld	a, (x)
-	and	a, #0xef
-	ld	(x), a
+	bres	21044, #4
 ;	../src/stm8s_uart1.c: 108: UART1->CR1 |= (uint8_t)WordLength;
-	ldw	x, #0x5234
-	ld	a, (x)
-	or	a, (0x28, sp)
-	ldw	x, #0x5234
-	ld	(x), a
+	ld	a, 0x5234
+	or	a, (0x24, sp)
+	ld	0x5234, a
 ;	../src/stm8s_uart1.c: 111: UART1->CR3 &= (uint8_t)(~UART1_CR3_STOP);  
-	ldw	x, #0x5236
-	ld	a, (x)
+	ld	a, 0x5236
 	and	a, #0xcf
-	ld	(x), a
+	ld	0x5236, a
 ;	../src/stm8s_uart1.c: 113: UART1->CR3 |= (uint8_t)StopBits;  
-	ldw	x, #0x5236
-	ld	a, (x)
-	or	a, (0x29, sp)
-	ldw	x, #0x5236
-	ld	(x), a
+	ld	a, 0x5236
+	or	a, (0x25, sp)
+	ld	0x5236, a
 ;	../src/stm8s_uart1.c: 116: UART1->CR1 &= (uint8_t)(~(UART1_CR1_PCEN | UART1_CR1_PS  ));  
-	ldw	x, #0x5234
-	ld	a, (x)
+	ld	a, 0x5234
 	and	a, #0xf9
-	ld	(x), a
+	ld	0x5234, a
 ;	../src/stm8s_uart1.c: 118: UART1->CR1 |= (uint8_t)Parity;  
-	ldw	x, #0x5234
-	ld	a, (x)
-	or	a, (0x2a, sp)
-	ldw	x, #0x5234
-	ld	(x), a
+	ld	a, 0x5234
+	or	a, (0x26, sp)
+	ld	0x5234, a
 ;	../src/stm8s_uart1.c: 121: UART1->BRR1 &= (uint8_t)(~UART1_BRR1_DIVM);  
-	ldw	x, #0x5232
-	ld	a, (x)
+	ld	a, 0x5232
 	mov	0x5232+0, #0x00
 ;	../src/stm8s_uart1.c: 123: UART1->BRR2 &= (uint8_t)(~UART1_BRR2_DIVM);  
-	ldw	x, #0x5233
-	ld	a, (x)
+	ld	a, 0x5233
 	and	a, #0x0f
-	ld	(x), a
+	ld	0x5233, a
 ;	../src/stm8s_uart1.c: 125: UART1->BRR2 &= (uint8_t)(~UART1_BRR2_DIVF);  
-	ldw	x, #0x5233
-	ld	a, (x)
+	ld	a, 0x5233
 	and	a, #0xf0
-	ld	(x), a
+	ld	0x5233, a
 ;	../src/stm8s_uart1.c: 128: BaudRate_Mantissa    = ((uint32_t)CLK_GetClockFreq() / (BaudRate << 4));
 	call	_CLK_GetClockFreq
-	ldw	(0x14, sp), x
-	ldw	x, (0x24, sp)
-	ldw	(0x0d, sp), x
-	ldw	x, (0x26, sp)
+	ldw	(0x05, sp), x
+	ldw	x, (0x20, sp)
+	ldw	(0x08, sp), x
+	ldw	x, (0x22, sp)
 	ld	a, #0x04
-00339$:
+00364$:
 	sllw	x
-	rlc	(0x0e, sp)
-	rlc	(0x0d, sp)
+	rlc	(0x09, sp)
+	rlc	(0x08, sp)
 	dec	a
-	jrne	00339$
-	ldw	(0x0f, sp), x
-	ldw	x, (0x0f, sp)
+	jrne	00364$
+	ldw	(0x0a, sp), x
 	pushw	x
-	ldw	x, (0x0f, sp)
+	ldw	x, (0x0a, sp)
 	pushw	x
-	ldw	x, (0x18, sp)
+	ldw	x, (0x09, sp)
 	pushw	x
 	pushw	y
 	call	__divulong
 	addw	sp, #8
-	ldw	(0x07, sp), x
-	ldw	(0x05, sp), y
+	ldw	(0x1c, sp), x
+	ldw	(0x1a, sp), y
 ;	../src/stm8s_uart1.c: 129: BaudRate_Mantissa100 = (((uint32_t)CLK_GetClockFreq() * 100) / (BaudRate << 4));
 	call	_CLK_GetClockFreq
 	pushw	x
@@ -323,32 +315,28 @@ _UART1_Init:
 	push	#0x00
 	call	__mullong
 	addw	sp, #8
-	ldw	(0x0b, sp), x
-	ldw	x, (0x0f, sp)
+	ldw	(0x14, sp), x
+	ldw	x, (0x0a, sp)
 	pushw	x
-	ldw	x, (0x0f, sp)
+	ldw	x, (0x0a, sp)
 	pushw	x
-	ldw	x, (0x0f, sp)
+	ldw	x, (0x18, sp)
 	pushw	x
 	pushw	y
 	call	__divulong
 	addw	sp, #8
-	exgw	x, y
-	ldw	(0x03, sp), y
-	rlwa	x
-	ld	(0x01, sp), a
-	rrwa	x
-	ld	a, xl
+	ld	a, yh
+	ldw	(0x18, sp), x
+	ld	(0x16, sp), a
+	ld	a, yl
 ;	../src/stm8s_uart1.c: 131: UART1->BRR2 |= (uint8_t)((uint8_t)(((BaudRate_Mantissa100 - (BaudRate_Mantissa * 100)) << 4) / 100) & (uint8_t)0x0F); 
 	ldw	x, #0x5233
 	push	a
 	ld	a, (x)
-	ld	(0x12, sp), a
-	pop	a
-	push	a
-	ldw	x, (0x08, sp)
+	ld	(0x08, sp), a
+	ldw	x, (0x1d, sp)
 	pushw	x
-	ldw	x, (0x08, sp)
+	ldw	x, (0x1d, sp)
 	pushw	x
 	push	#0x64
 	clrw	x
@@ -356,22 +344,22 @@ _UART1_Init:
 	push	#0x00
 	call	__mullong
 	addw	sp, #8
-	ldw	(0x19, sp), x
-	ldw	(0x17, sp), y
+	ldw	(0x11, sp), x
+	ldw	(0x0f, sp), y
 	pop	a
-	ldw	y, (0x03, sp)
-	subw	y, (0x18, sp)
-	sbc	a, (0x17, sp)
+	ldw	y, (0x18, sp)
+	subw	y, (0x10, sp)
+	sbc	a, (0x0f, sp)
 	ld	xl, a
-	ld	a, (0x01, sp)
-	sbc	a, (0x16, sp)
+	ld	a, (0x16, sp)
+	sbc	a, (0x0e, sp)
 	ld	xh, a
 	ld	a, #0x04
-00341$:
+00366$:
 	sllw	y
 	rlcw	x
 	dec	a
-	jrne	00341$
+	jrne	00366$
 	push	#0x64
 	push	#0x00
 	push	#0x00
@@ -382,136 +370,114 @@ _UART1_Init:
 	addw	sp, #8
 	ld	a, xl
 	and	a, #0x0f
-	or	a, (0x11, sp)
-	ldw	x, #0x5233
-	ld	(x), a
+	or	a, (0x07, sp)
+	ld	0x5233, a
 ;	../src/stm8s_uart1.c: 133: UART1->BRR2 |= (uint8_t)((BaudRate_Mantissa >> 4) & (uint8_t)0xF0); 
-	ldw	x, #0x5233
-	ld	a, (x)
-	ld	(0x21, sp), a
-	ldw	x, (0x07, sp)
-	ldw	y, (0x05, sp)
-	srlw	y
-	rrcw	x
-	srlw	y
-	rrcw	x
-	srlw	y
-	rrcw	x
-	srlw	y
-	rrcw	x
+	ld	a, 0x5233
+	ld	(0x01, sp), a
+	ldw	x, (0x1c, sp)
+	ld	a, #0x10
+	div	x, a
 	ld	a, xl
 	and	a, #0xf0
-	push	a
-	clr	(0x20, sp)
-	clrw	x
-	pop	a
-	or	a, (0x21, sp)
-	ldw	x, #0x5233
-	ld	(x), a
+	or	a, (0x01, sp)
+	ld	0x5233, a
 ;	../src/stm8s_uart1.c: 135: UART1->BRR1 |= (uint8_t)BaudRate_Mantissa;           
-	ldw	x, #0x5232
-	ld	a, (x)
-	ld	(0x1c, sp), a
-	ld	a, (0x08, sp)
-	or	a, (0x1c, sp)
-	ldw	x, #0x5232
-	ld	(x), a
+	ld	a, 0x5232
+	ld	(0x02, sp), a
+	ld	a, (0x1d, sp)
+	or	a, (0x02, sp)
+	ld	0x5232, a
 ;	../src/stm8s_uart1.c: 138: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
-	ldw	x, #0x5235
-	ld	a, (x)
+	ld	a, 0x5235
 	and	a, #0xf3
-	ld	(x), a
+	ld	0x5235, a
 ;	../src/stm8s_uart1.c: 140: UART1->CR3 &= (uint8_t)~(UART1_CR3_CPOL | UART1_CR3_CPHA | UART1_CR3_LBCL); 
-	ldw	x, #0x5236
-	ld	a, (x)
+	ld	a, 0x5236
 	and	a, #0xf8
-	ld	(x), a
+	ld	0x5236, a
 ;	../src/stm8s_uart1.c: 142: UART1->CR3 |= (uint8_t)((uint8_t)SyncMode & (uint8_t)(UART1_CR3_CPOL | 
-	ldw	x, #0x5236
-	ld	a, (x)
-	ld	(0x1b, sp), a
-	ld	a, (0x2b, sp)
+	ld	a, 0x5236
+	ld	(0x0c, sp), a
+	ld	a, (0x27, sp)
 	and	a, #0x07
-	or	a, (0x1b, sp)
-	ldw	x, #0x5236
-	ld	(x), a
+	or	a, (0x0c, sp)
+	ld	0x5236, a
+;	../src/stm8s_uart1.c: 138: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
+	ld	a, 0x5235
 ;	../src/stm8s_uart1.c: 145: if ((uint8_t)(Mode & UART1_MODE_TX_ENABLE))
-	ld	a, (0x2c, sp)
+	push	a
+	ld	a, (0x29, sp)
 	bcp	a, #0x04
+	pop	a
 	jreq	00102$
 ;	../src/stm8s_uart1.c: 148: UART1->CR2 |= (uint8_t)UART1_CR2_TEN;  
-	ldw	x, #0x5235
-	ld	a, (x)
 	or	a, #0x08
-	ld	(x), a
+	ld	0x5235, a
 	jra	00103$
 00102$:
 ;	../src/stm8s_uart1.c: 153: UART1->CR2 &= (uint8_t)(~UART1_CR2_TEN);  
-	ldw	x, #0x5235
-	ld	a, (x)
 	and	a, #0xf7
-	ld	(x), a
+	ld	0x5235, a
 00103$:
+;	../src/stm8s_uart1.c: 138: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
+	ld	a, 0x5235
 ;	../src/stm8s_uart1.c: 155: if ((uint8_t)(Mode & UART1_MODE_RX_ENABLE))
-	ld	a, (0x2c, sp)
+	push	a
+	ld	a, (0x29, sp)
 	bcp	a, #0x08
+	pop	a
 	jreq	00105$
 ;	../src/stm8s_uart1.c: 158: UART1->CR2 |= (uint8_t)UART1_CR2_REN;  
-	ldw	x, #0x5235
-	ld	a, (x)
 	or	a, #0x04
-	ld	(x), a
+	ld	0x5235, a
 	jra	00106$
 00105$:
 ;	../src/stm8s_uart1.c: 163: UART1->CR2 &= (uint8_t)(~UART1_CR2_REN);  
-	ldw	x, #0x5235
-	ld	a, (x)
 	and	a, #0xfb
-	ld	(x), a
+	ld	0x5235, a
 00106$:
+;	../src/stm8s_uart1.c: 111: UART1->CR3 &= (uint8_t)(~UART1_CR3_STOP);  
+	ld	a, 0x5236
 ;	../src/stm8s_uart1.c: 167: if ((uint8_t)(SyncMode & UART1_SYNCMODE_CLOCK_DISABLE))
-	tnz	(0x2b, sp)
+	tnz	(0x27, sp)
 	jrpl	00108$
 ;	../src/stm8s_uart1.c: 170: UART1->CR3 &= (uint8_t)(~UART1_CR3_CKEN); 
-	ldw	x, #0x5236
-	ld	a, (x)
 	and	a, #0xf7
-	ld	(x), a
+	ld	0x5236, a
 	jra	00110$
 00108$:
 ;	../src/stm8s_uart1.c: 174: UART1->CR3 |= (uint8_t)((uint8_t)SyncMode & UART1_CR3_CKEN);
-	ldw	x, #0x5236
-	ld	a, (x)
-	ld	(0x1a, sp), a
-	ld	a, (0x2b, sp)
+	push	a
+	ld	a, (0x28, sp)
 	and	a, #0x08
-	or	a, (0x1a, sp)
-	ldw	x, #0x5236
-	ld	(x), a
+	ld	(0x0e, sp), a
+	pop	a
+	or	a, (0x0d, sp)
+	ld	0x5236, a
 00110$:
-	addw	sp, #33
+;	../src/stm8s_uart1.c: 176: }
+	addw	sp, #29
 	ret
 ;	../src/stm8s_uart1.c: 184: void UART1_Cmd(FunctionalState NewState)
 ;	-----------------------------------------
 ;	 function UART1_Cmd
 ;	-----------------------------------------
 _UART1_Cmd:
+;	../src/stm8s_uart1.c: 189: UART1->CR1 &= (uint8_t)(~UART1_CR1_UARTD); 
+	ld	a, 0x5234
 ;	../src/stm8s_uart1.c: 186: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_uart1.c: 189: UART1->CR1 &= (uint8_t)(~UART1_CR1_UARTD); 
-	ldw	x, #0x5234
-	ld	a, (x)
 	and	a, #0xdf
-	ld	(x), a
-	jra	00104$
+	ld	0x5234, a
+	ret
 00102$:
 ;	../src/stm8s_uart1.c: 194: UART1->CR1 |= UART1_CR1_UARTD;  
-	ldw	x, #0x5234
-	ld	a, (x)
 	or	a, #0x20
-	ld	(x), a
-00104$:
+	ld	0x5234, a
+;	../src/stm8s_uart1.c: 196: }
 	ret
 ;	../src/stm8s_uart1.c: 211: void UART1_ITConfig(UART1_IT_TypeDef UART1_IT, FunctionalState NewState)
 ;	-----------------------------------------
@@ -589,8 +555,8 @@ _UART1_ReceiverWakeUpCmd:
 ;	-----------------------------------------
 _UART1_ReceiveData8:
 ;	../src/stm8s_uart1.c: 473: return ((uint8_t)UART1->DR);
-	ldw	x, #0x5231
-	ld	a, (x)
+	ld	a, 0x5231
+;	../src/stm8s_uart1.c: 474: }
 	ret
 ;	../src/stm8s_uart1.c: 481: uint16_t UART1_ReceiveData9(void)
 ;	-----------------------------------------
@@ -608,6 +574,7 @@ _UART1_SendData8:
 	ldw	x, #0x5231
 	ld	a, (0x03, sp)
 	ld	(x), a
+;	../src/stm8s_uart1.c: 500: }
 	ret
 ;	../src/stm8s_uart1.c: 508: void UART1_SendData9(uint16_t Data)
 ;	-----------------------------------------
@@ -653,21 +620,21 @@ _UART1_GetFlagStatus:
 ;	../src/stm8s_uart1.c: 605: assert_param(IS_UART1_FLAG_OK(UART1_FLAG));
 	ldw	x, (0x05, sp)
 	cpw	x, #0x0101
-	jrne	00208$
+	jrne	00223$
 	ld	a, #0x01
 	ld	(0x01, sp), a
-	jra	00209$
-00208$:
+	.byte 0xc1
+00223$:
 	clr	(0x01, sp)
-00209$:
+00224$:
 	ldw	x, (0x05, sp)
 	cpw	x, #0x0210
-	jrne	00211$
+	jrne	00226$
 	ld	a, #0x01
 	.byte 0x21
-00211$:
+00226$:
 	clr	a
-00212$:
+00227$:
 	ldw	x, (0x05, sp)
 	cpw	x, #0x0080
 	jreq	00119$
@@ -690,19 +657,19 @@ _UART1_GetFlagStatus:
 	cpw	x, #0x0002
 	jreq	00119$
 	ldw	x, (0x05, sp)
-	cpw	x, #0x0001
+	decw	x
 	jreq	00119$
 	tnz	(0x01, sp)
 	jrne	00119$
 	tnz	a
 	jrne	00119$
-	ldw	y, #___str_0+0
 	push	a
 	push	#0x5d
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 	pop	a
@@ -716,10 +683,8 @@ _UART1_GetFlagStatus:
 	tnz	a
 	jreq	00114$
 ;	../src/stm8s_uart1.c: 611: if ((UART1->CR4 & (uint8_t)UART1_FLAG) != (uint8_t)0x00)
-	ldw	x, #0x5237
-	ld	a, (x)
+	ld	a, 0x5237
 	and	a, (0x02, sp)
-	tnz	a
 	jreq	00102$
 ;	../src/stm8s_uart1.c: 614: status = SET;
 	ld	a, #0x01
@@ -733,10 +698,8 @@ _UART1_GetFlagStatus:
 	tnz	(0x01, sp)
 	jreq	00111$
 ;	../src/stm8s_uart1.c: 624: if ((UART1->CR2 & (uint8_t)UART1_FLAG) != (uint8_t)0x00)
-	ldw	x, #0x5235
-	ld	a, (x)
+	ld	a, 0x5235
 	and	a, (0x02, sp)
-	tnz	a
 	jreq	00105$
 ;	../src/stm8s_uart1.c: 627: status = SET;
 	ld	a, #0x01
@@ -747,10 +710,8 @@ _UART1_GetFlagStatus:
 	jra	00115$
 00111$:
 ;	../src/stm8s_uart1.c: 637: if ((UART1->SR & (uint8_t)UART1_FLAG) != (uint8_t)0x00)
-	ldw	x, #0x5230
-	ld	a, (x)
+	ld	a, 0x5230
 	and	a, (0x02, sp)
-	tnz	a
 	jreq	00108$
 ;	../src/stm8s_uart1.c: 640: status = SET;
 	ld	a, #0x01
@@ -760,6 +721,7 @@ _UART1_GetFlagStatus:
 	clr	a
 00115$:
 ;	../src/stm8s_uart1.c: 649: return status;
+;	../src/stm8s_uart1.c: 650: }
 	popw	x
 	ret
 ;	../src/stm8s_uart1.c: 678: void UART1_ClearFlag(UART1_Flag_TypeDef UART1_FLAG)
@@ -776,6 +738,7 @@ _UART1_ClearFlag:
 _UART1_GetITStatus:
 ;	../src/stm8s_uart1.c: 784: return 0;
 	clr	a
+;	../src/stm8s_uart1.c: 785: }
 	ret
 ;	../src/stm8s_uart1.c: 812: void UART1_ClearITPendingBit(UART1_IT_TypeDef UART1_IT)
 ;	-----------------------------------------
@@ -785,6 +748,7 @@ _UART1_ClearITPendingBit:
 ;	../src/stm8s_uart1.c: 828: }
 	ret
 	.area CODE
+	.area CONST
 ___str_0:
 	.ascii "../src/stm8s_uart1.c"
 	.db 0x00

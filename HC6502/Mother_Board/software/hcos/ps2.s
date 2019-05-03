@@ -17,6 +17,7 @@
 	.import		_mdelay
 	.export		_ps2_process
 	.export		_ps2_init
+	.export		_ps2_getc
 	.export		_pi
 	.export		_ps2_read
 
@@ -38,6 +39,7 @@ _pi:
 
 L0063:
 	.byte	$67,$65,$74,$20,$5B,$25,$63,$5D,$20,$5B,$25,$78,$5D,$0D,$0A,$00
+L0071	:=	L0063+0
 L005F:
 	.byte	$67,$65,$74,$20,$30,$78,$66,$66,$0D,$0A,$00
 
@@ -111,9 +113,9 @@ L005C:	lda     #<(L0063)
 	jsr     _gpio_init
 	lda     #$00
 	tay
-L007F:	sta     (sp),y
+L008E:	sta     (sp),y
 	cmp     #$08
-	bcs     L006F
+	bcs     L007E
 	ldx     #$00
 	lda     (sp),y
 	jsr     aslax2
@@ -133,8 +135,8 @@ L007F:	sta     (sp),y
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L007F
-L006F:	lda     _pi+3
+	jmp     L008E
+L007E:	lda     _pi+3
 	sta     sreg+1
 	lda     _pi+2
 	sta     sreg
@@ -144,6 +146,39 @@ L006F:	lda     _pi+3
 	lda     #$01
 	jsr     pusha
 	jsr     _gpio_write
+	jmp     incsp1
+
+.endproc
+
+; ---------------------------------------------------------------
+; unsigned char __near__ ps2_getc (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_ps2_getc: near
+
+.segment	"CODE"
+
+	jsr     decsp1
+L0068:	jsr     _ps2_read
+	ldy     #$00
+	sta     (sp),y
+	cmp     #$FF
+	beq     L0068
+	lda     #<(L0071)
+	ldx     #>(L0071)
+	jsr     pushax
+	ldy     #$02
+	lda     (sp),y
+	jsr     pusha0
+	ldy     #$04
+	lda     (sp),y
+	jsr     pusha0
+	ldy     #$06
+	jsr     _uart_printf
+	ldx     #$00
+	lda     (sp,x)
 	jmp     incsp1
 
 .endproc
@@ -186,7 +221,7 @@ L003D:	lda     _pi+4+3
 	bne     L003D
 	lda     #$00
 	ldy     #$01
-L0082:	sta     (sp),y
+L0091:	sta     (sp),y
 	cmp     #$08
 	bcs     L0045
 	ldx     #$00
@@ -220,7 +255,7 @@ L0082:	sta     (sp),y
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L0082
+	jmp     L0091
 L0045:	lda     _pi+3
 	sta     sreg+1
 	lda     _pi+2

@@ -57,6 +57,23 @@ void ps2_process()
 
 }
 
+u8 ps2_getc()
+{
+    u8 ch;
+
+    while (1) {
+        ch = ps2_read();
+
+        if (ch != 0xff) {
+            uart_printf("get [%c] [%x]\r\n", ch, ch);
+            break;
+        }
+    }
+
+    return ch;
+
+}
+
 void ps2_init()
 {
     u8 i;

@@ -1,1420 +1,1379 @@
                                       1 ;--------------------------------------------------------
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
-                                      3 ; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
-                                      4 ; This file was generated Wed Jan  2 15:12:41 2019
-                                      5 ;--------------------------------------------------------
-                                      6 	.module stm8s_clk
-                                      7 	.optsdcc -mstm8
-                                      8 	
-                                      9 ;--------------------------------------------------------
-                                     10 ; Public variables in this module
-                                     11 ;--------------------------------------------------------
-                                     12 	.globl _CLKPrescTable
-                                     13 	.globl _HSIDivExp
-                                     14 	.globl _assert_failed
-                                     15 	.globl _CLK_DeInit
-                                     16 	.globl _CLK_FastHaltWakeUpCmd
-                                     17 	.globl _CLK_HSECmd
-                                     18 	.globl _CLK_HSICmd
-                                     19 	.globl _CLK_LSICmd
-                                     20 	.globl _CLK_CCOCmd
-                                     21 	.globl _CLK_ClockSwitchCmd
-                                     22 	.globl _CLK_SlowActiveHaltWakeUpCmd
-                                     23 	.globl _CLK_PeripheralClockConfig
-                                     24 	.globl _CLK_ClockSwitchConfig
-                                     25 	.globl _CLK_HSIPrescalerConfig
-                                     26 	.globl _CLK_CCOConfig
-                                     27 	.globl _CLK_ITConfig
-                                     28 	.globl _CLK_SYSCLKConfig
-                                     29 	.globl _CLK_SWIMConfig
-                                     30 	.globl _CLK_ClockSecuritySystemEnable
-                                     31 	.globl _CLK_GetSYSCLKSource
-                                     32 	.globl _CLK_GetClockFreq
-                                     33 	.globl _CLK_AdjustHSICalibrationValue
-                                     34 	.globl _CLK_SYSCLKEmergencyClear
-                                     35 	.globl _CLK_GetFlagStatus
-                                     36 	.globl _CLK_GetITStatus
-                                     37 	.globl _CLK_ClearITPendingBit
-                                     38 ;--------------------------------------------------------
-                                     39 ; ram data
-                                     40 ;--------------------------------------------------------
-                                     41 	.area DATA
-                                     42 ;--------------------------------------------------------
-                                     43 ; ram data
-                                     44 ;--------------------------------------------------------
-                                     45 	.area INITIALIZED
-                                     46 ;--------------------------------------------------------
-                                     47 ; absolute external ram data
-                                     48 ;--------------------------------------------------------
-                                     49 	.area DABS (ABS)
-                                     50 ;--------------------------------------------------------
-                                     51 ; global & static initialisations
-                                     52 ;--------------------------------------------------------
-                                     53 	.area HOME
-                                     54 	.area GSINIT
-                                     55 	.area GSFINAL
-                                     56 	.area GSINIT
-                                     57 ;--------------------------------------------------------
-                                     58 ; Home
-                                     59 ;--------------------------------------------------------
-                                     60 	.area HOME
+                                      3 ; Version 3.8.0 #10562 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_clk
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _CLKPrescTable
+                                     12 	.globl _HSIDivExp
+                                     13 	.globl _assert_failed
+                                     14 	.globl _CLK_DeInit
+                                     15 	.globl _CLK_FastHaltWakeUpCmd
+                                     16 	.globl _CLK_HSECmd
+                                     17 	.globl _CLK_HSICmd
+                                     18 	.globl _CLK_LSICmd
+                                     19 	.globl _CLK_CCOCmd
+                                     20 	.globl _CLK_ClockSwitchCmd
+                                     21 	.globl _CLK_SlowActiveHaltWakeUpCmd
+                                     22 	.globl _CLK_PeripheralClockConfig
+                                     23 	.globl _CLK_ClockSwitchConfig
+                                     24 	.globl _CLK_HSIPrescalerConfig
+                                     25 	.globl _CLK_CCOConfig
+                                     26 	.globl _CLK_ITConfig
+                                     27 	.globl _CLK_SYSCLKConfig
+                                     28 	.globl _CLK_SWIMConfig
+                                     29 	.globl _CLK_ClockSecuritySystemEnable
+                                     30 	.globl _CLK_GetSYSCLKSource
+                                     31 	.globl _CLK_GetClockFreq
+                                     32 	.globl _CLK_AdjustHSICalibrationValue
+                                     33 	.globl _CLK_SYSCLKEmergencyClear
+                                     34 	.globl _CLK_GetFlagStatus
+                                     35 	.globl _CLK_GetITStatus
+                                     36 	.globl _CLK_ClearITPendingBit
+                                     37 ;--------------------------------------------------------
+                                     38 ; ram data
+                                     39 ;--------------------------------------------------------
+                                     40 	.area DATA
+                                     41 ;--------------------------------------------------------
+                                     42 ; ram data
+                                     43 ;--------------------------------------------------------
+                                     44 	.area INITIALIZED
+                                     45 ;--------------------------------------------------------
+                                     46 ; absolute external ram data
+                                     47 ;--------------------------------------------------------
+                                     48 	.area DABS (ABS)
+                                     49 
+                                     50 ; default segment ordering for linker
+                                     51 	.area HOME
+                                     52 	.area GSINIT
+                                     53 	.area GSFINAL
+                                     54 	.area CONST
+                                     55 	.area INITIALIZER
+                                     56 	.area CODE
+                                     57 
+                                     58 ;--------------------------------------------------------
+                                     59 ; global & static initialisations
+                                     60 ;--------------------------------------------------------
                                      61 	.area HOME
-                                     62 ;--------------------------------------------------------
-                                     63 ; code
-                                     64 ;--------------------------------------------------------
-                                     65 	.area CODE
-                                     66 ;	../src/stm8s_clk.c: 72: void CLK_DeInit(void)
-                                     67 ;	-----------------------------------------
-                                     68 ;	 function CLK_DeInit
-                                     69 ;	-----------------------------------------
-      000000                         70 _CLK_DeInit:
-                                     71 ;	../src/stm8s_clk.c: 74: CLK->ICKR = CLK_ICKR_RESET_VALUE;
-      000000 35 01 50 C0      [ 1]   72 	mov	0x50c0+0, #0x01
-                                     73 ;	../src/stm8s_clk.c: 75: CLK->ECKR = CLK_ECKR_RESET_VALUE;
-      000004 35 00 50 C1      [ 1]   74 	mov	0x50c1+0, #0x00
-                                     75 ;	../src/stm8s_clk.c: 76: CLK->SWR  = CLK_SWR_RESET_VALUE;
-      000008 35 E1 50 C4      [ 1]   76 	mov	0x50c4+0, #0xe1
-                                     77 ;	../src/stm8s_clk.c: 77: CLK->SWCR = CLK_SWCR_RESET_VALUE;
-      00000C 35 00 50 C5      [ 1]   78 	mov	0x50c5+0, #0x00
-                                     79 ;	../src/stm8s_clk.c: 78: CLK->CKDIVR = CLK_CKDIVR_RESET_VALUE;
-      000010 35 18 50 C6      [ 1]   80 	mov	0x50c6+0, #0x18
-                                     81 ;	../src/stm8s_clk.c: 79: CLK->PCKENR1 = CLK_PCKENR1_RESET_VALUE;
-      000014 35 FF 50 C7      [ 1]   82 	mov	0x50c7+0, #0xff
-                                     83 ;	../src/stm8s_clk.c: 80: CLK->PCKENR2 = CLK_PCKENR2_RESET_VALUE;
-      000018 35 FF 50 CA      [ 1]   84 	mov	0x50ca+0, #0xff
-                                     85 ;	../src/stm8s_clk.c: 81: CLK->CSSR = CLK_CSSR_RESET_VALUE;
-      00001C 35 00 50 C8      [ 1]   86 	mov	0x50c8+0, #0x00
-                                     87 ;	../src/stm8s_clk.c: 82: CLK->CCOR = CLK_CCOR_RESET_VALUE;
-      000020 35 00 50 C9      [ 1]   88 	mov	0x50c9+0, #0x00
-                                     89 ;	../src/stm8s_clk.c: 83: while ((CLK->CCOR & CLK_CCOR_CCOEN)!= 0)
-      000024                         90 00101$:
-      000024 AE 50 C9         [ 2]   91 	ldw	x, #0x50c9
-      000027 F6               [ 1]   92 	ld	a, (x)
-      000028 44               [ 1]   93 	srl	a
-      000029 25 F9            [ 1]   94 	jrc	00101$
-                                     95 ;	../src/stm8s_clk.c: 85: CLK->CCOR = CLK_CCOR_RESET_VALUE;
-      00002B 35 00 50 C9      [ 1]   96 	mov	0x50c9+0, #0x00
-                                     97 ;	../src/stm8s_clk.c: 86: CLK->HSITRIMR = CLK_HSITRIMR_RESET_VALUE;
-      00002F 35 00 50 CC      [ 1]   98 	mov	0x50cc+0, #0x00
-                                     99 ;	../src/stm8s_clk.c: 87: CLK->SWIMCCR = CLK_SWIMCCR_RESET_VALUE;
-      000033 35 00 50 CD      [ 1]  100 	mov	0x50cd+0, #0x00
-      000037 81               [ 4]  101 	ret
-                                    102 ;	../src/stm8s_clk.c: 99: void CLK_FastHaltWakeUpCmd(FunctionalState NewState)
-                                    103 ;	-----------------------------------------
-                                    104 ;	 function CLK_FastHaltWakeUpCmd
-                                    105 ;	-----------------------------------------
-      000038                        106 _CLK_FastHaltWakeUpCmd:
-                                    107 ;	../src/stm8s_clk.c: 102: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000038 0D 03            [ 1]  108 	tnz	(0x03, sp)
-      00003A 27 17            [ 1]  109 	jreq	00107$
-      00003C 7B 03            [ 1]  110 	ld	a, (0x03, sp)
-      00003E A1 01            [ 1]  111 	cp	a, #0x01
-      000040 27 11            [ 1]  112 	jreq	00107$
-      000042 90 AEr07r77      [ 2]  113 	ldw	y, #___str_0+0
-      000046 4B 66            [ 1]  114 	push	#0x66
-      000048 5F               [ 1]  115 	clrw	x
-      000049 89               [ 2]  116 	pushw	x
-      00004A 4B 00            [ 1]  117 	push	#0x00
-      00004C 90 89            [ 2]  118 	pushw	y
-      00004E CDr00r00         [ 4]  119 	call	_assert_failed
-      000051 5B 06            [ 2]  120 	addw	sp, #6
-      000053                        121 00107$:
-                                    122 ;	../src/stm8s_clk.c: 104: if (NewState != DISABLE)
-      000053 0D 03            [ 1]  123 	tnz	(0x03, sp)
-      000055 27 09            [ 1]  124 	jreq	00102$
-                                    125 ;	../src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
-      000057 AE 50 C0         [ 2]  126 	ldw	x, #0x50c0
-      00005A F6               [ 1]  127 	ld	a, (x)
-      00005B AA 04            [ 1]  128 	or	a, #0x04
-      00005D F7               [ 1]  129 	ld	(x), a
-      00005E 20 07            [ 2]  130 	jra	00104$
-      000060                        131 00102$:
-                                    132 ;	../src/stm8s_clk.c: 112: CLK->ICKR &= (uint8_t)(~CLK_ICKR_FHWU);
-      000060 AE 50 C0         [ 2]  133 	ldw	x, #0x50c0
-      000063 F6               [ 1]  134 	ld	a, (x)
-      000064 A4 FB            [ 1]  135 	and	a, #0xfb
-      000066 F7               [ 1]  136 	ld	(x), a
-      000067                        137 00104$:
-      000067 81               [ 4]  138 	ret
-                                    139 ;	../src/stm8s_clk.c: 121: void CLK_HSECmd(FunctionalState NewState)
-                                    140 ;	-----------------------------------------
-                                    141 ;	 function CLK_HSECmd
-                                    142 ;	-----------------------------------------
-      000068                        143 _CLK_HSECmd:
-                                    144 ;	../src/stm8s_clk.c: 124: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000068 0D 03            [ 1]  145 	tnz	(0x03, sp)
-      00006A 27 17            [ 1]  146 	jreq	00107$
-      00006C 7B 03            [ 1]  147 	ld	a, (0x03, sp)
-      00006E A1 01            [ 1]  148 	cp	a, #0x01
-      000070 27 11            [ 1]  149 	jreq	00107$
-      000072 90 AEr07r77      [ 2]  150 	ldw	y, #___str_0+0
-      000076 4B 7C            [ 1]  151 	push	#0x7c
-      000078 5F               [ 1]  152 	clrw	x
-      000079 89               [ 2]  153 	pushw	x
-      00007A 4B 00            [ 1]  154 	push	#0x00
-      00007C 90 89            [ 2]  155 	pushw	y
-      00007E CDr00r00         [ 4]  156 	call	_assert_failed
-      000081 5B 06            [ 2]  157 	addw	sp, #6
-      000083                        158 00107$:
-                                    159 ;	../src/stm8s_clk.c: 126: if (NewState != DISABLE)
-      000083 0D 03            [ 1]  160 	tnz	(0x03, sp)
-      000085 27 06            [ 1]  161 	jreq	00102$
-                                    162 ;	../src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
-      000087 72 10 50 C1      [ 1]  163 	bset	0x50c1, #0
-      00008B 20 04            [ 2]  164 	jra	00104$
-      00008D                        165 00102$:
-                                    166 ;	../src/stm8s_clk.c: 134: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
-      00008D 72 11 50 C1      [ 1]  167 	bres	0x50c1, #0
-      000091                        168 00104$:
-      000091 81               [ 4]  169 	ret
-                                    170 ;	../src/stm8s_clk.c: 143: void CLK_HSICmd(FunctionalState NewState)
-                                    171 ;	-----------------------------------------
-                                    172 ;	 function CLK_HSICmd
-                                    173 ;	-----------------------------------------
-      000092                        174 _CLK_HSICmd:
-                                    175 ;	../src/stm8s_clk.c: 146: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000092 0D 03            [ 1]  176 	tnz	(0x03, sp)
-      000094 27 17            [ 1]  177 	jreq	00107$
-      000096 7B 03            [ 1]  178 	ld	a, (0x03, sp)
-      000098 A1 01            [ 1]  179 	cp	a, #0x01
-      00009A 27 11            [ 1]  180 	jreq	00107$
-      00009C 90 AEr07r77      [ 2]  181 	ldw	y, #___str_0+0
-      0000A0 4B 92            [ 1]  182 	push	#0x92
-      0000A2 5F               [ 1]  183 	clrw	x
-      0000A3 89               [ 2]  184 	pushw	x
-      0000A4 4B 00            [ 1]  185 	push	#0x00
-      0000A6 90 89            [ 2]  186 	pushw	y
-      0000A8 CDr00r00         [ 4]  187 	call	_assert_failed
-      0000AB 5B 06            [ 2]  188 	addw	sp, #6
-      0000AD                        189 00107$:
-                                    190 ;	../src/stm8s_clk.c: 148: if (NewState != DISABLE)
-      0000AD 0D 03            [ 1]  191 	tnz	(0x03, sp)
-      0000AF 27 06            [ 1]  192 	jreq	00102$
-                                    193 ;	../src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
-      0000B1 72 10 50 C0      [ 1]  194 	bset	0x50c0, #0
-      0000B5 20 04            [ 2]  195 	jra	00104$
-      0000B7                        196 00102$:
-                                    197 ;	../src/stm8s_clk.c: 156: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
-      0000B7 72 11 50 C0      [ 1]  198 	bres	0x50c0, #0
-      0000BB                        199 00104$:
-      0000BB 81               [ 4]  200 	ret
-                                    201 ;	../src/stm8s_clk.c: 166: void CLK_LSICmd(FunctionalState NewState)
-                                    202 ;	-----------------------------------------
-                                    203 ;	 function CLK_LSICmd
-                                    204 ;	-----------------------------------------
-      0000BC                        205 _CLK_LSICmd:
-                                    206 ;	../src/stm8s_clk.c: 169: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      0000BC 0D 03            [ 1]  207 	tnz	(0x03, sp)
-      0000BE 27 17            [ 1]  208 	jreq	00107$
-      0000C0 7B 03            [ 1]  209 	ld	a, (0x03, sp)
-      0000C2 A1 01            [ 1]  210 	cp	a, #0x01
-      0000C4 27 11            [ 1]  211 	jreq	00107$
-      0000C6 90 AEr07r77      [ 2]  212 	ldw	y, #___str_0+0
-      0000CA 4B A9            [ 1]  213 	push	#0xa9
-      0000CC 5F               [ 1]  214 	clrw	x
-      0000CD 89               [ 2]  215 	pushw	x
-      0000CE 4B 00            [ 1]  216 	push	#0x00
-      0000D0 90 89            [ 2]  217 	pushw	y
-      0000D2 CDr00r00         [ 4]  218 	call	_assert_failed
-      0000D5 5B 06            [ 2]  219 	addw	sp, #6
-      0000D7                        220 00107$:
-                                    221 ;	../src/stm8s_clk.c: 171: if (NewState != DISABLE)
-      0000D7 0D 03            [ 1]  222 	tnz	(0x03, sp)
-      0000D9 27 09            [ 1]  223 	jreq	00102$
-                                    224 ;	../src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
-      0000DB AE 50 C0         [ 2]  225 	ldw	x, #0x50c0
-      0000DE F6               [ 1]  226 	ld	a, (x)
-      0000DF AA 08            [ 1]  227 	or	a, #0x08
-      0000E1 F7               [ 1]  228 	ld	(x), a
-      0000E2 20 07            [ 2]  229 	jra	00104$
-      0000E4                        230 00102$:
-                                    231 ;	../src/stm8s_clk.c: 179: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
-      0000E4 AE 50 C0         [ 2]  232 	ldw	x, #0x50c0
-      0000E7 F6               [ 1]  233 	ld	a, (x)
-      0000E8 A4 F7            [ 1]  234 	and	a, #0xf7
-      0000EA F7               [ 1]  235 	ld	(x), a
-      0000EB                        236 00104$:
-      0000EB 81               [ 4]  237 	ret
-                                    238 ;	../src/stm8s_clk.c: 189: void CLK_CCOCmd(FunctionalState NewState)
-                                    239 ;	-----------------------------------------
-                                    240 ;	 function CLK_CCOCmd
-                                    241 ;	-----------------------------------------
-      0000EC                        242 _CLK_CCOCmd:
-                                    243 ;	../src/stm8s_clk.c: 192: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      0000EC 0D 03            [ 1]  244 	tnz	(0x03, sp)
-      0000EE 27 17            [ 1]  245 	jreq	00107$
-      0000F0 7B 03            [ 1]  246 	ld	a, (0x03, sp)
-      0000F2 A1 01            [ 1]  247 	cp	a, #0x01
-      0000F4 27 11            [ 1]  248 	jreq	00107$
-      0000F6 90 AEr07r77      [ 2]  249 	ldw	y, #___str_0+0
-      0000FA 4B C0            [ 1]  250 	push	#0xc0
-      0000FC 5F               [ 1]  251 	clrw	x
-      0000FD 89               [ 2]  252 	pushw	x
-      0000FE 4B 00            [ 1]  253 	push	#0x00
-      000100 90 89            [ 2]  254 	pushw	y
-      000102 CDr00r00         [ 4]  255 	call	_assert_failed
-      000105 5B 06            [ 2]  256 	addw	sp, #6
-      000107                        257 00107$:
-                                    258 ;	../src/stm8s_clk.c: 194: if (NewState != DISABLE)
-      000107 0D 03            [ 1]  259 	tnz	(0x03, sp)
-      000109 27 06            [ 1]  260 	jreq	00102$
-                                    261 ;	../src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
-      00010B 72 10 50 C9      [ 1]  262 	bset	0x50c9, #0
-      00010F 20 04            [ 2]  263 	jra	00104$
-      000111                        264 00102$:
-                                    265 ;	../src/stm8s_clk.c: 202: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOEN);
-      000111 72 11 50 C9      [ 1]  266 	bres	0x50c9, #0
-      000115                        267 00104$:
-      000115 81               [ 4]  268 	ret
-                                    269 ;	../src/stm8s_clk.c: 213: void CLK_ClockSwitchCmd(FunctionalState NewState)
-                                    270 ;	-----------------------------------------
-                                    271 ;	 function CLK_ClockSwitchCmd
-                                    272 ;	-----------------------------------------
-      000116                        273 _CLK_ClockSwitchCmd:
-                                    274 ;	../src/stm8s_clk.c: 216: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000116 0D 03            [ 1]  275 	tnz	(0x03, sp)
-      000118 27 17            [ 1]  276 	jreq	00107$
-      00011A 7B 03            [ 1]  277 	ld	a, (0x03, sp)
-      00011C A1 01            [ 1]  278 	cp	a, #0x01
-      00011E 27 11            [ 1]  279 	jreq	00107$
-      000120 90 AEr07r77      [ 2]  280 	ldw	y, #___str_0+0
-      000124 4B D8            [ 1]  281 	push	#0xd8
-      000126 5F               [ 1]  282 	clrw	x
-      000127 89               [ 2]  283 	pushw	x
-      000128 4B 00            [ 1]  284 	push	#0x00
-      00012A 90 89            [ 2]  285 	pushw	y
-      00012C CDr00r00         [ 4]  286 	call	_assert_failed
-      00012F 5B 06            [ 2]  287 	addw	sp, #6
-      000131                        288 00107$:
-                                    289 ;	../src/stm8s_clk.c: 218: if (NewState != DISABLE )
-      000131 0D 03            [ 1]  290 	tnz	(0x03, sp)
-      000133 27 09            [ 1]  291 	jreq	00102$
-                                    292 ;	../src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
-      000135 AE 50 C5         [ 2]  293 	ldw	x, #0x50c5
-      000138 F6               [ 1]  294 	ld	a, (x)
-      000139 AA 02            [ 1]  295 	or	a, #0x02
-      00013B F7               [ 1]  296 	ld	(x), a
-      00013C 20 07            [ 2]  297 	jra	00104$
-      00013E                        298 00102$:
-                                    299 ;	../src/stm8s_clk.c: 226: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWEN);
-      00013E AE 50 C5         [ 2]  300 	ldw	x, #0x50c5
-      000141 F6               [ 1]  301 	ld	a, (x)
-      000142 A4 FD            [ 1]  302 	and	a, #0xfd
-      000144 F7               [ 1]  303 	ld	(x), a
-      000145                        304 00104$:
-      000145 81               [ 4]  305 	ret
-                                    306 ;	../src/stm8s_clk.c: 238: void CLK_SlowActiveHaltWakeUpCmd(FunctionalState NewState)
-                                    307 ;	-----------------------------------------
-                                    308 ;	 function CLK_SlowActiveHaltWakeUpCmd
-                                    309 ;	-----------------------------------------
-      000146                        310 _CLK_SlowActiveHaltWakeUpCmd:
-                                    311 ;	../src/stm8s_clk.c: 241: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000146 0D 03            [ 1]  312 	tnz	(0x03, sp)
-      000148 27 17            [ 1]  313 	jreq	00107$
-      00014A 7B 03            [ 1]  314 	ld	a, (0x03, sp)
-      00014C A1 01            [ 1]  315 	cp	a, #0x01
-      00014E 27 11            [ 1]  316 	jreq	00107$
-      000150 90 AEr07r77      [ 2]  317 	ldw	y, #___str_0+0
-      000154 4B F1            [ 1]  318 	push	#0xf1
-      000156 5F               [ 1]  319 	clrw	x
-      000157 89               [ 2]  320 	pushw	x
-      000158 4B 00            [ 1]  321 	push	#0x00
-      00015A 90 89            [ 2]  322 	pushw	y
-      00015C CDr00r00         [ 4]  323 	call	_assert_failed
-      00015F 5B 06            [ 2]  324 	addw	sp, #6
-      000161                        325 00107$:
-                                    326 ;	../src/stm8s_clk.c: 243: if (NewState != DISABLE)
-      000161 0D 03            [ 1]  327 	tnz	(0x03, sp)
-      000163 27 09            [ 1]  328 	jreq	00102$
-                                    329 ;	../src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
-      000165 AE 50 C0         [ 2]  330 	ldw	x, #0x50c0
-      000168 F6               [ 1]  331 	ld	a, (x)
-      000169 AA 20            [ 1]  332 	or	a, #0x20
-      00016B F7               [ 1]  333 	ld	(x), a
-      00016C 20 07            [ 2]  334 	jra	00104$
-      00016E                        335 00102$:
-                                    336 ;	../src/stm8s_clk.c: 251: CLK->ICKR &= (uint8_t)(~CLK_ICKR_SWUAH);
-      00016E AE 50 C0         [ 2]  337 	ldw	x, #0x50c0
-      000171 F6               [ 1]  338 	ld	a, (x)
-      000172 A4 DF            [ 1]  339 	and	a, #0xdf
-      000174 F7               [ 1]  340 	ld	(x), a
-      000175                        341 00104$:
-      000175 81               [ 4]  342 	ret
-                                    343 ;	../src/stm8s_clk.c: 263: void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, FunctionalState NewState)
-                                    344 ;	-----------------------------------------
-                                    345 ;	 function CLK_PeripheralClockConfig
-                                    346 ;	-----------------------------------------
-      000176                        347 _CLK_PeripheralClockConfig:
-      000176 89               [ 2]  348 	pushw	x
-                                    349 ;	../src/stm8s_clk.c: 266: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000177 0D 06            [ 1]  350 	tnz	(0x06, sp)
-      000179 27 17            [ 1]  351 	jreq	00113$
-      00017B 7B 06            [ 1]  352 	ld	a, (0x06, sp)
-      00017D A1 01            [ 1]  353 	cp	a, #0x01
-      00017F 27 11            [ 1]  354 	jreq	00113$
-      000181 90 AEr07r77      [ 2]  355 	ldw	y, #___str_0+0
-      000185 4B 0A            [ 1]  356 	push	#0x0a
-      000187 4B 01            [ 1]  357 	push	#0x01
-      000189 5F               [ 1]  358 	clrw	x
-      00018A 89               [ 2]  359 	pushw	x
-      00018B 90 89            [ 2]  360 	pushw	y
-      00018D CDr00r00         [ 4]  361 	call	_assert_failed
-      000190 5B 06            [ 2]  362 	addw	sp, #6
-      000192                        363 00113$:
-                                    364 ;	../src/stm8s_clk.c: 267: assert_param(IS_CLK_PERIPHERAL_OK(CLK_Peripheral));
-      000192 0D 05            [ 1]  365 	tnz	(0x05, sp)
-      000194 27 6D            [ 1]  366 	jreq	00118$
-      000196 7B 05            [ 1]  367 	ld	a, (0x05, sp)
-      000198 A1 01            [ 1]  368 	cp	a, #0x01
-      00019A 27 67            [ 1]  369 	jreq	00118$
-      00019C 7B 05            [ 1]  370 	ld	a, (0x05, sp)
-      00019E A1 03            [ 1]  371 	cp	a, #0x03
-      0001A0 26 03            [ 1]  372 	jrne	00243$
-      0001A2 A6 01            [ 1]  373 	ld	a, #0x01
-      0001A4 21                     374 	.byte 0x21
-      0001A5                        375 00243$:
-      0001A5 4F               [ 1]  376 	clr	a
-      0001A6                        377 00244$:
-      0001A6 4D               [ 1]  378 	tnz	a
-      0001A7 26 5A            [ 1]  379 	jrne	00118$
-      0001A9 4D               [ 1]  380 	tnz	a
-      0001AA 26 57            [ 1]  381 	jrne	00118$
-      0001AC 4D               [ 1]  382 	tnz	a
-      0001AD 26 54            [ 1]  383 	jrne	00118$
-      0001AF 7B 05            [ 1]  384 	ld	a, (0x05, sp)
-      0001B1 A1 04            [ 1]  385 	cp	a, #0x04
-      0001B3 26 05            [ 1]  386 	jrne	00249$
-      0001B5 A6 01            [ 1]  387 	ld	a, #0x01
-      0001B7 95               [ 1]  388 	ld	xh, a
-      0001B8 20 02            [ 2]  389 	jra	00250$
-      0001BA                        390 00249$:
-      0001BA 4F               [ 1]  391 	clr	a
-      0001BB 95               [ 1]  392 	ld	xh, a
-      0001BC                        393 00250$:
-      0001BC 9E               [ 1]  394 	ld	a, xh
-      0001BD 4D               [ 1]  395 	tnz	a
-      0001BE 26 43            [ 1]  396 	jrne	00118$
-      0001C0 7B 05            [ 1]  397 	ld	a, (0x05, sp)
-      0001C2 A1 05            [ 1]  398 	cp	a, #0x05
-      0001C4 26 03            [ 1]  399 	jrne	00253$
-      0001C6 A6 01            [ 1]  400 	ld	a, #0x01
-      0001C8 21                     401 	.byte 0x21
-      0001C9                        402 00253$:
-      0001C9 4F               [ 1]  403 	clr	a
-      0001CA                        404 00254$:
-      0001CA 4D               [ 1]  405 	tnz	a
-      0001CB 26 36            [ 1]  406 	jrne	00118$
-      0001CD 4D               [ 1]  407 	tnz	a
-      0001CE 26 33            [ 1]  408 	jrne	00118$
-      0001D0 9E               [ 1]  409 	ld	a, xh
-      0001D1 4D               [ 1]  410 	tnz	a
-      0001D2 26 2F            [ 1]  411 	jrne	00118$
-      0001D4 7B 05            [ 1]  412 	ld	a, (0x05, sp)
-      0001D6 A1 06            [ 1]  413 	cp	a, #0x06
-      0001D8 27 29            [ 1]  414 	jreq	00118$
-      0001DA 7B 05            [ 1]  415 	ld	a, (0x05, sp)
-      0001DC A1 07            [ 1]  416 	cp	a, #0x07
-      0001DE 27 23            [ 1]  417 	jreq	00118$
-      0001E0 7B 05            [ 1]  418 	ld	a, (0x05, sp)
-      0001E2 A1 17            [ 1]  419 	cp	a, #0x17
-      0001E4 27 1D            [ 1]  420 	jreq	00118$
-      0001E6 7B 05            [ 1]  421 	ld	a, (0x05, sp)
-      0001E8 A1 13            [ 1]  422 	cp	a, #0x13
-      0001EA 27 17            [ 1]  423 	jreq	00118$
-      0001EC 7B 05            [ 1]  424 	ld	a, (0x05, sp)
-      0001EE A1 12            [ 1]  425 	cp	a, #0x12
-      0001F0 27 11            [ 1]  426 	jreq	00118$
-      0001F2 90 AEr07r77      [ 2]  427 	ldw	y, #___str_0+0
-      0001F6 4B 0B            [ 1]  428 	push	#0x0b
-      0001F8 4B 01            [ 1]  429 	push	#0x01
-      0001FA 5F               [ 1]  430 	clrw	x
-      0001FB 89               [ 2]  431 	pushw	x
-      0001FC 90 89            [ 2]  432 	pushw	y
-      0001FE CDr00r00         [ 4]  433 	call	_assert_failed
-      000201 5B 06            [ 2]  434 	addw	sp, #6
-      000203                        435 00118$:
-                                    436 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
-      000203 7B 05            [ 1]  437 	ld	a, (0x05, sp)
-      000205 A4 0F            [ 1]  438 	and	a, #0x0f
-      000207 95               [ 1]  439 	ld	xh, a
-      000208 A6 01            [ 1]  440 	ld	a, #0x01
-      00020A 6B 01            [ 1]  441 	ld	(0x01, sp), a
-      00020C 9E               [ 1]  442 	ld	a, xh
-      00020D 4D               [ 1]  443 	tnz	a
-      00020E 27 05            [ 1]  444 	jreq	00274$
-      000210                        445 00273$:
-      000210 08 01            [ 1]  446 	sll	(0x01, sp)
-      000212 4A               [ 1]  447 	dec	a
-      000213 26 FB            [ 1]  448 	jrne	00273$
-      000215                        449 00274$:
-                                    450 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-      000215 7B 01            [ 1]  451 	ld	a, (0x01, sp)
-      000217 43               [ 1]  452 	cpl	a
-      000218 6B 02            [ 1]  453 	ld	(0x02, sp), a
-                                    454 ;	../src/stm8s_clk.c: 269: if (((uint8_t)CLK_Peripheral & (uint8_t)0x10) == 0x00)
-      00021A 7B 05            [ 1]  455 	ld	a, (0x05, sp)
-      00021C A5 10            [ 1]  456 	bcp	a, #0x10
-      00021E 26 1C            [ 1]  457 	jrne	00108$
-                                    458 ;	../src/stm8s_clk.c: 271: if (NewState != DISABLE)
-      000220 0D 06            [ 1]  459 	tnz	(0x06, sp)
-      000222 27 0C            [ 1]  460 	jreq	00102$
-                                    461 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
-      000224 AE 50 C7         [ 2]  462 	ldw	x, #0x50c7
-      000227 F6               [ 1]  463 	ld	a, (x)
-      000228 1A 01            [ 1]  464 	or	a, (0x01, sp)
-      00022A AE 50 C7         [ 2]  465 	ldw	x, #0x50c7
-      00022D F7               [ 1]  466 	ld	(x), a
-      00022E 20 26            [ 2]  467 	jra	00110$
-      000230                        468 00102$:
-                                    469 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-      000230 AE 50 C7         [ 2]  470 	ldw	x, #0x50c7
-      000233 F6               [ 1]  471 	ld	a, (x)
-      000234 14 02            [ 1]  472 	and	a, (0x02, sp)
-      000236 AE 50 C7         [ 2]  473 	ldw	x, #0x50c7
-      000239 F7               [ 1]  474 	ld	(x), a
-      00023A 20 1A            [ 2]  475 	jra	00110$
-      00023C                        476 00108$:
-                                    477 ;	../src/stm8s_clk.c: 284: if (NewState != DISABLE)
-      00023C 0D 06            [ 1]  478 	tnz	(0x06, sp)
-      00023E 27 0C            [ 1]  479 	jreq	00105$
-                                    480 ;	../src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
-      000240 AE 50 CA         [ 2]  481 	ldw	x, #0x50ca
-      000243 F6               [ 1]  482 	ld	a, (x)
-      000244 1A 01            [ 1]  483 	or	a, (0x01, sp)
-      000246 AE 50 CA         [ 2]  484 	ldw	x, #0x50ca
-      000249 F7               [ 1]  485 	ld	(x), a
-      00024A 20 0A            [ 2]  486 	jra	00110$
-      00024C                        487 00105$:
-                                    488 ;	../src/stm8s_clk.c: 292: CLK->PCKENR2 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-      00024C AE 50 CA         [ 2]  489 	ldw	x, #0x50ca
-      00024F F6               [ 1]  490 	ld	a, (x)
-      000250 14 02            [ 1]  491 	and	a, (0x02, sp)
-      000252 AE 50 CA         [ 2]  492 	ldw	x, #0x50ca
-      000255 F7               [ 1]  493 	ld	(x), a
-      000256                        494 00110$:
-      000256 85               [ 2]  495 	popw	x
-      000257 81               [ 4]  496 	ret
-                                    497 ;	../src/stm8s_clk.c: 309: ErrorStatus CLK_ClockSwitchConfig(CLK_SwitchMode_TypeDef CLK_SwitchMode, CLK_Source_TypeDef CLK_NewClock, FunctionalState ITState, CLK_CurrentClockState_TypeDef CLK_CurrentClockState)
-                                    498 ;	-----------------------------------------
-                                    499 ;	 function CLK_ClockSwitchConfig
-                                    500 ;	-----------------------------------------
-      000258                        501 _CLK_ClockSwitchConfig:
-      000258 52 03            [ 2]  502 	sub	sp, #3
-                                    503 ;	../src/stm8s_clk.c: 316: assert_param(IS_CLK_SOURCE_OK(CLK_NewClock));
-      00025A 7B 07            [ 1]  504 	ld	a, (0x07, sp)
-      00025C A1 E1            [ 1]  505 	cp	a, #0xe1
-      00025E 27 1D            [ 1]  506 	jreq	00140$
-      000260 7B 07            [ 1]  507 	ld	a, (0x07, sp)
-      000262 A1 D2            [ 1]  508 	cp	a, #0xd2
-      000264 27 17            [ 1]  509 	jreq	00140$
-      000266 7B 07            [ 1]  510 	ld	a, (0x07, sp)
-      000268 A1 B4            [ 1]  511 	cp	a, #0xb4
-      00026A 27 11            [ 1]  512 	jreq	00140$
-      00026C 90 AEr07r77      [ 2]  513 	ldw	y, #___str_0+0
-      000270 4B 3C            [ 1]  514 	push	#0x3c
-      000272 4B 01            [ 1]  515 	push	#0x01
-      000274 5F               [ 1]  516 	clrw	x
-      000275 89               [ 2]  517 	pushw	x
-      000276 90 89            [ 2]  518 	pushw	y
-      000278 CDr00r00         [ 4]  519 	call	_assert_failed
-      00027B 5B 06            [ 2]  520 	addw	sp, #6
-      00027D                        521 00140$:
-                                    522 ;	../src/stm8s_clk.c: 317: assert_param(IS_CLK_SWITCHMODE_OK(CLK_SwitchMode));
-      00027D 7B 06            [ 1]  523 	ld	a, (0x06, sp)
-      00027F A1 01            [ 1]  524 	cp	a, #0x01
-      000281 26 06            [ 1]  525 	jrne	00282$
-      000283 A6 01            [ 1]  526 	ld	a, #0x01
-      000285 6B 03            [ 1]  527 	ld	(0x03, sp), a
-      000287 20 02            [ 2]  528 	jra	00283$
-      000289                        529 00282$:
-      000289 0F 03            [ 1]  530 	clr	(0x03, sp)
-      00028B                        531 00283$:
-      00028B 0D 06            [ 1]  532 	tnz	(0x06, sp)
-      00028D 27 15            [ 1]  533 	jreq	00148$
-      00028F 0D 03            [ 1]  534 	tnz	(0x03, sp)
-      000291 26 11            [ 1]  535 	jrne	00148$
-      000293 90 AEr07r77      [ 2]  536 	ldw	y, #___str_0+0
-      000297 4B 3D            [ 1]  537 	push	#0x3d
-      000299 4B 01            [ 1]  538 	push	#0x01
-      00029B 5F               [ 1]  539 	clrw	x
-      00029C 89               [ 2]  540 	pushw	x
-      00029D 90 89            [ 2]  541 	pushw	y
-      00029F CDr00r00         [ 4]  542 	call	_assert_failed
-      0002A2 5B 06            [ 2]  543 	addw	sp, #6
-      0002A4                        544 00148$:
-                                    545 ;	../src/stm8s_clk.c: 318: assert_param(IS_FUNCTIONALSTATE_OK(ITState));
-      0002A4 0D 08            [ 1]  546 	tnz	(0x08, sp)
-      0002A6 27 17            [ 1]  547 	jreq	00153$
-      0002A8 7B 08            [ 1]  548 	ld	a, (0x08, sp)
-      0002AA A1 01            [ 1]  549 	cp	a, #0x01
-      0002AC 27 11            [ 1]  550 	jreq	00153$
-      0002AE 90 AEr07r77      [ 2]  551 	ldw	y, #___str_0+0
-      0002B2 4B 3E            [ 1]  552 	push	#0x3e
-      0002B4 4B 01            [ 1]  553 	push	#0x01
-      0002B6 5F               [ 1]  554 	clrw	x
-      0002B7 89               [ 2]  555 	pushw	x
-      0002B8 90 89            [ 2]  556 	pushw	y
-      0002BA CDr00r00         [ 4]  557 	call	_assert_failed
-      0002BD 5B 06            [ 2]  558 	addw	sp, #6
-      0002BF                        559 00153$:
-                                    560 ;	../src/stm8s_clk.c: 319: assert_param(IS_CLK_CURRENTCLOCKSTATE_OK(CLK_CurrentClockState));
-      0002BF 0D 09            [ 1]  561 	tnz	(0x09, sp)
-      0002C1 27 17            [ 1]  562 	jreq	00158$
-      0002C3 7B 09            [ 1]  563 	ld	a, (0x09, sp)
-      0002C5 A1 01            [ 1]  564 	cp	a, #0x01
-      0002C7 27 11            [ 1]  565 	jreq	00158$
-      0002C9 90 AEr07r77      [ 2]  566 	ldw	y, #___str_0+0
-      0002CD 4B 3F            [ 1]  567 	push	#0x3f
-      0002CF 4B 01            [ 1]  568 	push	#0x01
-      0002D1 5F               [ 1]  569 	clrw	x
-      0002D2 89               [ 2]  570 	pushw	x
-      0002D3 90 89            [ 2]  571 	pushw	y
-      0002D5 CDr00r00         [ 4]  572 	call	_assert_failed
-      0002D8 5B 06            [ 2]  573 	addw	sp, #6
-      0002DA                        574 00158$:
-                                    575 ;	../src/stm8s_clk.c: 322: clock_master = (CLK_Source_TypeDef)CLK->CMSR;
-      0002DA AE 50 C3         [ 2]  576 	ldw	x, #0x50c3
-      0002DD F6               [ 1]  577 	ld	a, (x)
-      0002DE 6B 01            [ 1]  578 	ld	(0x01, sp), a
-                                    579 ;	../src/stm8s_clk.c: 325: if (CLK_SwitchMode == CLK_SWITCHMODE_AUTO)
-      0002E0 0D 03            [ 1]  580 	tnz	(0x03, sp)
-      0002E2 27 40            [ 1]  581 	jreq	00122$
-                                    582 ;	../src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
-      0002E4 AE 50 C5         [ 2]  583 	ldw	x, #0x50c5
-      0002E7 F6               [ 1]  584 	ld	a, (x)
-      0002E8 AA 02            [ 1]  585 	or	a, #0x02
-      0002EA F7               [ 1]  586 	ld	(x), a
-                                    587 ;	../src/stm8s_clk.c: 331: if (ITState != DISABLE)
-      0002EB 0D 08            [ 1]  588 	tnz	(0x08, sp)
-      0002ED 27 09            [ 1]  589 	jreq	00102$
-                                    590 ;	../src/stm8s_clk.c: 333: CLK->SWCR |= CLK_SWCR_SWIEN;
-      0002EF AE 50 C5         [ 2]  591 	ldw	x, #0x50c5
-      0002F2 F6               [ 1]  592 	ld	a, (x)
-      0002F3 AA 04            [ 1]  593 	or	a, #0x04
-      0002F5 F7               [ 1]  594 	ld	(x), a
-      0002F6 20 07            [ 2]  595 	jra	00103$
-      0002F8                        596 00102$:
-                                    597 ;	../src/stm8s_clk.c: 337: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
-      0002F8 AE 50 C5         [ 2]  598 	ldw	x, #0x50c5
-      0002FB F6               [ 1]  599 	ld	a, (x)
-      0002FC A4 FB            [ 1]  600 	and	a, #0xfb
-      0002FE F7               [ 1]  601 	ld	(x), a
-      0002FF                        602 00103$:
-                                    603 ;	../src/stm8s_clk.c: 341: CLK->SWR = (uint8_t)CLK_NewClock;
-      0002FF AE 50 C4         [ 2]  604 	ldw	x, #0x50c4
-      000302 7B 07            [ 1]  605 	ld	a, (0x07, sp)
-      000304 F7               [ 1]  606 	ld	(x), a
-                                    607 ;	../src/stm8s_clk.c: 344: while((((CLK->SWCR & CLK_SWCR_SWBSY) != 0 )&& (DownCounter != 0)))
-      000305 AE FF FF         [ 2]  608 	ldw	x, #0xffff
-      000308                        609 00105$:
-      000308 90 AE 50 C5      [ 2]  610 	ldw	y, #0x50c5
-      00030C 90 F6            [ 1]  611 	ld	a, (y)
-      00030E 44               [ 1]  612 	srl	a
-      00030F 24 06            [ 1]  613 	jrnc	00107$
-      000311 5D               [ 2]  614 	tnzw	x
-      000312 27 03            [ 1]  615 	jreq	00107$
-                                    616 ;	../src/stm8s_clk.c: 346: DownCounter--;
-      000314 5A               [ 2]  617 	decw	x
-      000315 20 F1            [ 2]  618 	jra	00105$
-      000317                        619 00107$:
-                                    620 ;	../src/stm8s_clk.c: 349: if(DownCounter != 0)
-      000317 5D               [ 2]  621 	tnzw	x
-      000318 27 06            [ 1]  622 	jreq	00109$
-                                    623 ;	../src/stm8s_clk.c: 351: Swif = SUCCESS;
-      00031A A6 01            [ 1]  624 	ld	a, #0x01
-      00031C 6B 02            [ 1]  625 	ld	(0x02, sp), a
-      00031E 20 43            [ 2]  626 	jra	00123$
-      000320                        627 00109$:
-                                    628 ;	../src/stm8s_clk.c: 355: Swif = ERROR;
-      000320 0F 02            [ 1]  629 	clr	(0x02, sp)
-      000322 20 3F            [ 2]  630 	jra	00123$
-      000324                        631 00122$:
-                                    632 ;	../src/stm8s_clk.c: 361: if (ITState != DISABLE)
-      000324 0D 08            [ 1]  633 	tnz	(0x08, sp)
-      000326 27 09            [ 1]  634 	jreq	00112$
-                                    635 ;	../src/stm8s_clk.c: 363: CLK->SWCR |= CLK_SWCR_SWIEN;
-      000328 AE 50 C5         [ 2]  636 	ldw	x, #0x50c5
-      00032B F6               [ 1]  637 	ld	a, (x)
-      00032C AA 04            [ 1]  638 	or	a, #0x04
-      00032E F7               [ 1]  639 	ld	(x), a
-      00032F 20 07            [ 2]  640 	jra	00113$
-      000331                        641 00112$:
+                                     62 	.area GSINIT
+                                     63 	.area GSFINAL
+                                     64 	.area GSINIT
+                                     65 ;--------------------------------------------------------
+                                     66 ; Home
+                                     67 ;--------------------------------------------------------
+                                     68 	.area HOME
+                                     69 	.area HOME
+                                     70 ;--------------------------------------------------------
+                                     71 ; code
+                                     72 ;--------------------------------------------------------
+                                     73 	.area CODE
+                                     74 ;	../src/stm8s_clk.c: 72: void CLK_DeInit(void)
+                                     75 ;	-----------------------------------------
+                                     76 ;	 function CLK_DeInit
+                                     77 ;	-----------------------------------------
+      000000                         78 _CLK_DeInit:
+                                     79 ;	../src/stm8s_clk.c: 74: CLK->ICKR = CLK_ICKR_RESET_VALUE;
+      000000 35 01 50 C0      [ 1]   80 	mov	0x50c0+0, #0x01
+                                     81 ;	../src/stm8s_clk.c: 75: CLK->ECKR = CLK_ECKR_RESET_VALUE;
+      000004 35 00 50 C1      [ 1]   82 	mov	0x50c1+0, #0x00
+                                     83 ;	../src/stm8s_clk.c: 76: CLK->SWR  = CLK_SWR_RESET_VALUE;
+      000008 35 E1 50 C4      [ 1]   84 	mov	0x50c4+0, #0xe1
+                                     85 ;	../src/stm8s_clk.c: 77: CLK->SWCR = CLK_SWCR_RESET_VALUE;
+      00000C 35 00 50 C5      [ 1]   86 	mov	0x50c5+0, #0x00
+                                     87 ;	../src/stm8s_clk.c: 78: CLK->CKDIVR = CLK_CKDIVR_RESET_VALUE;
+      000010 35 18 50 C6      [ 1]   88 	mov	0x50c6+0, #0x18
+                                     89 ;	../src/stm8s_clk.c: 79: CLK->PCKENR1 = CLK_PCKENR1_RESET_VALUE;
+      000014 35 FF 50 C7      [ 1]   90 	mov	0x50c7+0, #0xff
+                                     91 ;	../src/stm8s_clk.c: 80: CLK->PCKENR2 = CLK_PCKENR2_RESET_VALUE;
+      000018 35 FF 50 CA      [ 1]   92 	mov	0x50ca+0, #0xff
+                                     93 ;	../src/stm8s_clk.c: 81: CLK->CSSR = CLK_CSSR_RESET_VALUE;
+      00001C 35 00 50 C8      [ 1]   94 	mov	0x50c8+0, #0x00
+                                     95 ;	../src/stm8s_clk.c: 82: CLK->CCOR = CLK_CCOR_RESET_VALUE;
+      000020 35 00 50 C9      [ 1]   96 	mov	0x50c9+0, #0x00
+                                     97 ;	../src/stm8s_clk.c: 83: while ((CLK->CCOR & CLK_CCOR_CCOEN)!= 0)
+      000024                         98 00101$:
+      000024 C6 50 C9         [ 1]   99 	ld	a, 0x50c9
+      000027 44               [ 1]  100 	srl	a
+      000028 25 FA            [ 1]  101 	jrc	00101$
+                                    102 ;	../src/stm8s_clk.c: 85: CLK->CCOR = CLK_CCOR_RESET_VALUE;
+      00002A 35 00 50 C9      [ 1]  103 	mov	0x50c9+0, #0x00
+                                    104 ;	../src/stm8s_clk.c: 86: CLK->HSITRIMR = CLK_HSITRIMR_RESET_VALUE;
+      00002E 35 00 50 CC      [ 1]  105 	mov	0x50cc+0, #0x00
+                                    106 ;	../src/stm8s_clk.c: 87: CLK->SWIMCCR = CLK_SWIMCCR_RESET_VALUE;
+      000032 35 00 50 CD      [ 1]  107 	mov	0x50cd+0, #0x00
+                                    108 ;	../src/stm8s_clk.c: 88: }
+      000036 81               [ 4]  109 	ret
+                                    110 ;	../src/stm8s_clk.c: 99: void CLK_FastHaltWakeUpCmd(FunctionalState NewState)
+                                    111 ;	-----------------------------------------
+                                    112 ;	 function CLK_FastHaltWakeUpCmd
+                                    113 ;	-----------------------------------------
+      000037                        114 _CLK_FastHaltWakeUpCmd:
+                                    115 ;	../src/stm8s_clk.c: 102: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      000037 0D 03            [ 1]  116 	tnz	(0x03, sp)
+      000039 27 14            [ 1]  117 	jreq	00107$
+      00003B 7B 03            [ 1]  118 	ld	a, (0x03, sp)
+      00003D 4A               [ 1]  119 	dec	a
+      00003E 27 0F            [ 1]  120 	jreq	00107$
+      000040 4B 66            [ 1]  121 	push	#0x66
+      000042 5F               [ 1]  122 	clrw	x
+      000043 89               [ 2]  123 	pushw	x
+      000044 4B 00            [ 1]  124 	push	#0x00
+      000046 4Br0C            [ 1]  125 	push	#<___str_0
+      000048 4Bs00            [ 1]  126 	push	#(___str_0 >> 8)
+      00004A CDr00r00         [ 4]  127 	call	_assert_failed
+      00004D 5B 06            [ 2]  128 	addw	sp, #6
+      00004F                        129 00107$:
+                                    130 ;	../src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
+      00004F C6 50 C0         [ 1]  131 	ld	a, 0x50c0
+                                    132 ;	../src/stm8s_clk.c: 104: if (NewState != DISABLE)
+      000052 0D 03            [ 1]  133 	tnz	(0x03, sp)
+      000054 27 06            [ 1]  134 	jreq	00102$
+                                    135 ;	../src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
+      000056 AA 04            [ 1]  136 	or	a, #0x04
+      000058 C7 50 C0         [ 1]  137 	ld	0x50c0, a
+      00005B 81               [ 4]  138 	ret
+      00005C                        139 00102$:
+                                    140 ;	../src/stm8s_clk.c: 112: CLK->ICKR &= (uint8_t)(~CLK_ICKR_FHWU);
+      00005C A4 FB            [ 1]  141 	and	a, #0xfb
+      00005E C7 50 C0         [ 1]  142 	ld	0x50c0, a
+                                    143 ;	../src/stm8s_clk.c: 114: }
+      000061 81               [ 4]  144 	ret
+                                    145 ;	../src/stm8s_clk.c: 121: void CLK_HSECmd(FunctionalState NewState)
+                                    146 ;	-----------------------------------------
+                                    147 ;	 function CLK_HSECmd
+                                    148 ;	-----------------------------------------
+      000062                        149 _CLK_HSECmd:
+                                    150 ;	../src/stm8s_clk.c: 124: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      000062 0D 03            [ 1]  151 	tnz	(0x03, sp)
+      000064 27 14            [ 1]  152 	jreq	00107$
+      000066 7B 03            [ 1]  153 	ld	a, (0x03, sp)
+      000068 4A               [ 1]  154 	dec	a
+      000069 27 0F            [ 1]  155 	jreq	00107$
+      00006B 4B 7C            [ 1]  156 	push	#0x7c
+      00006D 5F               [ 1]  157 	clrw	x
+      00006E 89               [ 2]  158 	pushw	x
+      00006F 4B 00            [ 1]  159 	push	#0x00
+      000071 4Br0C            [ 1]  160 	push	#<___str_0
+      000073 4Bs00            [ 1]  161 	push	#(___str_0 >> 8)
+      000075 CDr00r00         [ 4]  162 	call	_assert_failed
+      000078 5B 06            [ 2]  163 	addw	sp, #6
+      00007A                        164 00107$:
+                                    165 ;	../src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
+      00007A C6 50 C1         [ 1]  166 	ld	a, 0x50c1
+                                    167 ;	../src/stm8s_clk.c: 126: if (NewState != DISABLE)
+      00007D 0D 03            [ 1]  168 	tnz	(0x03, sp)
+      00007F 27 06            [ 1]  169 	jreq	00102$
+                                    170 ;	../src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
+      000081 AA 01            [ 1]  171 	or	a, #0x01
+      000083 C7 50 C1         [ 1]  172 	ld	0x50c1, a
+      000086 81               [ 4]  173 	ret
+      000087                        174 00102$:
+                                    175 ;	../src/stm8s_clk.c: 134: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
+      000087 A4 FE            [ 1]  176 	and	a, #0xfe
+      000089 C7 50 C1         [ 1]  177 	ld	0x50c1, a
+                                    178 ;	../src/stm8s_clk.c: 136: }
+      00008C 81               [ 4]  179 	ret
+                                    180 ;	../src/stm8s_clk.c: 143: void CLK_HSICmd(FunctionalState NewState)
+                                    181 ;	-----------------------------------------
+                                    182 ;	 function CLK_HSICmd
+                                    183 ;	-----------------------------------------
+      00008D                        184 _CLK_HSICmd:
+                                    185 ;	../src/stm8s_clk.c: 146: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      00008D 0D 03            [ 1]  186 	tnz	(0x03, sp)
+      00008F 27 14            [ 1]  187 	jreq	00107$
+      000091 7B 03            [ 1]  188 	ld	a, (0x03, sp)
+      000093 4A               [ 1]  189 	dec	a
+      000094 27 0F            [ 1]  190 	jreq	00107$
+      000096 4B 92            [ 1]  191 	push	#0x92
+      000098 5F               [ 1]  192 	clrw	x
+      000099 89               [ 2]  193 	pushw	x
+      00009A 4B 00            [ 1]  194 	push	#0x00
+      00009C 4Br0C            [ 1]  195 	push	#<___str_0
+      00009E 4Bs00            [ 1]  196 	push	#(___str_0 >> 8)
+      0000A0 CDr00r00         [ 4]  197 	call	_assert_failed
+      0000A3 5B 06            [ 2]  198 	addw	sp, #6
+      0000A5                        199 00107$:
+                                    200 ;	../src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
+      0000A5 C6 50 C0         [ 1]  201 	ld	a, 0x50c0
+                                    202 ;	../src/stm8s_clk.c: 148: if (NewState != DISABLE)
+      0000A8 0D 03            [ 1]  203 	tnz	(0x03, sp)
+      0000AA 27 06            [ 1]  204 	jreq	00102$
+                                    205 ;	../src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
+      0000AC AA 01            [ 1]  206 	or	a, #0x01
+      0000AE C7 50 C0         [ 1]  207 	ld	0x50c0, a
+      0000B1 81               [ 4]  208 	ret
+      0000B2                        209 00102$:
+                                    210 ;	../src/stm8s_clk.c: 156: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
+      0000B2 A4 FE            [ 1]  211 	and	a, #0xfe
+      0000B4 C7 50 C0         [ 1]  212 	ld	0x50c0, a
+                                    213 ;	../src/stm8s_clk.c: 158: }
+      0000B7 81               [ 4]  214 	ret
+                                    215 ;	../src/stm8s_clk.c: 166: void CLK_LSICmd(FunctionalState NewState)
+                                    216 ;	-----------------------------------------
+                                    217 ;	 function CLK_LSICmd
+                                    218 ;	-----------------------------------------
+      0000B8                        219 _CLK_LSICmd:
+                                    220 ;	../src/stm8s_clk.c: 169: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      0000B8 0D 03            [ 1]  221 	tnz	(0x03, sp)
+      0000BA 27 14            [ 1]  222 	jreq	00107$
+      0000BC 7B 03            [ 1]  223 	ld	a, (0x03, sp)
+      0000BE 4A               [ 1]  224 	dec	a
+      0000BF 27 0F            [ 1]  225 	jreq	00107$
+      0000C1 4B A9            [ 1]  226 	push	#0xa9
+      0000C3 5F               [ 1]  227 	clrw	x
+      0000C4 89               [ 2]  228 	pushw	x
+      0000C5 4B 00            [ 1]  229 	push	#0x00
+      0000C7 4Br0C            [ 1]  230 	push	#<___str_0
+      0000C9 4Bs00            [ 1]  231 	push	#(___str_0 >> 8)
+      0000CB CDr00r00         [ 4]  232 	call	_assert_failed
+      0000CE 5B 06            [ 2]  233 	addw	sp, #6
+      0000D0                        234 00107$:
+                                    235 ;	../src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
+      0000D0 C6 50 C0         [ 1]  236 	ld	a, 0x50c0
+                                    237 ;	../src/stm8s_clk.c: 171: if (NewState != DISABLE)
+      0000D3 0D 03            [ 1]  238 	tnz	(0x03, sp)
+      0000D5 27 06            [ 1]  239 	jreq	00102$
+                                    240 ;	../src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
+      0000D7 AA 08            [ 1]  241 	or	a, #0x08
+      0000D9 C7 50 C0         [ 1]  242 	ld	0x50c0, a
+      0000DC 81               [ 4]  243 	ret
+      0000DD                        244 00102$:
+                                    245 ;	../src/stm8s_clk.c: 179: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
+      0000DD A4 F7            [ 1]  246 	and	a, #0xf7
+      0000DF C7 50 C0         [ 1]  247 	ld	0x50c0, a
+                                    248 ;	../src/stm8s_clk.c: 181: }
+      0000E2 81               [ 4]  249 	ret
+                                    250 ;	../src/stm8s_clk.c: 189: void CLK_CCOCmd(FunctionalState NewState)
+                                    251 ;	-----------------------------------------
+                                    252 ;	 function CLK_CCOCmd
+                                    253 ;	-----------------------------------------
+      0000E3                        254 _CLK_CCOCmd:
+                                    255 ;	../src/stm8s_clk.c: 192: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      0000E3 0D 03            [ 1]  256 	tnz	(0x03, sp)
+      0000E5 27 14            [ 1]  257 	jreq	00107$
+      0000E7 7B 03            [ 1]  258 	ld	a, (0x03, sp)
+      0000E9 4A               [ 1]  259 	dec	a
+      0000EA 27 0F            [ 1]  260 	jreq	00107$
+      0000EC 4B C0            [ 1]  261 	push	#0xc0
+      0000EE 5F               [ 1]  262 	clrw	x
+      0000EF 89               [ 2]  263 	pushw	x
+      0000F0 4B 00            [ 1]  264 	push	#0x00
+      0000F2 4Br0C            [ 1]  265 	push	#<___str_0
+      0000F4 4Bs00            [ 1]  266 	push	#(___str_0 >> 8)
+      0000F6 CDr00r00         [ 4]  267 	call	_assert_failed
+      0000F9 5B 06            [ 2]  268 	addw	sp, #6
+      0000FB                        269 00107$:
+                                    270 ;	../src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
+      0000FB C6 50 C9         [ 1]  271 	ld	a, 0x50c9
+                                    272 ;	../src/stm8s_clk.c: 194: if (NewState != DISABLE)
+      0000FE 0D 03            [ 1]  273 	tnz	(0x03, sp)
+      000100 27 06            [ 1]  274 	jreq	00102$
+                                    275 ;	../src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
+      000102 AA 01            [ 1]  276 	or	a, #0x01
+      000104 C7 50 C9         [ 1]  277 	ld	0x50c9, a
+      000107 81               [ 4]  278 	ret
+      000108                        279 00102$:
+                                    280 ;	../src/stm8s_clk.c: 202: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOEN);
+      000108 A4 FE            [ 1]  281 	and	a, #0xfe
+      00010A C7 50 C9         [ 1]  282 	ld	0x50c9, a
+                                    283 ;	../src/stm8s_clk.c: 204: }
+      00010D 81               [ 4]  284 	ret
+                                    285 ;	../src/stm8s_clk.c: 213: void CLK_ClockSwitchCmd(FunctionalState NewState)
+                                    286 ;	-----------------------------------------
+                                    287 ;	 function CLK_ClockSwitchCmd
+                                    288 ;	-----------------------------------------
+      00010E                        289 _CLK_ClockSwitchCmd:
+                                    290 ;	../src/stm8s_clk.c: 216: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      00010E 0D 03            [ 1]  291 	tnz	(0x03, sp)
+      000110 27 14            [ 1]  292 	jreq	00107$
+      000112 7B 03            [ 1]  293 	ld	a, (0x03, sp)
+      000114 4A               [ 1]  294 	dec	a
+      000115 27 0F            [ 1]  295 	jreq	00107$
+      000117 4B D8            [ 1]  296 	push	#0xd8
+      000119 5F               [ 1]  297 	clrw	x
+      00011A 89               [ 2]  298 	pushw	x
+      00011B 4B 00            [ 1]  299 	push	#0x00
+      00011D 4Br0C            [ 1]  300 	push	#<___str_0
+      00011F 4Bs00            [ 1]  301 	push	#(___str_0 >> 8)
+      000121 CDr00r00         [ 4]  302 	call	_assert_failed
+      000124 5B 06            [ 2]  303 	addw	sp, #6
+      000126                        304 00107$:
+                                    305 ;	../src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
+      000126 C6 50 C5         [ 1]  306 	ld	a, 0x50c5
+                                    307 ;	../src/stm8s_clk.c: 218: if (NewState != DISABLE )
+      000129 0D 03            [ 1]  308 	tnz	(0x03, sp)
+      00012B 27 06            [ 1]  309 	jreq	00102$
+                                    310 ;	../src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
+      00012D AA 02            [ 1]  311 	or	a, #0x02
+      00012F C7 50 C5         [ 1]  312 	ld	0x50c5, a
+      000132 81               [ 4]  313 	ret
+      000133                        314 00102$:
+                                    315 ;	../src/stm8s_clk.c: 226: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWEN);
+      000133 A4 FD            [ 1]  316 	and	a, #0xfd
+      000135 C7 50 C5         [ 1]  317 	ld	0x50c5, a
+                                    318 ;	../src/stm8s_clk.c: 228: }
+      000138 81               [ 4]  319 	ret
+                                    320 ;	../src/stm8s_clk.c: 238: void CLK_SlowActiveHaltWakeUpCmd(FunctionalState NewState)
+                                    321 ;	-----------------------------------------
+                                    322 ;	 function CLK_SlowActiveHaltWakeUpCmd
+                                    323 ;	-----------------------------------------
+      000139                        324 _CLK_SlowActiveHaltWakeUpCmd:
+                                    325 ;	../src/stm8s_clk.c: 241: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      000139 0D 03            [ 1]  326 	tnz	(0x03, sp)
+      00013B 27 14            [ 1]  327 	jreq	00107$
+      00013D 7B 03            [ 1]  328 	ld	a, (0x03, sp)
+      00013F 4A               [ 1]  329 	dec	a
+      000140 27 0F            [ 1]  330 	jreq	00107$
+      000142 4B F1            [ 1]  331 	push	#0xf1
+      000144 5F               [ 1]  332 	clrw	x
+      000145 89               [ 2]  333 	pushw	x
+      000146 4B 00            [ 1]  334 	push	#0x00
+      000148 4Br0C            [ 1]  335 	push	#<___str_0
+      00014A 4Bs00            [ 1]  336 	push	#(___str_0 >> 8)
+      00014C CDr00r00         [ 4]  337 	call	_assert_failed
+      00014F 5B 06            [ 2]  338 	addw	sp, #6
+      000151                        339 00107$:
+                                    340 ;	../src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
+      000151 C6 50 C0         [ 1]  341 	ld	a, 0x50c0
+                                    342 ;	../src/stm8s_clk.c: 243: if (NewState != DISABLE)
+      000154 0D 03            [ 1]  343 	tnz	(0x03, sp)
+      000156 27 06            [ 1]  344 	jreq	00102$
+                                    345 ;	../src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
+      000158 AA 20            [ 1]  346 	or	a, #0x20
+      00015A C7 50 C0         [ 1]  347 	ld	0x50c0, a
+      00015D 81               [ 4]  348 	ret
+      00015E                        349 00102$:
+                                    350 ;	../src/stm8s_clk.c: 251: CLK->ICKR &= (uint8_t)(~CLK_ICKR_SWUAH);
+      00015E A4 DF            [ 1]  351 	and	a, #0xdf
+      000160 C7 50 C0         [ 1]  352 	ld	0x50c0, a
+                                    353 ;	../src/stm8s_clk.c: 253: }
+      000163 81               [ 4]  354 	ret
+                                    355 ;	../src/stm8s_clk.c: 263: void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, FunctionalState NewState)
+                                    356 ;	-----------------------------------------
+                                    357 ;	 function CLK_PeripheralClockConfig
+                                    358 ;	-----------------------------------------
+      000164                        359 _CLK_PeripheralClockConfig:
+      000164 89               [ 2]  360 	pushw	x
+                                    361 ;	../src/stm8s_clk.c: 266: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      000165 0D 06            [ 1]  362 	tnz	(0x06, sp)
+      000167 27 14            [ 1]  363 	jreq	00113$
+      000169 7B 06            [ 1]  364 	ld	a, (0x06, sp)
+      00016B 4A               [ 1]  365 	dec	a
+      00016C 27 0F            [ 1]  366 	jreq	00113$
+      00016E 4B 0A            [ 1]  367 	push	#0x0a
+      000170 4B 01            [ 1]  368 	push	#0x01
+      000172 5F               [ 1]  369 	clrw	x
+      000173 89               [ 2]  370 	pushw	x
+      000174 4Br0C            [ 1]  371 	push	#<___str_0
+      000176 4Bs00            [ 1]  372 	push	#(___str_0 >> 8)
+      000178 CDr00r00         [ 4]  373 	call	_assert_failed
+      00017B 5B 06            [ 2]  374 	addw	sp, #6
+      00017D                        375 00113$:
+                                    376 ;	../src/stm8s_clk.c: 267: assert_param(IS_CLK_PERIPHERAL_OK(CLK_Peripheral));
+      00017D 0D 05            [ 1]  377 	tnz	(0x05, sp)
+      00017F 27 67            [ 1]  378 	jreq	00118$
+      000181 7B 05            [ 1]  379 	ld	a, (0x05, sp)
+      000183 4A               [ 1]  380 	dec	a
+      000184 27 62            [ 1]  381 	jreq	00118$
+      000186 7B 05            [ 1]  382 	ld	a, (0x05, sp)
+      000188 A0 03            [ 1]  383 	sub	a, #0x03
+      00018A 26 02            [ 1]  384 	jrne	00262$
+      00018C 4C               [ 1]  385 	inc	a
+      00018D 21                     386 	.byte 0x21
+      00018E                        387 00262$:
+      00018E 4F               [ 1]  388 	clr	a
+      00018F                        389 00263$:
+      00018F 4D               [ 1]  390 	tnz	a
+      000190 26 56            [ 1]  391 	jrne	00118$
+      000192 4D               [ 1]  392 	tnz	a
+      000193 26 53            [ 1]  393 	jrne	00118$
+      000195 4D               [ 1]  394 	tnz	a
+      000196 26 50            [ 1]  395 	jrne	00118$
+      000198 7B 05            [ 1]  396 	ld	a, (0x05, sp)
+      00019A A0 04            [ 1]  397 	sub	a, #0x04
+      00019C 26 04            [ 1]  398 	jrne	00268$
+      00019E 4C               [ 1]  399 	inc	a
+      00019F 97               [ 1]  400 	ld	xl, a
+      0001A0 20 02            [ 2]  401 	jra	00269$
+      0001A2                        402 00268$:
+      0001A2 4F               [ 1]  403 	clr	a
+      0001A3 97               [ 1]  404 	ld	xl, a
+      0001A4                        405 00269$:
+      0001A4 9F               [ 1]  406 	ld	a, xl
+      0001A5 4D               [ 1]  407 	tnz	a
+      0001A6 26 40            [ 1]  408 	jrne	00118$
+      0001A8 7B 05            [ 1]  409 	ld	a, (0x05, sp)
+      0001AA A0 05            [ 1]  410 	sub	a, #0x05
+      0001AC 26 02            [ 1]  411 	jrne	00272$
+      0001AE 4C               [ 1]  412 	inc	a
+      0001AF 21                     413 	.byte 0x21
+      0001B0                        414 00272$:
+      0001B0 4F               [ 1]  415 	clr	a
+      0001B1                        416 00273$:
+      0001B1 4D               [ 1]  417 	tnz	a
+      0001B2 26 34            [ 1]  418 	jrne	00118$
+      0001B4 4D               [ 1]  419 	tnz	a
+      0001B5 26 31            [ 1]  420 	jrne	00118$
+      0001B7 9F               [ 1]  421 	ld	a, xl
+      0001B8 4D               [ 1]  422 	tnz	a
+      0001B9 26 2D            [ 1]  423 	jrne	00118$
+      0001BB 7B 05            [ 1]  424 	ld	a, (0x05, sp)
+      0001BD A1 06            [ 1]  425 	cp	a, #0x06
+      0001BF 27 27            [ 1]  426 	jreq	00118$
+      0001C1 7B 05            [ 1]  427 	ld	a, (0x05, sp)
+      0001C3 A1 07            [ 1]  428 	cp	a, #0x07
+      0001C5 27 21            [ 1]  429 	jreq	00118$
+      0001C7 7B 05            [ 1]  430 	ld	a, (0x05, sp)
+      0001C9 A1 17            [ 1]  431 	cp	a, #0x17
+      0001CB 27 1B            [ 1]  432 	jreq	00118$
+      0001CD 7B 05            [ 1]  433 	ld	a, (0x05, sp)
+      0001CF A1 13            [ 1]  434 	cp	a, #0x13
+      0001D1 27 15            [ 1]  435 	jreq	00118$
+      0001D3 7B 05            [ 1]  436 	ld	a, (0x05, sp)
+      0001D5 A1 12            [ 1]  437 	cp	a, #0x12
+      0001D7 27 0F            [ 1]  438 	jreq	00118$
+      0001D9 4B 0B            [ 1]  439 	push	#0x0b
+      0001DB 4B 01            [ 1]  440 	push	#0x01
+      0001DD 5F               [ 1]  441 	clrw	x
+      0001DE 89               [ 2]  442 	pushw	x
+      0001DF 4Br0C            [ 1]  443 	push	#<___str_0
+      0001E1 4Bs00            [ 1]  444 	push	#(___str_0 >> 8)
+      0001E3 CDr00r00         [ 4]  445 	call	_assert_failed
+      0001E6 5B 06            [ 2]  446 	addw	sp, #6
+      0001E8                        447 00118$:
+                                    448 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      0001E8 7B 05            [ 1]  449 	ld	a, (0x05, sp)
+      0001EA A4 0F            [ 1]  450 	and	a, #0x0f
+      0001EC 88               [ 1]  451 	push	a
+      0001ED A6 01            [ 1]  452 	ld	a, #0x01
+      0001EF 6B 03            [ 1]  453 	ld	(0x03, sp), a
+      0001F1 84               [ 1]  454 	pop	a
+      0001F2 4D               [ 1]  455 	tnz	a
+      0001F3 27 05            [ 1]  456 	jreq	00293$
+      0001F5                        457 00292$:
+      0001F5 08 02            [ 1]  458 	sll	(0x02, sp)
+      0001F7 4A               [ 1]  459 	dec	a
+      0001F8 26 FB            [ 1]  460 	jrne	00292$
+      0001FA                        461 00293$:
+                                    462 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      0001FA 7B 02            [ 1]  463 	ld	a, (0x02, sp)
+      0001FC 43               [ 1]  464 	cpl	a
+      0001FD 6B 01            [ 1]  465 	ld	(0x01, sp), a
+                                    466 ;	../src/stm8s_clk.c: 269: if (((uint8_t)CLK_Peripheral & (uint8_t)0x10) == 0x00)
+      0001FF 7B 05            [ 1]  467 	ld	a, (0x05, sp)
+      000201 A5 10            [ 1]  468 	bcp	a, #0x10
+      000203 26 15            [ 1]  469 	jrne	00108$
+                                    470 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      000205 C6 50 C7         [ 1]  471 	ld	a, 0x50c7
+                                    472 ;	../src/stm8s_clk.c: 271: if (NewState != DISABLE)
+      000208 0D 06            [ 1]  473 	tnz	(0x06, sp)
+      00020A 27 07            [ 1]  474 	jreq	00102$
+                                    475 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      00020C 1A 02            [ 1]  476 	or	a, (0x02, sp)
+      00020E C7 50 C7         [ 1]  477 	ld	0x50c7, a
+      000211 20 1A            [ 2]  478 	jra	00110$
+      000213                        479 00102$:
+                                    480 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      000213 14 01            [ 1]  481 	and	a, (0x01, sp)
+      000215 C7 50 C7         [ 1]  482 	ld	0x50c7, a
+      000218 20 13            [ 2]  483 	jra	00110$
+      00021A                        484 00108$:
+                                    485 ;	../src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      00021A C6 50 CA         [ 1]  486 	ld	a, 0x50ca
+                                    487 ;	../src/stm8s_clk.c: 284: if (NewState != DISABLE)
+      00021D 0D 06            [ 1]  488 	tnz	(0x06, sp)
+      00021F 27 07            [ 1]  489 	jreq	00105$
+                                    490 ;	../src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      000221 1A 02            [ 1]  491 	or	a, (0x02, sp)
+      000223 C7 50 CA         [ 1]  492 	ld	0x50ca, a
+      000226 20 05            [ 2]  493 	jra	00110$
+      000228                        494 00105$:
+                                    495 ;	../src/stm8s_clk.c: 292: CLK->PCKENR2 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      000228 14 01            [ 1]  496 	and	a, (0x01, sp)
+      00022A C7 50 CA         [ 1]  497 	ld	0x50ca, a
+      00022D                        498 00110$:
+                                    499 ;	../src/stm8s_clk.c: 295: }
+      00022D 85               [ 2]  500 	popw	x
+      00022E 81               [ 4]  501 	ret
+                                    502 ;	../src/stm8s_clk.c: 309: ErrorStatus CLK_ClockSwitchConfig(CLK_SwitchMode_TypeDef CLK_SwitchMode, CLK_Source_TypeDef CLK_NewClock, FunctionalState ITState, CLK_CurrentClockState_TypeDef CLK_CurrentClockState)
+                                    503 ;	-----------------------------------------
+                                    504 ;	 function CLK_ClockSwitchConfig
+                                    505 ;	-----------------------------------------
+      00022F                        506 _CLK_ClockSwitchConfig:
+      00022F 88               [ 1]  507 	push	a
+                                    508 ;	../src/stm8s_clk.c: 316: assert_param(IS_CLK_SOURCE_OK(CLK_NewClock));
+      000230 7B 05            [ 1]  509 	ld	a, (0x05, sp)
+      000232 A1 E1            [ 1]  510 	cp	a, #0xe1
+      000234 27 1B            [ 1]  511 	jreq	00140$
+      000236 7B 05            [ 1]  512 	ld	a, (0x05, sp)
+      000238 A1 D2            [ 1]  513 	cp	a, #0xd2
+      00023A 27 15            [ 1]  514 	jreq	00140$
+      00023C 7B 05            [ 1]  515 	ld	a, (0x05, sp)
+      00023E A1 B4            [ 1]  516 	cp	a, #0xb4
+      000240 27 0F            [ 1]  517 	jreq	00140$
+      000242 4B 3C            [ 1]  518 	push	#0x3c
+      000244 4B 01            [ 1]  519 	push	#0x01
+      000246 5F               [ 1]  520 	clrw	x
+      000247 89               [ 2]  521 	pushw	x
+      000248 4Br0C            [ 1]  522 	push	#<___str_0
+      00024A 4Bs00            [ 1]  523 	push	#(___str_0 >> 8)
+      00024C CDr00r00         [ 4]  524 	call	_assert_failed
+      00024F 5B 06            [ 2]  525 	addw	sp, #6
+      000251                        526 00140$:
+                                    527 ;	../src/stm8s_clk.c: 317: assert_param(IS_CLK_SWITCHMODE_OK(CLK_SwitchMode));
+      000251 7B 04            [ 1]  528 	ld	a, (0x04, sp)
+      000253 4A               [ 1]  529 	dec	a
+      000254 26 05            [ 1]  530 	jrne	00309$
+      000256 A6 01            [ 1]  531 	ld	a, #0x01
+      000258 6B 01            [ 1]  532 	ld	(0x01, sp), a
+      00025A C1                     533 	.byte 0xc1
+      00025B                        534 00309$:
+      00025B 0F 01            [ 1]  535 	clr	(0x01, sp)
+      00025D                        536 00310$:
+      00025D 0D 04            [ 1]  537 	tnz	(0x04, sp)
+      00025F 27 13            [ 1]  538 	jreq	00148$
+      000261 0D 01            [ 1]  539 	tnz	(0x01, sp)
+      000263 26 0F            [ 1]  540 	jrne	00148$
+      000265 4B 3D            [ 1]  541 	push	#0x3d
+      000267 4B 01            [ 1]  542 	push	#0x01
+      000269 5F               [ 1]  543 	clrw	x
+      00026A 89               [ 2]  544 	pushw	x
+      00026B 4Br0C            [ 1]  545 	push	#<___str_0
+      00026D 4Bs00            [ 1]  546 	push	#(___str_0 >> 8)
+      00026F CDr00r00         [ 4]  547 	call	_assert_failed
+      000272 5B 06            [ 2]  548 	addw	sp, #6
+      000274                        549 00148$:
+                                    550 ;	../src/stm8s_clk.c: 318: assert_param(IS_FUNCTIONALSTATE_OK(ITState));
+      000274 0D 06            [ 1]  551 	tnz	(0x06, sp)
+      000276 27 14            [ 1]  552 	jreq	00153$
+      000278 7B 06            [ 1]  553 	ld	a, (0x06, sp)
+      00027A 4A               [ 1]  554 	dec	a
+      00027B 27 0F            [ 1]  555 	jreq	00153$
+      00027D 4B 3E            [ 1]  556 	push	#0x3e
+      00027F 4B 01            [ 1]  557 	push	#0x01
+      000281 5F               [ 1]  558 	clrw	x
+      000282 89               [ 2]  559 	pushw	x
+      000283 4Br0C            [ 1]  560 	push	#<___str_0
+      000285 4Bs00            [ 1]  561 	push	#(___str_0 >> 8)
+      000287 CDr00r00         [ 4]  562 	call	_assert_failed
+      00028A 5B 06            [ 2]  563 	addw	sp, #6
+      00028C                        564 00153$:
+                                    565 ;	../src/stm8s_clk.c: 319: assert_param(IS_CLK_CURRENTCLOCKSTATE_OK(CLK_CurrentClockState));
+      00028C 0D 07            [ 1]  566 	tnz	(0x07, sp)
+      00028E 27 14            [ 1]  567 	jreq	00158$
+      000290 7B 07            [ 1]  568 	ld	a, (0x07, sp)
+      000292 4A               [ 1]  569 	dec	a
+      000293 27 0F            [ 1]  570 	jreq	00158$
+      000295 4B 3F            [ 1]  571 	push	#0x3f
+      000297 4B 01            [ 1]  572 	push	#0x01
+      000299 5F               [ 1]  573 	clrw	x
+      00029A 89               [ 2]  574 	pushw	x
+      00029B 4Br0C            [ 1]  575 	push	#<___str_0
+      00029D 4Bs00            [ 1]  576 	push	#(___str_0 >> 8)
+      00029F CDr00r00         [ 4]  577 	call	_assert_failed
+      0002A2 5B 06            [ 2]  578 	addw	sp, #6
+      0002A4                        579 00158$:
+                                    580 ;	../src/stm8s_clk.c: 322: clock_master = (CLK_Source_TypeDef)CLK->CMSR;
+      0002A4 C6 50 C3         [ 1]  581 	ld	a, 0x50c3
+      0002A7 90 97            [ 1]  582 	ld	yl, a
+                                    583 ;	../src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
+      0002A9 C6 50 C5         [ 1]  584 	ld	a, 0x50c5
+                                    585 ;	../src/stm8s_clk.c: 325: if (CLK_SwitchMode == CLK_SWITCHMODE_AUTO)
+      0002AC 0D 01            [ 1]  586 	tnz	(0x01, sp)
+      0002AE 27 38            [ 1]  587 	jreq	00122$
+                                    588 ;	../src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
+      0002B0 AA 02            [ 1]  589 	or	a, #0x02
+      0002B2 C7 50 C5         [ 1]  590 	ld	0x50c5, a
+      0002B5 C6 50 C5         [ 1]  591 	ld	a, 0x50c5
+                                    592 ;	../src/stm8s_clk.c: 331: if (ITState != DISABLE)
+      0002B8 0D 06            [ 1]  593 	tnz	(0x06, sp)
+      0002BA 27 07            [ 1]  594 	jreq	00102$
+                                    595 ;	../src/stm8s_clk.c: 333: CLK->SWCR |= CLK_SWCR_SWIEN;
+      0002BC AA 04            [ 1]  596 	or	a, #0x04
+      0002BE C7 50 C5         [ 1]  597 	ld	0x50c5, a
+      0002C1 20 05            [ 2]  598 	jra	00103$
+      0002C3                        599 00102$:
+                                    600 ;	../src/stm8s_clk.c: 337: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
+      0002C3 A4 FB            [ 1]  601 	and	a, #0xfb
+      0002C5 C7 50 C5         [ 1]  602 	ld	0x50c5, a
+      0002C8                        603 00103$:
+                                    604 ;	../src/stm8s_clk.c: 341: CLK->SWR = (uint8_t)CLK_NewClock;
+      0002C8 AE 50 C4         [ 2]  605 	ldw	x, #0x50c4
+      0002CB 7B 05            [ 1]  606 	ld	a, (0x05, sp)
+      0002CD F7               [ 1]  607 	ld	(x), a
+                                    608 ;	../src/stm8s_clk.c: 344: while((((CLK->SWCR & CLK_SWCR_SWBSY) != 0 )&& (DownCounter != 0)))
+      0002CE 5F               [ 1]  609 	clrw	x
+      0002CF 5A               [ 2]  610 	decw	x
+      0002D0                        611 00105$:
+      0002D0 C6 50 C5         [ 1]  612 	ld	a, 0x50c5
+      0002D3 44               [ 1]  613 	srl	a
+      0002D4 24 06            [ 1]  614 	jrnc	00107$
+      0002D6 5D               [ 2]  615 	tnzw	x
+      0002D7 27 03            [ 1]  616 	jreq	00107$
+                                    617 ;	../src/stm8s_clk.c: 346: DownCounter--;
+      0002D9 5A               [ 2]  618 	decw	x
+      0002DA 20 F4            [ 2]  619 	jra	00105$
+      0002DC                        620 00107$:
+                                    621 ;	../src/stm8s_clk.c: 349: if(DownCounter != 0)
+      0002DC 5D               [ 2]  622 	tnzw	x
+      0002DD 27 05            [ 1]  623 	jreq	00109$
+                                    624 ;	../src/stm8s_clk.c: 351: Swif = SUCCESS;
+      0002DF A6 01            [ 1]  625 	ld	a, #0x01
+      0002E1 97               [ 1]  626 	ld	xl, a
+      0002E2 20 37            [ 2]  627 	jra	00123$
+      0002E4                        628 00109$:
+                                    629 ;	../src/stm8s_clk.c: 355: Swif = ERROR;
+      0002E4 4F               [ 1]  630 	clr	a
+      0002E5 97               [ 1]  631 	ld	xl, a
+      0002E6 20 33            [ 2]  632 	jra	00123$
+      0002E8                        633 00122$:
+                                    634 ;	../src/stm8s_clk.c: 361: if (ITState != DISABLE)
+      0002E8 0D 06            [ 1]  635 	tnz	(0x06, sp)
+      0002EA 27 07            [ 1]  636 	jreq	00112$
+                                    637 ;	../src/stm8s_clk.c: 363: CLK->SWCR |= CLK_SWCR_SWIEN;
+      0002EC AA 04            [ 1]  638 	or	a, #0x04
+      0002EE C7 50 C5         [ 1]  639 	ld	0x50c5, a
+      0002F1 20 05            [ 2]  640 	jra	00113$
+      0002F3                        641 00112$:
                                     642 ;	../src/stm8s_clk.c: 367: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
-      000331 AE 50 C5         [ 2]  643 	ldw	x, #0x50c5
-      000334 F6               [ 1]  644 	ld	a, (x)
-      000335 A4 FB            [ 1]  645 	and	a, #0xfb
-      000337 F7               [ 1]  646 	ld	(x), a
-      000338                        647 00113$:
-                                    648 ;	../src/stm8s_clk.c: 371: CLK->SWR = (uint8_t)CLK_NewClock;
-      000338 AE 50 C4         [ 2]  649 	ldw	x, #0x50c4
-      00033B 7B 07            [ 1]  650 	ld	a, (0x07, sp)
-      00033D F7               [ 1]  651 	ld	(x), a
-                                    652 ;	../src/stm8s_clk.c: 374: while((((CLK->SWCR & CLK_SWCR_SWIF) != 0 ) && (DownCounter != 0)))
-      00033E AE FF FF         [ 2]  653 	ldw	x, #0xffff
-      000341                        654 00115$:
-      000341 90 AE 50 C5      [ 2]  655 	ldw	y, #0x50c5
-      000345 90 F6            [ 1]  656 	ld	a, (y)
-      000347 A5 08            [ 1]  657 	bcp	a, #0x08
-      000349 27 06            [ 1]  658 	jreq	00117$
-      00034B 5D               [ 2]  659 	tnzw	x
-      00034C 27 03            [ 1]  660 	jreq	00117$
-                                    661 ;	../src/stm8s_clk.c: 376: DownCounter--;
-      00034E 5A               [ 2]  662 	decw	x
-      00034F 20 F0            [ 2]  663 	jra	00115$
-      000351                        664 00117$:
-                                    665 ;	../src/stm8s_clk.c: 379: if(DownCounter != 0)
-      000351 5D               [ 2]  666 	tnzw	x
-      000352 27 0D            [ 1]  667 	jreq	00119$
-                                    668 ;	../src/stm8s_clk.c: 382: CLK->SWCR |= CLK_SWCR_SWEN;
-      000354 AE 50 C5         [ 2]  669 	ldw	x, #0x50c5
-      000357 F6               [ 1]  670 	ld	a, (x)
-      000358 AA 02            [ 1]  671 	or	a, #0x02
-      00035A F7               [ 1]  672 	ld	(x), a
-                                    673 ;	../src/stm8s_clk.c: 383: Swif = SUCCESS;
-      00035B A6 01            [ 1]  674 	ld	a, #0x01
-      00035D 6B 02            [ 1]  675 	ld	(0x02, sp), a
-      00035F 20 02            [ 2]  676 	jra	00123$
-      000361                        677 00119$:
-                                    678 ;	../src/stm8s_clk.c: 387: Swif = ERROR;
-      000361 0F 02            [ 1]  679 	clr	(0x02, sp)
-      000363                        680 00123$:
-                                    681 ;	../src/stm8s_clk.c: 390: if(Swif != ERROR)
-      000363 0D 02            [ 1]  682 	tnz	(0x02, sp)
-      000365 27 37            [ 1]  683 	jreq	00136$
-                                    684 ;	../src/stm8s_clk.c: 393: if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSI))
-      000367 0D 09            [ 1]  685 	tnz	(0x09, sp)
-      000369 26 0F            [ 1]  686 	jrne	00132$
-      00036B 7B 01            [ 1]  687 	ld	a, (0x01, sp)
-      00036D A1 E1            [ 1]  688 	cp	a, #0xe1
-      00036F 26 09            [ 1]  689 	jrne	00132$
-                                    690 ;	../src/stm8s_clk.c: 395: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
-      000371 AE 50 C0         [ 2]  691 	ldw	x, #0x50c0
-      000374 F6               [ 1]  692 	ld	a, (x)
-      000375 A4 FE            [ 1]  693 	and	a, #0xfe
-      000377 F7               [ 1]  694 	ld	(x), a
-      000378 20 24            [ 2]  695 	jra	00136$
-      00037A                        696 00132$:
-                                    697 ;	../src/stm8s_clk.c: 397: else if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_LSI))
-      00037A 0D 09            [ 1]  698 	tnz	(0x09, sp)
-      00037C 26 0F            [ 1]  699 	jrne	00128$
-      00037E 7B 01            [ 1]  700 	ld	a, (0x01, sp)
-      000380 A1 D2            [ 1]  701 	cp	a, #0xd2
-      000382 26 09            [ 1]  702 	jrne	00128$
-                                    703 ;	../src/stm8s_clk.c: 399: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
-      000384 AE 50 C0         [ 2]  704 	ldw	x, #0x50c0
-      000387 F6               [ 1]  705 	ld	a, (x)
-      000388 A4 F7            [ 1]  706 	and	a, #0xf7
-      00038A F7               [ 1]  707 	ld	(x), a
-      00038B 20 11            [ 2]  708 	jra	00136$
-      00038D                        709 00128$:
-                                    710 ;	../src/stm8s_clk.c: 401: else if ((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSE))
-      00038D 0D 09            [ 1]  711 	tnz	(0x09, sp)
-      00038F 26 0D            [ 1]  712 	jrne	00136$
-      000391 7B 01            [ 1]  713 	ld	a, (0x01, sp)
-      000393 A1 B4            [ 1]  714 	cp	a, #0xb4
-      000395 26 07            [ 1]  715 	jrne	00136$
-                                    716 ;	../src/stm8s_clk.c: 403: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
-      000397 AE 50 C1         [ 2]  717 	ldw	x, #0x50c1
-      00039A F6               [ 1]  718 	ld	a, (x)
-      00039B A4 FE            [ 1]  719 	and	a, #0xfe
-      00039D F7               [ 1]  720 	ld	(x), a
-      00039E                        721 00136$:
-                                    722 ;	../src/stm8s_clk.c: 406: return(Swif);
-      00039E 7B 02            [ 1]  723 	ld	a, (0x02, sp)
-      0003A0 5B 03            [ 2]  724 	addw	sp, #3
-      0003A2 81               [ 4]  725 	ret
-                                    726 ;	../src/stm8s_clk.c: 415: void CLK_HSIPrescalerConfig(CLK_Prescaler_TypeDef HSIPrescaler)
-                                    727 ;	-----------------------------------------
-                                    728 ;	 function CLK_HSIPrescalerConfig
-                                    729 ;	-----------------------------------------
-      0003A3                        730 _CLK_HSIPrescalerConfig:
-                                    731 ;	../src/stm8s_clk.c: 418: assert_param(IS_CLK_HSIPRESCALER_OK(HSIPrescaler));
-      0003A3 0D 03            [ 1]  732 	tnz	(0x03, sp)
-      0003A5 27 23            [ 1]  733 	jreq	00104$
-      0003A7 7B 03            [ 1]  734 	ld	a, (0x03, sp)
-      0003A9 A1 08            [ 1]  735 	cp	a, #0x08
-      0003AB 27 1D            [ 1]  736 	jreq	00104$
-      0003AD 7B 03            [ 1]  737 	ld	a, (0x03, sp)
-      0003AF A1 10            [ 1]  738 	cp	a, #0x10
-      0003B1 27 17            [ 1]  739 	jreq	00104$
-      0003B3 7B 03            [ 1]  740 	ld	a, (0x03, sp)
-      0003B5 A1 18            [ 1]  741 	cp	a, #0x18
-      0003B7 27 11            [ 1]  742 	jreq	00104$
-      0003B9 90 AEr07r77      [ 2]  743 	ldw	y, #___str_0+0
-      0003BD 4B A2            [ 1]  744 	push	#0xa2
-      0003BF 4B 01            [ 1]  745 	push	#0x01
-      0003C1 5F               [ 1]  746 	clrw	x
-      0003C2 89               [ 2]  747 	pushw	x
-      0003C3 90 89            [ 2]  748 	pushw	y
-      0003C5 CDr00r00         [ 4]  749 	call	_assert_failed
-      0003C8 5B 06            [ 2]  750 	addw	sp, #6
-      0003CA                        751 00104$:
-                                    752 ;	../src/stm8s_clk.c: 421: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
-      0003CA AE 50 C6         [ 2]  753 	ldw	x, #0x50c6
-      0003CD F6               [ 1]  754 	ld	a, (x)
-      0003CE A4 E7            [ 1]  755 	and	a, #0xe7
-      0003D0 F7               [ 1]  756 	ld	(x), a
-                                    757 ;	../src/stm8s_clk.c: 424: CLK->CKDIVR |= (uint8_t)HSIPrescaler;
-      0003D1 AE 50 C6         [ 2]  758 	ldw	x, #0x50c6
-      0003D4 F6               [ 1]  759 	ld	a, (x)
-      0003D5 1A 03            [ 1]  760 	or	a, (0x03, sp)
-      0003D7 AE 50 C6         [ 2]  761 	ldw	x, #0x50c6
-      0003DA F7               [ 1]  762 	ld	(x), a
-      0003DB 81               [ 4]  763 	ret
-                                    764 ;	../src/stm8s_clk.c: 436: void CLK_CCOConfig(CLK_Output_TypeDef CLK_CCO)
-                                    765 ;	-----------------------------------------
-                                    766 ;	 function CLK_CCOConfig
-                                    767 ;	-----------------------------------------
-      0003DC                        768 _CLK_CCOConfig:
-                                    769 ;	../src/stm8s_clk.c: 439: assert_param(IS_CLK_OUTPUT_OK(CLK_CCO));
-      0003DC 0D 03            [ 1]  770 	tnz	(0x03, sp)
-      0003DE 27 59            [ 1]  771 	jreq	00104$
-      0003E0 7B 03            [ 1]  772 	ld	a, (0x03, sp)
-      0003E2 A1 04            [ 1]  773 	cp	a, #0x04
-      0003E4 27 53            [ 1]  774 	jreq	00104$
-      0003E6 7B 03            [ 1]  775 	ld	a, (0x03, sp)
-      0003E8 A1 02            [ 1]  776 	cp	a, #0x02
-      0003EA 27 4D            [ 1]  777 	jreq	00104$
-      0003EC 7B 03            [ 1]  778 	ld	a, (0x03, sp)
-      0003EE A1 08            [ 1]  779 	cp	a, #0x08
-      0003F0 27 47            [ 1]  780 	jreq	00104$
-      0003F2 7B 03            [ 1]  781 	ld	a, (0x03, sp)
-      0003F4 A1 0A            [ 1]  782 	cp	a, #0x0a
-      0003F6 27 41            [ 1]  783 	jreq	00104$
-      0003F8 7B 03            [ 1]  784 	ld	a, (0x03, sp)
-      0003FA A1 0C            [ 1]  785 	cp	a, #0x0c
-      0003FC 27 3B            [ 1]  786 	jreq	00104$
-      0003FE 7B 03            [ 1]  787 	ld	a, (0x03, sp)
-      000400 A1 0E            [ 1]  788 	cp	a, #0x0e
-      000402 27 35            [ 1]  789 	jreq	00104$
-      000404 7B 03            [ 1]  790 	ld	a, (0x03, sp)
-      000406 A1 10            [ 1]  791 	cp	a, #0x10
-      000408 27 2F            [ 1]  792 	jreq	00104$
-      00040A 7B 03            [ 1]  793 	ld	a, (0x03, sp)
-      00040C A1 12            [ 1]  794 	cp	a, #0x12
-      00040E 27 29            [ 1]  795 	jreq	00104$
-      000410 7B 03            [ 1]  796 	ld	a, (0x03, sp)
-      000412 A1 14            [ 1]  797 	cp	a, #0x14
-      000414 27 23            [ 1]  798 	jreq	00104$
-      000416 7B 03            [ 1]  799 	ld	a, (0x03, sp)
-      000418 A1 16            [ 1]  800 	cp	a, #0x16
-      00041A 27 1D            [ 1]  801 	jreq	00104$
-      00041C 7B 03            [ 1]  802 	ld	a, (0x03, sp)
-      00041E A1 18            [ 1]  803 	cp	a, #0x18
-      000420 27 17            [ 1]  804 	jreq	00104$
-      000422 7B 03            [ 1]  805 	ld	a, (0x03, sp)
-      000424 A1 1A            [ 1]  806 	cp	a, #0x1a
-      000426 27 11            [ 1]  807 	jreq	00104$
-      000428 90 AEr07r77      [ 2]  808 	ldw	y, #___str_0+0
-      00042C 4B B7            [ 1]  809 	push	#0xb7
-      00042E 4B 01            [ 1]  810 	push	#0x01
-      000430 5F               [ 1]  811 	clrw	x
-      000431 89               [ 2]  812 	pushw	x
-      000432 90 89            [ 2]  813 	pushw	y
-      000434 CDr00r00         [ 4]  814 	call	_assert_failed
-      000437 5B 06            [ 2]  815 	addw	sp, #6
-      000439                        816 00104$:
-                                    817 ;	../src/stm8s_clk.c: 442: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOSEL);
-      000439 AE 50 C9         [ 2]  818 	ldw	x, #0x50c9
-      00043C F6               [ 1]  819 	ld	a, (x)
-      00043D A4 E1            [ 1]  820 	and	a, #0xe1
-      00043F F7               [ 1]  821 	ld	(x), a
-                                    822 ;	../src/stm8s_clk.c: 445: CLK->CCOR |= (uint8_t)CLK_CCO;
-      000440 AE 50 C9         [ 2]  823 	ldw	x, #0x50c9
-      000443 F6               [ 1]  824 	ld	a, (x)
-      000444 1A 03            [ 1]  825 	or	a, (0x03, sp)
-      000446 AE 50 C9         [ 2]  826 	ldw	x, #0x50c9
-      000449 F7               [ 1]  827 	ld	(x), a
-                                    828 ;	../src/stm8s_clk.c: 448: CLK->CCOR |= CLK_CCOR_CCOEN;
-      00044A 72 10 50 C9      [ 1]  829 	bset	0x50c9, #0
-      00044E 81               [ 4]  830 	ret
-                                    831 ;	../src/stm8s_clk.c: 459: void CLK_ITConfig(CLK_IT_TypeDef CLK_IT, FunctionalState NewState)
-                                    832 ;	-----------------------------------------
-                                    833 ;	 function CLK_ITConfig
-                                    834 ;	-----------------------------------------
-      00044F                        835 _CLK_ITConfig:
-      00044F 89               [ 2]  836 	pushw	x
-                                    837 ;	../src/stm8s_clk.c: 462: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000450 0D 06            [ 1]  838 	tnz	(0x06, sp)
-      000452 27 17            [ 1]  839 	jreq	00115$
-      000454 7B 06            [ 1]  840 	ld	a, (0x06, sp)
-      000456 A1 01            [ 1]  841 	cp	a, #0x01
-      000458 27 11            [ 1]  842 	jreq	00115$
-      00045A 90 AEr07r77      [ 2]  843 	ldw	y, #___str_0+0
-      00045E 4B CE            [ 1]  844 	push	#0xce
-      000460 4B 01            [ 1]  845 	push	#0x01
-      000462 5F               [ 1]  846 	clrw	x
-      000463 89               [ 2]  847 	pushw	x
-      000464 90 89            [ 2]  848 	pushw	y
-      000466 CDr00r00         [ 4]  849 	call	_assert_failed
-      000469 5B 06            [ 2]  850 	addw	sp, #6
-      00046B                        851 00115$:
-                                    852 ;	../src/stm8s_clk.c: 463: assert_param(IS_CLK_IT_OK(CLK_IT));
-      00046B 7B 05            [ 1]  853 	ld	a, (0x05, sp)
-      00046D A1 0C            [ 1]  854 	cp	a, #0x0c
-      00046F 26 06            [ 1]  855 	jrne	00165$
-      000471 A6 01            [ 1]  856 	ld	a, #0x01
-      000473 6B 02            [ 1]  857 	ld	(0x02, sp), a
-      000475 20 02            [ 2]  858 	jra	00166$
-      000477                        859 00165$:
-      000477 0F 02            [ 1]  860 	clr	(0x02, sp)
-      000479                        861 00166$:
-      000479 7B 05            [ 1]  862 	ld	a, (0x05, sp)
-      00047B A1 1C            [ 1]  863 	cp	a, #0x1c
-      00047D 26 06            [ 1]  864 	jrne	00168$
-      00047F A6 01            [ 1]  865 	ld	a, #0x01
-      000481 6B 01            [ 1]  866 	ld	(0x01, sp), a
-      000483 20 02            [ 2]  867 	jra	00169$
-      000485                        868 00168$:
-      000485 0F 01            [ 1]  869 	clr	(0x01, sp)
-      000487                        870 00169$:
-      000487 0D 02            [ 1]  871 	tnz	(0x02, sp)
-      000489 26 15            [ 1]  872 	jrne	00120$
-      00048B 0D 01            [ 1]  873 	tnz	(0x01, sp)
-      00048D 26 11            [ 1]  874 	jrne	00120$
-      00048F 90 AEr07r77      [ 2]  875 	ldw	y, #___str_0+0
-      000493 4B CF            [ 1]  876 	push	#0xcf
-      000495 4B 01            [ 1]  877 	push	#0x01
-      000497 5F               [ 1]  878 	clrw	x
-      000498 89               [ 2]  879 	pushw	x
-      000499 90 89            [ 2]  880 	pushw	y
-      00049B CDr00r00         [ 4]  881 	call	_assert_failed
-      00049E 5B 06            [ 2]  882 	addw	sp, #6
-      0004A0                        883 00120$:
-                                    884 ;	../src/stm8s_clk.c: 465: if (NewState != DISABLE)
-      0004A0 0D 06            [ 1]  885 	tnz	(0x06, sp)
-      0004A2 27 1A            [ 1]  886 	jreq	00110$
-                                    887 ;	../src/stm8s_clk.c: 467: switch (CLK_IT)
-      0004A4 0D 02            [ 1]  888 	tnz	(0x02, sp)
-      0004A6 26 0D            [ 1]  889 	jrne	00102$
-      0004A8 0D 01            [ 1]  890 	tnz	(0x01, sp)
-      0004AA 27 2A            [ 1]  891 	jreq	00112$
-                                    892 ;	../src/stm8s_clk.c: 470: CLK->SWCR |= CLK_SWCR_SWIEN;
-      0004AC AE 50 C5         [ 2]  893 	ldw	x, #0x50c5
-      0004AF F6               [ 1]  894 	ld	a, (x)
-      0004B0 AA 04            [ 1]  895 	or	a, #0x04
-      0004B2 F7               [ 1]  896 	ld	(x), a
-                                    897 ;	../src/stm8s_clk.c: 471: break;
-      0004B3 20 21            [ 2]  898 	jra	00112$
-                                    899 ;	../src/stm8s_clk.c: 472: case CLK_IT_CSSD: /* Enable the clock security system detection interrupt */
-      0004B5                        900 00102$:
-                                    901 ;	../src/stm8s_clk.c: 473: CLK->CSSR |= CLK_CSSR_CSSDIE;
-      0004B5 AE 50 C8         [ 2]  902 	ldw	x, #0x50c8
-      0004B8 F6               [ 1]  903 	ld	a, (x)
-      0004B9 AA 04            [ 1]  904 	or	a, #0x04
-      0004BB F7               [ 1]  905 	ld	(x), a
-                                    906 ;	../src/stm8s_clk.c: 474: break;
-      0004BC 20 18            [ 2]  907 	jra	00112$
-                                    908 ;	../src/stm8s_clk.c: 477: }
-      0004BE                        909 00110$:
-                                    910 ;	../src/stm8s_clk.c: 481: switch (CLK_IT)
-      0004BE 0D 02            [ 1]  911 	tnz	(0x02, sp)
-      0004C0 26 0D            [ 1]  912 	jrne	00106$
-      0004C2 0D 01            [ 1]  913 	tnz	(0x01, sp)
-      0004C4 27 10            [ 1]  914 	jreq	00112$
-                                    915 ;	../src/stm8s_clk.c: 484: CLK->SWCR  &= (uint8_t)(~CLK_SWCR_SWIEN);
-      0004C6 AE 50 C5         [ 2]  916 	ldw	x, #0x50c5
-      0004C9 F6               [ 1]  917 	ld	a, (x)
-      0004CA A4 FB            [ 1]  918 	and	a, #0xfb
-      0004CC F7               [ 1]  919 	ld	(x), a
-                                    920 ;	../src/stm8s_clk.c: 485: break;
-      0004CD 20 07            [ 2]  921 	jra	00112$
-                                    922 ;	../src/stm8s_clk.c: 486: case CLK_IT_CSSD: /* Disable the clock security system detection interrupt */
-      0004CF                        923 00106$:
-                                    924 ;	../src/stm8s_clk.c: 487: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDIE);
-      0004CF AE 50 C8         [ 2]  925 	ldw	x, #0x50c8
-      0004D2 F6               [ 1]  926 	ld	a, (x)
-      0004D3 A4 FB            [ 1]  927 	and	a, #0xfb
-      0004D5 F7               [ 1]  928 	ld	(x), a
-                                    929 ;	../src/stm8s_clk.c: 491: }
-      0004D6                        930 00112$:
-      0004D6 85               [ 2]  931 	popw	x
-      0004D7 81               [ 4]  932 	ret
-                                    933 ;	../src/stm8s_clk.c: 500: void CLK_SYSCLKConfig(CLK_Prescaler_TypeDef CLK_Prescaler)
-                                    934 ;	-----------------------------------------
-                                    935 ;	 function CLK_SYSCLKConfig
-                                    936 ;	-----------------------------------------
-      0004D8                        937 _CLK_SYSCLKConfig:
-      0004D8 89               [ 2]  938 	pushw	x
-                                    939 ;	../src/stm8s_clk.c: 503: assert_param(IS_CLK_PRESCALER_OK(CLK_Prescaler));
-      0004D9 0D 05            [ 1]  940 	tnz	(0x05, sp)
-      0004DB 27 53            [ 1]  941 	jreq	00107$
-      0004DD 7B 05            [ 1]  942 	ld	a, (0x05, sp)
-      0004DF A1 08            [ 1]  943 	cp	a, #0x08
-      0004E1 27 4D            [ 1]  944 	jreq	00107$
-      0004E3 7B 05            [ 1]  945 	ld	a, (0x05, sp)
-      0004E5 A1 10            [ 1]  946 	cp	a, #0x10
-      0004E7 27 47            [ 1]  947 	jreq	00107$
-      0004E9 7B 05            [ 1]  948 	ld	a, (0x05, sp)
-      0004EB A1 18            [ 1]  949 	cp	a, #0x18
-      0004ED 27 41            [ 1]  950 	jreq	00107$
-      0004EF 7B 05            [ 1]  951 	ld	a, (0x05, sp)
-      0004F1 A1 80            [ 1]  952 	cp	a, #0x80
-      0004F3 27 3B            [ 1]  953 	jreq	00107$
-      0004F5 7B 05            [ 1]  954 	ld	a, (0x05, sp)
-      0004F7 A1 81            [ 1]  955 	cp	a, #0x81
-      0004F9 27 35            [ 1]  956 	jreq	00107$
-      0004FB 7B 05            [ 1]  957 	ld	a, (0x05, sp)
-      0004FD A1 82            [ 1]  958 	cp	a, #0x82
-      0004FF 27 2F            [ 1]  959 	jreq	00107$
-      000501 7B 05            [ 1]  960 	ld	a, (0x05, sp)
-      000503 A1 83            [ 1]  961 	cp	a, #0x83
-      000505 27 29            [ 1]  962 	jreq	00107$
-      000507 7B 05            [ 1]  963 	ld	a, (0x05, sp)
-      000509 A1 84            [ 1]  964 	cp	a, #0x84
-      00050B 27 23            [ 1]  965 	jreq	00107$
-      00050D 7B 05            [ 1]  966 	ld	a, (0x05, sp)
-      00050F A1 85            [ 1]  967 	cp	a, #0x85
-      000511 27 1D            [ 1]  968 	jreq	00107$
-      000513 7B 05            [ 1]  969 	ld	a, (0x05, sp)
-      000515 A1 86            [ 1]  970 	cp	a, #0x86
-      000517 27 17            [ 1]  971 	jreq	00107$
-      000519 7B 05            [ 1]  972 	ld	a, (0x05, sp)
-      00051B A1 87            [ 1]  973 	cp	a, #0x87
-      00051D 27 11            [ 1]  974 	jreq	00107$
-      00051F 90 AEr07r77      [ 2]  975 	ldw	y, #___str_0+0
-      000523 4B F7            [ 1]  976 	push	#0xf7
-      000525 4B 01            [ 1]  977 	push	#0x01
-      000527 5F               [ 1]  978 	clrw	x
-      000528 89               [ 2]  979 	pushw	x
-      000529 90 89            [ 2]  980 	pushw	y
-      00052B CDr00r00         [ 4]  981 	call	_assert_failed
-      00052E 5B 06            [ 2]  982 	addw	sp, #6
-      000530                        983 00107$:
-                                    984 ;	../src/stm8s_clk.c: 505: if (((uint8_t)CLK_Prescaler & (uint8_t)0x80) == 0x00) /* Bit7 = 0 means HSI divider */
-      000530 0D 05            [ 1]  985 	tnz	(0x05, sp)
-      000532 2B 19            [ 1]  986 	jrmi	00102$
-                                    987 ;	../src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
-      000534 AE 50 C6         [ 2]  988 	ldw	x, #0x50c6
-      000537 F6               [ 1]  989 	ld	a, (x)
-      000538 A4 E7            [ 1]  990 	and	a, #0xe7
-      00053A F7               [ 1]  991 	ld	(x), a
-                                    992 ;	../src/stm8s_clk.c: 508: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_HSIDIV);
-      00053B AE 50 C6         [ 2]  993 	ldw	x, #0x50c6
-      00053E F6               [ 1]  994 	ld	a, (x)
-      00053F 6B 01            [ 1]  995 	ld	(0x01, sp), a
-      000541 7B 05            [ 1]  996 	ld	a, (0x05, sp)
-      000543 A4 18            [ 1]  997 	and	a, #0x18
-      000545 1A 01            [ 1]  998 	or	a, (0x01, sp)
-      000547 AE 50 C6         [ 2]  999 	ldw	x, #0x50c6
-      00054A F7               [ 1] 1000 	ld	(x), a
-      00054B 20 17            [ 2] 1001 	jra	00104$
-      00054D                       1002 00102$:
-                                   1003 ;	../src/stm8s_clk.c: 512: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_CPUDIV);
-      00054D AE 50 C6         [ 2] 1004 	ldw	x, #0x50c6
-      000550 F6               [ 1] 1005 	ld	a, (x)
-      000551 A4 F8            [ 1] 1006 	and	a, #0xf8
-      000553 F7               [ 1] 1007 	ld	(x), a
-                                   1008 ;	../src/stm8s_clk.c: 513: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_CPUDIV);
-      000554 AE 50 C6         [ 2] 1009 	ldw	x, #0x50c6
-      000557 F6               [ 1] 1010 	ld	a, (x)
-      000558 6B 02            [ 1] 1011 	ld	(0x02, sp), a
-      00055A 7B 05            [ 1] 1012 	ld	a, (0x05, sp)
-      00055C A4 07            [ 1] 1013 	and	a, #0x07
-      00055E 1A 02            [ 1] 1014 	or	a, (0x02, sp)
-      000560 AE 50 C6         [ 2] 1015 	ldw	x, #0x50c6
-      000563 F7               [ 1] 1016 	ld	(x), a
-      000564                       1017 00104$:
-      000564 85               [ 2] 1018 	popw	x
-      000565 81               [ 4] 1019 	ret
-                                   1020 ;	../src/stm8s_clk.c: 523: void CLK_SWIMConfig(CLK_SWIMDivider_TypeDef CLK_SWIMDivider)
-                                   1021 ;	-----------------------------------------
-                                   1022 ;	 function CLK_SWIMConfig
-                                   1023 ;	-----------------------------------------
-      000566                       1024 _CLK_SWIMConfig:
-                                   1025 ;	../src/stm8s_clk.c: 526: assert_param(IS_CLK_SWIMDIVIDER_OK(CLK_SWIMDivider));
-      000566 0D 03            [ 1] 1026 	tnz	(0x03, sp)
-      000568 27 17            [ 1] 1027 	jreq	00107$
-      00056A 7B 03            [ 1] 1028 	ld	a, (0x03, sp)
-      00056C A1 01            [ 1] 1029 	cp	a, #0x01
-      00056E 27 11            [ 1] 1030 	jreq	00107$
-      000570 90 AEr07r77      [ 2] 1031 	ldw	y, #___str_0+0
-      000574 4B 0E            [ 1] 1032 	push	#0x0e
-      000576 4B 02            [ 1] 1033 	push	#0x02
-      000578 5F               [ 1] 1034 	clrw	x
-      000579 89               [ 2] 1035 	pushw	x
-      00057A 90 89            [ 2] 1036 	pushw	y
-      00057C CDr00r00         [ 4] 1037 	call	_assert_failed
-      00057F 5B 06            [ 2] 1038 	addw	sp, #6
-      000581                       1039 00107$:
-                                   1040 ;	../src/stm8s_clk.c: 528: if (CLK_SWIMDivider != CLK_SWIMDIVIDER_2)
-      000581 0D 03            [ 1] 1041 	tnz	(0x03, sp)
-      000583 27 06            [ 1] 1042 	jreq	00102$
-                                   1043 ;	../src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
-      000585 72 10 50 CD      [ 1] 1044 	bset	0x50cd, #0
-      000589 20 04            [ 2] 1045 	jra	00104$
-      00058B                       1046 00102$:
-                                   1047 ;	../src/stm8s_clk.c: 536: CLK->SWIMCCR &= (uint8_t)(~CLK_SWIMCCR_SWIMDIV);
-      00058B 72 11 50 CD      [ 1] 1048 	bres	0x50cd, #0
-      00058F                       1049 00104$:
-      00058F 81               [ 4] 1050 	ret
-                                   1051 ;	../src/stm8s_clk.c: 547: void CLK_ClockSecuritySystemEnable(void)
-                                   1052 ;	-----------------------------------------
-                                   1053 ;	 function CLK_ClockSecuritySystemEnable
-                                   1054 ;	-----------------------------------------
-      000590                       1055 _CLK_ClockSecuritySystemEnable:
-                                   1056 ;	../src/stm8s_clk.c: 550: CLK->CSSR |= CLK_CSSR_CSSEN;
-      000590 72 10 50 C8      [ 1] 1057 	bset	0x50c8, #0
-      000594 81               [ 4] 1058 	ret
-                                   1059 ;	../src/stm8s_clk.c: 559: CLK_Source_TypeDef CLK_GetSYSCLKSource(void)
-                                   1060 ;	-----------------------------------------
-                                   1061 ;	 function CLK_GetSYSCLKSource
-                                   1062 ;	-----------------------------------------
-      000595                       1063 _CLK_GetSYSCLKSource:
-                                   1064 ;	../src/stm8s_clk.c: 561: return((CLK_Source_TypeDef)CLK->CMSR);
-      000595 AE 50 C3         [ 2] 1065 	ldw	x, #0x50c3
-      000598 F6               [ 1] 1066 	ld	a, (x)
-      000599 81               [ 4] 1067 	ret
-                                   1068 ;	../src/stm8s_clk.c: 569: uint32_t CLK_GetClockFreq(void)
-                                   1069 ;	-----------------------------------------
-                                   1070 ;	 function CLK_GetClockFreq
-                                   1071 ;	-----------------------------------------
-      00059A                       1072 _CLK_GetClockFreq:
-      00059A 52 07            [ 2] 1073 	sub	sp, #7
-                                   1074 ;	../src/stm8s_clk.c: 576: clocksource = (CLK_Source_TypeDef)CLK->CMSR;
-      00059C AE 50 C3         [ 2] 1075 	ldw	x, #0x50c3
-      00059F F6               [ 1] 1076 	ld	a, (x)
-      0005A0 6B 05            [ 1] 1077 	ld	(0x05, sp), a
-                                   1078 ;	../src/stm8s_clk.c: 578: if (clocksource == CLK_SOURCE_HSI)
-      0005A2 7B 05            [ 1] 1079 	ld	a, (0x05, sp)
-      0005A4 A1 E1            [ 1] 1080 	cp	a, #0xe1
-      0005A6 26 2A            [ 1] 1081 	jrne	00105$
-                                   1082 ;	../src/stm8s_clk.c: 580: tmp = (uint8_t)(CLK->CKDIVR & CLK_CKDIVR_HSIDIV);
-      0005A8 AE 50 C6         [ 2] 1083 	ldw	x, #0x50c6
-      0005AB F6               [ 1] 1084 	ld	a, (x)
-      0005AC A4 18            [ 1] 1085 	and	a, #0x18
-                                   1086 ;	../src/stm8s_clk.c: 581: tmp = (uint8_t)(tmp >> 3);
-      0005AE 44               [ 1] 1087 	srl	a
-      0005AF 44               [ 1] 1088 	srl	a
-      0005B0 44               [ 1] 1089 	srl	a
-                                   1090 ;	../src/stm8s_clk.c: 582: clockfrequency = HSI_VALUE >> HSIDivExp[tmp];
-      0005B1 AEr07r6B         [ 2] 1091 	ldw	x, #_HSIDivExp+0
-      0005B4 1F 06            [ 2] 1092 	ldw	(0x06, sp), x
-      0005B6 5F               [ 1] 1093 	clrw	x
-      0005B7 97               [ 1] 1094 	ld	xl, a
-      0005B8 72 FB 06         [ 2] 1095 	addw	x, (0x06, sp)
-      0005BB F6               [ 1] 1096 	ld	a, (x)
-      0005BC 90 AE 24 00      [ 2] 1097 	ldw	y, #0x2400
-      0005C0 AE 00 F4         [ 2] 1098 	ldw	x, #0x00f4
-      0005C3 4D               [ 1] 1099 	tnz	a
-      0005C4 27 06            [ 1] 1100 	jreq	00121$
-      0005C6                       1101 00120$:
-      0005C6 54               [ 2] 1102 	srlw	x
-      0005C7 90 56            [ 2] 1103 	rrcw	y
-      0005C9 4A               [ 1] 1104 	dec	a
-      0005CA 26 FA            [ 1] 1105 	jrne	00120$
-      0005CC                       1106 00121$:
-      0005CC 17 03            [ 2] 1107 	ldw	(0x03, sp), y
-      0005CE 1F 01            [ 2] 1108 	ldw	(0x01, sp), x
-      0005D0 20 1C            [ 2] 1109 	jra	00106$
-      0005D2                       1110 00105$:
-                                   1111 ;	../src/stm8s_clk.c: 584: else if ( clocksource == CLK_SOURCE_LSI)
-      0005D2 7B 05            [ 1] 1112 	ld	a, (0x05, sp)
-      0005D4 A1 D2            [ 1] 1113 	cp	a, #0xd2
-      0005D6 26 0C            [ 1] 1114 	jrne	00102$
-                                   1115 ;	../src/stm8s_clk.c: 586: clockfrequency = LSI_VALUE;
-      0005D8 AE F4 00         [ 2] 1116 	ldw	x, #0xf400
-      0005DB 1F 03            [ 2] 1117 	ldw	(0x03, sp), x
-      0005DD AE 00 01         [ 2] 1118 	ldw	x, #0x0001
-      0005E0 1F 01            [ 2] 1119 	ldw	(0x01, sp), x
-      0005E2 20 0A            [ 2] 1120 	jra	00106$
-      0005E4                       1121 00102$:
-                                   1122 ;	../src/stm8s_clk.c: 590: clockfrequency = HSE_VALUE;
-      0005E4 AE 24 00         [ 2] 1123 	ldw	x, #0x2400
-      0005E7 1F 03            [ 2] 1124 	ldw	(0x03, sp), x
-      0005E9 AE 00 F4         [ 2] 1125 	ldw	x, #0x00f4
-      0005EC 1F 01            [ 2] 1126 	ldw	(0x01, sp), x
-      0005EE                       1127 00106$:
-                                   1128 ;	../src/stm8s_clk.c: 593: return((uint32_t)clockfrequency);
-      0005EE 1E 03            [ 2] 1129 	ldw	x, (0x03, sp)
-      0005F0 16 01            [ 2] 1130 	ldw	y, (0x01, sp)
-      0005F2 5B 07            [ 2] 1131 	addw	sp, #7
-      0005F4 81               [ 4] 1132 	ret
-                                   1133 ;	../src/stm8s_clk.c: 603: void CLK_AdjustHSICalibrationValue(CLK_HSITrimValue_TypeDef CLK_HSICalibrationValue)
-                                   1134 ;	-----------------------------------------
-                                   1135 ;	 function CLK_AdjustHSICalibrationValue
-                                   1136 ;	-----------------------------------------
-      0005F5                       1137 _CLK_AdjustHSICalibrationValue:
-                                   1138 ;	../src/stm8s_clk.c: 606: assert_param(IS_CLK_HSITRIMVALUE_OK(CLK_HSICalibrationValue));
-      0005F5 0D 03            [ 1] 1139 	tnz	(0x03, sp)
-      0005F7 27 3B            [ 1] 1140 	jreq	00104$
-      0005F9 7B 03            [ 1] 1141 	ld	a, (0x03, sp)
-      0005FB A1 01            [ 1] 1142 	cp	a, #0x01
-      0005FD 27 35            [ 1] 1143 	jreq	00104$
-      0005FF 7B 03            [ 1] 1144 	ld	a, (0x03, sp)
-      000601 A1 02            [ 1] 1145 	cp	a, #0x02
-      000603 27 2F            [ 1] 1146 	jreq	00104$
-      000605 7B 03            [ 1] 1147 	ld	a, (0x03, sp)
-      000607 A1 03            [ 1] 1148 	cp	a, #0x03
-      000609 27 29            [ 1] 1149 	jreq	00104$
-      00060B 7B 03            [ 1] 1150 	ld	a, (0x03, sp)
-      00060D A1 04            [ 1] 1151 	cp	a, #0x04
-      00060F 27 23            [ 1] 1152 	jreq	00104$
-      000611 7B 03            [ 1] 1153 	ld	a, (0x03, sp)
-      000613 A1 05            [ 1] 1154 	cp	a, #0x05
-      000615 27 1D            [ 1] 1155 	jreq	00104$
-      000617 7B 03            [ 1] 1156 	ld	a, (0x03, sp)
-      000619 A1 06            [ 1] 1157 	cp	a, #0x06
-      00061B 27 17            [ 1] 1158 	jreq	00104$
-      00061D 7B 03            [ 1] 1159 	ld	a, (0x03, sp)
-      00061F A1 07            [ 1] 1160 	cp	a, #0x07
-      000621 27 11            [ 1] 1161 	jreq	00104$
-      000623 90 AEr07r77      [ 2] 1162 	ldw	y, #___str_0+0
-      000627 4B 5E            [ 1] 1163 	push	#0x5e
-      000629 4B 02            [ 1] 1164 	push	#0x02
-      00062B 5F               [ 1] 1165 	clrw	x
-      00062C 89               [ 2] 1166 	pushw	x
-      00062D 90 89            [ 2] 1167 	pushw	y
-      00062F CDr00r00         [ 4] 1168 	call	_assert_failed
-      000632 5B 06            [ 2] 1169 	addw	sp, #6
-      000634                       1170 00104$:
-                                   1171 ;	../src/stm8s_clk.c: 609: CLK->HSITRIMR = (uint8_t)( (uint8_t)(CLK->HSITRIMR & (uint8_t)(~CLK_HSITRIMR_HSITRIM))|((uint8_t)CLK_HSICalibrationValue));
-      000634 AE 50 CC         [ 2] 1172 	ldw	x, #0x50cc
-      000637 F6               [ 1] 1173 	ld	a, (x)
-      000638 A4 F8            [ 1] 1174 	and	a, #0xf8
-      00063A 1A 03            [ 1] 1175 	or	a, (0x03, sp)
-      00063C AE 50 CC         [ 2] 1176 	ldw	x, #0x50cc
-      00063F F7               [ 1] 1177 	ld	(x), a
-      000640 81               [ 4] 1178 	ret
-                                   1179 ;	../src/stm8s_clk.c: 621: void CLK_SYSCLKEmergencyClear(void)
-                                   1180 ;	-----------------------------------------
-                                   1181 ;	 function CLK_SYSCLKEmergencyClear
-                                   1182 ;	-----------------------------------------
-      000641                       1183 _CLK_SYSCLKEmergencyClear:
-                                   1184 ;	../src/stm8s_clk.c: 623: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWBSY);
-      000641 72 11 50 C5      [ 1] 1185 	bres	0x50c5, #0
-      000645 81               [ 4] 1186 	ret
-                                   1187 ;	../src/stm8s_clk.c: 633: FlagStatus CLK_GetFlagStatus(CLK_Flag_TypeDef CLK_FLAG)
-                                   1188 ;	-----------------------------------------
-                                   1189 ;	 function CLK_GetFlagStatus
-                                   1190 ;	-----------------------------------------
-      000646                       1191 _CLK_GetFlagStatus:
-                                   1192 ;	../src/stm8s_clk.c: 640: assert_param(IS_CLK_FLAG_OK(CLK_FLAG));
-      000646 1E 03            [ 2] 1193 	ldw	x, (0x03, sp)
-      000648 A3 01 10         [ 2] 1194 	cpw	x, #0x0110
-      00064B 27 49            [ 1] 1195 	jreq	00119$
-      00064D 1E 03            [ 2] 1196 	ldw	x, (0x03, sp)
-      00064F A3 01 02         [ 2] 1197 	cpw	x, #0x0102
-      000652 27 42            [ 1] 1198 	jreq	00119$
-      000654 1E 03            [ 2] 1199 	ldw	x, (0x03, sp)
-      000656 A3 02 02         [ 2] 1200 	cpw	x, #0x0202
-      000659 27 3B            [ 1] 1201 	jreq	00119$
-      00065B 1E 03            [ 2] 1202 	ldw	x, (0x03, sp)
-      00065D A3 03 08         [ 2] 1203 	cpw	x, #0x0308
-      000660 27 34            [ 1] 1204 	jreq	00119$
-      000662 1E 03            [ 2] 1205 	ldw	x, (0x03, sp)
-      000664 A3 03 01         [ 2] 1206 	cpw	x, #0x0301
-      000667 27 2D            [ 1] 1207 	jreq	00119$
-      000669 1E 03            [ 2] 1208 	ldw	x, (0x03, sp)
-      00066B A3 04 08         [ 2] 1209 	cpw	x, #0x0408
-      00066E 27 26            [ 1] 1210 	jreq	00119$
-      000670 1E 03            [ 2] 1211 	ldw	x, (0x03, sp)
-      000672 A3 04 02         [ 2] 1212 	cpw	x, #0x0402
-      000675 27 1F            [ 1] 1213 	jreq	00119$
-      000677 1E 03            [ 2] 1214 	ldw	x, (0x03, sp)
-      000679 A3 05 04         [ 2] 1215 	cpw	x, #0x0504
-      00067C 27 18            [ 1] 1216 	jreq	00119$
-      00067E 1E 03            [ 2] 1217 	ldw	x, (0x03, sp)
-      000680 A3 05 02         [ 2] 1218 	cpw	x, #0x0502
-      000683 27 11            [ 1] 1219 	jreq	00119$
-      000685 90 AEr07r77      [ 2] 1220 	ldw	y, #___str_0+0
-      000689 4B 80            [ 1] 1221 	push	#0x80
-      00068B 4B 02            [ 1] 1222 	push	#0x02
-      00068D 5F               [ 1] 1223 	clrw	x
-      00068E 89               [ 2] 1224 	pushw	x
-      00068F 90 89            [ 2] 1225 	pushw	y
-      000691 CDr00r00         [ 4] 1226 	call	_assert_failed
-      000694 5B 06            [ 2] 1227 	addw	sp, #6
-      000696                       1228 00119$:
-                                   1229 ;	../src/stm8s_clk.c: 643: statusreg = (uint16_t)((uint16_t)CLK_FLAG & (uint16_t)0xFF00);
-      000696 4F               [ 1] 1230 	clr	a
-      000697 97               [ 1] 1231 	ld	xl, a
-      000698 7B 03            [ 1] 1232 	ld	a, (0x03, sp)
-      00069A 95               [ 1] 1233 	ld	xh, a
-                                   1234 ;	../src/stm8s_clk.c: 646: if (statusreg == 0x0100) /* The flag to check is in ICKRregister */
-      00069B A3 01 00         [ 2] 1235 	cpw	x, #0x0100
-      00069E 26 06            [ 1] 1236 	jrne	00111$
-                                   1237 ;	../src/stm8s_clk.c: 648: tmpreg = CLK->ICKR;
-      0006A0 AE 50 C0         [ 2] 1238 	ldw	x, #0x50c0
-      0006A3 F6               [ 1] 1239 	ld	a, (x)
-      0006A4 20 25            [ 2] 1240 	jra	00112$
-      0006A6                       1241 00111$:
-                                   1242 ;	../src/stm8s_clk.c: 650: else if (statusreg == 0x0200) /* The flag to check is in ECKRregister */
-      0006A6 A3 02 00         [ 2] 1243 	cpw	x, #0x0200
-      0006A9 26 06            [ 1] 1244 	jrne	00108$
-                                   1245 ;	../src/stm8s_clk.c: 652: tmpreg = CLK->ECKR;
-      0006AB AE 50 C1         [ 2] 1246 	ldw	x, #0x50c1
-      0006AE F6               [ 1] 1247 	ld	a, (x)
-      0006AF 20 1A            [ 2] 1248 	jra	00112$
-      0006B1                       1249 00108$:
-                                   1250 ;	../src/stm8s_clk.c: 654: else if (statusreg == 0x0300) /* The flag to check is in SWIC register */
-      0006B1 A3 03 00         [ 2] 1251 	cpw	x, #0x0300
-      0006B4 26 06            [ 1] 1252 	jrne	00105$
-                                   1253 ;	../src/stm8s_clk.c: 656: tmpreg = CLK->SWCR;
-      0006B6 AE 50 C5         [ 2] 1254 	ldw	x, #0x50c5
-      0006B9 F6               [ 1] 1255 	ld	a, (x)
-      0006BA 20 0F            [ 2] 1256 	jra	00112$
-      0006BC                       1257 00105$:
-                                   1258 ;	../src/stm8s_clk.c: 658: else if (statusreg == 0x0400) /* The flag to check is in CSS register */
-      0006BC A3 04 00         [ 2] 1259 	cpw	x, #0x0400
-      0006BF 26 06            [ 1] 1260 	jrne	00102$
-                                   1261 ;	../src/stm8s_clk.c: 660: tmpreg = CLK->CSSR;
-      0006C1 AE 50 C8         [ 2] 1262 	ldw	x, #0x50c8
-      0006C4 F6               [ 1] 1263 	ld	a, (x)
-      0006C5 20 04            [ 2] 1264 	jra	00112$
-      0006C7                       1265 00102$:
-                                   1266 ;	../src/stm8s_clk.c: 664: tmpreg = CLK->CCOR;
-      0006C7 AE 50 C9         [ 2] 1267 	ldw	x, #0x50c9
-      0006CA F6               [ 1] 1268 	ld	a, (x)
-      0006CB                       1269 00112$:
-                                   1270 ;	../src/stm8s_clk.c: 667: if ((tmpreg & (uint8_t)CLK_FLAG) != (uint8_t)RESET)
-      0006CB 02               [ 1] 1271 	rlwa	x
-      0006CC 7B 04            [ 1] 1272 	ld	a, (0x04, sp)
-      0006CE 01               [ 1] 1273 	rrwa	x
-      0006CF 89               [ 2] 1274 	pushw	x
-      0006D0 14 01            [ 1] 1275 	and	a, (1, sp)
-      0006D2 85               [ 2] 1276 	popw	x
-      0006D3 4D               [ 1] 1277 	tnz	a
-      0006D4 27 03            [ 1] 1278 	jreq	00114$
-                                   1279 ;	../src/stm8s_clk.c: 669: bitstatus = SET;
-      0006D6 A6 01            [ 1] 1280 	ld	a, #0x01
-                                   1281 ;	../src/stm8s_clk.c: 673: bitstatus = RESET;
-      0006D8 21                    1282 	.byte 0x21
-      0006D9                       1283 00114$:
-      0006D9 4F               [ 1] 1284 	clr	a
-      0006DA                       1285 00115$:
-                                   1286 ;	../src/stm8s_clk.c: 677: return((FlagStatus)bitstatus);
-      0006DA 81               [ 4] 1287 	ret
-                                   1288 ;	../src/stm8s_clk.c: 686: ITStatus CLK_GetITStatus(CLK_IT_TypeDef CLK_IT)
-                                   1289 ;	-----------------------------------------
-                                   1290 ;	 function CLK_GetITStatus
-                                   1291 ;	-----------------------------------------
-      0006DB                       1292 _CLK_GetITStatus:
-      0006DB 88               [ 1] 1293 	push	a
-                                   1294 ;	../src/stm8s_clk.c: 691: assert_param(IS_CLK_IT_OK(CLK_IT));
-      0006DC 7B 04            [ 1] 1295 	ld	a, (0x04, sp)
-      0006DE A1 1C            [ 1] 1296 	cp	a, #0x1c
-      0006E0 26 06            [ 1] 1297 	jrne	00138$
-      0006E2 A6 01            [ 1] 1298 	ld	a, #0x01
-      0006E4 6B 01            [ 1] 1299 	ld	(0x01, sp), a
-      0006E6 20 02            [ 2] 1300 	jra	00139$
-      0006E8                       1301 00138$:
-      0006E8 0F 01            [ 1] 1302 	clr	(0x01, sp)
-      0006EA                       1303 00139$:
-      0006EA 7B 04            [ 1] 1304 	ld	a, (0x04, sp)
-      0006EC A1 0C            [ 1] 1305 	cp	a, #0x0c
-      0006EE 27 15            [ 1] 1306 	jreq	00113$
-      0006F0 0D 01            [ 1] 1307 	tnz	(0x01, sp)
-      0006F2 26 11            [ 1] 1308 	jrne	00113$
-      0006F4 90 AEr07r77      [ 2] 1309 	ldw	y, #___str_0+0
-      0006F8 4B B3            [ 1] 1310 	push	#0xb3
-      0006FA 4B 02            [ 1] 1311 	push	#0x02
-      0006FC 5F               [ 1] 1312 	clrw	x
-      0006FD 89               [ 2] 1313 	pushw	x
-      0006FE 90 89            [ 2] 1314 	pushw	y
-      000700 CDr00r00         [ 4] 1315 	call	_assert_failed
-      000703 5B 06            [ 2] 1316 	addw	sp, #6
-      000705                       1317 00113$:
-                                   1318 ;	../src/stm8s_clk.c: 693: if (CLK_IT == CLK_IT_SWIF)
-      000705 0D 01            [ 1] 1319 	tnz	(0x01, sp)
-      000707 27 11            [ 1] 1320 	jreq	00108$
-                                   1321 ;	../src/stm8s_clk.c: 696: if ((CLK->SWCR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
-      000709 AE 50 C5         [ 2] 1322 	ldw	x, #0x50c5
-      00070C F6               [ 1] 1323 	ld	a, (x)
-      00070D 14 04            [ 1] 1324 	and	a, (0x04, sp)
-      00070F A1 0C            [ 1] 1325 	cp	a, #0x0c
-      000711 26 04            [ 1] 1326 	jrne	00102$
-                                   1327 ;	../src/stm8s_clk.c: 698: bitstatus = SET;
-      000713 A6 01            [ 1] 1328 	ld	a, #0x01
-      000715 20 11            [ 2] 1329 	jra	00109$
-      000717                       1330 00102$:
-                                   1331 ;	../src/stm8s_clk.c: 702: bitstatus = RESET;
-      000717 4F               [ 1] 1332 	clr	a
-      000718 20 0E            [ 2] 1333 	jra	00109$
-      00071A                       1334 00108$:
-                                   1335 ;	../src/stm8s_clk.c: 708: if ((CLK->CSSR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
-      00071A AE 50 C8         [ 2] 1336 	ldw	x, #0x50c8
-      00071D F6               [ 1] 1337 	ld	a, (x)
-      00071E 14 04            [ 1] 1338 	and	a, (0x04, sp)
-      000720 A1 0C            [ 1] 1339 	cp	a, #0x0c
-      000722 26 03            [ 1] 1340 	jrne	00105$
-                                   1341 ;	../src/stm8s_clk.c: 710: bitstatus = SET;
-      000724 A6 01            [ 1] 1342 	ld	a, #0x01
-                                   1343 ;	../src/stm8s_clk.c: 714: bitstatus = RESET;
-      000726 21                    1344 	.byte 0x21
-      000727                       1345 00105$:
-      000727 4F               [ 1] 1346 	clr	a
-      000728                       1347 00109$:
-                                   1348 ;	../src/stm8s_clk.c: 719: return bitstatus;
-      000728 5B 01            [ 2] 1349 	addw	sp, #1
-      00072A 81               [ 4] 1350 	ret
-                                   1351 ;	../src/stm8s_clk.c: 728: void CLK_ClearITPendingBit(CLK_IT_TypeDef CLK_IT)
-                                   1352 ;	-----------------------------------------
-                                   1353 ;	 function CLK_ClearITPendingBit
-                                   1354 ;	-----------------------------------------
-      00072B                       1355 _CLK_ClearITPendingBit:
-      00072B 88               [ 1] 1356 	push	a
-                                   1357 ;	../src/stm8s_clk.c: 731: assert_param(IS_CLK_IT_OK(CLK_IT));
-      00072C 7B 04            [ 1] 1358 	ld	a, (0x04, sp)
-      00072E A1 0C            [ 1] 1359 	cp	a, #0x0c
-      000730 26 06            [ 1] 1360 	jrne	00124$
-      000732 A6 01            [ 1] 1361 	ld	a, #0x01
-      000734 6B 01            [ 1] 1362 	ld	(0x01, sp), a
-      000736 20 02            [ 2] 1363 	jra	00125$
-      000738                       1364 00124$:
-      000738 0F 01            [ 1] 1365 	clr	(0x01, sp)
-      00073A                       1366 00125$:
-      00073A 0D 01            [ 1] 1367 	tnz	(0x01, sp)
-      00073C 26 17            [ 1] 1368 	jrne	00107$
-      00073E 7B 04            [ 1] 1369 	ld	a, (0x04, sp)
-      000740 A1 1C            [ 1] 1370 	cp	a, #0x1c
-      000742 27 11            [ 1] 1371 	jreq	00107$
-      000744 90 AEr07r77      [ 2] 1372 	ldw	y, #___str_0+0
-      000748 4B DB            [ 1] 1373 	push	#0xdb
-      00074A 4B 02            [ 1] 1374 	push	#0x02
-      00074C 5F               [ 1] 1375 	clrw	x
-      00074D 89               [ 2] 1376 	pushw	x
-      00074E 90 89            [ 2] 1377 	pushw	y
-      000750 CDr00r00         [ 4] 1378 	call	_assert_failed
-      000753 5B 06            [ 2] 1379 	addw	sp, #6
-      000755                       1380 00107$:
-                                   1381 ;	../src/stm8s_clk.c: 733: if (CLK_IT == (uint8_t)CLK_IT_CSSD)
-      000755 0D 01            [ 1] 1382 	tnz	(0x01, sp)
-      000757 27 09            [ 1] 1383 	jreq	00102$
-                                   1384 ;	../src/stm8s_clk.c: 736: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSD);
-      000759 AE 50 C8         [ 2] 1385 	ldw	x, #0x50c8
-      00075C F6               [ 1] 1386 	ld	a, (x)
-      00075D A4 F7            [ 1] 1387 	and	a, #0xf7
-      00075F F7               [ 1] 1388 	ld	(x), a
-      000760 20 07            [ 2] 1389 	jra	00104$
-      000762                       1390 00102$:
-                                   1391 ;	../src/stm8s_clk.c: 741: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIF);
-      000762 AE 50 C5         [ 2] 1392 	ldw	x, #0x50c5
-      000765 F6               [ 1] 1393 	ld	a, (x)
-      000766 A4 F7            [ 1] 1394 	and	a, #0xf7
-      000768 F7               [ 1] 1395 	ld	(x), a
-      000769                       1396 00104$:
-      000769 84               [ 1] 1397 	pop	a
-      00076A 81               [ 4] 1398 	ret
-                                   1399 	.area CODE
-      00076B                       1400 _HSIDivExp:
-      00076B 00                    1401 	.db #0x00	; 0
-      00076C 01                    1402 	.db #0x01	; 1
-      00076D 02                    1403 	.db #0x02	; 2
-      00076E 03                    1404 	.db #0x03	; 3
-      00076F                       1405 _CLKPrescTable:
-      00076F 01                    1406 	.db #0x01	; 1
-      000770 02                    1407 	.db #0x02	; 2
-      000771 04                    1408 	.db #0x04	; 4
-      000772 08                    1409 	.db #0x08	; 8
-      000773 0A                    1410 	.db #0x0A	; 10
-      000774 10                    1411 	.db #0x10	; 16
-      000775 14                    1412 	.db #0x14	; 20
-      000776 28                    1413 	.db #0x28	; 40
-      000777                       1414 ___str_0:
-      000777 2E 2E 2F 73 72 63 2F  1415 	.ascii "../src/stm8s_clk.c"
+      0002F3 A4 FB            [ 1]  643 	and	a, #0xfb
+      0002F5 C7 50 C5         [ 1]  644 	ld	0x50c5, a
+      0002F8                        645 00113$:
+                                    646 ;	../src/stm8s_clk.c: 371: CLK->SWR = (uint8_t)CLK_NewClock;
+      0002F8 AE 50 C4         [ 2]  647 	ldw	x, #0x50c4
+      0002FB 7B 05            [ 1]  648 	ld	a, (0x05, sp)
+      0002FD F7               [ 1]  649 	ld	(x), a
+                                    650 ;	../src/stm8s_clk.c: 374: while((((CLK->SWCR & CLK_SWCR_SWIF) != 0 ) && (DownCounter != 0)))
+      0002FE 5F               [ 1]  651 	clrw	x
+      0002FF 5A               [ 2]  652 	decw	x
+      000300                        653 00115$:
+      000300 C6 50 C5         [ 1]  654 	ld	a, 0x50c5
+      000303 A5 08            [ 1]  655 	bcp	a, #0x08
+      000305 27 06            [ 1]  656 	jreq	00117$
+      000307 5D               [ 2]  657 	tnzw	x
+      000308 27 03            [ 1]  658 	jreq	00117$
+                                    659 ;	../src/stm8s_clk.c: 376: DownCounter--;
+      00030A 5A               [ 2]  660 	decw	x
+      00030B 20 F3            [ 2]  661 	jra	00115$
+      00030D                        662 00117$:
+                                    663 ;	../src/stm8s_clk.c: 379: if(DownCounter != 0)
+      00030D 5D               [ 2]  664 	tnzw	x
+      00030E 27 09            [ 1]  665 	jreq	00119$
+                                    666 ;	../src/stm8s_clk.c: 382: CLK->SWCR |= CLK_SWCR_SWEN;
+      000310 72 12 50 C5      [ 1]  667 	bset	20677, #1
+                                    668 ;	../src/stm8s_clk.c: 383: Swif = SUCCESS;
+      000314 A6 01            [ 1]  669 	ld	a, #0x01
+      000316 97               [ 1]  670 	ld	xl, a
+      000317 20 02            [ 2]  671 	jra	00123$
+      000319                        672 00119$:
+                                    673 ;	../src/stm8s_clk.c: 387: Swif = ERROR;
+      000319 4F               [ 1]  674 	clr	a
+      00031A 97               [ 1]  675 	ld	xl, a
+      00031B                        676 00123$:
+                                    677 ;	../src/stm8s_clk.c: 390: if(Swif != ERROR)
+      00031B 9F               [ 1]  678 	ld	a, xl
+      00031C 4D               [ 1]  679 	tnz	a
+      00031D 27 2E            [ 1]  680 	jreq	00136$
+                                    681 ;	../src/stm8s_clk.c: 393: if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSI))
+      00031F 0D 07            [ 1]  682 	tnz	(0x07, sp)
+      000321 26 0C            [ 1]  683 	jrne	00132$
+      000323 90 9F            [ 1]  684 	ld	a, yl
+      000325 A1 E1            [ 1]  685 	cp	a, #0xe1
+      000327 26 06            [ 1]  686 	jrne	00132$
+                                    687 ;	../src/stm8s_clk.c: 395: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
+      000329 72 11 50 C0      [ 1]  688 	bres	20672, #0
+      00032D 20 1E            [ 2]  689 	jra	00136$
+      00032F                        690 00132$:
+                                    691 ;	../src/stm8s_clk.c: 397: else if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_LSI))
+      00032F 0D 07            [ 1]  692 	tnz	(0x07, sp)
+      000331 26 0C            [ 1]  693 	jrne	00128$
+      000333 90 9F            [ 1]  694 	ld	a, yl
+      000335 A1 D2            [ 1]  695 	cp	a, #0xd2
+      000337 26 06            [ 1]  696 	jrne	00128$
+                                    697 ;	../src/stm8s_clk.c: 399: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
+      000339 72 17 50 C0      [ 1]  698 	bres	20672, #3
+      00033D 20 0E            [ 2]  699 	jra	00136$
+      00033F                        700 00128$:
+                                    701 ;	../src/stm8s_clk.c: 401: else if ((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSE))
+      00033F 0D 07            [ 1]  702 	tnz	(0x07, sp)
+      000341 26 0A            [ 1]  703 	jrne	00136$
+      000343 90 9F            [ 1]  704 	ld	a, yl
+      000345 A1 B4            [ 1]  705 	cp	a, #0xb4
+      000347 26 04            [ 1]  706 	jrne	00136$
+                                    707 ;	../src/stm8s_clk.c: 403: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
+      000349 72 11 50 C1      [ 1]  708 	bres	20673, #0
+      00034D                        709 00136$:
+                                    710 ;	../src/stm8s_clk.c: 406: return(Swif);
+      00034D 9F               [ 1]  711 	ld	a, xl
+                                    712 ;	../src/stm8s_clk.c: 407: }
+      00034E 5B 01            [ 2]  713 	addw	sp, #1
+      000350 81               [ 4]  714 	ret
+                                    715 ;	../src/stm8s_clk.c: 415: void CLK_HSIPrescalerConfig(CLK_Prescaler_TypeDef HSIPrescaler)
+                                    716 ;	-----------------------------------------
+                                    717 ;	 function CLK_HSIPrescalerConfig
+                                    718 ;	-----------------------------------------
+      000351                        719 _CLK_HSIPrescalerConfig:
+                                    720 ;	../src/stm8s_clk.c: 418: assert_param(IS_CLK_HSIPRESCALER_OK(HSIPrescaler));
+      000351 0D 03            [ 1]  721 	tnz	(0x03, sp)
+      000353 27 21            [ 1]  722 	jreq	00104$
+      000355 7B 03            [ 1]  723 	ld	a, (0x03, sp)
+      000357 A1 08            [ 1]  724 	cp	a, #0x08
+      000359 27 1B            [ 1]  725 	jreq	00104$
+      00035B 7B 03            [ 1]  726 	ld	a, (0x03, sp)
+      00035D A1 10            [ 1]  727 	cp	a, #0x10
+      00035F 27 15            [ 1]  728 	jreq	00104$
+      000361 7B 03            [ 1]  729 	ld	a, (0x03, sp)
+      000363 A1 18            [ 1]  730 	cp	a, #0x18
+      000365 27 0F            [ 1]  731 	jreq	00104$
+      000367 4B A2            [ 1]  732 	push	#0xa2
+      000369 4B 01            [ 1]  733 	push	#0x01
+      00036B 5F               [ 1]  734 	clrw	x
+      00036C 89               [ 2]  735 	pushw	x
+      00036D 4Br0C            [ 1]  736 	push	#<___str_0
+      00036F 4Bs00            [ 1]  737 	push	#(___str_0 >> 8)
+      000371 CDr00r00         [ 4]  738 	call	_assert_failed
+      000374 5B 06            [ 2]  739 	addw	sp, #6
+      000376                        740 00104$:
+                                    741 ;	../src/stm8s_clk.c: 421: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+      000376 C6 50 C6         [ 1]  742 	ld	a, 0x50c6
+      000379 A4 E7            [ 1]  743 	and	a, #0xe7
+      00037B C7 50 C6         [ 1]  744 	ld	0x50c6, a
+                                    745 ;	../src/stm8s_clk.c: 424: CLK->CKDIVR |= (uint8_t)HSIPrescaler;
+      00037E C6 50 C6         [ 1]  746 	ld	a, 0x50c6
+      000381 1A 03            [ 1]  747 	or	a, (0x03, sp)
+      000383 C7 50 C6         [ 1]  748 	ld	0x50c6, a
+                                    749 ;	../src/stm8s_clk.c: 425: }
+      000386 81               [ 4]  750 	ret
+                                    751 ;	../src/stm8s_clk.c: 436: void CLK_CCOConfig(CLK_Output_TypeDef CLK_CCO)
+                                    752 ;	-----------------------------------------
+                                    753 ;	 function CLK_CCOConfig
+                                    754 ;	-----------------------------------------
+      000387                        755 _CLK_CCOConfig:
+                                    756 ;	../src/stm8s_clk.c: 439: assert_param(IS_CLK_OUTPUT_OK(CLK_CCO));
+      000387 0D 03            [ 1]  757 	tnz	(0x03, sp)
+      000389 27 57            [ 1]  758 	jreq	00104$
+      00038B 7B 03            [ 1]  759 	ld	a, (0x03, sp)
+      00038D A1 04            [ 1]  760 	cp	a, #0x04
+      00038F 27 51            [ 1]  761 	jreq	00104$
+      000391 7B 03            [ 1]  762 	ld	a, (0x03, sp)
+      000393 A1 02            [ 1]  763 	cp	a, #0x02
+      000395 27 4B            [ 1]  764 	jreq	00104$
+      000397 7B 03            [ 1]  765 	ld	a, (0x03, sp)
+      000399 A1 08            [ 1]  766 	cp	a, #0x08
+      00039B 27 45            [ 1]  767 	jreq	00104$
+      00039D 7B 03            [ 1]  768 	ld	a, (0x03, sp)
+      00039F A1 0A            [ 1]  769 	cp	a, #0x0a
+      0003A1 27 3F            [ 1]  770 	jreq	00104$
+      0003A3 7B 03            [ 1]  771 	ld	a, (0x03, sp)
+      0003A5 A1 0C            [ 1]  772 	cp	a, #0x0c
+      0003A7 27 39            [ 1]  773 	jreq	00104$
+      0003A9 7B 03            [ 1]  774 	ld	a, (0x03, sp)
+      0003AB A1 0E            [ 1]  775 	cp	a, #0x0e
+      0003AD 27 33            [ 1]  776 	jreq	00104$
+      0003AF 7B 03            [ 1]  777 	ld	a, (0x03, sp)
+      0003B1 A1 10            [ 1]  778 	cp	a, #0x10
+      0003B3 27 2D            [ 1]  779 	jreq	00104$
+      0003B5 7B 03            [ 1]  780 	ld	a, (0x03, sp)
+      0003B7 A1 12            [ 1]  781 	cp	a, #0x12
+      0003B9 27 27            [ 1]  782 	jreq	00104$
+      0003BB 7B 03            [ 1]  783 	ld	a, (0x03, sp)
+      0003BD A1 14            [ 1]  784 	cp	a, #0x14
+      0003BF 27 21            [ 1]  785 	jreq	00104$
+      0003C1 7B 03            [ 1]  786 	ld	a, (0x03, sp)
+      0003C3 A1 16            [ 1]  787 	cp	a, #0x16
+      0003C5 27 1B            [ 1]  788 	jreq	00104$
+      0003C7 7B 03            [ 1]  789 	ld	a, (0x03, sp)
+      0003C9 A1 18            [ 1]  790 	cp	a, #0x18
+      0003CB 27 15            [ 1]  791 	jreq	00104$
+      0003CD 7B 03            [ 1]  792 	ld	a, (0x03, sp)
+      0003CF A1 1A            [ 1]  793 	cp	a, #0x1a
+      0003D1 27 0F            [ 1]  794 	jreq	00104$
+      0003D3 4B B7            [ 1]  795 	push	#0xb7
+      0003D5 4B 01            [ 1]  796 	push	#0x01
+      0003D7 5F               [ 1]  797 	clrw	x
+      0003D8 89               [ 2]  798 	pushw	x
+      0003D9 4Br0C            [ 1]  799 	push	#<___str_0
+      0003DB 4Bs00            [ 1]  800 	push	#(___str_0 >> 8)
+      0003DD CDr00r00         [ 4]  801 	call	_assert_failed
+      0003E0 5B 06            [ 2]  802 	addw	sp, #6
+      0003E2                        803 00104$:
+                                    804 ;	../src/stm8s_clk.c: 442: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOSEL);
+      0003E2 C6 50 C9         [ 1]  805 	ld	a, 0x50c9
+      0003E5 A4 E1            [ 1]  806 	and	a, #0xe1
+      0003E7 C7 50 C9         [ 1]  807 	ld	0x50c9, a
+                                    808 ;	../src/stm8s_clk.c: 445: CLK->CCOR |= (uint8_t)CLK_CCO;
+      0003EA C6 50 C9         [ 1]  809 	ld	a, 0x50c9
+      0003ED 1A 03            [ 1]  810 	or	a, (0x03, sp)
+      0003EF C7 50 C9         [ 1]  811 	ld	0x50c9, a
+                                    812 ;	../src/stm8s_clk.c: 448: CLK->CCOR |= CLK_CCOR_CCOEN;
+      0003F2 72 10 50 C9      [ 1]  813 	bset	20681, #0
+                                    814 ;	../src/stm8s_clk.c: 449: }
+      0003F6 81               [ 4]  815 	ret
+                                    816 ;	../src/stm8s_clk.c: 459: void CLK_ITConfig(CLK_IT_TypeDef CLK_IT, FunctionalState NewState)
+                                    817 ;	-----------------------------------------
+                                    818 ;	 function CLK_ITConfig
+                                    819 ;	-----------------------------------------
+      0003F7                        820 _CLK_ITConfig:
+      0003F7 88               [ 1]  821 	push	a
+                                    822 ;	../src/stm8s_clk.c: 462: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      0003F8 0D 05            [ 1]  823 	tnz	(0x05, sp)
+      0003FA 27 14            [ 1]  824 	jreq	00115$
+      0003FC 7B 05            [ 1]  825 	ld	a, (0x05, sp)
+      0003FE 4A               [ 1]  826 	dec	a
+      0003FF 27 0F            [ 1]  827 	jreq	00115$
+      000401 4B CE            [ 1]  828 	push	#0xce
+      000403 4B 01            [ 1]  829 	push	#0x01
+      000405 5F               [ 1]  830 	clrw	x
+      000406 89               [ 2]  831 	pushw	x
+      000407 4Br0C            [ 1]  832 	push	#<___str_0
+      000409 4Bs00            [ 1]  833 	push	#(___str_0 >> 8)
+      00040B CDr00r00         [ 4]  834 	call	_assert_failed
+      00040E 5B 06            [ 2]  835 	addw	sp, #6
+      000410                        836 00115$:
+                                    837 ;	../src/stm8s_clk.c: 463: assert_param(IS_CLK_IT_OK(CLK_IT));
+      000410 7B 04            [ 1]  838 	ld	a, (0x04, sp)
+      000412 A0 0C            [ 1]  839 	sub	a, #0x0c
+      000414 26 04            [ 1]  840 	jrne	00174$
+      000416 4C               [ 1]  841 	inc	a
+      000417 6B 01            [ 1]  842 	ld	(0x01, sp), a
+      000419 C1                     843 	.byte 0xc1
+      00041A                        844 00174$:
+      00041A 0F 01            [ 1]  845 	clr	(0x01, sp)
+      00041C                        846 00175$:
+      00041C 7B 04            [ 1]  847 	ld	a, (0x04, sp)
+      00041E A0 1C            [ 1]  848 	sub	a, #0x1c
+      000420 26 02            [ 1]  849 	jrne	00177$
+      000422 4C               [ 1]  850 	inc	a
+      000423 21                     851 	.byte 0x21
+      000424                        852 00177$:
+      000424 4F               [ 1]  853 	clr	a
+      000425                        854 00178$:
+      000425 0D 01            [ 1]  855 	tnz	(0x01, sp)
+      000427 26 14            [ 1]  856 	jrne	00120$
+      000429 4D               [ 1]  857 	tnz	a
+      00042A 26 11            [ 1]  858 	jrne	00120$
+      00042C 88               [ 1]  859 	push	a
+      00042D 4B CF            [ 1]  860 	push	#0xcf
+      00042F 4B 01            [ 1]  861 	push	#0x01
+      000431 5F               [ 1]  862 	clrw	x
+      000432 89               [ 2]  863 	pushw	x
+      000433 4Br0C            [ 1]  864 	push	#<___str_0
+      000435 4Bs00            [ 1]  865 	push	#(___str_0 >> 8)
+      000437 CDr00r00         [ 4]  866 	call	_assert_failed
+      00043A 5B 06            [ 2]  867 	addw	sp, #6
+      00043C 84               [ 1]  868 	pop	a
+      00043D                        869 00120$:
+                                    870 ;	../src/stm8s_clk.c: 465: if (NewState != DISABLE)
+      00043D 0D 05            [ 1]  871 	tnz	(0x05, sp)
+      00043F 27 13            [ 1]  872 	jreq	00110$
+                                    873 ;	../src/stm8s_clk.c: 467: switch (CLK_IT)
+      000441 0D 01            [ 1]  874 	tnz	(0x01, sp)
+      000443 26 09            [ 1]  875 	jrne	00102$
+      000445 4D               [ 1]  876 	tnz	a
+      000446 27 1D            [ 1]  877 	jreq	00112$
+                                    878 ;	../src/stm8s_clk.c: 470: CLK->SWCR |= CLK_SWCR_SWIEN;
+      000448 72 14 50 C5      [ 1]  879 	bset	20677, #2
+                                    880 ;	../src/stm8s_clk.c: 471: break;
+      00044C 20 17            [ 2]  881 	jra	00112$
+                                    882 ;	../src/stm8s_clk.c: 472: case CLK_IT_CSSD: /* Enable the clock security system detection interrupt */
+      00044E                        883 00102$:
+                                    884 ;	../src/stm8s_clk.c: 473: CLK->CSSR |= CLK_CSSR_CSSDIE;
+      00044E 72 14 50 C8      [ 1]  885 	bset	20680, #2
+                                    886 ;	../src/stm8s_clk.c: 474: break;
+      000452 20 11            [ 2]  887 	jra	00112$
+                                    888 ;	../src/stm8s_clk.c: 477: }
+      000454                        889 00110$:
+                                    890 ;	../src/stm8s_clk.c: 481: switch (CLK_IT)
+      000454 0D 01            [ 1]  891 	tnz	(0x01, sp)
+      000456 26 09            [ 1]  892 	jrne	00106$
+      000458 4D               [ 1]  893 	tnz	a
+      000459 27 0A            [ 1]  894 	jreq	00112$
+                                    895 ;	../src/stm8s_clk.c: 484: CLK->SWCR  &= (uint8_t)(~CLK_SWCR_SWIEN);
+      00045B 72 15 50 C5      [ 1]  896 	bres	20677, #2
+                                    897 ;	../src/stm8s_clk.c: 485: break;
+      00045F 20 04            [ 2]  898 	jra	00112$
+                                    899 ;	../src/stm8s_clk.c: 486: case CLK_IT_CSSD: /* Disable the clock security system detection interrupt */
+      000461                        900 00106$:
+                                    901 ;	../src/stm8s_clk.c: 487: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDIE);
+      000461 72 15 50 C8      [ 1]  902 	bres	20680, #2
+                                    903 ;	../src/stm8s_clk.c: 491: }
+      000465                        904 00112$:
+                                    905 ;	../src/stm8s_clk.c: 493: }
+      000465 84               [ 1]  906 	pop	a
+      000466 81               [ 4]  907 	ret
+                                    908 ;	../src/stm8s_clk.c: 500: void CLK_SYSCLKConfig(CLK_Prescaler_TypeDef CLK_Prescaler)
+                                    909 ;	-----------------------------------------
+                                    910 ;	 function CLK_SYSCLKConfig
+                                    911 ;	-----------------------------------------
+      000467                        912 _CLK_SYSCLKConfig:
+      000467 89               [ 2]  913 	pushw	x
+                                    914 ;	../src/stm8s_clk.c: 503: assert_param(IS_CLK_PRESCALER_OK(CLK_Prescaler));
+      000468 0D 05            [ 1]  915 	tnz	(0x05, sp)
+      00046A 27 51            [ 1]  916 	jreq	00107$
+      00046C 7B 05            [ 1]  917 	ld	a, (0x05, sp)
+      00046E A1 08            [ 1]  918 	cp	a, #0x08
+      000470 27 4B            [ 1]  919 	jreq	00107$
+      000472 7B 05            [ 1]  920 	ld	a, (0x05, sp)
+      000474 A1 10            [ 1]  921 	cp	a, #0x10
+      000476 27 45            [ 1]  922 	jreq	00107$
+      000478 7B 05            [ 1]  923 	ld	a, (0x05, sp)
+      00047A A1 18            [ 1]  924 	cp	a, #0x18
+      00047C 27 3F            [ 1]  925 	jreq	00107$
+      00047E 7B 05            [ 1]  926 	ld	a, (0x05, sp)
+      000480 A1 80            [ 1]  927 	cp	a, #0x80
+      000482 27 39            [ 1]  928 	jreq	00107$
+      000484 7B 05            [ 1]  929 	ld	a, (0x05, sp)
+      000486 A1 81            [ 1]  930 	cp	a, #0x81
+      000488 27 33            [ 1]  931 	jreq	00107$
+      00048A 7B 05            [ 1]  932 	ld	a, (0x05, sp)
+      00048C A1 82            [ 1]  933 	cp	a, #0x82
+      00048E 27 2D            [ 1]  934 	jreq	00107$
+      000490 7B 05            [ 1]  935 	ld	a, (0x05, sp)
+      000492 A1 83            [ 1]  936 	cp	a, #0x83
+      000494 27 27            [ 1]  937 	jreq	00107$
+      000496 7B 05            [ 1]  938 	ld	a, (0x05, sp)
+      000498 A1 84            [ 1]  939 	cp	a, #0x84
+      00049A 27 21            [ 1]  940 	jreq	00107$
+      00049C 7B 05            [ 1]  941 	ld	a, (0x05, sp)
+      00049E A1 85            [ 1]  942 	cp	a, #0x85
+      0004A0 27 1B            [ 1]  943 	jreq	00107$
+      0004A2 7B 05            [ 1]  944 	ld	a, (0x05, sp)
+      0004A4 A1 86            [ 1]  945 	cp	a, #0x86
+      0004A6 27 15            [ 1]  946 	jreq	00107$
+      0004A8 7B 05            [ 1]  947 	ld	a, (0x05, sp)
+      0004AA A1 87            [ 1]  948 	cp	a, #0x87
+      0004AC 27 0F            [ 1]  949 	jreq	00107$
+      0004AE 4B F7            [ 1]  950 	push	#0xf7
+      0004B0 4B 01            [ 1]  951 	push	#0x01
+      0004B2 5F               [ 1]  952 	clrw	x
+      0004B3 89               [ 2]  953 	pushw	x
+      0004B4 4Br0C            [ 1]  954 	push	#<___str_0
+      0004B6 4Bs00            [ 1]  955 	push	#(___str_0 >> 8)
+      0004B8 CDr00r00         [ 4]  956 	call	_assert_failed
+      0004BB 5B 06            [ 2]  957 	addw	sp, #6
+      0004BD                        958 00107$:
+                                    959 ;	../src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+      0004BD C6 50 C6         [ 1]  960 	ld	a, 0x50c6
+                                    961 ;	../src/stm8s_clk.c: 505: if (((uint8_t)CLK_Prescaler & (uint8_t)0x80) == 0x00) /* Bit7 = 0 means HSI divider */
+      0004C0 0D 05            [ 1]  962 	tnz	(0x05, sp)
+      0004C2 2B 15            [ 1]  963 	jrmi	00102$
+                                    964 ;	../src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+      0004C4 A4 E7            [ 1]  965 	and	a, #0xe7
+      0004C6 C7 50 C6         [ 1]  966 	ld	0x50c6, a
+                                    967 ;	../src/stm8s_clk.c: 508: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_HSIDIV);
+      0004C9 C6 50 C6         [ 1]  968 	ld	a, 0x50c6
+      0004CC 6B 02            [ 1]  969 	ld	(0x02, sp), a
+      0004CE 7B 05            [ 1]  970 	ld	a, (0x05, sp)
+      0004D0 A4 18            [ 1]  971 	and	a, #0x18
+      0004D2 1A 02            [ 1]  972 	or	a, (0x02, sp)
+      0004D4 C7 50 C6         [ 1]  973 	ld	0x50c6, a
+      0004D7 20 13            [ 2]  974 	jra	00104$
+      0004D9                        975 00102$:
+                                    976 ;	../src/stm8s_clk.c: 512: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_CPUDIV);
+      0004D9 A4 F8            [ 1]  977 	and	a, #0xf8
+      0004DB C7 50 C6         [ 1]  978 	ld	0x50c6, a
+                                    979 ;	../src/stm8s_clk.c: 513: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_CPUDIV);
+      0004DE C6 50 C6         [ 1]  980 	ld	a, 0x50c6
+      0004E1 6B 01            [ 1]  981 	ld	(0x01, sp), a
+      0004E3 7B 05            [ 1]  982 	ld	a, (0x05, sp)
+      0004E5 A4 07            [ 1]  983 	and	a, #0x07
+      0004E7 1A 01            [ 1]  984 	or	a, (0x01, sp)
+      0004E9 C7 50 C6         [ 1]  985 	ld	0x50c6, a
+      0004EC                        986 00104$:
+                                    987 ;	../src/stm8s_clk.c: 515: }
+      0004EC 85               [ 2]  988 	popw	x
+      0004ED 81               [ 4]  989 	ret
+                                    990 ;	../src/stm8s_clk.c: 523: void CLK_SWIMConfig(CLK_SWIMDivider_TypeDef CLK_SWIMDivider)
+                                    991 ;	-----------------------------------------
+                                    992 ;	 function CLK_SWIMConfig
+                                    993 ;	-----------------------------------------
+      0004EE                        994 _CLK_SWIMConfig:
+                                    995 ;	../src/stm8s_clk.c: 526: assert_param(IS_CLK_SWIMDIVIDER_OK(CLK_SWIMDivider));
+      0004EE 0D 03            [ 1]  996 	tnz	(0x03, sp)
+      0004F0 27 14            [ 1]  997 	jreq	00107$
+      0004F2 7B 03            [ 1]  998 	ld	a, (0x03, sp)
+      0004F4 4A               [ 1]  999 	dec	a
+      0004F5 27 0F            [ 1] 1000 	jreq	00107$
+      0004F7 4B 0E            [ 1] 1001 	push	#0x0e
+      0004F9 4B 02            [ 1] 1002 	push	#0x02
+      0004FB 5F               [ 1] 1003 	clrw	x
+      0004FC 89               [ 2] 1004 	pushw	x
+      0004FD 4Br0C            [ 1] 1005 	push	#<___str_0
+      0004FF 4Bs00            [ 1] 1006 	push	#(___str_0 >> 8)
+      000501 CDr00r00         [ 4] 1007 	call	_assert_failed
+      000504 5B 06            [ 2] 1008 	addw	sp, #6
+      000506                       1009 00107$:
+                                   1010 ;	../src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
+      000506 C6 50 CD         [ 1] 1011 	ld	a, 0x50cd
+                                   1012 ;	../src/stm8s_clk.c: 528: if (CLK_SWIMDivider != CLK_SWIMDIVIDER_2)
+      000509 0D 03            [ 1] 1013 	tnz	(0x03, sp)
+      00050B 27 06            [ 1] 1014 	jreq	00102$
+                                   1015 ;	../src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
+      00050D AA 01            [ 1] 1016 	or	a, #0x01
+      00050F C7 50 CD         [ 1] 1017 	ld	0x50cd, a
+      000512 81               [ 4] 1018 	ret
+      000513                       1019 00102$:
+                                   1020 ;	../src/stm8s_clk.c: 536: CLK->SWIMCCR &= (uint8_t)(~CLK_SWIMCCR_SWIMDIV);
+      000513 A4 FE            [ 1] 1021 	and	a, #0xfe
+      000515 C7 50 CD         [ 1] 1022 	ld	0x50cd, a
+                                   1023 ;	../src/stm8s_clk.c: 538: }
+      000518 81               [ 4] 1024 	ret
+                                   1025 ;	../src/stm8s_clk.c: 547: void CLK_ClockSecuritySystemEnable(void)
+                                   1026 ;	-----------------------------------------
+                                   1027 ;	 function CLK_ClockSecuritySystemEnable
+                                   1028 ;	-----------------------------------------
+      000519                       1029 _CLK_ClockSecuritySystemEnable:
+                                   1030 ;	../src/stm8s_clk.c: 550: CLK->CSSR |= CLK_CSSR_CSSEN;
+      000519 72 10 50 C8      [ 1] 1031 	bset	20680, #0
+                                   1032 ;	../src/stm8s_clk.c: 551: }
+      00051D 81               [ 4] 1033 	ret
+                                   1034 ;	../src/stm8s_clk.c: 559: CLK_Source_TypeDef CLK_GetSYSCLKSource(void)
+                                   1035 ;	-----------------------------------------
+                                   1036 ;	 function CLK_GetSYSCLKSource
+                                   1037 ;	-----------------------------------------
+      00051E                       1038 _CLK_GetSYSCLKSource:
+                                   1039 ;	../src/stm8s_clk.c: 561: return((CLK_Source_TypeDef)CLK->CMSR);
+      00051E C6 50 C3         [ 1] 1040 	ld	a, 0x50c3
+                                   1041 ;	../src/stm8s_clk.c: 562: }
+      000521 81               [ 4] 1042 	ret
+                                   1043 ;	../src/stm8s_clk.c: 569: uint32_t CLK_GetClockFreq(void)
+                                   1044 ;	-----------------------------------------
+                                   1045 ;	 function CLK_GetClockFreq
+                                   1046 ;	-----------------------------------------
+      000522                       1047 _CLK_GetClockFreq:
+      000522 52 05            [ 2] 1048 	sub	sp, #5
+                                   1049 ;	../src/stm8s_clk.c: 576: clocksource = (CLK_Source_TypeDef)CLK->CMSR;
+      000524 C6 50 C3         [ 1] 1050 	ld	a, 0x50c3
+      000527 6B 01            [ 1] 1051 	ld	(0x01, sp), a
+                                   1052 ;	../src/stm8s_clk.c: 578: if (clocksource == CLK_SOURCE_HSI)
+      000529 7B 01            [ 1] 1053 	ld	a, (0x01, sp)
+      00052B A1 E1            [ 1] 1054 	cp	a, #0xe1
+      00052D 26 22            [ 1] 1055 	jrne	00105$
+                                   1056 ;	../src/stm8s_clk.c: 580: tmp = (uint8_t)(CLK->CKDIVR & CLK_CKDIVR_HSIDIV);
+      00052F C6 50 C6         [ 1] 1057 	ld	a, 0x50c6
+      000532 A4 18            [ 1] 1058 	and	a, #0x18
+                                   1059 ;	../src/stm8s_clk.c: 581: tmp = (uint8_t)(tmp >> 3);
+      000534 44               [ 1] 1060 	srl	a
+      000535 44               [ 1] 1061 	srl	a
+      000536 44               [ 1] 1062 	srl	a
+                                   1063 ;	../src/stm8s_clk.c: 582: clockfrequency = HSI_VALUE >> HSIDivExp[tmp];
+      000537 5F               [ 1] 1064 	clrw	x
+      000538 97               [ 1] 1065 	ld	xl, a
+      000539 1Cr00r00         [ 2] 1066 	addw	x, #_HSIDivExp
+      00053C F6               [ 1] 1067 	ld	a, (x)
+      00053D AE 24 00         [ 2] 1068 	ldw	x, #0x2400
+      000540 90 AE 00 F4      [ 2] 1069 	ldw	y, #0x00f4
+      000544 4D               [ 1] 1070 	tnz	a
+      000545 27 06            [ 1] 1071 	jreq	00123$
+      000547                       1072 00122$:
+      000547 90 54            [ 2] 1073 	srlw	y
+      000549 56               [ 2] 1074 	rrcw	x
+      00054A 4A               [ 1] 1075 	dec	a
+      00054B 26 FA            [ 1] 1076 	jrne	00122$
+      00054D                       1077 00123$:
+      00054D 1F 04            [ 2] 1078 	ldw	(0x04, sp), x
+      00054F 20 1A            [ 2] 1079 	jra	00106$
+      000551                       1080 00105$:
+                                   1081 ;	../src/stm8s_clk.c: 584: else if ( clocksource == CLK_SOURCE_LSI)
+      000551 7B 01            [ 1] 1082 	ld	a, (0x01, sp)
+      000553 A1 D2            [ 1] 1083 	cp	a, #0xd2
+      000555 26 0B            [ 1] 1084 	jrne	00102$
+                                   1085 ;	../src/stm8s_clk.c: 586: clockfrequency = LSI_VALUE;
+      000557 AE F4 00         [ 2] 1086 	ldw	x, #0xf400
+      00055A 1F 04            [ 2] 1087 	ldw	(0x04, sp), x
+      00055C 90 AE 00 01      [ 2] 1088 	ldw	y, #0x0001
+      000560 20 09            [ 2] 1089 	jra	00106$
+      000562                       1090 00102$:
+                                   1091 ;	../src/stm8s_clk.c: 590: clockfrequency = HSE_VALUE;
+      000562 AE 24 00         [ 2] 1092 	ldw	x, #0x2400
+      000565 1F 04            [ 2] 1093 	ldw	(0x04, sp), x
+      000567 90 AE 00 F4      [ 2] 1094 	ldw	y, #0x00f4
+      00056B                       1095 00106$:
+                                   1096 ;	../src/stm8s_clk.c: 593: return((uint32_t)clockfrequency);
+      00056B 1E 04            [ 2] 1097 	ldw	x, (0x04, sp)
+                                   1098 ;	../src/stm8s_clk.c: 594: }
+      00056D 5B 05            [ 2] 1099 	addw	sp, #5
+      00056F 81               [ 4] 1100 	ret
+                                   1101 ;	../src/stm8s_clk.c: 603: void CLK_AdjustHSICalibrationValue(CLK_HSITrimValue_TypeDef CLK_HSICalibrationValue)
+                                   1102 ;	-----------------------------------------
+                                   1103 ;	 function CLK_AdjustHSICalibrationValue
+                                   1104 ;	-----------------------------------------
+      000570                       1105 _CLK_AdjustHSICalibrationValue:
+                                   1106 ;	../src/stm8s_clk.c: 606: assert_param(IS_CLK_HSITRIMVALUE_OK(CLK_HSICalibrationValue));
+      000570 0D 03            [ 1] 1107 	tnz	(0x03, sp)
+      000572 27 38            [ 1] 1108 	jreq	00104$
+      000574 7B 03            [ 1] 1109 	ld	a, (0x03, sp)
+      000576 4A               [ 1] 1110 	dec	a
+      000577 27 33            [ 1] 1111 	jreq	00104$
+      000579 7B 03            [ 1] 1112 	ld	a, (0x03, sp)
+      00057B A1 02            [ 1] 1113 	cp	a, #0x02
+      00057D 27 2D            [ 1] 1114 	jreq	00104$
+      00057F 7B 03            [ 1] 1115 	ld	a, (0x03, sp)
+      000581 A1 03            [ 1] 1116 	cp	a, #0x03
+      000583 27 27            [ 1] 1117 	jreq	00104$
+      000585 7B 03            [ 1] 1118 	ld	a, (0x03, sp)
+      000587 A1 04            [ 1] 1119 	cp	a, #0x04
+      000589 27 21            [ 1] 1120 	jreq	00104$
+      00058B 7B 03            [ 1] 1121 	ld	a, (0x03, sp)
+      00058D A1 05            [ 1] 1122 	cp	a, #0x05
+      00058F 27 1B            [ 1] 1123 	jreq	00104$
+      000591 7B 03            [ 1] 1124 	ld	a, (0x03, sp)
+      000593 A1 06            [ 1] 1125 	cp	a, #0x06
+      000595 27 15            [ 1] 1126 	jreq	00104$
+      000597 7B 03            [ 1] 1127 	ld	a, (0x03, sp)
+      000599 A1 07            [ 1] 1128 	cp	a, #0x07
+      00059B 27 0F            [ 1] 1129 	jreq	00104$
+      00059D 4B 5E            [ 1] 1130 	push	#0x5e
+      00059F 4B 02            [ 1] 1131 	push	#0x02
+      0005A1 5F               [ 1] 1132 	clrw	x
+      0005A2 89               [ 2] 1133 	pushw	x
+      0005A3 4Br0C            [ 1] 1134 	push	#<___str_0
+      0005A5 4Bs00            [ 1] 1135 	push	#(___str_0 >> 8)
+      0005A7 CDr00r00         [ 4] 1136 	call	_assert_failed
+      0005AA 5B 06            [ 2] 1137 	addw	sp, #6
+      0005AC                       1138 00104$:
+                                   1139 ;	../src/stm8s_clk.c: 609: CLK->HSITRIMR = (uint8_t)( (uint8_t)(CLK->HSITRIMR & (uint8_t)(~CLK_HSITRIMR_HSITRIM))|((uint8_t)CLK_HSICalibrationValue));
+      0005AC C6 50 CC         [ 1] 1140 	ld	a, 0x50cc
+      0005AF A4 F8            [ 1] 1141 	and	a, #0xf8
+      0005B1 1A 03            [ 1] 1142 	or	a, (0x03, sp)
+      0005B3 C7 50 CC         [ 1] 1143 	ld	0x50cc, a
+                                   1144 ;	../src/stm8s_clk.c: 610: }
+      0005B6 81               [ 4] 1145 	ret
+                                   1146 ;	../src/stm8s_clk.c: 621: void CLK_SYSCLKEmergencyClear(void)
+                                   1147 ;	-----------------------------------------
+                                   1148 ;	 function CLK_SYSCLKEmergencyClear
+                                   1149 ;	-----------------------------------------
+      0005B7                       1150 _CLK_SYSCLKEmergencyClear:
+                                   1151 ;	../src/stm8s_clk.c: 623: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWBSY);
+      0005B7 72 11 50 C5      [ 1] 1152 	bres	20677, #0
+                                   1153 ;	../src/stm8s_clk.c: 624: }
+      0005BB 81               [ 4] 1154 	ret
+                                   1155 ;	../src/stm8s_clk.c: 633: FlagStatus CLK_GetFlagStatus(CLK_Flag_TypeDef CLK_FLAG)
+                                   1156 ;	-----------------------------------------
+                                   1157 ;	 function CLK_GetFlagStatus
+                                   1158 ;	-----------------------------------------
+      0005BC                       1159 _CLK_GetFlagStatus:
+      0005BC 88               [ 1] 1160 	push	a
+                                   1161 ;	../src/stm8s_clk.c: 640: assert_param(IS_CLK_FLAG_OK(CLK_FLAG));
+      0005BD 1E 04            [ 2] 1162 	ldw	x, (0x04, sp)
+      0005BF A3 01 10         [ 2] 1163 	cpw	x, #0x0110
+      0005C2 27 47            [ 1] 1164 	jreq	00119$
+      0005C4 1E 04            [ 2] 1165 	ldw	x, (0x04, sp)
+      0005C6 A3 01 02         [ 2] 1166 	cpw	x, #0x0102
+      0005C9 27 40            [ 1] 1167 	jreq	00119$
+      0005CB 1E 04            [ 2] 1168 	ldw	x, (0x04, sp)
+      0005CD A3 02 02         [ 2] 1169 	cpw	x, #0x0202
+      0005D0 27 39            [ 1] 1170 	jreq	00119$
+      0005D2 1E 04            [ 2] 1171 	ldw	x, (0x04, sp)
+      0005D4 A3 03 08         [ 2] 1172 	cpw	x, #0x0308
+      0005D7 27 32            [ 1] 1173 	jreq	00119$
+      0005D9 1E 04            [ 2] 1174 	ldw	x, (0x04, sp)
+      0005DB A3 03 01         [ 2] 1175 	cpw	x, #0x0301
+      0005DE 27 2B            [ 1] 1176 	jreq	00119$
+      0005E0 1E 04            [ 2] 1177 	ldw	x, (0x04, sp)
+      0005E2 A3 04 08         [ 2] 1178 	cpw	x, #0x0408
+      0005E5 27 24            [ 1] 1179 	jreq	00119$
+      0005E7 1E 04            [ 2] 1180 	ldw	x, (0x04, sp)
+      0005E9 A3 04 02         [ 2] 1181 	cpw	x, #0x0402
+      0005EC 27 1D            [ 1] 1182 	jreq	00119$
+      0005EE 1E 04            [ 2] 1183 	ldw	x, (0x04, sp)
+      0005F0 A3 05 04         [ 2] 1184 	cpw	x, #0x0504
+      0005F3 27 16            [ 1] 1185 	jreq	00119$
+      0005F5 1E 04            [ 2] 1186 	ldw	x, (0x04, sp)
+      0005F7 A3 05 02         [ 2] 1187 	cpw	x, #0x0502
+      0005FA 27 0F            [ 1] 1188 	jreq	00119$
+      0005FC 4B 80            [ 1] 1189 	push	#0x80
+      0005FE 4B 02            [ 1] 1190 	push	#0x02
+      000600 5F               [ 1] 1191 	clrw	x
+      000601 89               [ 2] 1192 	pushw	x
+      000602 4Br0C            [ 1] 1193 	push	#<___str_0
+      000604 4Bs00            [ 1] 1194 	push	#(___str_0 >> 8)
+      000606 CDr00r00         [ 4] 1195 	call	_assert_failed
+      000609 5B 06            [ 2] 1196 	addw	sp, #6
+      00060B                       1197 00119$:
+                                   1198 ;	../src/stm8s_clk.c: 643: statusreg = (uint16_t)((uint16_t)CLK_FLAG & (uint16_t)0xFF00);
+      00060B 4F               [ 1] 1199 	clr	a
+      00060C 97               [ 1] 1200 	ld	xl, a
+      00060D 7B 04            [ 1] 1201 	ld	a, (0x04, sp)
+      00060F 95               [ 1] 1202 	ld	xh, a
+                                   1203 ;	../src/stm8s_clk.c: 646: if (statusreg == 0x0100) /* The flag to check is in ICKRregister */
+      000610 A3 01 00         [ 2] 1204 	cpw	x, #0x0100
+      000613 26 05            [ 1] 1205 	jrne	00111$
+                                   1206 ;	../src/stm8s_clk.c: 648: tmpreg = CLK->ICKR;
+      000615 C6 50 C0         [ 1] 1207 	ld	a, 0x50c0
+      000618 20 21            [ 2] 1208 	jra	00112$
+      00061A                       1209 00111$:
+                                   1210 ;	../src/stm8s_clk.c: 650: else if (statusreg == 0x0200) /* The flag to check is in ECKRregister */
+      00061A A3 02 00         [ 2] 1211 	cpw	x, #0x0200
+      00061D 26 05            [ 1] 1212 	jrne	00108$
+                                   1213 ;	../src/stm8s_clk.c: 652: tmpreg = CLK->ECKR;
+      00061F C6 50 C1         [ 1] 1214 	ld	a, 0x50c1
+      000622 20 17            [ 2] 1215 	jra	00112$
+      000624                       1216 00108$:
+                                   1217 ;	../src/stm8s_clk.c: 654: else if (statusreg == 0x0300) /* The flag to check is in SWIC register */
+      000624 A3 03 00         [ 2] 1218 	cpw	x, #0x0300
+      000627 26 05            [ 1] 1219 	jrne	00105$
+                                   1220 ;	../src/stm8s_clk.c: 656: tmpreg = CLK->SWCR;
+      000629 C6 50 C5         [ 1] 1221 	ld	a, 0x50c5
+      00062C 20 0D            [ 2] 1222 	jra	00112$
+      00062E                       1223 00105$:
+                                   1224 ;	../src/stm8s_clk.c: 658: else if (statusreg == 0x0400) /* The flag to check is in CSS register */
+      00062E A3 04 00         [ 2] 1225 	cpw	x, #0x0400
+      000631 26 05            [ 1] 1226 	jrne	00102$
+                                   1227 ;	../src/stm8s_clk.c: 660: tmpreg = CLK->CSSR;
+      000633 C6 50 C8         [ 1] 1228 	ld	a, 0x50c8
+      000636 20 03            [ 2] 1229 	jra	00112$
+      000638                       1230 00102$:
+                                   1231 ;	../src/stm8s_clk.c: 664: tmpreg = CLK->CCOR;
+      000638 C6 50 C9         [ 1] 1232 	ld	a, 0x50c9
+      00063B                       1233 00112$:
+                                   1234 ;	../src/stm8s_clk.c: 667: if ((tmpreg & (uint8_t)CLK_FLAG) != (uint8_t)RESET)
+      00063B 88               [ 1] 1235 	push	a
+      00063C 7B 06            [ 1] 1236 	ld	a, (0x06, sp)
+      00063E 6B 02            [ 1] 1237 	ld	(0x02, sp), a
+      000640 84               [ 1] 1238 	pop	a
+      000641 14 01            [ 1] 1239 	and	a, (0x01, sp)
+      000643 27 03            [ 1] 1240 	jreq	00114$
+                                   1241 ;	../src/stm8s_clk.c: 669: bitstatus = SET;
+      000645 A6 01            [ 1] 1242 	ld	a, #0x01
+                                   1243 ;	../src/stm8s_clk.c: 673: bitstatus = RESET;
+      000647 21                    1244 	.byte 0x21
+      000648                       1245 00114$:
+      000648 4F               [ 1] 1246 	clr	a
+      000649                       1247 00115$:
+                                   1248 ;	../src/stm8s_clk.c: 677: return((FlagStatus)bitstatus);
+                                   1249 ;	../src/stm8s_clk.c: 678: }
+      000649 5B 01            [ 2] 1250 	addw	sp, #1
+      00064B 81               [ 4] 1251 	ret
+                                   1252 ;	../src/stm8s_clk.c: 686: ITStatus CLK_GetITStatus(CLK_IT_TypeDef CLK_IT)
+                                   1253 ;	-----------------------------------------
+                                   1254 ;	 function CLK_GetITStatus
+                                   1255 ;	-----------------------------------------
+      00064C                       1256 _CLK_GetITStatus:
+                                   1257 ;	../src/stm8s_clk.c: 691: assert_param(IS_CLK_IT_OK(CLK_IT));
+      00064C 7B 03            [ 1] 1258 	ld	a, (0x03, sp)
+      00064E A0 1C            [ 1] 1259 	sub	a, #0x1c
+      000650 26 02            [ 1] 1260 	jrne	00143$
+      000652 4C               [ 1] 1261 	inc	a
+      000653 21                    1262 	.byte 0x21
+      000654                       1263 00143$:
+      000654 4F               [ 1] 1264 	clr	a
+      000655                       1265 00144$:
+      000655 88               [ 1] 1266 	push	a
+      000656 7B 04            [ 1] 1267 	ld	a, (0x04, sp)
+      000658 A1 0C            [ 1] 1268 	cp	a, #0x0c
+      00065A 84               [ 1] 1269 	pop	a
+      00065B 27 14            [ 1] 1270 	jreq	00113$
+      00065D 4D               [ 1] 1271 	tnz	a
+      00065E 26 11            [ 1] 1272 	jrne	00113$
+      000660 88               [ 1] 1273 	push	a
+      000661 4B B3            [ 1] 1274 	push	#0xb3
+      000663 4B 02            [ 1] 1275 	push	#0x02
+      000665 5F               [ 1] 1276 	clrw	x
+      000666 89               [ 2] 1277 	pushw	x
+      000667 4Br0C            [ 1] 1278 	push	#<___str_0
+      000669 4Bs00            [ 1] 1279 	push	#(___str_0 >> 8)
+      00066B CDr00r00         [ 4] 1280 	call	_assert_failed
+      00066E 5B 06            [ 2] 1281 	addw	sp, #6
+      000670 84               [ 1] 1282 	pop	a
+      000671                       1283 00113$:
+                                   1284 ;	../src/stm8s_clk.c: 693: if (CLK_IT == CLK_IT_SWIF)
+      000671 4D               [ 1] 1285 	tnz	a
+      000672 27 0D            [ 1] 1286 	jreq	00108$
+                                   1287 ;	../src/stm8s_clk.c: 696: if ((CLK->SWCR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
+      000674 C6 50 C5         [ 1] 1288 	ld	a, 0x50c5
+      000677 14 03            [ 1] 1289 	and	a, (0x03, sp)
+                                   1290 ;	../src/stm8s_clk.c: 698: bitstatus = SET;
+      000679 A0 0C            [ 1] 1291 	sub	a, #0x0c
+      00067B 26 02            [ 1] 1292 	jrne	00102$
+      00067D 4C               [ 1] 1293 	inc	a
+      00067E 81               [ 4] 1294 	ret
+      00067F                       1295 00102$:
+                                   1296 ;	../src/stm8s_clk.c: 702: bitstatus = RESET;
+      00067F 4F               [ 1] 1297 	clr	a
+      000680 81               [ 4] 1298 	ret
+      000681                       1299 00108$:
+                                   1300 ;	../src/stm8s_clk.c: 708: if ((CLK->CSSR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
+      000681 C6 50 C8         [ 1] 1301 	ld	a, 0x50c8
+      000684 14 03            [ 1] 1302 	and	a, (0x03, sp)
+                                   1303 ;	../src/stm8s_clk.c: 710: bitstatus = SET;
+      000686 A0 0C            [ 1] 1304 	sub	a, #0x0c
+      000688 26 02            [ 1] 1305 	jrne	00105$
+      00068A 4C               [ 1] 1306 	inc	a
+      00068B 81               [ 4] 1307 	ret
+      00068C                       1308 00105$:
+                                   1309 ;	../src/stm8s_clk.c: 714: bitstatus = RESET;
+      00068C 4F               [ 1] 1310 	clr	a
+                                   1311 ;	../src/stm8s_clk.c: 719: return bitstatus;
+                                   1312 ;	../src/stm8s_clk.c: 720: }
+      00068D 81               [ 4] 1313 	ret
+                                   1314 ;	../src/stm8s_clk.c: 728: void CLK_ClearITPendingBit(CLK_IT_TypeDef CLK_IT)
+                                   1315 ;	-----------------------------------------
+                                   1316 ;	 function CLK_ClearITPendingBit
+                                   1317 ;	-----------------------------------------
+      00068E                       1318 _CLK_ClearITPendingBit:
+                                   1319 ;	../src/stm8s_clk.c: 731: assert_param(IS_CLK_IT_OK(CLK_IT));
+      00068E 7B 03            [ 1] 1320 	ld	a, (0x03, sp)
+      000690 A0 0C            [ 1] 1321 	sub	a, #0x0c
+      000692 26 02            [ 1] 1322 	jrne	00127$
+      000694 4C               [ 1] 1323 	inc	a
+      000695 21                    1324 	.byte 0x21
+      000696                       1325 00127$:
+      000696 4F               [ 1] 1326 	clr	a
+      000697                       1327 00128$:
+      000697 4D               [ 1] 1328 	tnz	a
+      000698 26 19            [ 1] 1329 	jrne	00107$
+      00069A 88               [ 1] 1330 	push	a
+      00069B 7B 04            [ 1] 1331 	ld	a, (0x04, sp)
+      00069D A1 1C            [ 1] 1332 	cp	a, #0x1c
+      00069F 84               [ 1] 1333 	pop	a
+      0006A0 27 11            [ 1] 1334 	jreq	00107$
+      0006A2 88               [ 1] 1335 	push	a
+      0006A3 4B DB            [ 1] 1336 	push	#0xdb
+      0006A5 4B 02            [ 1] 1337 	push	#0x02
+      0006A7 5F               [ 1] 1338 	clrw	x
+      0006A8 89               [ 2] 1339 	pushw	x
+      0006A9 4Br0C            [ 1] 1340 	push	#<___str_0
+      0006AB 4Bs00            [ 1] 1341 	push	#(___str_0 >> 8)
+      0006AD CDr00r00         [ 4] 1342 	call	_assert_failed
+      0006B0 5B 06            [ 2] 1343 	addw	sp, #6
+      0006B2 84               [ 1] 1344 	pop	a
+      0006B3                       1345 00107$:
+                                   1346 ;	../src/stm8s_clk.c: 733: if (CLK_IT == (uint8_t)CLK_IT_CSSD)
+      0006B3 4D               [ 1] 1347 	tnz	a
+      0006B4 27 05            [ 1] 1348 	jreq	00102$
+                                   1349 ;	../src/stm8s_clk.c: 736: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSD);
+      0006B6 72 17 50 C8      [ 1] 1350 	bres	20680, #3
+      0006BA 81               [ 4] 1351 	ret
+      0006BB                       1352 00102$:
+                                   1353 ;	../src/stm8s_clk.c: 741: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIF);
+      0006BB 72 17 50 C5      [ 1] 1354 	bres	20677, #3
+                                   1355 ;	../src/stm8s_clk.c: 744: }
+      0006BF 81               [ 4] 1356 	ret
+                                   1357 	.area CODE
+                                   1358 	.area CONST
+      000000                       1359 _HSIDivExp:
+      000000 00                    1360 	.db #0x00	; 0
+      000001 01                    1361 	.db #0x01	; 1
+      000002 02                    1362 	.db #0x02	; 2
+      000003 03                    1363 	.db #0x03	; 3
+      000004                       1364 _CLKPrescTable:
+      000004 01                    1365 	.db #0x01	; 1
+      000005 02                    1366 	.db #0x02	; 2
+      000006 04                    1367 	.db #0x04	; 4
+      000007 08                    1368 	.db #0x08	; 8
+      000008 0A                    1369 	.db #0x0a	; 10
+      000009 10                    1370 	.db #0x10	; 16
+      00000A 14                    1371 	.db #0x14	; 20
+      00000B 28                    1372 	.db #0x28	; 40
+      00000C                       1373 ___str_0:
+      00000C 2E 2E 2F 73 72 63 2F  1374 	.ascii "../src/stm8s_clk.c"
              73 74 6D 38 73 5F 63
              6C 6B 2E 63
-      000789 00                    1416 	.db 0x00
-                                   1417 	.area INITIALIZER
-                                   1418 	.area CABS (ABS)
+      00001E 00                    1375 	.db 0x00
+                                   1376 	.area INITIALIZER
+                                   1377 	.area CABS (ABS)

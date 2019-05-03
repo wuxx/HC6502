@@ -1,371 +1,387 @@
                                       1 ;--------------------------------------------------------
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
-                                      3 ; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
-                                      4 ; This file was generated Wed Jan  2 15:12:32 2019
-                                      5 ;--------------------------------------------------------
-                                      6 	.module stm8s_gpio
-                                      7 	.optsdcc -mstm8
-                                      8 	
-                                      9 ;--------------------------------------------------------
-                                     10 ; Public variables in this module
-                                     11 ;--------------------------------------------------------
-                                     12 	.globl _assert_failed
-                                     13 	.globl _GPIO_DeInit
-                                     14 	.globl _GPIO_Init
-                                     15 	.globl _GPIO_Write
-                                     16 	.globl _GPIO_WriteHigh
-                                     17 	.globl _GPIO_WriteLow
-                                     18 	.globl _GPIO_WriteReverse
-                                     19 	.globl _GPIO_ReadOutputData
-                                     20 	.globl _GPIO_ReadInputData
-                                     21 	.globl _GPIO_ReadInputPin
-                                     22 	.globl _GPIO_ExternalPullUpConfig
-                                     23 ;--------------------------------------------------------
-                                     24 ; ram data
-                                     25 ;--------------------------------------------------------
-                                     26 	.area DATA
-                                     27 ;--------------------------------------------------------
-                                     28 ; ram data
-                                     29 ;--------------------------------------------------------
-                                     30 	.area INITIALIZED
-                                     31 ;--------------------------------------------------------
-                                     32 ; absolute external ram data
-                                     33 ;--------------------------------------------------------
-                                     34 	.area DABS (ABS)
-                                     35 ;--------------------------------------------------------
-                                     36 ; global & static initialisations
-                                     37 ;--------------------------------------------------------
-                                     38 	.area HOME
-                                     39 	.area GSINIT
-                                     40 	.area GSFINAL
-                                     41 	.area GSINIT
-                                     42 ;--------------------------------------------------------
-                                     43 ; Home
-                                     44 ;--------------------------------------------------------
-                                     45 	.area HOME
+                                      3 ; Version 3.8.0 #10562 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_gpio
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _assert_failed
+                                     12 	.globl _GPIO_DeInit
+                                     13 	.globl _GPIO_Init
+                                     14 	.globl _GPIO_Write
+                                     15 	.globl _GPIO_WriteHigh
+                                     16 	.globl _GPIO_WriteLow
+                                     17 	.globl _GPIO_WriteReverse
+                                     18 	.globl _GPIO_ReadOutputData
+                                     19 	.globl _GPIO_ReadInputData
+                                     20 	.globl _GPIO_ReadInputPin
+                                     21 	.globl _GPIO_ExternalPullUpConfig
+                                     22 ;--------------------------------------------------------
+                                     23 ; ram data
+                                     24 ;--------------------------------------------------------
+                                     25 	.area DATA
+                                     26 ;--------------------------------------------------------
+                                     27 ; ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area INITIALIZED
+                                     30 ;--------------------------------------------------------
+                                     31 ; absolute external ram data
+                                     32 ;--------------------------------------------------------
+                                     33 	.area DABS (ABS)
+                                     34 
+                                     35 ; default segment ordering for linker
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area CONST
+                                     40 	.area INITIALIZER
+                                     41 	.area CODE
+                                     42 
+                                     43 ;--------------------------------------------------------
+                                     44 ; global & static initialisations
+                                     45 ;--------------------------------------------------------
                                      46 	.area HOME
-                                     47 ;--------------------------------------------------------
-                                     48 ; code
-                                     49 ;--------------------------------------------------------
-                                     50 	.area CODE
-                                     51 ;	../src/stm8s_gpio.c: 53: void GPIO_DeInit(GPIO_TypeDef* GPIOx)
-                                     52 ;	-----------------------------------------
-                                     53 ;	 function GPIO_DeInit
-                                     54 ;	-----------------------------------------
-      000000                         55 _GPIO_DeInit:
-      000000 89               [ 2]   56 	pushw	x
-                                     57 ;	../src/stm8s_gpio.c: 55: GPIOx->ODR = GPIO_ODR_RESET_VALUE; /* Reset Output Data Register */
-      000001 16 05            [ 2]   58 	ldw	y, (0x05, sp)
-      000003 17 01            [ 2]   59 	ldw	(0x01, sp), y
-      000005 1E 01            [ 2]   60 	ldw	x, (0x01, sp)
-      000007 7F               [ 1]   61 	clr	(x)
-                                     62 ;	../src/stm8s_gpio.c: 56: GPIOx->DDR = GPIO_DDR_RESET_VALUE; /* Reset Data Direction Register */
-      000008 1E 01            [ 2]   63 	ldw	x, (0x01, sp)
-      00000A 5C               [ 2]   64 	incw	x
-      00000B 5C               [ 2]   65 	incw	x
-      00000C 7F               [ 1]   66 	clr	(x)
-                                     67 ;	../src/stm8s_gpio.c: 57: GPIOx->CR1 = GPIO_CR1_RESET_VALUE; /* Reset Control Register 1 */
-      00000D 1E 01            [ 2]   68 	ldw	x, (0x01, sp)
-      00000F 1C 00 03         [ 2]   69 	addw	x, #0x0003
-      000012 7F               [ 1]   70 	clr	(x)
-                                     71 ;	../src/stm8s_gpio.c: 58: GPIOx->CR2 = GPIO_CR2_RESET_VALUE; /* Reset Control Register 2 */
-      000013 1E 01            [ 2]   72 	ldw	x, (0x01, sp)
-      000015 1C 00 04         [ 2]   73 	addw	x, #0x0004
-      000018 7F               [ 1]   74 	clr	(x)
-      000019 85               [ 2]   75 	popw	x
-      00001A 81               [ 4]   76 	ret
-                                     77 ;	../src/stm8s_gpio.c: 71: void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
-                                     78 ;	-----------------------------------------
-                                     79 ;	 function GPIO_Init
-                                     80 ;	-----------------------------------------
-      00001B                         81 _GPIO_Init:
-      00001B 52 05            [ 2]   82 	sub	sp, #5
-                                     83 ;	../src/stm8s_gpio.c: 77: assert_param(IS_GPIO_MODE_OK(GPIO_Mode));
-      00001D 0D 0B            [ 1]   84 	tnz	(0x0b, sp)
-      00001F 27 53            [ 1]   85 	jreq	00116$
-      000021 7B 0B            [ 1]   86 	ld	a, (0x0b, sp)
-      000023 A1 40            [ 1]   87 	cp	a, #0x40
-      000025 27 4D            [ 1]   88 	jreq	00116$
-      000027 7B 0B            [ 1]   89 	ld	a, (0x0b, sp)
-      000029 A1 20            [ 1]   90 	cp	a, #0x20
-      00002B 27 47            [ 1]   91 	jreq	00116$
-      00002D 7B 0B            [ 1]   92 	ld	a, (0x0b, sp)
-      00002F A1 60            [ 1]   93 	cp	a, #0x60
-      000031 27 41            [ 1]   94 	jreq	00116$
-      000033 7B 0B            [ 1]   95 	ld	a, (0x0b, sp)
-      000035 A1 A0            [ 1]   96 	cp	a, #0xa0
-      000037 27 3B            [ 1]   97 	jreq	00116$
-      000039 7B 0B            [ 1]   98 	ld	a, (0x0b, sp)
-      00003B A1 E0            [ 1]   99 	cp	a, #0xe0
-      00003D 27 35            [ 1]  100 	jreq	00116$
-      00003F 7B 0B            [ 1]  101 	ld	a, (0x0b, sp)
-      000041 A1 80            [ 1]  102 	cp	a, #0x80
-      000043 27 2F            [ 1]  103 	jreq	00116$
-      000045 7B 0B            [ 1]  104 	ld	a, (0x0b, sp)
-      000047 A1 C0            [ 1]  105 	cp	a, #0xc0
-      000049 27 29            [ 1]  106 	jreq	00116$
-      00004B 7B 0B            [ 1]  107 	ld	a, (0x0b, sp)
-      00004D A1 B0            [ 1]  108 	cp	a, #0xb0
-      00004F 27 23            [ 1]  109 	jreq	00116$
-      000051 7B 0B            [ 1]  110 	ld	a, (0x0b, sp)
-      000053 A1 F0            [ 1]  111 	cp	a, #0xf0
-      000055 27 1D            [ 1]  112 	jreq	00116$
-      000057 7B 0B            [ 1]  113 	ld	a, (0x0b, sp)
-      000059 A1 90            [ 1]  114 	cp	a, #0x90
-      00005B 27 17            [ 1]  115 	jreq	00116$
-      00005D 7B 0B            [ 1]  116 	ld	a, (0x0b, sp)
-      00005F A1 D0            [ 1]  117 	cp	a, #0xd0
-      000061 27 11            [ 1]  118 	jreq	00116$
-      000063 90 AEr01r7C      [ 2]  119 	ldw	y, #___str_0+0
-      000067 4B 4D            [ 1]  120 	push	#0x4d
-      000069 5F               [ 1]  121 	clrw	x
-      00006A 89               [ 2]  122 	pushw	x
-      00006B 4B 00            [ 1]  123 	push	#0x00
-      00006D 90 89            [ 2]  124 	pushw	y
-      00006F CDr00r00         [ 4]  125 	call	_assert_failed
-      000072 5B 06            [ 2]  126 	addw	sp, #6
-      000074                        127 00116$:
-                                    128 ;	../src/stm8s_gpio.c: 78: assert_param(IS_GPIO_PIN_OK(GPIO_Pin));
-      000074 0D 0A            [ 1]  129 	tnz	(0x0a, sp)
-      000076 26 11            [ 1]  130 	jrne	00151$
-      000078 90 AEr01r7C      [ 2]  131 	ldw	y, #___str_0+0
-      00007C 4B 4E            [ 1]  132 	push	#0x4e
-      00007E 5F               [ 1]  133 	clrw	x
-      00007F 89               [ 2]  134 	pushw	x
-      000080 4B 00            [ 1]  135 	push	#0x00
-      000082 90 89            [ 2]  136 	pushw	y
-      000084 CDr00r00         [ 4]  137 	call	_assert_failed
-      000087 5B 06            [ 2]  138 	addw	sp, #6
-      000089                        139 00151$:
-                                    140 ;	../src/stm8s_gpio.c: 81: GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
-      000089 16 08            [ 2]  141 	ldw	y, (0x08, sp)
-      00008B 17 01            [ 2]  142 	ldw	(0x01, sp), y
-      00008D 1E 01            [ 2]  143 	ldw	x, (0x01, sp)
-      00008F 1C 00 04         [ 2]  144 	addw	x, #0x0004
-      000092 1F 03            [ 2]  145 	ldw	(0x03, sp), x
-      000094 1E 03            [ 2]  146 	ldw	x, (0x03, sp)
-      000096 F6               [ 1]  147 	ld	a, (x)
-      000097 95               [ 1]  148 	ld	xh, a
-      000098 7B 0A            [ 1]  149 	ld	a, (0x0a, sp)
-      00009A 43               [ 1]  150 	cpl	a
-      00009B 6B 05            [ 1]  151 	ld	(0x05, sp), a
-      00009D 9E               [ 1]  152 	ld	a, xh
-      00009E 14 05            [ 1]  153 	and	a, (0x05, sp)
-      0000A0 1E 03            [ 2]  154 	ldw	x, (0x03, sp)
-      0000A2 F7               [ 1]  155 	ld	(x), a
-                                    156 ;	../src/stm8s_gpio.c: 98: GPIOx->DDR |= (uint8_t)GPIO_Pin;
-      0000A3 1E 01            [ 2]  157 	ldw	x, (0x01, sp)
-      0000A5 5C               [ 2]  158 	incw	x
-      0000A6 5C               [ 2]  159 	incw	x
-                                    160 ;	../src/stm8s_gpio.c: 87: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x80) != (uint8_t)0x00) /* Output mode */
-      0000A7 0D 0B            [ 1]  161 	tnz	(0x0b, sp)
-      0000A9 2A 20            [ 1]  162 	jrpl	00105$
-                                    163 ;	../src/stm8s_gpio.c: 91: GPIOx->ODR |= (uint8_t)GPIO_Pin;
-      0000AB 16 01            [ 2]  164 	ldw	y, (0x01, sp)
-      0000AD 90 F6            [ 1]  165 	ld	a, (y)
-                                    166 ;	../src/stm8s_gpio.c: 89: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x10) != (uint8_t)0x00) /* High level */
-      0000AF 88               [ 1]  167 	push	a
-      0000B0 7B 0C            [ 1]  168 	ld	a, (0x0c, sp)
-      0000B2 A5 10            [ 1]  169 	bcp	a, #0x10
-      0000B4 84               [ 1]  170 	pop	a
-      0000B5 27 08            [ 1]  171 	jreq	00102$
-                                    172 ;	../src/stm8s_gpio.c: 91: GPIOx->ODR |= (uint8_t)GPIO_Pin;
-      0000B7 1A 0A            [ 1]  173 	or	a, (0x0a, sp)
-      0000B9 16 01            [ 2]  174 	ldw	y, (0x01, sp)
-      0000BB 90 F7            [ 1]  175 	ld	(y), a
-      0000BD 20 06            [ 2]  176 	jra	00103$
-      0000BF                        177 00102$:
+                                     47 	.area GSINIT
+                                     48 	.area GSFINAL
+                                     49 	.area GSINIT
+                                     50 ;--------------------------------------------------------
+                                     51 ; Home
+                                     52 ;--------------------------------------------------------
+                                     53 	.area HOME
+                                     54 	.area HOME
+                                     55 ;--------------------------------------------------------
+                                     56 ; code
+                                     57 ;--------------------------------------------------------
+                                     58 	.area CODE
+                                     59 ;	../src/stm8s_gpio.c: 53: void GPIO_DeInit(GPIO_TypeDef* GPIOx)
+                                     60 ;	-----------------------------------------
+                                     61 ;	 function GPIO_DeInit
+                                     62 ;	-----------------------------------------
+      000000                         63 _GPIO_DeInit:
+                                     64 ;	../src/stm8s_gpio.c: 55: GPIOx->ODR = GPIO_ODR_RESET_VALUE; /* Reset Output Data Register */
+      000000 16 03            [ 2]   65 	ldw	y, (0x03, sp)
+      000002 90 7F            [ 1]   66 	clr	(y)
+                                     67 ;	../src/stm8s_gpio.c: 56: GPIOx->DDR = GPIO_DDR_RESET_VALUE; /* Reset Data Direction Register */
+      000004 93               [ 1]   68 	ldw	x, y
+      000005 5C               [ 1]   69 	incw	x
+      000006 5C               [ 1]   70 	incw	x
+      000007 7F               [ 1]   71 	clr	(x)
+                                     72 ;	../src/stm8s_gpio.c: 57: GPIOx->CR1 = GPIO_CR1_RESET_VALUE; /* Reset Control Register 1 */
+      000008 93               [ 1]   73 	ldw	x, y
+      000009 6F 03            [ 1]   74 	clr	(0x0003, x)
+                                     75 ;	../src/stm8s_gpio.c: 58: GPIOx->CR2 = GPIO_CR2_RESET_VALUE; /* Reset Control Register 2 */
+      00000B 93               [ 1]   76 	ldw	x, y
+      00000C 6F 04            [ 1]   77 	clr	(0x0004, x)
+                                     78 ;	../src/stm8s_gpio.c: 59: }
+      00000E 81               [ 4]   79 	ret
+                                     80 ;	../src/stm8s_gpio.c: 71: void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
+                                     81 ;	-----------------------------------------
+                                     82 ;	 function GPIO_Init
+                                     83 ;	-----------------------------------------
+      00000F                         84 _GPIO_Init:
+      00000F 52 05            [ 2]   85 	sub	sp, #5
+                                     86 ;	../src/stm8s_gpio.c: 77: assert_param(IS_GPIO_MODE_OK(GPIO_Mode));
+      000011 0D 0B            [ 1]   87 	tnz	(0x0b, sp)
+      000013 27 51            [ 1]   88 	jreq	00116$
+      000015 7B 0B            [ 1]   89 	ld	a, (0x0b, sp)
+      000017 A1 40            [ 1]   90 	cp	a, #0x40
+      000019 27 4B            [ 1]   91 	jreq	00116$
+      00001B 7B 0B            [ 1]   92 	ld	a, (0x0b, sp)
+      00001D A1 20            [ 1]   93 	cp	a, #0x20
+      00001F 27 45            [ 1]   94 	jreq	00116$
+      000021 7B 0B            [ 1]   95 	ld	a, (0x0b, sp)
+      000023 A1 60            [ 1]   96 	cp	a, #0x60
+      000025 27 3F            [ 1]   97 	jreq	00116$
+      000027 7B 0B            [ 1]   98 	ld	a, (0x0b, sp)
+      000029 A1 A0            [ 1]   99 	cp	a, #0xa0
+      00002B 27 39            [ 1]  100 	jreq	00116$
+      00002D 7B 0B            [ 1]  101 	ld	a, (0x0b, sp)
+      00002F A1 E0            [ 1]  102 	cp	a, #0xe0
+      000031 27 33            [ 1]  103 	jreq	00116$
+      000033 7B 0B            [ 1]  104 	ld	a, (0x0b, sp)
+      000035 A1 80            [ 1]  105 	cp	a, #0x80
+      000037 27 2D            [ 1]  106 	jreq	00116$
+      000039 7B 0B            [ 1]  107 	ld	a, (0x0b, sp)
+      00003B A1 C0            [ 1]  108 	cp	a, #0xc0
+      00003D 27 27            [ 1]  109 	jreq	00116$
+      00003F 7B 0B            [ 1]  110 	ld	a, (0x0b, sp)
+      000041 A1 B0            [ 1]  111 	cp	a, #0xb0
+      000043 27 21            [ 1]  112 	jreq	00116$
+      000045 7B 0B            [ 1]  113 	ld	a, (0x0b, sp)
+      000047 A1 F0            [ 1]  114 	cp	a, #0xf0
+      000049 27 1B            [ 1]  115 	jreq	00116$
+      00004B 7B 0B            [ 1]  116 	ld	a, (0x0b, sp)
+      00004D A1 90            [ 1]  117 	cp	a, #0x90
+      00004F 27 15            [ 1]  118 	jreq	00116$
+      000051 7B 0B            [ 1]  119 	ld	a, (0x0b, sp)
+      000053 A1 D0            [ 1]  120 	cp	a, #0xd0
+      000055 27 0F            [ 1]  121 	jreq	00116$
+      000057 4B 4D            [ 1]  122 	push	#0x4d
+      000059 5F               [ 1]  123 	clrw	x
+      00005A 89               [ 2]  124 	pushw	x
+      00005B 4B 00            [ 1]  125 	push	#0x00
+      00005D 4Br00            [ 1]  126 	push	#<___str_0
+      00005F 4Bs00            [ 1]  127 	push	#(___str_0 >> 8)
+      000061 CDr00r00         [ 4]  128 	call	_assert_failed
+      000064 5B 06            [ 2]  129 	addw	sp, #6
+      000066                        130 00116$:
+                                    131 ;	../src/stm8s_gpio.c: 78: assert_param(IS_GPIO_PIN_OK(GPIO_Pin));
+      000066 0D 0A            [ 1]  132 	tnz	(0x0a, sp)
+      000068 26 0F            [ 1]  133 	jrne	00151$
+      00006A 4B 4E            [ 1]  134 	push	#0x4e
+      00006C 5F               [ 1]  135 	clrw	x
+      00006D 89               [ 2]  136 	pushw	x
+      00006E 4B 00            [ 1]  137 	push	#0x00
+      000070 4Br00            [ 1]  138 	push	#<___str_0
+      000072 4Bs00            [ 1]  139 	push	#(___str_0 >> 8)
+      000074 CDr00r00         [ 4]  140 	call	_assert_failed
+      000077 5B 06            [ 2]  141 	addw	sp, #6
+      000079                        142 00151$:
+                                    143 ;	../src/stm8s_gpio.c: 81: GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
+      000079 16 08            [ 2]  144 	ldw	y, (0x08, sp)
+      00007B 93               [ 1]  145 	ldw	x, y
+      00007C 1C 00 04         [ 2]  146 	addw	x, #0x0004
+      00007F 1F 02            [ 2]  147 	ldw	(0x02, sp), x
+      000081 F6               [ 1]  148 	ld	a, (x)
+      000082 88               [ 1]  149 	push	a
+      000083 7B 0B            [ 1]  150 	ld	a, (0x0b, sp)
+      000085 43               [ 1]  151 	cpl	a
+      000086 6B 02            [ 1]  152 	ld	(0x02, sp), a
+      000088 84               [ 1]  153 	pop	a
+      000089 14 01            [ 1]  154 	and	a, (0x01, sp)
+      00008B 1E 02            [ 2]  155 	ldw	x, (0x02, sp)
+      00008D F7               [ 1]  156 	ld	(x), a
+                                    157 ;	../src/stm8s_gpio.c: 98: GPIOx->DDR |= (uint8_t)GPIO_Pin;
+      00008E 93               [ 1]  158 	ldw	x, y
+      00008F 5C               [ 1]  159 	incw	x
+      000090 5C               [ 1]  160 	incw	x
+      000091 1F 04            [ 2]  161 	ldw	(0x04, sp), x
+                                    162 ;	../src/stm8s_gpio.c: 87: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x80) != (uint8_t)0x00) /* Output mode */
+      000093 0D 0B            [ 1]  163 	tnz	(0x0b, sp)
+      000095 2A 1E            [ 1]  164 	jrpl	00105$
+                                    165 ;	../src/stm8s_gpio.c: 91: GPIOx->ODR |= (uint8_t)GPIO_Pin;
+      000097 90 F6            [ 1]  166 	ld	a, (y)
+                                    167 ;	../src/stm8s_gpio.c: 89: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x10) != (uint8_t)0x00) /* High level */
+      000099 88               [ 1]  168 	push	a
+      00009A 7B 0C            [ 1]  169 	ld	a, (0x0c, sp)
+      00009C A5 10            [ 1]  170 	bcp	a, #0x10
+      00009E 84               [ 1]  171 	pop	a
+      00009F 27 06            [ 1]  172 	jreq	00102$
+                                    173 ;	../src/stm8s_gpio.c: 91: GPIOx->ODR |= (uint8_t)GPIO_Pin;
+      0000A1 1A 0A            [ 1]  174 	or	a, (0x0a, sp)
+      0000A3 90 F7            [ 1]  175 	ld	(y), a
+      0000A5 20 04            [ 2]  176 	jra	00103$
+      0000A7                        177 00102$:
                                     178 ;	../src/stm8s_gpio.c: 95: GPIOx->ODR &= (uint8_t)(~(GPIO_Pin));
-      0000BF 14 05            [ 1]  179 	and	a, (0x05, sp)
-      0000C1 16 01            [ 2]  180 	ldw	y, (0x01, sp)
-      0000C3 90 F7            [ 1]  181 	ld	(y), a
-      0000C5                        182 00103$:
-                                    183 ;	../src/stm8s_gpio.c: 98: GPIOx->DDR |= (uint8_t)GPIO_Pin;
-      0000C5 F6               [ 1]  184 	ld	a, (x)
-      0000C6 1A 0A            [ 1]  185 	or	a, (0x0a, sp)
-      0000C8 F7               [ 1]  186 	ld	(x), a
-      0000C9 20 04            [ 2]  187 	jra	00106$
-      0000CB                        188 00105$:
-                                    189 ;	../src/stm8s_gpio.c: 103: GPIOx->DDR &= (uint8_t)(~(GPIO_Pin));
-      0000CB F6               [ 1]  190 	ld	a, (x)
-      0000CC 14 05            [ 1]  191 	and	a, (0x05, sp)
-      0000CE F7               [ 1]  192 	ld	(x), a
-      0000CF                        193 00106$:
-                                    194 ;	../src/stm8s_gpio.c: 112: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
-      0000CF 1E 01            [ 2]  195 	ldw	x, (0x01, sp)
-      0000D1 1C 00 03         [ 2]  196 	addw	x, #0x0003
-                                    197 ;	../src/stm8s_gpio.c: 110: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x40) != (uint8_t)0x00) /* Pull-Up or Push-Pull */
-      0000D4 7B 0B            [ 1]  198 	ld	a, (0x0b, sp)
-      0000D6 A5 40            [ 1]  199 	bcp	a, #0x40
-      0000D8 27 06            [ 1]  200 	jreq	00108$
-                                    201 ;	../src/stm8s_gpio.c: 112: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
-      0000DA F6               [ 1]  202 	ld	a, (x)
-      0000DB 1A 0A            [ 1]  203 	or	a, (0x0a, sp)
-      0000DD F7               [ 1]  204 	ld	(x), a
-      0000DE 20 04            [ 2]  205 	jra	00109$
-      0000E0                        206 00108$:
-                                    207 ;	../src/stm8s_gpio.c: 116: GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
-      0000E0 F6               [ 1]  208 	ld	a, (x)
-      0000E1 14 05            [ 1]  209 	and	a, (0x05, sp)
-      0000E3 F7               [ 1]  210 	ld	(x), a
-      0000E4                        211 00109$:
-                                    212 ;	../src/stm8s_gpio.c: 123: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x20) != (uint8_t)0x00) /* Interrupt or Slow slope */
-      0000E4 7B 0B            [ 1]  213 	ld	a, (0x0b, sp)
-      0000E6 A5 20            [ 1]  214 	bcp	a, #0x20
-      0000E8 27 0A            [ 1]  215 	jreq	00111$
-                                    216 ;	../src/stm8s_gpio.c: 125: GPIOx->CR2 |= (uint8_t)GPIO_Pin;
-      0000EA 1E 03            [ 2]  217 	ldw	x, (0x03, sp)
-      0000EC F6               [ 1]  218 	ld	a, (x)
-      0000ED 1A 0A            [ 1]  219 	or	a, (0x0a, sp)
-      0000EF 1E 03            [ 2]  220 	ldw	x, (0x03, sp)
-      0000F1 F7               [ 1]  221 	ld	(x), a
-      0000F2 20 08            [ 2]  222 	jra	00113$
-      0000F4                        223 00111$:
-                                    224 ;	../src/stm8s_gpio.c: 129: GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
-      0000F4 1E 03            [ 2]  225 	ldw	x, (0x03, sp)
-      0000F6 F6               [ 1]  226 	ld	a, (x)
-      0000F7 14 05            [ 1]  227 	and	a, (0x05, sp)
-      0000F9 1E 03            [ 2]  228 	ldw	x, (0x03, sp)
-      0000FB F7               [ 1]  229 	ld	(x), a
-      0000FC                        230 00113$:
-      0000FC 5B 05            [ 2]  231 	addw	sp, #5
-      0000FE 81               [ 4]  232 	ret
-                                    233 ;	../src/stm8s_gpio.c: 141: void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t PortVal)
-                                    234 ;	-----------------------------------------
-                                    235 ;	 function GPIO_Write
-                                    236 ;	-----------------------------------------
-      0000FF                        237 _GPIO_Write:
-                                    238 ;	../src/stm8s_gpio.c: 143: GPIOx->ODR = PortVal;
-      0000FF 1E 03            [ 2]  239 	ldw	x, (0x03, sp)
-      000101 7B 05            [ 1]  240 	ld	a, (0x05, sp)
-      000103 F7               [ 1]  241 	ld	(x), a
-      000104 81               [ 4]  242 	ret
-                                    243 ;	../src/stm8s_gpio.c: 154: void GPIO_WriteHigh(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
-                                    244 ;	-----------------------------------------
-                                    245 ;	 function GPIO_WriteHigh
-                                    246 ;	-----------------------------------------
-      000105                        247 _GPIO_WriteHigh:
-                                    248 ;	../src/stm8s_gpio.c: 156: GPIOx->ODR |= (uint8_t)PortPins;
-      000105 1E 03            [ 2]  249 	ldw	x, (0x03, sp)
-      000107 F6               [ 1]  250 	ld	a, (x)
-      000108 1A 05            [ 1]  251 	or	a, (0x05, sp)
-      00010A F7               [ 1]  252 	ld	(x), a
-      00010B 81               [ 4]  253 	ret
-                                    254 ;	../src/stm8s_gpio.c: 167: void GPIO_WriteLow(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
-                                    255 ;	-----------------------------------------
-                                    256 ;	 function GPIO_WriteLow
-                                    257 ;	-----------------------------------------
-      00010C                        258 _GPIO_WriteLow:
-      00010C 88               [ 1]  259 	push	a
-                                    260 ;	../src/stm8s_gpio.c: 169: GPIOx->ODR &= (uint8_t)(~PortPins);
-      00010D 1E 04            [ 2]  261 	ldw	x, (0x04, sp)
-      00010F F6               [ 1]  262 	ld	a, (x)
-      000110 6B 01            [ 1]  263 	ld	(0x01, sp), a
-      000112 7B 06            [ 1]  264 	ld	a, (0x06, sp)
-      000114 43               [ 1]  265 	cpl	a
-      000115 14 01            [ 1]  266 	and	a, (0x01, sp)
-      000117 F7               [ 1]  267 	ld	(x), a
-      000118 84               [ 1]  268 	pop	a
-      000119 81               [ 4]  269 	ret
-                                    270 ;	../src/stm8s_gpio.c: 180: void GPIO_WriteReverse(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
-                                    271 ;	-----------------------------------------
-                                    272 ;	 function GPIO_WriteReverse
-                                    273 ;	-----------------------------------------
-      00011A                        274 _GPIO_WriteReverse:
-                                    275 ;	../src/stm8s_gpio.c: 182: GPIOx->ODR ^= (uint8_t)PortPins;
-      00011A 1E 03            [ 2]  276 	ldw	x, (0x03, sp)
-      00011C F6               [ 1]  277 	ld	a, (x)
-      00011D 18 05            [ 1]  278 	xor	a, (0x05, sp)
-      00011F F7               [ 1]  279 	ld	(x), a
-      000120 81               [ 4]  280 	ret
-                                    281 ;	../src/stm8s_gpio.c: 191: uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
+      0000A7 14 01            [ 1]  179 	and	a, (0x01, sp)
+      0000A9 90 F7            [ 1]  180 	ld	(y), a
+      0000AB                        181 00103$:
+                                    182 ;	../src/stm8s_gpio.c: 98: GPIOx->DDR |= (uint8_t)GPIO_Pin;
+      0000AB 1E 04            [ 2]  183 	ldw	x, (0x04, sp)
+      0000AD F6               [ 1]  184 	ld	a, (x)
+      0000AE 1A 0A            [ 1]  185 	or	a, (0x0a, sp)
+      0000B0 1E 04            [ 2]  186 	ldw	x, (0x04, sp)
+      0000B2 F7               [ 1]  187 	ld	(x), a
+      0000B3 20 08            [ 2]  188 	jra	00106$
+      0000B5                        189 00105$:
+                                    190 ;	../src/stm8s_gpio.c: 103: GPIOx->DDR &= (uint8_t)(~(GPIO_Pin));
+      0000B5 1E 04            [ 2]  191 	ldw	x, (0x04, sp)
+      0000B7 F6               [ 1]  192 	ld	a, (x)
+      0000B8 14 01            [ 1]  193 	and	a, (0x01, sp)
+      0000BA 1E 04            [ 2]  194 	ldw	x, (0x04, sp)
+      0000BC F7               [ 1]  195 	ld	(x), a
+      0000BD                        196 00106$:
+                                    197 ;	../src/stm8s_gpio.c: 112: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
+      0000BD 93               [ 1]  198 	ldw	x, y
+      0000BE 1C 00 03         [ 2]  199 	addw	x, #0x0003
+      0000C1 F6               [ 1]  200 	ld	a, (x)
+                                    201 ;	../src/stm8s_gpio.c: 110: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x40) != (uint8_t)0x00) /* Pull-Up or Push-Pull */
+      0000C2 88               [ 1]  202 	push	a
+      0000C3 7B 0C            [ 1]  203 	ld	a, (0x0c, sp)
+      0000C5 A5 40            [ 1]  204 	bcp	a, #0x40
+      0000C7 84               [ 1]  205 	pop	a
+      0000C8 27 05            [ 1]  206 	jreq	00108$
+                                    207 ;	../src/stm8s_gpio.c: 112: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
+      0000CA 1A 0A            [ 1]  208 	or	a, (0x0a, sp)
+      0000CC F7               [ 1]  209 	ld	(x), a
+      0000CD 20 03            [ 2]  210 	jra	00109$
+      0000CF                        211 00108$:
+                                    212 ;	../src/stm8s_gpio.c: 116: GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
+      0000CF 14 01            [ 1]  213 	and	a, (0x01, sp)
+      0000D1 F7               [ 1]  214 	ld	(x), a
+      0000D2                        215 00109$:
+                                    216 ;	../src/stm8s_gpio.c: 81: GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
+      0000D2 1E 02            [ 2]  217 	ldw	x, (0x02, sp)
+      0000D4 F6               [ 1]  218 	ld	a, (x)
+                                    219 ;	../src/stm8s_gpio.c: 123: if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x20) != (uint8_t)0x00) /* Interrupt or Slow slope */
+      0000D5 88               [ 1]  220 	push	a
+      0000D6 7B 0C            [ 1]  221 	ld	a, (0x0c, sp)
+      0000D8 A5 20            [ 1]  222 	bcp	a, #0x20
+      0000DA 84               [ 1]  223 	pop	a
+      0000DB 27 07            [ 1]  224 	jreq	00111$
+                                    225 ;	../src/stm8s_gpio.c: 125: GPIOx->CR2 |= (uint8_t)GPIO_Pin;
+      0000DD 1A 0A            [ 1]  226 	or	a, (0x0a, sp)
+      0000DF 1E 02            [ 2]  227 	ldw	x, (0x02, sp)
+      0000E1 F7               [ 1]  228 	ld	(x), a
+      0000E2 20 05            [ 2]  229 	jra	00113$
+      0000E4                        230 00111$:
+                                    231 ;	../src/stm8s_gpio.c: 129: GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
+      0000E4 14 01            [ 1]  232 	and	a, (0x01, sp)
+      0000E6 1E 02            [ 2]  233 	ldw	x, (0x02, sp)
+      0000E8 F7               [ 1]  234 	ld	(x), a
+      0000E9                        235 00113$:
+                                    236 ;	../src/stm8s_gpio.c: 131: }
+      0000E9 5B 05            [ 2]  237 	addw	sp, #5
+      0000EB 81               [ 4]  238 	ret
+                                    239 ;	../src/stm8s_gpio.c: 141: void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t PortVal)
+                                    240 ;	-----------------------------------------
+                                    241 ;	 function GPIO_Write
+                                    242 ;	-----------------------------------------
+      0000EC                        243 _GPIO_Write:
+                                    244 ;	../src/stm8s_gpio.c: 143: GPIOx->ODR = PortVal;
+      0000EC 1E 03            [ 2]  245 	ldw	x, (0x03, sp)
+      0000EE 7B 05            [ 1]  246 	ld	a, (0x05, sp)
+      0000F0 F7               [ 1]  247 	ld	(x), a
+                                    248 ;	../src/stm8s_gpio.c: 144: }
+      0000F1 81               [ 4]  249 	ret
+                                    250 ;	../src/stm8s_gpio.c: 154: void GPIO_WriteHigh(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
+                                    251 ;	-----------------------------------------
+                                    252 ;	 function GPIO_WriteHigh
+                                    253 ;	-----------------------------------------
+      0000F2                        254 _GPIO_WriteHigh:
+                                    255 ;	../src/stm8s_gpio.c: 156: GPIOx->ODR |= (uint8_t)PortPins;
+      0000F2 1E 03            [ 2]  256 	ldw	x, (0x03, sp)
+      0000F4 F6               [ 1]  257 	ld	a, (x)
+      0000F5 1A 05            [ 1]  258 	or	a, (0x05, sp)
+      0000F7 F7               [ 1]  259 	ld	(x), a
+                                    260 ;	../src/stm8s_gpio.c: 157: }
+      0000F8 81               [ 4]  261 	ret
+                                    262 ;	../src/stm8s_gpio.c: 167: void GPIO_WriteLow(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
+                                    263 ;	-----------------------------------------
+                                    264 ;	 function GPIO_WriteLow
+                                    265 ;	-----------------------------------------
+      0000F9                        266 _GPIO_WriteLow:
+      0000F9 88               [ 1]  267 	push	a
+                                    268 ;	../src/stm8s_gpio.c: 169: GPIOx->ODR &= (uint8_t)(~PortPins);
+      0000FA 1E 04            [ 2]  269 	ldw	x, (0x04, sp)
+      0000FC F6               [ 1]  270 	ld	a, (x)
+      0000FD 6B 01            [ 1]  271 	ld	(0x01, sp), a
+      0000FF 7B 06            [ 1]  272 	ld	a, (0x06, sp)
+      000101 43               [ 1]  273 	cpl	a
+      000102 14 01            [ 1]  274 	and	a, (0x01, sp)
+      000104 F7               [ 1]  275 	ld	(x), a
+                                    276 ;	../src/stm8s_gpio.c: 170: }
+      000105 84               [ 1]  277 	pop	a
+      000106 81               [ 4]  278 	ret
+                                    279 ;	../src/stm8s_gpio.c: 180: void GPIO_WriteReverse(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
+                                    280 ;	-----------------------------------------
+                                    281 ;	 function GPIO_WriteReverse
                                     282 ;	-----------------------------------------
-                                    283 ;	 function GPIO_ReadOutputData
-                                    284 ;	-----------------------------------------
-      000121                        285 _GPIO_ReadOutputData:
-                                    286 ;	../src/stm8s_gpio.c: 193: return ((uint8_t)GPIOx->ODR);
-      000121 1E 03            [ 2]  287 	ldw	x, (0x03, sp)
-      000123 F6               [ 1]  288 	ld	a, (x)
-      000124 81               [ 4]  289 	ret
-                                    290 ;	../src/stm8s_gpio.c: 202: uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
-                                    291 ;	-----------------------------------------
-                                    292 ;	 function GPIO_ReadInputData
-                                    293 ;	-----------------------------------------
-      000125                        294 _GPIO_ReadInputData:
-                                    295 ;	../src/stm8s_gpio.c: 204: return ((uint8_t)GPIOx->IDR);
-      000125 1E 03            [ 2]  296 	ldw	x, (0x03, sp)
-      000127 E6 01            [ 1]  297 	ld	a, (0x1, x)
-      000129 81               [ 4]  298 	ret
-                                    299 ;	../src/stm8s_gpio.c: 213: BitStatus GPIO_ReadInputPin(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
-                                    300 ;	-----------------------------------------
-                                    301 ;	 function GPIO_ReadInputPin
+      000107                        283 _GPIO_WriteReverse:
+                                    284 ;	../src/stm8s_gpio.c: 182: GPIOx->ODR ^= (uint8_t)PortPins;
+      000107 1E 03            [ 2]  285 	ldw	x, (0x03, sp)
+      000109 F6               [ 1]  286 	ld	a, (x)
+      00010A 18 05            [ 1]  287 	xor	a, (0x05, sp)
+      00010C F7               [ 1]  288 	ld	(x), a
+                                    289 ;	../src/stm8s_gpio.c: 183: }
+      00010D 81               [ 4]  290 	ret
+                                    291 ;	../src/stm8s_gpio.c: 191: uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
+                                    292 ;	-----------------------------------------
+                                    293 ;	 function GPIO_ReadOutputData
+                                    294 ;	-----------------------------------------
+      00010E                        295 _GPIO_ReadOutputData:
+                                    296 ;	../src/stm8s_gpio.c: 193: return ((uint8_t)GPIOx->ODR);
+      00010E 1E 03            [ 2]  297 	ldw	x, (0x03, sp)
+      000110 F6               [ 1]  298 	ld	a, (x)
+                                    299 ;	../src/stm8s_gpio.c: 194: }
+      000111 81               [ 4]  300 	ret
+                                    301 ;	../src/stm8s_gpio.c: 202: uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
                                     302 ;	-----------------------------------------
-      00012A                        303 _GPIO_ReadInputPin:
-                                    304 ;	../src/stm8s_gpio.c: 215: return ((BitStatus)(GPIOx->IDR & (uint8_t)GPIO_Pin));
-      00012A 1E 03            [ 2]  305 	ldw	x, (0x03, sp)
-      00012C E6 01            [ 1]  306 	ld	a, (0x1, x)
-      00012E 14 05            [ 1]  307 	and	a, (0x05, sp)
-      000130 81               [ 4]  308 	ret
-                                    309 ;	../src/stm8s_gpio.c: 225: void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, FunctionalState NewState)
-                                    310 ;	-----------------------------------------
-                                    311 ;	 function GPIO_ExternalPullUpConfig
+                                    303 ;	 function GPIO_ReadInputData
+                                    304 ;	-----------------------------------------
+      000112                        305 _GPIO_ReadInputData:
+                                    306 ;	../src/stm8s_gpio.c: 204: return ((uint8_t)GPIOx->IDR);
+      000112 1E 03            [ 2]  307 	ldw	x, (0x03, sp)
+      000114 E6 01            [ 1]  308 	ld	a, (0x1, x)
+                                    309 ;	../src/stm8s_gpio.c: 205: }
+      000116 81               [ 4]  310 	ret
+                                    311 ;	../src/stm8s_gpio.c: 213: BitStatus GPIO_ReadInputPin(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
                                     312 ;	-----------------------------------------
-      000131                        313 _GPIO_ExternalPullUpConfig:
-      000131 88               [ 1]  314 	push	a
-                                    315 ;	../src/stm8s_gpio.c: 228: assert_param(IS_GPIO_PIN_OK(GPIO_Pin));
-      000132 0D 06            [ 1]  316 	tnz	(0x06, sp)
-      000134 26 11            [ 1]  317 	jrne	00107$
-      000136 90 AEr01r7C      [ 2]  318 	ldw	y, #___str_0+0
-      00013A 4B E4            [ 1]  319 	push	#0xe4
-      00013C 5F               [ 1]  320 	clrw	x
-      00013D 89               [ 2]  321 	pushw	x
-      00013E 4B 00            [ 1]  322 	push	#0x00
-      000140 90 89            [ 2]  323 	pushw	y
-      000142 CDr00r00         [ 4]  324 	call	_assert_failed
-      000145 5B 06            [ 2]  325 	addw	sp, #6
-      000147                        326 00107$:
-                                    327 ;	../src/stm8s_gpio.c: 229: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-      000147 0D 07            [ 1]  328 	tnz	(0x07, sp)
-      000149 27 17            [ 1]  329 	jreq	00109$
-      00014B 7B 07            [ 1]  330 	ld	a, (0x07, sp)
-      00014D A1 01            [ 1]  331 	cp	a, #0x01
-      00014F 27 11            [ 1]  332 	jreq	00109$
-      000151 90 AEr01r7C      [ 2]  333 	ldw	y, #___str_0+0
-      000155 4B E5            [ 1]  334 	push	#0xe5
-      000157 5F               [ 1]  335 	clrw	x
-      000158 89               [ 2]  336 	pushw	x
-      000159 4B 00            [ 1]  337 	push	#0x00
-      00015B 90 89            [ 2]  338 	pushw	y
-      00015D CDr00r00         [ 4]  339 	call	_assert_failed
-      000160 5B 06            [ 2]  340 	addw	sp, #6
-      000162                        341 00109$:
-                                    342 ;	../src/stm8s_gpio.c: 233: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
-      000162 1E 04            [ 2]  343 	ldw	x, (0x04, sp)
-      000164 1C 00 03         [ 2]  344 	addw	x, #0x0003
-                                    345 ;	../src/stm8s_gpio.c: 231: if (NewState != DISABLE) /* External Pull-Up Set*/
-      000167 0D 07            [ 1]  346 	tnz	(0x07, sp)
-      000169 27 06            [ 1]  347 	jreq	00102$
-                                    348 ;	../src/stm8s_gpio.c: 233: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
-      00016B F6               [ 1]  349 	ld	a, (x)
-      00016C 1A 06            [ 1]  350 	or	a, (0x06, sp)
-      00016E F7               [ 1]  351 	ld	(x), a
-      00016F 20 09            [ 2]  352 	jra	00104$
-      000171                        353 00102$:
-                                    354 ;	../src/stm8s_gpio.c: 236: GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
-      000171 F6               [ 1]  355 	ld	a, (x)
-      000172 6B 01            [ 1]  356 	ld	(0x01, sp), a
-      000174 7B 06            [ 1]  357 	ld	a, (0x06, sp)
-      000176 43               [ 1]  358 	cpl	a
-      000177 14 01            [ 1]  359 	and	a, (0x01, sp)
-      000179 F7               [ 1]  360 	ld	(x), a
-      00017A                        361 00104$:
-      00017A 84               [ 1]  362 	pop	a
-      00017B 81               [ 4]  363 	ret
-                                    364 	.area CODE
-      00017C                        365 ___str_0:
-      00017C 2E 2E 2F 73 72 63 2F   366 	.ascii "../src/stm8s_gpio.c"
+                                    313 ;	 function GPIO_ReadInputPin
+                                    314 ;	-----------------------------------------
+      000117                        315 _GPIO_ReadInputPin:
+                                    316 ;	../src/stm8s_gpio.c: 215: return ((BitStatus)(GPIOx->IDR & (uint8_t)GPIO_Pin));
+      000117 1E 03            [ 2]  317 	ldw	x, (0x03, sp)
+      000119 E6 01            [ 1]  318 	ld	a, (0x1, x)
+      00011B 14 05            [ 1]  319 	and	a, (0x05, sp)
+                                    320 ;	../src/stm8s_gpio.c: 216: }
+      00011D 81               [ 4]  321 	ret
+                                    322 ;	../src/stm8s_gpio.c: 225: void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, FunctionalState NewState)
+                                    323 ;	-----------------------------------------
+                                    324 ;	 function GPIO_ExternalPullUpConfig
+                                    325 ;	-----------------------------------------
+      00011E                        326 _GPIO_ExternalPullUpConfig:
+      00011E 88               [ 1]  327 	push	a
+                                    328 ;	../src/stm8s_gpio.c: 228: assert_param(IS_GPIO_PIN_OK(GPIO_Pin));
+      00011F 0D 06            [ 1]  329 	tnz	(0x06, sp)
+      000121 26 0F            [ 1]  330 	jrne	00107$
+      000123 4B E4            [ 1]  331 	push	#0xe4
+      000125 5F               [ 1]  332 	clrw	x
+      000126 89               [ 2]  333 	pushw	x
+      000127 4B 00            [ 1]  334 	push	#0x00
+      000129 4Br00            [ 1]  335 	push	#<___str_0
+      00012B 4Bs00            [ 1]  336 	push	#(___str_0 >> 8)
+      00012D CDr00r00         [ 4]  337 	call	_assert_failed
+      000130 5B 06            [ 2]  338 	addw	sp, #6
+      000132                        339 00107$:
+                                    340 ;	../src/stm8s_gpio.c: 229: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
+      000132 0D 07            [ 1]  341 	tnz	(0x07, sp)
+      000134 27 14            [ 1]  342 	jreq	00109$
+      000136 7B 07            [ 1]  343 	ld	a, (0x07, sp)
+      000138 4A               [ 1]  344 	dec	a
+      000139 27 0F            [ 1]  345 	jreq	00109$
+      00013B 4B E5            [ 1]  346 	push	#0xe5
+      00013D 5F               [ 1]  347 	clrw	x
+      00013E 89               [ 2]  348 	pushw	x
+      00013F 4B 00            [ 1]  349 	push	#0x00
+      000141 4Br00            [ 1]  350 	push	#<___str_0
+      000143 4Bs00            [ 1]  351 	push	#(___str_0 >> 8)
+      000145 CDr00r00         [ 4]  352 	call	_assert_failed
+      000148 5B 06            [ 2]  353 	addw	sp, #6
+      00014A                        354 00109$:
+                                    355 ;	../src/stm8s_gpio.c: 233: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
+      00014A 1E 04            [ 2]  356 	ldw	x, (0x04, sp)
+      00014C 1C 00 03         [ 2]  357 	addw	x, #0x0003
+      00014F F6               [ 1]  358 	ld	a, (x)
+                                    359 ;	../src/stm8s_gpio.c: 231: if (NewState != DISABLE) /* External Pull-Up Set*/
+      000150 0D 07            [ 1]  360 	tnz	(0x07, sp)
+      000152 27 05            [ 1]  361 	jreq	00102$
+                                    362 ;	../src/stm8s_gpio.c: 233: GPIOx->CR1 |= (uint8_t)GPIO_Pin;
+      000154 1A 06            [ 1]  363 	or	a, (0x06, sp)
+      000156 F7               [ 1]  364 	ld	(x), a
+      000157 20 0A            [ 2]  365 	jra	00104$
+      000159                        366 00102$:
+                                    367 ;	../src/stm8s_gpio.c: 236: GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
+      000159 88               [ 1]  368 	push	a
+      00015A 7B 07            [ 1]  369 	ld	a, (0x07, sp)
+      00015C 43               [ 1]  370 	cpl	a
+      00015D 6B 02            [ 1]  371 	ld	(0x02, sp), a
+      00015F 84               [ 1]  372 	pop	a
+      000160 14 01            [ 1]  373 	and	a, (0x01, sp)
+      000162 F7               [ 1]  374 	ld	(x), a
+      000163                        375 00104$:
+                                    376 ;	../src/stm8s_gpio.c: 238: }
+      000163 84               [ 1]  377 	pop	a
+      000164 81               [ 4]  378 	ret
+                                    379 	.area CODE
+                                    380 	.area CONST
+      000000                        381 ___str_0:
+      000000 2E 2E 2F 73 72 63 2F   382 	.ascii "../src/stm8s_gpio.c"
              73 74 6D 38 73 5F 67
              70 69 6F 2E 63
-      00018F 00                     367 	.db 0x00
-                                    368 	.area INITIALIZER
-                                    369 	.area CABS (ABS)
+      000013 00                     383 	.db 0x00
+                                    384 	.area INITIALIZER
+                                    385 	.area CABS (ABS)

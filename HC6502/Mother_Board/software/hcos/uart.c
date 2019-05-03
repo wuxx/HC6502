@@ -106,7 +106,7 @@ void uart_handler()
 
 	if (ch == '\r') {
 		uart_recv_buf[urb_index] = '\0';  /* terminate the string. */
-		shell(uart_recv_buf);
+		uart_shell(uart_recv_buf);
 		urb_index = 0;
 		return;
 	} else {

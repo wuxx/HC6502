@@ -3,6 +3,6 @@
 
 #include "type.h"
 
-s32 shell(char *cmd);
+s32 uart_shell(char *cmd);
 
 #endif /* __SHELL_H__ */

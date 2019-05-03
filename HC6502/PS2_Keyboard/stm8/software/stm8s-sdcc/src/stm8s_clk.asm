@@ -1,7 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
-; This file was generated Wed Jan  2 15:12:41 2019
+; Version 3.8.0 #10562 (Linux)
 ;--------------------------------------------------------
 	.module stm8s_clk
 	.optsdcc -mstm8
@@ -47,6 +46,15 @@
 ; absolute external ram data
 ;--------------------------------------------------------
 	.area DABS (ABS)
+
+; default segment ordering for linker
+	.area HOME
+	.area GSINIT
+	.area GSFINAL
+	.area CONST
+	.area INITIALIZER
+	.area CODE
+
 ;--------------------------------------------------------
 ; global & static initialisations
 ;--------------------------------------------------------
@@ -88,8 +96,7 @@ _CLK_DeInit:
 	mov	0x50c9+0, #0x00
 ;	../src/stm8s_clk.c: 83: while ((CLK->CCOR & CLK_CCOR_CCOEN)!= 0)
 00101$:
-	ldw	x, #0x50c9
-	ld	a, (x)
+	ld	a, 0x50c9
 	srl	a
 	jrc	00101$
 ;	../src/stm8s_clk.c: 85: CLK->CCOR = CLK_CCOR_RESET_VALUE;
@@ -98,6 +105,7 @@ _CLK_DeInit:
 	mov	0x50cc+0, #0x00
 ;	../src/stm8s_clk.c: 87: CLK->SWIMCCR = CLK_SWIMCCR_RESET_VALUE;
 	mov	0x50cd+0, #0x00
+;	../src/stm8s_clk.c: 88: }
 	ret
 ;	../src/stm8s_clk.c: 99: void CLK_FastHaltWakeUpCmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -108,33 +116,31 @@ _CLK_FastHaltWakeUpCmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0x66
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
+	ld	a, 0x50c0
 ;	../src/stm8s_clk.c: 104: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
-	ldw	x, #0x50c0
-	ld	a, (x)
 	or	a, #0x04
-	ld	(x), a
-	jra	00104$
+	ld	0x50c0, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 112: CLK->ICKR &= (uint8_t)(~CLK_ICKR_FHWU);
-	ldw	x, #0x50c0
-	ld	a, (x)
 	and	a, #0xfb
-	ld	(x), a
-00104$:
+	ld	0x50c0, a
+;	../src/stm8s_clk.c: 114: }
 	ret
 ;	../src/stm8s_clk.c: 121: void CLK_HSECmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -145,27 +151,31 @@ _CLK_HSECmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0x7c
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
+	ld	a, 0x50c1
 ;	../src/stm8s_clk.c: 126: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
-	bset	0x50c1, #0
-	jra	00104$
+	or	a, #0x01
+	ld	0x50c1, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 134: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
-	bres	0x50c1, #0
-00104$:
+	and	a, #0xfe
+	ld	0x50c1, a
+;	../src/stm8s_clk.c: 136: }
 	ret
 ;	../src/stm8s_clk.c: 143: void CLK_HSICmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -176,27 +186,31 @@ _CLK_HSICmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0x92
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
+	ld	a, 0x50c0
 ;	../src/stm8s_clk.c: 148: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
-	bset	0x50c0, #0
-	jra	00104$
+	or	a, #0x01
+	ld	0x50c0, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 156: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
-	bres	0x50c0, #0
-00104$:
+	and	a, #0xfe
+	ld	0x50c0, a
+;	../src/stm8s_clk.c: 158: }
 	ret
 ;	../src/stm8s_clk.c: 166: void CLK_LSICmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -207,33 +221,31 @@ _CLK_LSICmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0xa9
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
+	ld	a, 0x50c0
 ;	../src/stm8s_clk.c: 171: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
-	ldw	x, #0x50c0
-	ld	a, (x)
 	or	a, #0x08
-	ld	(x), a
-	jra	00104$
+	ld	0x50c0, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 179: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
-	ldw	x, #0x50c0
-	ld	a, (x)
 	and	a, #0xf7
-	ld	(x), a
-00104$:
+	ld	0x50c0, a
+;	../src/stm8s_clk.c: 181: }
 	ret
 ;	../src/stm8s_clk.c: 189: void CLK_CCOCmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -244,27 +256,31 @@ _CLK_CCOCmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0xc0
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
+	ld	a, 0x50c9
 ;	../src/stm8s_clk.c: 194: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
-	bset	0x50c9, #0
-	jra	00104$
+	or	a, #0x01
+	ld	0x50c9, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 202: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOEN);
-	bres	0x50c9, #0
-00104$:
+	and	a, #0xfe
+	ld	0x50c9, a
+;	../src/stm8s_clk.c: 204: }
 	ret
 ;	../src/stm8s_clk.c: 213: void CLK_ClockSwitchCmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -275,33 +291,31 @@ _CLK_ClockSwitchCmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0xd8
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
+	ld	a, 0x50c5
 ;	../src/stm8s_clk.c: 218: if (NewState != DISABLE )
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
 	or	a, #0x02
-	ld	(x), a
-	jra	00104$
+	ld	0x50c5, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 226: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWEN);
-	ldw	x, #0x50c5
-	ld	a, (x)
 	and	a, #0xfd
-	ld	(x), a
-00104$:
+	ld	0x50c5, a
+;	../src/stm8s_clk.c: 228: }
 	ret
 ;	../src/stm8s_clk.c: 238: void CLK_SlowActiveHaltWakeUpCmd(FunctionalState NewState)
 ;	-----------------------------------------
@@ -312,33 +326,31 @@ _CLK_SlowActiveHaltWakeUpCmd:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0xf1
 	clrw	x
 	pushw	x
 	push	#0x00
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
+	ld	a, 0x50c0
 ;	../src/stm8s_clk.c: 243: if (NewState != DISABLE)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
-	ldw	x, #0x50c0
-	ld	a, (x)
 	or	a, #0x20
-	ld	(x), a
-	jra	00104$
+	ld	0x50c0, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 251: CLK->ICKR &= (uint8_t)(~CLK_ICKR_SWUAH);
-	ldw	x, #0x50c0
-	ld	a, (x)
 	and	a, #0xdf
-	ld	(x), a
-00104$:
+	ld	0x50c0, a
+;	../src/stm8s_clk.c: 253: }
 	ret
 ;	../src/stm8s_clk.c: 263: void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, FunctionalState NewState)
 ;	-----------------------------------------
@@ -350,14 +362,14 @@ _CLK_PeripheralClockConfig:
 	tnz	(0x06, sp)
 	jreq	00113$
 	ld	a, (0x06, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00113$
-	ldw	y, #___str_0+0
 	push	#0x0a
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00113$:
@@ -365,16 +377,16 @@ _CLK_PeripheralClockConfig:
 	tnz	(0x05, sp)
 	jreq	00118$
 	ld	a, (0x05, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00118$
 	ld	a, (0x05, sp)
-	cp	a, #0x03
-	jrne	00243$
-	ld	a, #0x01
+	sub	a, #0x03
+	jrne	00262$
+	inc	a
 	.byte 0x21
-00243$:
+00262$:
 	clr	a
-00244$:
+00263$:
 	tnz	a
 	jrne	00118$
 	tnz	a
@@ -382,31 +394,31 @@ _CLK_PeripheralClockConfig:
 	tnz	a
 	jrne	00118$
 	ld	a, (0x05, sp)
-	cp	a, #0x04
-	jrne	00249$
-	ld	a, #0x01
-	ld	xh, a
-	jra	00250$
-00249$:
+	sub	a, #0x04
+	jrne	00268$
+	inc	a
+	ld	xl, a
+	jra	00269$
+00268$:
 	clr	a
-	ld	xh, a
-00250$:
-	ld	a, xh
+	ld	xl, a
+00269$:
+	ld	a, xl
 	tnz	a
 	jrne	00118$
 	ld	a, (0x05, sp)
-	cp	a, #0x05
-	jrne	00253$
-	ld	a, #0x01
+	sub	a, #0x05
+	jrne	00272$
+	inc	a
 	.byte 0x21
-00253$:
+00272$:
 	clr	a
-00254$:
+00273$:
 	tnz	a
 	jrne	00118$
 	tnz	a
 	jrne	00118$
-	ld	a, xh
+	ld	a, xl
 	tnz	a
 	jrne	00118$
 	ld	a, (0x05, sp)
@@ -424,74 +436,67 @@ _CLK_PeripheralClockConfig:
 	ld	a, (0x05, sp)
 	cp	a, #0x12
 	jreq	00118$
-	ldw	y, #___str_0+0
 	push	#0x0b
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00118$:
 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
 	ld	a, (0x05, sp)
 	and	a, #0x0f
-	ld	xh, a
+	push	a
 	ld	a, #0x01
-	ld	(0x01, sp), a
-	ld	a, xh
+	ld	(0x03, sp), a
+	pop	a
 	tnz	a
-	jreq	00274$
-00273$:
-	sll	(0x01, sp)
+	jreq	00293$
+00292$:
+	sll	(0x02, sp)
 	dec	a
-	jrne	00273$
-00274$:
+	jrne	00292$
+00293$:
 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-	ld	a, (0x01, sp)
+	ld	a, (0x02, sp)
 	cpl	a
-	ld	(0x02, sp), a
+	ld	(0x01, sp), a
 ;	../src/stm8s_clk.c: 269: if (((uint8_t)CLK_Peripheral & (uint8_t)0x10) == 0x00)
 	ld	a, (0x05, sp)
 	bcp	a, #0x10
 	jrne	00108$
+;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+	ld	a, 0x50c7
 ;	../src/stm8s_clk.c: 271: if (NewState != DISABLE)
 	tnz	(0x06, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
-	ldw	x, #0x50c7
-	ld	a, (x)
-	or	a, (0x01, sp)
-	ldw	x, #0x50c7
-	ld	(x), a
+	or	a, (0x02, sp)
+	ld	0x50c7, a
 	jra	00110$
 00102$:
 ;	../src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-	ldw	x, #0x50c7
-	ld	a, (x)
-	and	a, (0x02, sp)
-	ldw	x, #0x50c7
-	ld	(x), a
+	and	a, (0x01, sp)
+	ld	0x50c7, a
 	jra	00110$
 00108$:
+;	../src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+	ld	a, 0x50ca
 ;	../src/stm8s_clk.c: 284: if (NewState != DISABLE)
 	tnz	(0x06, sp)
 	jreq	00105$
 ;	../src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
-	ldw	x, #0x50ca
-	ld	a, (x)
-	or	a, (0x01, sp)
-	ldw	x, #0x50ca
-	ld	(x), a
+	or	a, (0x02, sp)
+	ld	0x50ca, a
 	jra	00110$
 00105$:
 ;	../src/stm8s_clk.c: 292: CLK->PCKENR2 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
-	ldw	x, #0x50ca
-	ld	a, (x)
-	and	a, (0x02, sp)
-	ldw	x, #0x50ca
-	ld	(x), a
+	and	a, (0x01, sp)
+	ld	0x50ca, a
 00110$:
+;	../src/stm8s_clk.c: 295: }
 	popw	x
 	ret
 ;	../src/stm8s_clk.c: 309: ErrorStatus CLK_ClockSwitchConfig(CLK_SwitchMode_TypeDef CLK_SwitchMode, CLK_Source_TypeDef CLK_NewClock, FunctionalState ITState, CLK_CurrentClockState_TypeDef CLK_CurrentClockState)
@@ -499,116 +504,112 @@ _CLK_PeripheralClockConfig:
 ;	 function CLK_ClockSwitchConfig
 ;	-----------------------------------------
 _CLK_ClockSwitchConfig:
-	sub	sp, #3
+	push	a
 ;	../src/stm8s_clk.c: 316: assert_param(IS_CLK_SOURCE_OK(CLK_NewClock));
-	ld	a, (0x07, sp)
+	ld	a, (0x05, sp)
 	cp	a, #0xe1
 	jreq	00140$
-	ld	a, (0x07, sp)
+	ld	a, (0x05, sp)
 	cp	a, #0xd2
 	jreq	00140$
-	ld	a, (0x07, sp)
+	ld	a, (0x05, sp)
 	cp	a, #0xb4
 	jreq	00140$
-	ldw	y, #___str_0+0
 	push	#0x3c
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00140$:
 ;	../src/stm8s_clk.c: 317: assert_param(IS_CLK_SWITCHMODE_OK(CLK_SwitchMode));
-	ld	a, (0x06, sp)
-	cp	a, #0x01
-	jrne	00282$
+	ld	a, (0x04, sp)
+	dec	a
+	jrne	00309$
 	ld	a, #0x01
-	ld	(0x03, sp), a
-	jra	00283$
-00282$:
-	clr	(0x03, sp)
-00283$:
-	tnz	(0x06, sp)
+	ld	(0x01, sp), a
+	.byte 0xc1
+00309$:
+	clr	(0x01, sp)
+00310$:
+	tnz	(0x04, sp)
 	jreq	00148$
-	tnz	(0x03, sp)
+	tnz	(0x01, sp)
 	jrne	00148$
-	ldw	y, #___str_0+0
 	push	#0x3d
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00148$:
 ;	../src/stm8s_clk.c: 318: assert_param(IS_FUNCTIONALSTATE_OK(ITState));
-	tnz	(0x08, sp)
+	tnz	(0x06, sp)
 	jreq	00153$
-	ld	a, (0x08, sp)
-	cp	a, #0x01
+	ld	a, (0x06, sp)
+	dec	a
 	jreq	00153$
-	ldw	y, #___str_0+0
 	push	#0x3e
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00153$:
 ;	../src/stm8s_clk.c: 319: assert_param(IS_CLK_CURRENTCLOCKSTATE_OK(CLK_CurrentClockState));
-	tnz	(0x09, sp)
+	tnz	(0x07, sp)
 	jreq	00158$
-	ld	a, (0x09, sp)
-	cp	a, #0x01
+	ld	a, (0x07, sp)
+	dec	a
 	jreq	00158$
-	ldw	y, #___str_0+0
 	push	#0x3f
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00158$:
 ;	../src/stm8s_clk.c: 322: clock_master = (CLK_Source_TypeDef)CLK->CMSR;
-	ldw	x, #0x50c3
-	ld	a, (x)
-	ld	(0x01, sp), a
+	ld	a, 0x50c3
+	ld	yl, a
+;	../src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
+	ld	a, 0x50c5
 ;	../src/stm8s_clk.c: 325: if (CLK_SwitchMode == CLK_SWITCHMODE_AUTO)
-	tnz	(0x03, sp)
+	tnz	(0x01, sp)
 	jreq	00122$
 ;	../src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
 	or	a, #0x02
-	ld	(x), a
+	ld	0x50c5, a
+	ld	a, 0x50c5
 ;	../src/stm8s_clk.c: 331: if (ITState != DISABLE)
-	tnz	(0x08, sp)
+	tnz	(0x06, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 333: CLK->SWCR |= CLK_SWCR_SWIEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
 	or	a, #0x04
-	ld	(x), a
+	ld	0x50c5, a
 	jra	00103$
 00102$:
 ;	../src/stm8s_clk.c: 337: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
-	ldw	x, #0x50c5
-	ld	a, (x)
 	and	a, #0xfb
-	ld	(x), a
+	ld	0x50c5, a
 00103$:
 ;	../src/stm8s_clk.c: 341: CLK->SWR = (uint8_t)CLK_NewClock;
 	ldw	x, #0x50c4
-	ld	a, (0x07, sp)
+	ld	a, (0x05, sp)
 	ld	(x), a
 ;	../src/stm8s_clk.c: 344: while((((CLK->SWCR & CLK_SWCR_SWBSY) != 0 )&& (DownCounter != 0)))
-	ldw	x, #0xffff
+	clrw	x
+	decw	x
 00105$:
-	ldw	y, #0x50c5
-	ld	a, (y)
+	ld	a, 0x50c5
 	srl	a
 	jrnc	00107$
 	tnzw	x
@@ -622,38 +623,35 @@ _CLK_ClockSwitchConfig:
 	jreq	00109$
 ;	../src/stm8s_clk.c: 351: Swif = SUCCESS;
 	ld	a, #0x01
-	ld	(0x02, sp), a
+	ld	xl, a
 	jra	00123$
 00109$:
 ;	../src/stm8s_clk.c: 355: Swif = ERROR;
-	clr	(0x02, sp)
+	clr	a
+	ld	xl, a
 	jra	00123$
 00122$:
 ;	../src/stm8s_clk.c: 361: if (ITState != DISABLE)
-	tnz	(0x08, sp)
+	tnz	(0x06, sp)
 	jreq	00112$
 ;	../src/stm8s_clk.c: 363: CLK->SWCR |= CLK_SWCR_SWIEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
 	or	a, #0x04
-	ld	(x), a
+	ld	0x50c5, a
 	jra	00113$
 00112$:
 ;	../src/stm8s_clk.c: 367: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
-	ldw	x, #0x50c5
-	ld	a, (x)
 	and	a, #0xfb
-	ld	(x), a
+	ld	0x50c5, a
 00113$:
 ;	../src/stm8s_clk.c: 371: CLK->SWR = (uint8_t)CLK_NewClock;
 	ldw	x, #0x50c4
-	ld	a, (0x07, sp)
+	ld	a, (0x05, sp)
 	ld	(x), a
 ;	../src/stm8s_clk.c: 374: while((((CLK->SWCR & CLK_SWCR_SWIF) != 0 ) && (DownCounter != 0)))
-	ldw	x, #0xffff
+	clrw	x
+	decw	x
 00115$:
-	ldw	y, #0x50c5
-	ld	a, (y)
+	ld	a, 0x50c5
 	bcp	a, #0x08
 	jreq	00117$
 	tnzw	x
@@ -666,62 +664,53 @@ _CLK_ClockSwitchConfig:
 	tnzw	x
 	jreq	00119$
 ;	../src/stm8s_clk.c: 382: CLK->SWCR |= CLK_SWCR_SWEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
-	or	a, #0x02
-	ld	(x), a
+	bset	20677, #1
 ;	../src/stm8s_clk.c: 383: Swif = SUCCESS;
 	ld	a, #0x01
-	ld	(0x02, sp), a
+	ld	xl, a
 	jra	00123$
 00119$:
 ;	../src/stm8s_clk.c: 387: Swif = ERROR;
-	clr	(0x02, sp)
+	clr	a
+	ld	xl, a
 00123$:
 ;	../src/stm8s_clk.c: 390: if(Swif != ERROR)
-	tnz	(0x02, sp)
+	ld	a, xl
+	tnz	a
 	jreq	00136$
 ;	../src/stm8s_clk.c: 393: if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSI))
-	tnz	(0x09, sp)
+	tnz	(0x07, sp)
 	jrne	00132$
-	ld	a, (0x01, sp)
+	ld	a, yl
 	cp	a, #0xe1
 	jrne	00132$
 ;	../src/stm8s_clk.c: 395: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
-	ldw	x, #0x50c0
-	ld	a, (x)
-	and	a, #0xfe
-	ld	(x), a
+	bres	20672, #0
 	jra	00136$
 00132$:
 ;	../src/stm8s_clk.c: 397: else if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_LSI))
-	tnz	(0x09, sp)
+	tnz	(0x07, sp)
 	jrne	00128$
-	ld	a, (0x01, sp)
+	ld	a, yl
 	cp	a, #0xd2
 	jrne	00128$
 ;	../src/stm8s_clk.c: 399: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
-	ldw	x, #0x50c0
-	ld	a, (x)
-	and	a, #0xf7
-	ld	(x), a
+	bres	20672, #3
 	jra	00136$
 00128$:
 ;	../src/stm8s_clk.c: 401: else if ((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSE))
-	tnz	(0x09, sp)
+	tnz	(0x07, sp)
 	jrne	00136$
-	ld	a, (0x01, sp)
+	ld	a, yl
 	cp	a, #0xb4
 	jrne	00136$
 ;	../src/stm8s_clk.c: 403: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
-	ldw	x, #0x50c1
-	ld	a, (x)
-	and	a, #0xfe
-	ld	(x), a
+	bres	20673, #0
 00136$:
 ;	../src/stm8s_clk.c: 406: return(Swif);
-	ld	a, (0x02, sp)
-	addw	sp, #3
+	ld	a, xl
+;	../src/stm8s_clk.c: 407: }
+	addw	sp, #1
 	ret
 ;	../src/stm8s_clk.c: 415: void CLK_HSIPrescalerConfig(CLK_Prescaler_TypeDef HSIPrescaler)
 ;	-----------------------------------------
@@ -740,26 +729,24 @@ _CLK_HSIPrescalerConfig:
 	ld	a, (0x03, sp)
 	cp	a, #0x18
 	jreq	00104$
-	ldw	y, #___str_0+0
 	push	#0xa2
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00104$:
 ;	../src/stm8s_clk.c: 421: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
+	ld	a, 0x50c6
 	and	a, #0xe7
-	ld	(x), a
+	ld	0x50c6, a
 ;	../src/stm8s_clk.c: 424: CLK->CKDIVR |= (uint8_t)HSIPrescaler;
-	ldw	x, #0x50c6
-	ld	a, (x)
+	ld	a, 0x50c6
 	or	a, (0x03, sp)
-	ldw	x, #0x50c6
-	ld	(x), a
+	ld	0x50c6, a
+;	../src/stm8s_clk.c: 425: }
 	ret
 ;	../src/stm8s_clk.c: 436: void CLK_CCOConfig(CLK_Output_TypeDef CLK_CCO)
 ;	-----------------------------------------
@@ -805,130 +792,118 @@ _CLK_CCOConfig:
 	ld	a, (0x03, sp)
 	cp	a, #0x1a
 	jreq	00104$
-	ldw	y, #___str_0+0
 	push	#0xb7
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00104$:
 ;	../src/stm8s_clk.c: 442: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOSEL);
-	ldw	x, #0x50c9
-	ld	a, (x)
+	ld	a, 0x50c9
 	and	a, #0xe1
-	ld	(x), a
+	ld	0x50c9, a
 ;	../src/stm8s_clk.c: 445: CLK->CCOR |= (uint8_t)CLK_CCO;
-	ldw	x, #0x50c9
-	ld	a, (x)
+	ld	a, 0x50c9
 	or	a, (0x03, sp)
-	ldw	x, #0x50c9
-	ld	(x), a
+	ld	0x50c9, a
 ;	../src/stm8s_clk.c: 448: CLK->CCOR |= CLK_CCOR_CCOEN;
-	bset	0x50c9, #0
+	bset	20681, #0
+;	../src/stm8s_clk.c: 449: }
 	ret
 ;	../src/stm8s_clk.c: 459: void CLK_ITConfig(CLK_IT_TypeDef CLK_IT, FunctionalState NewState)
 ;	-----------------------------------------
 ;	 function CLK_ITConfig
 ;	-----------------------------------------
 _CLK_ITConfig:
-	pushw	x
+	push	a
 ;	../src/stm8s_clk.c: 462: assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-	tnz	(0x06, sp)
+	tnz	(0x05, sp)
 	jreq	00115$
-	ld	a, (0x06, sp)
-	cp	a, #0x01
+	ld	a, (0x05, sp)
+	dec	a
 	jreq	00115$
-	ldw	y, #___str_0+0
 	push	#0xce
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00115$:
 ;	../src/stm8s_clk.c: 463: assert_param(IS_CLK_IT_OK(CLK_IT));
-	ld	a, (0x05, sp)
-	cp	a, #0x0c
-	jrne	00165$
-	ld	a, #0x01
-	ld	(0x02, sp), a
-	jra	00166$
-00165$:
-	clr	(0x02, sp)
-00166$:
-	ld	a, (0x05, sp)
-	cp	a, #0x1c
-	jrne	00168$
-	ld	a, #0x01
+	ld	a, (0x04, sp)
+	sub	a, #0x0c
+	jrne	00174$
+	inc	a
 	ld	(0x01, sp), a
-	jra	00169$
-00168$:
+	.byte 0xc1
+00174$:
 	clr	(0x01, sp)
-00169$:
-	tnz	(0x02, sp)
-	jrne	00120$
+00175$:
+	ld	a, (0x04, sp)
+	sub	a, #0x1c
+	jrne	00177$
+	inc	a
+	.byte 0x21
+00177$:
+	clr	a
+00178$:
 	tnz	(0x01, sp)
 	jrne	00120$
-	ldw	y, #___str_0+0
+	tnz	a
+	jrne	00120$
+	push	a
 	push	#0xcf
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
+	pop	a
 00120$:
 ;	../src/stm8s_clk.c: 465: if (NewState != DISABLE)
-	tnz	(0x06, sp)
+	tnz	(0x05, sp)
 	jreq	00110$
 ;	../src/stm8s_clk.c: 467: switch (CLK_IT)
-	tnz	(0x02, sp)
-	jrne	00102$
 	tnz	(0x01, sp)
+	jrne	00102$
+	tnz	a
 	jreq	00112$
 ;	../src/stm8s_clk.c: 470: CLK->SWCR |= CLK_SWCR_SWIEN;
-	ldw	x, #0x50c5
-	ld	a, (x)
-	or	a, #0x04
-	ld	(x), a
+	bset	20677, #2
 ;	../src/stm8s_clk.c: 471: break;
 	jra	00112$
 ;	../src/stm8s_clk.c: 472: case CLK_IT_CSSD: /* Enable the clock security system detection interrupt */
 00102$:
 ;	../src/stm8s_clk.c: 473: CLK->CSSR |= CLK_CSSR_CSSDIE;
-	ldw	x, #0x50c8
-	ld	a, (x)
-	or	a, #0x04
-	ld	(x), a
+	bset	20680, #2
 ;	../src/stm8s_clk.c: 474: break;
 	jra	00112$
 ;	../src/stm8s_clk.c: 477: }
 00110$:
 ;	../src/stm8s_clk.c: 481: switch (CLK_IT)
-	tnz	(0x02, sp)
-	jrne	00106$
 	tnz	(0x01, sp)
+	jrne	00106$
+	tnz	a
 	jreq	00112$
 ;	../src/stm8s_clk.c: 484: CLK->SWCR  &= (uint8_t)(~CLK_SWCR_SWIEN);
-	ldw	x, #0x50c5
-	ld	a, (x)
-	and	a, #0xfb
-	ld	(x), a
+	bres	20677, #2
 ;	../src/stm8s_clk.c: 485: break;
 	jra	00112$
 ;	../src/stm8s_clk.c: 486: case CLK_IT_CSSD: /* Disable the clock security system detection interrupt */
 00106$:
 ;	../src/stm8s_clk.c: 487: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDIE);
-	ldw	x, #0x50c8
-	ld	a, (x)
-	and	a, #0xfb
-	ld	(x), a
+	bres	20680, #2
 ;	../src/stm8s_clk.c: 491: }
 00112$:
-	popw	x
+;	../src/stm8s_clk.c: 493: }
+	pop	a
 	ret
 ;	../src/stm8s_clk.c: 500: void CLK_SYSCLKConfig(CLK_Prescaler_TypeDef CLK_Prescaler)
 ;	-----------------------------------------
@@ -972,49 +947,44 @@ _CLK_SYSCLKConfig:
 	ld	a, (0x05, sp)
 	cp	a, #0x87
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0xf7
 	push	#0x01
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+	ld	a, 0x50c6
 ;	../src/stm8s_clk.c: 505: if (((uint8_t)CLK_Prescaler & (uint8_t)0x80) == 0x00) /* Bit7 = 0 means HSI divider */
 	tnz	(0x05, sp)
 	jrmi	00102$
 ;	../src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
 	and	a, #0xe7
-	ld	(x), a
+	ld	0x50c6, a
 ;	../src/stm8s_clk.c: 508: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_HSIDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
-	ld	(0x01, sp), a
+	ld	a, 0x50c6
+	ld	(0x02, sp), a
 	ld	a, (0x05, sp)
 	and	a, #0x18
-	or	a, (0x01, sp)
-	ldw	x, #0x50c6
-	ld	(x), a
+	or	a, (0x02, sp)
+	ld	0x50c6, a
 	jra	00104$
 00102$:
 ;	../src/stm8s_clk.c: 512: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_CPUDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
 	and	a, #0xf8
-	ld	(x), a
+	ld	0x50c6, a
 ;	../src/stm8s_clk.c: 513: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_CPUDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
-	ld	(0x02, sp), a
+	ld	a, 0x50c6
+	ld	(0x01, sp), a
 	ld	a, (0x05, sp)
 	and	a, #0x07
-	or	a, (0x02, sp)
-	ldw	x, #0x50c6
-	ld	(x), a
+	or	a, (0x01, sp)
+	ld	0x50c6, a
 00104$:
+;	../src/stm8s_clk.c: 515: }
 	popw	x
 	ret
 ;	../src/stm8s_clk.c: 523: void CLK_SWIMConfig(CLK_SWIMDivider_TypeDef CLK_SWIMDivider)
@@ -1026,27 +996,31 @@ _CLK_SWIMConfig:
 	tnz	(0x03, sp)
 	jreq	00107$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00107$
-	ldw	y, #___str_0+0
 	push	#0x0e
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00107$:
+;	../src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
+	ld	a, 0x50cd
 ;	../src/stm8s_clk.c: 528: if (CLK_SWIMDivider != CLK_SWIMDIVIDER_2)
 	tnz	(0x03, sp)
 	jreq	00102$
 ;	../src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
-	bset	0x50cd, #0
-	jra	00104$
+	or	a, #0x01
+	ld	0x50cd, a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 536: CLK->SWIMCCR &= (uint8_t)(~CLK_SWIMCCR_SWIMDIV);
-	bres	0x50cd, #0
-00104$:
+	and	a, #0xfe
+	ld	0x50cd, a
+;	../src/stm8s_clk.c: 538: }
 	ret
 ;	../src/stm8s_clk.c: 547: void CLK_ClockSecuritySystemEnable(void)
 ;	-----------------------------------------
@@ -1054,7 +1028,8 @@ _CLK_SWIMConfig:
 ;	-----------------------------------------
 _CLK_ClockSecuritySystemEnable:
 ;	../src/stm8s_clk.c: 550: CLK->CSSR |= CLK_CSSR_CSSEN;
-	bset	0x50c8, #0
+	bset	20680, #0
+;	../src/stm8s_clk.c: 551: }
 	ret
 ;	../src/stm8s_clk.c: 559: CLK_Source_TypeDef CLK_GetSYSCLKSource(void)
 ;	-----------------------------------------
@@ -1062,73 +1037,66 @@ _CLK_ClockSecuritySystemEnable:
 ;	-----------------------------------------
 _CLK_GetSYSCLKSource:
 ;	../src/stm8s_clk.c: 561: return((CLK_Source_TypeDef)CLK->CMSR);
-	ldw	x, #0x50c3
-	ld	a, (x)
+	ld	a, 0x50c3
+;	../src/stm8s_clk.c: 562: }
 	ret
 ;	../src/stm8s_clk.c: 569: uint32_t CLK_GetClockFreq(void)
 ;	-----------------------------------------
 ;	 function CLK_GetClockFreq
 ;	-----------------------------------------
 _CLK_GetClockFreq:
-	sub	sp, #7
+	sub	sp, #5
 ;	../src/stm8s_clk.c: 576: clocksource = (CLK_Source_TypeDef)CLK->CMSR;
-	ldw	x, #0x50c3
-	ld	a, (x)
-	ld	(0x05, sp), a
+	ld	a, 0x50c3
+	ld	(0x01, sp), a
 ;	../src/stm8s_clk.c: 578: if (clocksource == CLK_SOURCE_HSI)
-	ld	a, (0x05, sp)
+	ld	a, (0x01, sp)
 	cp	a, #0xe1
 	jrne	00105$
 ;	../src/stm8s_clk.c: 580: tmp = (uint8_t)(CLK->CKDIVR & CLK_CKDIVR_HSIDIV);
-	ldw	x, #0x50c6
-	ld	a, (x)
+	ld	a, 0x50c6
 	and	a, #0x18
 ;	../src/stm8s_clk.c: 581: tmp = (uint8_t)(tmp >> 3);
 	srl	a
 	srl	a
 	srl	a
 ;	../src/stm8s_clk.c: 582: clockfrequency = HSI_VALUE >> HSIDivExp[tmp];
-	ldw	x, #_HSIDivExp+0
-	ldw	(0x06, sp), x
 	clrw	x
 	ld	xl, a
-	addw	x, (0x06, sp)
+	addw	x, #_HSIDivExp
 	ld	a, (x)
-	ldw	y, #0x2400
-	ldw	x, #0x00f4
+	ldw	x, #0x2400
+	ldw	y, #0x00f4
 	tnz	a
-	jreq	00121$
-00120$:
-	srlw	x
-	rrcw	y
+	jreq	00123$
+00122$:
+	srlw	y
+	rrcw	x
 	dec	a
-	jrne	00120$
-00121$:
-	ldw	(0x03, sp), y
-	ldw	(0x01, sp), x
+	jrne	00122$
+00123$:
+	ldw	(0x04, sp), x
 	jra	00106$
 00105$:
 ;	../src/stm8s_clk.c: 584: else if ( clocksource == CLK_SOURCE_LSI)
-	ld	a, (0x05, sp)
+	ld	a, (0x01, sp)
 	cp	a, #0xd2
 	jrne	00102$
 ;	../src/stm8s_clk.c: 586: clockfrequency = LSI_VALUE;
 	ldw	x, #0xf400
-	ldw	(0x03, sp), x
-	ldw	x, #0x0001
-	ldw	(0x01, sp), x
+	ldw	(0x04, sp), x
+	ldw	y, #0x0001
 	jra	00106$
 00102$:
 ;	../src/stm8s_clk.c: 590: clockfrequency = HSE_VALUE;
 	ldw	x, #0x2400
-	ldw	(0x03, sp), x
-	ldw	x, #0x00f4
-	ldw	(0x01, sp), x
+	ldw	(0x04, sp), x
+	ldw	y, #0x00f4
 00106$:
 ;	../src/stm8s_clk.c: 593: return((uint32_t)clockfrequency);
-	ldw	x, (0x03, sp)
-	ldw	y, (0x01, sp)
-	addw	sp, #7
+	ldw	x, (0x04, sp)
+;	../src/stm8s_clk.c: 594: }
+	addw	sp, #5
 	ret
 ;	../src/stm8s_clk.c: 603: void CLK_AdjustHSICalibrationValue(CLK_HSITrimValue_TypeDef CLK_HSICalibrationValue)
 ;	-----------------------------------------
@@ -1139,7 +1107,7 @@ _CLK_AdjustHSICalibrationValue:
 	tnz	(0x03, sp)
 	jreq	00104$
 	ld	a, (0x03, sp)
-	cp	a, #0x01
+	dec	a
 	jreq	00104$
 	ld	a, (0x03, sp)
 	cp	a, #0x02
@@ -1159,22 +1127,21 @@ _CLK_AdjustHSICalibrationValue:
 	ld	a, (0x03, sp)
 	cp	a, #0x07
 	jreq	00104$
-	ldw	y, #___str_0+0
 	push	#0x5e
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00104$:
 ;	../src/stm8s_clk.c: 609: CLK->HSITRIMR = (uint8_t)( (uint8_t)(CLK->HSITRIMR & (uint8_t)(~CLK_HSITRIMR_HSITRIM))|((uint8_t)CLK_HSICalibrationValue));
-	ldw	x, #0x50cc
-	ld	a, (x)
+	ld	a, 0x50cc
 	and	a, #0xf8
 	or	a, (0x03, sp)
-	ldw	x, #0x50cc
-	ld	(x), a
+	ld	0x50cc, a
+;	../src/stm8s_clk.c: 610: }
 	ret
 ;	../src/stm8s_clk.c: 621: void CLK_SYSCLKEmergencyClear(void)
 ;	-----------------------------------------
@@ -1182,99 +1149,94 @@ _CLK_AdjustHSICalibrationValue:
 ;	-----------------------------------------
 _CLK_SYSCLKEmergencyClear:
 ;	../src/stm8s_clk.c: 623: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWBSY);
-	bres	0x50c5, #0
+	bres	20677, #0
+;	../src/stm8s_clk.c: 624: }
 	ret
 ;	../src/stm8s_clk.c: 633: FlagStatus CLK_GetFlagStatus(CLK_Flag_TypeDef CLK_FLAG)
 ;	-----------------------------------------
 ;	 function CLK_GetFlagStatus
 ;	-----------------------------------------
 _CLK_GetFlagStatus:
+	push	a
 ;	../src/stm8s_clk.c: 640: assert_param(IS_CLK_FLAG_OK(CLK_FLAG));
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0110
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0102
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0202
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0308
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0301
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0408
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0402
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0504
 	jreq	00119$
-	ldw	x, (0x03, sp)
+	ldw	x, (0x04, sp)
 	cpw	x, #0x0502
 	jreq	00119$
-	ldw	y, #___str_0+0
 	push	#0x80
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
 00119$:
 ;	../src/stm8s_clk.c: 643: statusreg = (uint16_t)((uint16_t)CLK_FLAG & (uint16_t)0xFF00);
 	clr	a
 	ld	xl, a
-	ld	a, (0x03, sp)
+	ld	a, (0x04, sp)
 	ld	xh, a
 ;	../src/stm8s_clk.c: 646: if (statusreg == 0x0100) /* The flag to check is in ICKRregister */
 	cpw	x, #0x0100
 	jrne	00111$
 ;	../src/stm8s_clk.c: 648: tmpreg = CLK->ICKR;
-	ldw	x, #0x50c0
-	ld	a, (x)
+	ld	a, 0x50c0
 	jra	00112$
 00111$:
 ;	../src/stm8s_clk.c: 650: else if (statusreg == 0x0200) /* The flag to check is in ECKRregister */
 	cpw	x, #0x0200
 	jrne	00108$
 ;	../src/stm8s_clk.c: 652: tmpreg = CLK->ECKR;
-	ldw	x, #0x50c1
-	ld	a, (x)
+	ld	a, 0x50c1
 	jra	00112$
 00108$:
 ;	../src/stm8s_clk.c: 654: else if (statusreg == 0x0300) /* The flag to check is in SWIC register */
 	cpw	x, #0x0300
 	jrne	00105$
 ;	../src/stm8s_clk.c: 656: tmpreg = CLK->SWCR;
-	ldw	x, #0x50c5
-	ld	a, (x)
+	ld	a, 0x50c5
 	jra	00112$
 00105$:
 ;	../src/stm8s_clk.c: 658: else if (statusreg == 0x0400) /* The flag to check is in CSS register */
 	cpw	x, #0x0400
 	jrne	00102$
 ;	../src/stm8s_clk.c: 660: tmpreg = CLK->CSSR;
-	ldw	x, #0x50c8
-	ld	a, (x)
+	ld	a, 0x50c8
 	jra	00112$
 00102$:
 ;	../src/stm8s_clk.c: 664: tmpreg = CLK->CCOR;
-	ldw	x, #0x50c9
-	ld	a, (x)
+	ld	a, 0x50c9
 00112$:
 ;	../src/stm8s_clk.c: 667: if ((tmpreg & (uint8_t)CLK_FLAG) != (uint8_t)RESET)
-	rlwa	x
-	ld	a, (0x04, sp)
-	rrwa	x
-	pushw	x
-	and	a, (1, sp)
-	popw	x
-	tnz	a
+	push	a
+	ld	a, (0x06, sp)
+	ld	(0x02, sp), a
+	pop	a
+	and	a, (0x01, sp)
 	jreq	00114$
 ;	../src/stm8s_clk.c: 669: bitstatus = SET;
 	ld	a, #0x01
@@ -1284,119 +1246,116 @@ _CLK_GetFlagStatus:
 	clr	a
 00115$:
 ;	../src/stm8s_clk.c: 677: return((FlagStatus)bitstatus);
+;	../src/stm8s_clk.c: 678: }
+	addw	sp, #1
 	ret
 ;	../src/stm8s_clk.c: 686: ITStatus CLK_GetITStatus(CLK_IT_TypeDef CLK_IT)
 ;	-----------------------------------------
 ;	 function CLK_GetITStatus
 ;	-----------------------------------------
 _CLK_GetITStatus:
-	push	a
 ;	../src/stm8s_clk.c: 691: assert_param(IS_CLK_IT_OK(CLK_IT));
-	ld	a, (0x04, sp)
-	cp	a, #0x1c
-	jrne	00138$
-	ld	a, #0x01
-	ld	(0x01, sp), a
-	jra	00139$
-00138$:
-	clr	(0x01, sp)
-00139$:
+	ld	a, (0x03, sp)
+	sub	a, #0x1c
+	jrne	00143$
+	inc	a
+	.byte 0x21
+00143$:
+	clr	a
+00144$:
+	push	a
 	ld	a, (0x04, sp)
 	cp	a, #0x0c
+	pop	a
 	jreq	00113$
-	tnz	(0x01, sp)
+	tnz	a
 	jrne	00113$
-	ldw	y, #___str_0+0
+	push	a
 	push	#0xb3
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
+	pop	a
 00113$:
 ;	../src/stm8s_clk.c: 693: if (CLK_IT == CLK_IT_SWIF)
-	tnz	(0x01, sp)
+	tnz	a
 	jreq	00108$
 ;	../src/stm8s_clk.c: 696: if ((CLK->SWCR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
-	ldw	x, #0x50c5
-	ld	a, (x)
-	and	a, (0x04, sp)
-	cp	a, #0x0c
-	jrne	00102$
+	ld	a, 0x50c5
+	and	a, (0x03, sp)
 ;	../src/stm8s_clk.c: 698: bitstatus = SET;
-	ld	a, #0x01
-	jra	00109$
+	sub	a, #0x0c
+	jrne	00102$
+	inc	a
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 702: bitstatus = RESET;
 	clr	a
-	jra	00109$
+	ret
 00108$:
 ;	../src/stm8s_clk.c: 708: if ((CLK->CSSR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
-	ldw	x, #0x50c8
-	ld	a, (x)
-	and	a, (0x04, sp)
-	cp	a, #0x0c
-	jrne	00105$
+	ld	a, 0x50c8
+	and	a, (0x03, sp)
 ;	../src/stm8s_clk.c: 710: bitstatus = SET;
-	ld	a, #0x01
-;	../src/stm8s_clk.c: 714: bitstatus = RESET;
-	.byte 0x21
+	sub	a, #0x0c
+	jrne	00105$
+	inc	a
+	ret
 00105$:
+;	../src/stm8s_clk.c: 714: bitstatus = RESET;
 	clr	a
-00109$:
 ;	../src/stm8s_clk.c: 719: return bitstatus;
-	addw	sp, #1
+;	../src/stm8s_clk.c: 720: }
 	ret
 ;	../src/stm8s_clk.c: 728: void CLK_ClearITPendingBit(CLK_IT_TypeDef CLK_IT)
 ;	-----------------------------------------
 ;	 function CLK_ClearITPendingBit
 ;	-----------------------------------------
 _CLK_ClearITPendingBit:
-	push	a
 ;	../src/stm8s_clk.c: 731: assert_param(IS_CLK_IT_OK(CLK_IT));
-	ld	a, (0x04, sp)
-	cp	a, #0x0c
-	jrne	00124$
-	ld	a, #0x01
-	ld	(0x01, sp), a
-	jra	00125$
-00124$:
-	clr	(0x01, sp)
-00125$:
-	tnz	(0x01, sp)
+	ld	a, (0x03, sp)
+	sub	a, #0x0c
+	jrne	00127$
+	inc	a
+	.byte 0x21
+00127$:
+	clr	a
+00128$:
+	tnz	a
 	jrne	00107$
+	push	a
 	ld	a, (0x04, sp)
 	cp	a, #0x1c
+	pop	a
 	jreq	00107$
-	ldw	y, #___str_0+0
+	push	a
 	push	#0xdb
 	push	#0x02
 	clrw	x
 	pushw	x
-	pushw	y
+	push	#<___str_0
+	push	#(___str_0 >> 8)
 	call	_assert_failed
 	addw	sp, #6
+	pop	a
 00107$:
 ;	../src/stm8s_clk.c: 733: if (CLK_IT == (uint8_t)CLK_IT_CSSD)
-	tnz	(0x01, sp)
+	tnz	a
 	jreq	00102$
 ;	../src/stm8s_clk.c: 736: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSD);
-	ldw	x, #0x50c8
-	ld	a, (x)
-	and	a, #0xf7
-	ld	(x), a
-	jra	00104$
+	bres	20680, #3
+	ret
 00102$:
 ;	../src/stm8s_clk.c: 741: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIF);
-	ldw	x, #0x50c5
-	ld	a, (x)
-	and	a, #0xf7
-	ld	(x), a
-00104$:
-	pop	a
+	bres	20677, #3
+;	../src/stm8s_clk.c: 744: }
 	ret
 	.area CODE
+	.area CONST
 _HSIDivExp:
 	.db #0x00	; 0
 	.db #0x01	; 1
@@ -1407,7 +1366,7 @@ _CLKPrescTable:
 	.db #0x02	; 2
 	.db #0x04	; 4
 	.db #0x08	; 8
-	.db #0x0A	; 10
+	.db #0x0a	; 10
 	.db #0x10	; 16
 	.db #0x14	; 20
 	.db #0x28	; 40

@@ -10,7 +10,6 @@
 	.importzp	sp, sreg, regsave, regbank
 	.importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 	.macpack	longbranch
-	.import		_uart_printf
 	.import		_gpio_init
 	.import		_gpio_write
 	.import		_gpio_read
@@ -34,34 +33,6 @@ _vi:
 	.dword	$7F4000A6
 	.dword	$7F4000A7
 
-.segment	"RODATA"
-
-L0060:
-	.byte	$77,$61,$69,$74,$20,$72,$73,$70,$20,$72,$65,$61,$64,$79,$32,$2E
-	.byte	$2E,$2E,$0A,$00
-L003C:
-	.byte	$77,$61,$69,$74,$20,$72,$73,$70,$20,$72,$65,$61,$64,$79,$31,$2E
-	.byte	$2E,$2E,$0A,$00
-L0072:
-	.byte	$65,$6E,$74,$65,$72,$20,$25,$73,$20,$63,$6D,$64,$3A,$20,$25,$64
-	.byte	$0A,$00
-L0094:
-	.byte	$66,$69,$6C,$6C,$3A,$20,$28,$25,$78,$29,$28,$25,$63,$29,$0A,$00
-L00BF:
-	.byte	$63,$68,$3A,$20,$20,$20,$20,$25,$63,$0A,$00
-L00BB:
-	.byte	$70,$6F,$73,$5F,$79,$3A,$20,$25,$64,$0A,$00
-L00B7:
-	.byte	$70,$6F,$73,$5F,$78,$3A,$20,$25,$64,$0A,$00
-L00CA:
-	.byte	$65,$78,$69,$74,$20,$25,$73,$20,$0A,$00
-L0074:
-	.byte	$76,$67,$61,$5F,$63,$74,$72,$6C,$00
-L00CC	:=	L0074+0
-L006A:
-	.byte	$6F,$6B,$2E,$0A,$00
-L0046	:=	L006A+0
-
 ; ---------------------------------------------------------------
 ; long __near__ vga_ctrl (unsigned long)
 ; ---------------------------------------------------------------
@@ -75,21 +46,6 @@ L0046	:=	L006A+0
 	jsr     enter
 	ldy     #$0B
 	jsr     subysp
-	lda     #<(L0072)
-	ldx     #>(L0072)
-	jsr     pushax
-	lda     #<(L0074)
-	ldx     #>(L0074)
-	jsr     pushax
-	ldy     #$0F
-	lda     (sp),y
-	jsr     leaa0sp
-	ldy     #$0C
-	jsr     incaxy
-	jsr     ldeaxi
-	jsr     pusheax
-	ldy     #$08
-	jsr     _uart_printf
 	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
@@ -102,23 +58,23 @@ L0046	:=	L006A+0
 	jsr     ldeaxi
 	ldy     sreg+1
 	cpy     #$00
-	jne     L007D
+	jne     L006B
 	ldy     sreg
 	cpy     #$00
-	jne     L007D
+	jne     L006B
 	cpx     #$00
-	jne     L007D
+	jne     L006B
 	cmp     #$80
-	beq     L0080
+	beq     L006E
 	cmp     #$81
-	beq     L00E5
+	beq     L00BD
 	cmp     #$82
-	beq     L009E
+	beq     L0087
 	cmp     #$83
-	beq     L0080
+	beq     L006E
 	cmp     #$84
-	jne     L007D
-L0080:	ldy     #$0B
+	jne     L00BE
+L006E:	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
 	jsr     incax8
@@ -126,8 +82,8 @@ L0080:	ldy     #$0B
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	jmp     L00E7
-L00E5:	lda     #$02
+	jmp     L00C0
+L00BD:	lda     #$02
 	jsr     subeq0sp
 	sta     ptr1
 	stx     ptr1+1
@@ -135,17 +91,6 @@ L00E5:	lda     #$02
 	lda     (ptr1),y
 	ldy     #$02
 	sta     (sp),y
-	lda     #<(L0094)
-	ldx     #>(L0094)
-	jsr     pushax
-	ldy     #$04
-	lda     (sp),y
-	jsr     pusha0
-	ldy     #$06
-	lda     (sp),y
-	jsr     pusha0
-	ldy     #$06
-	jsr     _uart_printf
 	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
@@ -154,8 +99,8 @@ L00E5:	lda     #$02
 	stx     ptr1+1
 	ldy     #$00
 	lda     (ptr1),y
-	jmp     L00EB
-L009E:	ldy     #$0B
+	jmp     L00C4
+L0087:	ldy     #$0B
 	lda     (sp),y
 	jsr     leaa0sp
 	jsr     incax8
@@ -186,52 +131,20 @@ L009E:	ldy     #$0B
 	lda     (ptr1),y
 	ldy     #$02
 	sta     (sp),y
-	lda     #<(L00B7)
-	ldx     #>(L00B7)
-	jsr     pushax
-	ldy     #$0C
-	jsr     ldeaxysp
-	jsr     pusheax
-	ldy     #$06
-	jsr     _uart_printf
-	lda     #<(L00BB)
-	ldx     #>(L00BB)
-	jsr     pushax
-	ldy     #$08
-	jsr     ldeaxysp
-	jsr     pusheax
-	ldy     #$06
-	jsr     _uart_printf
-	lda     #<(L00BF)
-	ldx     #>(L00BF)
-	jsr     pushax
-	ldy     #$04
-	lda     (sp),y
-	jsr     pusha0
-	ldy     #$04
-	jsr     _uart_printf
 	ldy     #$07
 	lda     (sp),y
 	jsr     pusha
 	jsr     _vga_write
 	ldy     #$03
 	lda     (sp),y
-L00EB:	jsr     pusha
+L00C4:	jsr     pusha
 	jsr     _vga_write
 	ldy     #$02
 	lda     (sp),y
-L00E7:	jsr     pusha
+L00C0:	jsr     pusha
 	jsr     _vga_write
-L007D:	lda     #<(L00CA)
-	ldx     #>(L00CA)
-	jsr     pushax
-	lda     #<(L00CC)
-	ldx     #>(L00CC)
-	jsr     pushax
-	ldy     #$04
-	jsr     _uart_printf
-	ldx     #$00
-	stx     sreg
+L006B:	ldx     #$00
+L00BE:	stx     sreg
 	stx     sreg+1
 	txa
 	ldy     #$0B
@@ -272,9 +185,9 @@ L007D:	lda     #<(L00CA)
 	jsr     _gpio_init
 	lda     #$00
 	tay
-L00EE:	sta     (sp),y
+L00C7:	sta     (sp),y
 	cmp     #$08
-	bcs     L00D7
+	bcs     L00AF
 	ldx     #$00
 	lda     (sp),y
 	jsr     aslax2
@@ -294,8 +207,8 @@ L00EE:	sta     (sp),y
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L00EE
-L00D7:	lda     _vi+3
+	jmp     L00C7
+L00AF:	lda     _vi+3
 	sta     sreg+1
 	lda     _vi+2
 	sta     sreg
@@ -333,12 +246,7 @@ L00D7:	lda     _vi+3
 	lda     #$64
 	jsr     pusha0
 	jsr     _mdelay
-	lda     #<(L003C)
-	ldx     #>(L003C)
-	jsr     pushax
-	ldy     #$02
-	jsr     _uart_printf
-L003E:	lda     _vi+4+3
+L003B:	lda     _vi+4+3
 	sta     sreg+1
 	lda     _vi+4+2
 	sta     sreg
@@ -347,17 +255,12 @@ L003E:	lda     _vi+4+3
 	jsr     pusheax
 	jsr     _gpio_read
 	cmp     #$01
-	bne     L003E
-	lda     #<(L0046)
-	ldx     #>(L0046)
-	jsr     pushax
-	ldy     #$02
-	jsr     _uart_printf
+	bne     L003B
 	lda     #$00
 	tay
-L00F3:	sta     (sp),y
+L00CC:	sta     (sp),y
 	cmp     #$08
-	bcs     L0049
+	bcs     L0043
 	lda     (sp),y
 	tay
 	lda     #$01
@@ -367,7 +270,7 @@ L00F3:	sta     (sp),y
 	and     (sp),y
 	pha
 	pla
-	beq     L0050
+	beq     L004A
 	ldx     #$00
 	lda     (sp,x)
 	jsr     aslax2
@@ -381,8 +284,8 @@ L00F3:	sta     (sp),y
 	jsr     ldeaxi
 	jsr     pusheax
 	lda     #$01
-	jmp     L00F2
-L0050:	tax
+	jmp     L00CB
+L004A:	tax
 	lda     (sp,x)
 	jsr     aslax2
 	clc
@@ -395,14 +298,14 @@ L0050:	tax
 	jsr     ldeaxi
 	jsr     pusheax
 	lda     #$00
-L00F2:	jsr     pusha
+L00CB:	jsr     pusha
 	jsr     _gpio_write
 	ldy     #$00
 	lda     (sp),y
 	clc
 	adc     #$01
-	jmp     L00F3
-L0049:	lda     _vi+3
+	jmp     L00CC
+L0043:	lda     _vi+3
 	sta     sreg+1
 	lda     _vi+2
 	sta     sreg
@@ -412,12 +315,7 @@ L0049:	lda     _vi+3
 	lda     #$01
 	jsr     pusha
 	jsr     _gpio_write
-	lda     #<(L0060)
-	ldx     #>(L0060)
-	jsr     pushax
-	ldy     #$02
-	jsr     _uart_printf
-L0062:	lda     _vi+4+3
+L0059:	lda     _vi+4+3
 	sta     sreg+1
 	lda     _vi+4+2
 	sta     sreg
@@ -426,12 +324,7 @@ L0062:	lda     _vi+4+3
 	jsr     pusheax
 	jsr     _gpio_read
 	cmp     #$01
-	bne     L0062
-	lda     #<(L006A)
-	ldx     #>(L006A)
-	jsr     pushax
-	ldy     #$02
-	jsr     _uart_printf
+	bne     L0059
 	lda     _vi+3
 	sta     sreg+1
 	lda     _vi+2

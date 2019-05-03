@@ -1,5 +1,8 @@
 #include "vga.h"
 
+//#define debug uart_printf
+#define debug(...)
+
 struct vga_info vi = {
     VIA1_PB2,
     VIA1_PB3,
@@ -23,14 +26,14 @@ u8 vga_write(u8 data)
 
     mdelay(100);
 
-    uart_printf("wait rsp ready1...\n");
+    debug("wait rsp ready1...\r\n");
 
     while(1) {
         if (gpio_read(vi.rsp_status) == VC_RSP_READY) {
             break;
         }
     }
-    uart_printf("ok.\n");
+    debug("ok.\r\n");
 
     for(i = 0; i < 8; i++) {
         if (data & (1 << i)) {
@@ -41,7 +44,7 @@ u8 vga_write(u8 data)
     }
 
     gpio_write(vi.cmd_status, VC_REQ_READY);
-    uart_printf("wait rsp ready2...\n");
+    debug("wait rsp ready2...\r\n");
 
     while(1) {
         if (gpio_read(vi.rsp_status) == VC_RSP_READY) {
@@ -49,7 +52,7 @@ u8 vga_write(u8 data)
         }
     }
 
-    uart_printf("ok.\n");
+    debug("ok.\r\n");
     gpio_write(vi.cmd_status, VC_REQ_BUSY);
 
     return data;
@@ -62,7 +65,7 @@ s32 vga_ctrl(u32 cmd, ...)
     u8 ch;
     va_list args;
 
-    uart_printf("enter %s cmd: %d\n", __func__, cmd);
+    debug("enter %s cmd: %d\r\n", __func__, cmd);
 
     va_start(args, cmd);
 
@@ -74,7 +77,7 @@ s32 vga_ctrl(u32 cmd, ...)
             break;
         case (VC_FILL):
             ch = va_arg(args, u8);
-            uart_printf("fill: (%x)(%c)\n", ch, ch);
+            debug("fill: (%x)(%c)\r\n", ch, ch);
             vga_write(cmd);
             vga_write(ch);
             break;
@@ -83,9 +86,9 @@ s32 vga_ctrl(u32 cmd, ...)
             pos_x = va_arg(args, u32);
             pos_y = va_arg(args, u32);
             ch    = va_arg(args, u8);
-            uart_printf("pos_x: %d\n", pos_x);
-            uart_printf("pos_y: %d\n", pos_y);
-            uart_printf("ch:    %c\n", ch);
+            debug("pos_x: %d\r\n", pos_x);
+            debug("pos_y: %d\r\n", pos_y);
+            debug("ch:    %c\r\n", ch);
             vga_write(pos_x);
             vga_write(pos_y);
             vga_write(ch);
@@ -96,7 +99,7 @@ s32 vga_ctrl(u32 cmd, ...)
 
     va_end(args);
 
-    uart_printf("exit %s \n", __func__);
+    debug("exit %s \n", __func__);
 
     return 0;
 }

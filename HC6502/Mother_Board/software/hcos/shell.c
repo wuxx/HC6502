@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include "utils.h"
 
 #include "type.h"
 #include "memory_map.h"
@@ -33,6 +34,7 @@ static s32 cmd_dumpb(void);
 static s32 cmd_gpio(void);
 static s32 cmd_ps2(void);
 static s32 cmd_vga(void);
+static s32 cmd_uptime(void);
 static s32 cmd_help(void);
 
 struct shell_cmd_info ci[] = {
@@ -44,6 +46,7 @@ struct shell_cmd_info ci[] = {
     {"gpio",    cmd_gpio,    "gpio  init|read|write [VIA1_PA0...]   ctrl any gpio"   },
     {"ps2",     cmd_ps2,     "ps2                                   read ps2 input"  },
     {"vga",     cmd_vga,     "vga   cmd args...                     vga ctrl"        },
+    {"uptime",  cmd_uptime,  "uptime                                print current time"},
     {"help",    cmd_help,    "help                                  print cmd info"  },
 };
 
@@ -321,8 +324,34 @@ static s32 cmd_vga()
         y  = strtoul(argv[3], 0, 0);
         ch = strtoul(argv[4], 0, 0);
         vga_ctrl(VC_SET_CH, x, y, ch);
+    } else if (strcmp(argv[1], "shell") == 0) {
+        x = 0;
+        y = 0;
+        while(1) {
+            ch = ps2_getc();
+
+            vga_ctrl(VC_SET_CH, x, y, ch);
+            x++;
+
+            if (x == X_MAX) {
+                x = 0;
+                y++;
+            }
+
+            if (y == Y_MAX) {
+                y = 0;
+            }
+        }
+
+        vga_ctrl(VC_SET_CH, x, y, ch);
     }
 
+    return 0;
+}
+
+static s32 cmd_uptime()
+{
+    uart_printf("%d:%d:%d\r\n", hours, minutes, seconds);
     return 0;
 }
 
@@ -386,7 +415,7 @@ static s32 get_cmd_index(char *cmd)
     return -1;
 }
 
-s32 shell(char *cmd)
+s32 uart_shell(char *cmd)
 {
     s32 i;
     u32 len;

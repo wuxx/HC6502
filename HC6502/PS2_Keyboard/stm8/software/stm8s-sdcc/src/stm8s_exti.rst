@@ -1,371 +1,371 @@
                                       1 ;--------------------------------------------------------
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
-                                      3 ; Version 3.5.0 #9253 (Mar 28 2016) (Linux)
-                                      4 ; This file was generated Wed Jan  2 15:12:42 2019
-                                      5 ;--------------------------------------------------------
-                                      6 	.module stm8s_exti
-                                      7 	.optsdcc -mstm8
-                                      8 	
-                                      9 ;--------------------------------------------------------
-                                     10 ; Public variables in this module
-                                     11 ;--------------------------------------------------------
-                                     12 	.globl _assert_failed
-                                     13 	.globl _EXTI_DeInit
-                                     14 	.globl _EXTI_SetExtIntSensitivity
-                                     15 	.globl _EXTI_SetTLISensitivity
-                                     16 	.globl _EXTI_GetExtIntSensitivity
-                                     17 	.globl _EXTI_GetTLISensitivity
-                                     18 ;--------------------------------------------------------
-                                     19 ; ram data
-                                     20 ;--------------------------------------------------------
-                                     21 	.area DATA
-                                     22 ;--------------------------------------------------------
-                                     23 ; ram data
-                                     24 ;--------------------------------------------------------
-                                     25 	.area INITIALIZED
-                                     26 ;--------------------------------------------------------
-                                     27 ; absolute external ram data
-                                     28 ;--------------------------------------------------------
-                                     29 	.area DABS (ABS)
-                                     30 ;--------------------------------------------------------
-                                     31 ; global & static initialisations
-                                     32 ;--------------------------------------------------------
-                                     33 	.area HOME
-                                     34 	.area GSINIT
-                                     35 	.area GSFINAL
-                                     36 	.area GSINIT
-                                     37 ;--------------------------------------------------------
-                                     38 ; Home
-                                     39 ;--------------------------------------------------------
-                                     40 	.area HOME
+                                      3 ; Version 3.8.0 #10562 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_exti
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _assert_failed
+                                     12 	.globl _EXTI_DeInit
+                                     13 	.globl _EXTI_SetExtIntSensitivity
+                                     14 	.globl _EXTI_SetTLISensitivity
+                                     15 	.globl _EXTI_GetExtIntSensitivity
+                                     16 	.globl _EXTI_GetTLISensitivity
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area DATA
+                                     21 ;--------------------------------------------------------
+                                     22 ; ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area INITIALIZED
+                                     25 ;--------------------------------------------------------
+                                     26 ; absolute external ram data
+                                     27 ;--------------------------------------------------------
+                                     28 	.area DABS (ABS)
+                                     29 
+                                     30 ; default segment ordering for linker
+                                     31 	.area HOME
+                                     32 	.area GSINIT
+                                     33 	.area GSFINAL
+                                     34 	.area CONST
+                                     35 	.area INITIALIZER
+                                     36 	.area CODE
+                                     37 
+                                     38 ;--------------------------------------------------------
+                                     39 ; global & static initialisations
+                                     40 ;--------------------------------------------------------
                                      41 	.area HOME
-                                     42 ;--------------------------------------------------------
-                                     43 ; code
-                                     44 ;--------------------------------------------------------
-                                     45 	.area CODE
-                                     46 ;	../src/stm8s_exti.c: 53: void EXTI_DeInit(void)
-                                     47 ;	-----------------------------------------
-                                     48 ;	 function EXTI_DeInit
-                                     49 ;	-----------------------------------------
-      00938A                         50 _EXTI_DeInit:
-                                     51 ;	../src/stm8s_exti.c: 55: EXTI->CR1 = EXTI_CR1_RESET_VALUE;
-      00938A 35 00 50 A0      [ 1]   52 	mov	0x50a0+0, #0x00
-                                     53 ;	../src/stm8s_exti.c: 56: EXTI->CR2 = EXTI_CR2_RESET_VALUE;
-      00938E 35 00 50 A1      [ 1]   54 	mov	0x50a1+0, #0x00
-      009392 81               [ 4]   55 	ret
-                                     56 ;	../src/stm8s_exti.c: 70: void EXTI_SetExtIntSensitivity(EXTI_Port_TypeDef Port, EXTI_Sensitivity_TypeDef SensitivityValue)
+                                     42 	.area GSINIT
+                                     43 	.area GSFINAL
+                                     44 	.area GSINIT
+                                     45 ;--------------------------------------------------------
+                                     46 ; Home
+                                     47 ;--------------------------------------------------------
+                                     48 	.area HOME
+                                     49 	.area HOME
+                                     50 ;--------------------------------------------------------
+                                     51 ; code
+                                     52 ;--------------------------------------------------------
+                                     53 	.area CODE
+                                     54 ;	../src/stm8s_exti.c: 53: void EXTI_DeInit(void)
+                                     55 ;	-----------------------------------------
+                                     56 ;	 function EXTI_DeInit
                                      57 ;	-----------------------------------------
-                                     58 ;	 function EXTI_SetExtIntSensitivity
-                                     59 ;	-----------------------------------------
-      009393                         60 _EXTI_SetExtIntSensitivity:
-      009393 52 03            [ 2]   61 	sub	sp, #3
-                                     62 ;	../src/stm8s_exti.c: 73: assert_param(IS_EXTI_PORT_OK(Port));
-      009395 0D 06            [ 1]   63 	tnz	(0x06, sp)
-      009397 27 29            [ 1]   64 	jreq	00111$
-      009399 7B 06            [ 1]   65 	ld	a, (0x06, sp)
-      00939B A1 01            [ 1]   66 	cp	a, #0x01
-      00939D 27 23            [ 1]   67 	jreq	00111$
-      00939F 7B 06            [ 1]   68 	ld	a, (0x06, sp)
-      0093A1 A1 02            [ 1]   69 	cp	a, #0x02
-      0093A3 27 1D            [ 1]   70 	jreq	00111$
-      0093A5 7B 06            [ 1]   71 	ld	a, (0x06, sp)
-      0093A7 A1 03            [ 1]   72 	cp	a, #0x03
-      0093A9 27 17            [ 1]   73 	jreq	00111$
-      0093AB 7B 06            [ 1]   74 	ld	a, (0x06, sp)
-      0093AD A1 04            [ 1]   75 	cp	a, #0x04
-      0093AF 27 11            [ 1]   76 	jreq	00111$
-      0093B1 90 AE 95 37      [ 2]   77 	ldw	y, #___str_0+0
-      0093B5 4B 49            [ 1]   78 	push	#0x49
-      0093B7 5F               [ 1]   79 	clrw	x
-      0093B8 89               [ 2]   80 	pushw	x
-      0093B9 4B 00            [ 1]   81 	push	#0x00
-      0093BB 90 89            [ 2]   82 	pushw	y
-      0093BD CD 80 A8         [ 4]   83 	call	_assert_failed
-      0093C0 5B 06            [ 2]   84 	addw	sp, #6
-      0093C2                         85 00111$:
-                                     86 ;	../src/stm8s_exti.c: 74: assert_param(IS_EXTI_SENSITIVITY_OK(SensitivityValue));
-      0093C2 0D 07            [ 1]   87 	tnz	(0x07, sp)
-      0093C4 27 23            [ 1]   88 	jreq	00125$
-      0093C6 7B 07            [ 1]   89 	ld	a, (0x07, sp)
-      0093C8 A1 01            [ 1]   90 	cp	a, #0x01
-      0093CA 27 1D            [ 1]   91 	jreq	00125$
-      0093CC 7B 07            [ 1]   92 	ld	a, (0x07, sp)
-      0093CE A1 02            [ 1]   93 	cp	a, #0x02
-      0093D0 27 17            [ 1]   94 	jreq	00125$
-      0093D2 7B 07            [ 1]   95 	ld	a, (0x07, sp)
-      0093D4 A1 03            [ 1]   96 	cp	a, #0x03
-      0093D6 27 11            [ 1]   97 	jreq	00125$
-      0093D8 90 AE 95 37      [ 2]   98 	ldw	y, #___str_0+0
-      0093DC 4B 4A            [ 1]   99 	push	#0x4a
-      0093DE 5F               [ 1]  100 	clrw	x
-      0093DF 89               [ 2]  101 	pushw	x
-      0093E0 4B 00            [ 1]  102 	push	#0x00
-      0093E2 90 89            [ 2]  103 	pushw	y
-      0093E4 CD 80 A8         [ 4]  104 	call	_assert_failed
-      0093E7 5B 06            [ 2]  105 	addw	sp, #6
-      0093E9                        106 00125$:
-                                    107 ;	../src/stm8s_exti.c: 77: switch (Port)
-      0093E9 7B 06            [ 1]  108 	ld	a, (0x06, sp)
-      0093EB A1 04            [ 1]  109 	cp	a, #0x04
-      0093ED 23 03            [ 2]  110 	jrule	00198$
-      0093EF CC 94 78         [ 2]  111 	jp	00108$
-      0093F2                        112 00198$:
-      0093F2 5F               [ 1]  113 	clrw	x
-      0093F3 7B 06            [ 1]  114 	ld	a, (0x06, sp)
-      0093F5 97               [ 1]  115 	ld	xl, a
-      0093F6 58               [ 2]  116 	sllw	x
-      0093F7 DE 93 FB         [ 2]  117 	ldw	x, (#00199$, x)
-      0093FA FC               [ 2]  118 	jp	(x)
-      0093FB                        119 00199$:
-      0093FB 94 05                  120 	.dw	#00101$
-      0093FD 94 18                  121 	.dw	#00102$
-      0093FF 94 31                  122 	.dw	#00103$
-      009401 94 4B                  123 	.dw	#00104$
-      009403 94 67                  124 	.dw	#00105$
-                                    125 ;	../src/stm8s_exti.c: 79: case EXTI_PORT_GPIOA:
-      009405                        126 00101$:
-                                    127 ;	../src/stm8s_exti.c: 80: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PAIS);
-      009405 AE 50 A0         [ 2]  128 	ldw	x, #0x50a0
-      009408 F6               [ 1]  129 	ld	a, (x)
-      009409 A4 FC            [ 1]  130 	and	a, #0xfc
-      00940B F7               [ 1]  131 	ld	(x), a
-                                    132 ;	../src/stm8s_exti.c: 81: EXTI->CR1 |= (uint8_t)(SensitivityValue);
-      00940C AE 50 A0         [ 2]  133 	ldw	x, #0x50a0
-      00940F F6               [ 1]  134 	ld	a, (x)
-      009410 1A 07            [ 1]  135 	or	a, (0x07, sp)
-      009412 AE 50 A0         [ 2]  136 	ldw	x, #0x50a0
-      009415 F7               [ 1]  137 	ld	(x), a
-                                    138 ;	../src/stm8s_exti.c: 82: break;
-      009416 20 60            [ 2]  139 	jra	00108$
-                                    140 ;	../src/stm8s_exti.c: 83: case EXTI_PORT_GPIOB:
-      009418                        141 00102$:
-                                    142 ;	../src/stm8s_exti.c: 84: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PBIS);
-      009418 AE 50 A0         [ 2]  143 	ldw	x, #0x50a0
-      00941B F6               [ 1]  144 	ld	a, (x)
-      00941C A4 F3            [ 1]  145 	and	a, #0xf3
-      00941E F7               [ 1]  146 	ld	(x), a
-                                    147 ;	../src/stm8s_exti.c: 85: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 2);
-      00941F AE 50 A0         [ 2]  148 	ldw	x, #0x50a0
-      009422 F6               [ 1]  149 	ld	a, (x)
-      009423 6B 01            [ 1]  150 	ld	(0x01, sp), a
-      009425 7B 07            [ 1]  151 	ld	a, (0x07, sp)
-      009427 48               [ 1]  152 	sll	a
-      009428 48               [ 1]  153 	sll	a
-      009429 1A 01            [ 1]  154 	or	a, (0x01, sp)
-      00942B AE 50 A0         [ 2]  155 	ldw	x, #0x50a0
-      00942E F7               [ 1]  156 	ld	(x), a
-                                    157 ;	../src/stm8s_exti.c: 86: break;
-      00942F 20 47            [ 2]  158 	jra	00108$
-                                    159 ;	../src/stm8s_exti.c: 87: case EXTI_PORT_GPIOC:
-      009431                        160 00103$:
-                                    161 ;	../src/stm8s_exti.c: 88: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PCIS);
-      009431 AE 50 A0         [ 2]  162 	ldw	x, #0x50a0
-      009434 F6               [ 1]  163 	ld	a, (x)
-      009435 A4 CF            [ 1]  164 	and	a, #0xcf
-      009437 F7               [ 1]  165 	ld	(x), a
-                                    166 ;	../src/stm8s_exti.c: 89: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 4);
-      009438 AE 50 A0         [ 2]  167 	ldw	x, #0x50a0
-      00943B F6               [ 1]  168 	ld	a, (x)
-      00943C 6B 03            [ 1]  169 	ld	(0x03, sp), a
-      00943E 7B 07            [ 1]  170 	ld	a, (0x07, sp)
-      009440 4E               [ 1]  171 	swap	a
-      009441 A4 F0            [ 1]  172 	and	a, #0xf0
-      009443 1A 03            [ 1]  173 	or	a, (0x03, sp)
-      009445 AE 50 A0         [ 2]  174 	ldw	x, #0x50a0
-      009448 F7               [ 1]  175 	ld	(x), a
-                                    176 ;	../src/stm8s_exti.c: 90: break;
-      009449 20 2D            [ 2]  177 	jra	00108$
-                                    178 ;	../src/stm8s_exti.c: 91: case EXTI_PORT_GPIOD:
-      00944B                        179 00104$:
-                                    180 ;	../src/stm8s_exti.c: 92: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PDIS);
-      00944B AE 50 A0         [ 2]  181 	ldw	x, #0x50a0
-      00944E F6               [ 1]  182 	ld	a, (x)
-      00944F A4 3F            [ 1]  183 	and	a, #0x3f
-      009451 F7               [ 1]  184 	ld	(x), a
-                                    185 ;	../src/stm8s_exti.c: 93: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 6);
-      009452 AE 50 A0         [ 2]  186 	ldw	x, #0x50a0
-      009455 F6               [ 1]  187 	ld	a, (x)
-      009456 6B 02            [ 1]  188 	ld	(0x02, sp), a
-      009458 7B 07            [ 1]  189 	ld	a, (0x07, sp)
-      00945A 4E               [ 1]  190 	swap	a
-      00945B A4 F0            [ 1]  191 	and	a, #0xf0
-      00945D 48               [ 1]  192 	sll	a
-      00945E 48               [ 1]  193 	sll	a
-      00945F 1A 02            [ 1]  194 	or	a, (0x02, sp)
-      009461 AE 50 A0         [ 2]  195 	ldw	x, #0x50a0
-      009464 F7               [ 1]  196 	ld	(x), a
-                                    197 ;	../src/stm8s_exti.c: 94: break;
-      009465 20 11            [ 2]  198 	jra	00108$
-                                    199 ;	../src/stm8s_exti.c: 95: case EXTI_PORT_GPIOE:
-      009467                        200 00105$:
-                                    201 ;	../src/stm8s_exti.c: 96: EXTI->CR2 &= (uint8_t)(~EXTI_CR2_PEIS);
-      009467 AE 50 A1         [ 2]  202 	ldw	x, #0x50a1
-      00946A F6               [ 1]  203 	ld	a, (x)
-      00946B A4 FC            [ 1]  204 	and	a, #0xfc
-      00946D F7               [ 1]  205 	ld	(x), a
-                                    206 ;	../src/stm8s_exti.c: 97: EXTI->CR2 |= (uint8_t)(SensitivityValue);
-      00946E AE 50 A1         [ 2]  207 	ldw	x, #0x50a1
-      009471 F6               [ 1]  208 	ld	a, (x)
-      009472 1A 07            [ 1]  209 	or	a, (0x07, sp)
-      009474 AE 50 A1         [ 2]  210 	ldw	x, #0x50a1
-      009477 F7               [ 1]  211 	ld	(x), a
-                                    212 ;	../src/stm8s_exti.c: 101: }
-      009478                        213 00108$:
-      009478 5B 03            [ 2]  214 	addw	sp, #3
-      00947A 81               [ 4]  215 	ret
+      00920B                         58 _EXTI_DeInit:
+                                     59 ;	../src/stm8s_exti.c: 55: EXTI->CR1 = EXTI_CR1_RESET_VALUE;
+      00920B 35 00 50 A0      [ 1]   60 	mov	0x50a0+0, #0x00
+                                     61 ;	../src/stm8s_exti.c: 56: EXTI->CR2 = EXTI_CR2_RESET_VALUE;
+      00920F 35 00 50 A1      [ 1]   62 	mov	0x50a1+0, #0x00
+                                     63 ;	../src/stm8s_exti.c: 57: }
+      009213 81               [ 4]   64 	ret
+                                     65 ;	../src/stm8s_exti.c: 70: void EXTI_SetExtIntSensitivity(EXTI_Port_TypeDef Port, EXTI_Sensitivity_TypeDef SensitivityValue)
+                                     66 ;	-----------------------------------------
+                                     67 ;	 function EXTI_SetExtIntSensitivity
+                                     68 ;	-----------------------------------------
+      009214                         69 _EXTI_SetExtIntSensitivity:
+      009214 89               [ 2]   70 	pushw	x
+                                     71 ;	../src/stm8s_exti.c: 73: assert_param(IS_EXTI_PORT_OK(Port));
+      009215 0D 05            [ 1]   72 	tnz	(0x05, sp)
+      009217 27 26            [ 1]   73 	jreq	00111$
+      009219 7B 05            [ 1]   74 	ld	a, (0x05, sp)
+      00921B 4A               [ 1]   75 	dec	a
+      00921C 27 21            [ 1]   76 	jreq	00111$
+      00921E 7B 05            [ 1]   77 	ld	a, (0x05, sp)
+      009220 A1 02            [ 1]   78 	cp	a, #0x02
+      009222 27 1B            [ 1]   79 	jreq	00111$
+      009224 7B 05            [ 1]   80 	ld	a, (0x05, sp)
+      009226 A1 03            [ 1]   81 	cp	a, #0x03
+      009228 27 15            [ 1]   82 	jreq	00111$
+      00922A 7B 05            [ 1]   83 	ld	a, (0x05, sp)
+      00922C A1 04            [ 1]   84 	cp	a, #0x04
+      00922E 27 0F            [ 1]   85 	jreq	00111$
+      009230 4B 49            [ 1]   86 	push	#0x49
+      009232 5F               [ 1]   87 	clrw	x
+      009233 89               [ 2]   88 	pushw	x
+      009234 4B 00            [ 1]   89 	push	#0x00
+      009236 4B 37            [ 1]   90 	push	#<___str_0
+      009238 4B 82            [ 1]   91 	push	#(___str_0 >> 8)
+      00923A CD 82 CE         [ 4]   92 	call	_assert_failed
+      00923D 5B 06            [ 2]   93 	addw	sp, #6
+      00923F                         94 00111$:
+                                     95 ;	../src/stm8s_exti.c: 74: assert_param(IS_EXTI_SENSITIVITY_OK(SensitivityValue));
+      00923F 0D 06            [ 1]   96 	tnz	(0x06, sp)
+      009241 27 20            [ 1]   97 	jreq	00125$
+      009243 7B 06            [ 1]   98 	ld	a, (0x06, sp)
+      009245 4A               [ 1]   99 	dec	a
+      009246 27 1B            [ 1]  100 	jreq	00125$
+      009248 7B 06            [ 1]  101 	ld	a, (0x06, sp)
+      00924A A1 02            [ 1]  102 	cp	a, #0x02
+      00924C 27 15            [ 1]  103 	jreq	00125$
+      00924E 7B 06            [ 1]  104 	ld	a, (0x06, sp)
+      009250 A1 03            [ 1]  105 	cp	a, #0x03
+      009252 27 0F            [ 1]  106 	jreq	00125$
+      009254 4B 4A            [ 1]  107 	push	#0x4a
+      009256 5F               [ 1]  108 	clrw	x
+      009257 89               [ 2]  109 	pushw	x
+      009258 4B 00            [ 1]  110 	push	#0x00
+      00925A 4B 37            [ 1]  111 	push	#<___str_0
+      00925C 4B 82            [ 1]  112 	push	#(___str_0 >> 8)
+      00925E CD 82 CE         [ 4]  113 	call	_assert_failed
+      009261 5B 06            [ 2]  114 	addw	sp, #6
+      009263                        115 00125$:
+                                    116 ;	../src/stm8s_exti.c: 77: switch (Port)
+      009263 7B 05            [ 1]  117 	ld	a, (0x05, sp)
+      009265 A1 04            [ 1]  118 	cp	a, #0x04
+      009267 23 03            [ 2]  119 	jrule	00208$
+      009269 CC 92 F0         [ 2]  120 	jp	00108$
+      00926C                        121 00208$:
+                                    122 ;	../src/stm8s_exti.c: 85: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 2);
+      00926C 7B 06            [ 1]  123 	ld	a, (0x06, sp)
+      00926E 90 97            [ 1]  124 	ld	yl, a
+                                    125 ;	../src/stm8s_exti.c: 77: switch (Port)
+      009270 5F               [ 1]  126 	clrw	x
+      009271 7B 05            [ 1]  127 	ld	a, (0x05, sp)
+      009273 97               [ 1]  128 	ld	xl, a
+      009274 58               [ 2]  129 	sllw	x
+      009275 DE 92 79         [ 2]  130 	ldw	x, (#00209$, x)
+      009278 FC               [ 2]  131 	jp	(x)
+      009279                        132 00209$:
+      009279 92 83                  133 	.dw	#00101$
+      00927B 92 95                  134 	.dw	#00102$
+      00927D 92 AC                  135 	.dw	#00103$
+      00927F 92 C5                  136 	.dw	#00104$
+      009281 92 E0                  137 	.dw	#00105$
+                                    138 ;	../src/stm8s_exti.c: 79: case EXTI_PORT_GPIOA:
+      009283                        139 00101$:
+                                    140 ;	../src/stm8s_exti.c: 80: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PAIS);
+      009283 C6 50 A0         [ 1]  141 	ld	a, 0x50a0
+      009286 A4 FC            [ 1]  142 	and	a, #0xfc
+      009288 C7 50 A0         [ 1]  143 	ld	0x50a0, a
+                                    144 ;	../src/stm8s_exti.c: 81: EXTI->CR1 |= (uint8_t)(SensitivityValue);
+      00928B C6 50 A0         [ 1]  145 	ld	a, 0x50a0
+      00928E 1A 06            [ 1]  146 	or	a, (0x06, sp)
+      009290 C7 50 A0         [ 1]  147 	ld	0x50a0, a
+                                    148 ;	../src/stm8s_exti.c: 82: break;
+      009293 20 5B            [ 2]  149 	jra	00108$
+                                    150 ;	../src/stm8s_exti.c: 83: case EXTI_PORT_GPIOB:
+      009295                        151 00102$:
+                                    152 ;	../src/stm8s_exti.c: 84: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PBIS);
+      009295 C6 50 A0         [ 1]  153 	ld	a, 0x50a0
+      009298 A4 F3            [ 1]  154 	and	a, #0xf3
+      00929A C7 50 A0         [ 1]  155 	ld	0x50a0, a
+                                    156 ;	../src/stm8s_exti.c: 85: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 2);
+      00929D C6 50 A0         [ 1]  157 	ld	a, 0x50a0
+      0092A0 93               [ 1]  158 	ldw	x, y
+      0092A1 58               [ 2]  159 	sllw	x
+      0092A2 58               [ 2]  160 	sllw	x
+      0092A3 89               [ 2]  161 	pushw	x
+      0092A4 1A 02            [ 1]  162 	or	a, (2, sp)
+      0092A6 85               [ 2]  163 	popw	x
+      0092A7 C7 50 A0         [ 1]  164 	ld	0x50a0, a
+                                    165 ;	../src/stm8s_exti.c: 86: break;
+      0092AA 20 44            [ 2]  166 	jra	00108$
+                                    167 ;	../src/stm8s_exti.c: 87: case EXTI_PORT_GPIOC:
+      0092AC                        168 00103$:
+                                    169 ;	../src/stm8s_exti.c: 88: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PCIS);
+      0092AC C6 50 A0         [ 1]  170 	ld	a, 0x50a0
+      0092AF A4 CF            [ 1]  171 	and	a, #0xcf
+      0092B1 C7 50 A0         [ 1]  172 	ld	0x50a0, a
+                                    173 ;	../src/stm8s_exti.c: 89: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 4);
+      0092B4 C6 50 A0         [ 1]  174 	ld	a, 0x50a0
+      0092B7 6B 02            [ 1]  175 	ld	(0x02, sp), a
+      0092B9 90 9F            [ 1]  176 	ld	a, yl
+      0092BB 4E               [ 1]  177 	swap	a
+      0092BC A4 F0            [ 1]  178 	and	a, #0xf0
+      0092BE 1A 02            [ 1]  179 	or	a, (0x02, sp)
+      0092C0 C7 50 A0         [ 1]  180 	ld	0x50a0, a
+                                    181 ;	../src/stm8s_exti.c: 90: break;
+      0092C3 20 2B            [ 2]  182 	jra	00108$
+                                    183 ;	../src/stm8s_exti.c: 91: case EXTI_PORT_GPIOD:
+      0092C5                        184 00104$:
+                                    185 ;	../src/stm8s_exti.c: 92: EXTI->CR1 &= (uint8_t)(~EXTI_CR1_PDIS);
+      0092C5 C6 50 A0         [ 1]  186 	ld	a, 0x50a0
+      0092C8 A4 3F            [ 1]  187 	and	a, #0x3f
+      0092CA C7 50 A0         [ 1]  188 	ld	0x50a0, a
+                                    189 ;	../src/stm8s_exti.c: 93: EXTI->CR1 |= (uint8_t)((uint8_t)(SensitivityValue) << 6);
+      0092CD C6 50 A0         [ 1]  190 	ld	a, 0x50a0
+      0092D0 6B 01            [ 1]  191 	ld	(0x01, sp), a
+      0092D2 90 9F            [ 1]  192 	ld	a, yl
+      0092D4 4E               [ 1]  193 	swap	a
+      0092D5 A4 F0            [ 1]  194 	and	a, #0xf0
+      0092D7 48               [ 1]  195 	sll	a
+      0092D8 48               [ 1]  196 	sll	a
+      0092D9 1A 01            [ 1]  197 	or	a, (0x01, sp)
+      0092DB C7 50 A0         [ 1]  198 	ld	0x50a0, a
+                                    199 ;	../src/stm8s_exti.c: 94: break;
+      0092DE 20 10            [ 2]  200 	jra	00108$
+                                    201 ;	../src/stm8s_exti.c: 95: case EXTI_PORT_GPIOE:
+      0092E0                        202 00105$:
+                                    203 ;	../src/stm8s_exti.c: 96: EXTI->CR2 &= (uint8_t)(~EXTI_CR2_PEIS);
+      0092E0 C6 50 A1         [ 1]  204 	ld	a, 0x50a1
+      0092E3 A4 FC            [ 1]  205 	and	a, #0xfc
+      0092E5 C7 50 A1         [ 1]  206 	ld	0x50a1, a
+                                    207 ;	../src/stm8s_exti.c: 97: EXTI->CR2 |= (uint8_t)(SensitivityValue);
+      0092E8 C6 50 A1         [ 1]  208 	ld	a, 0x50a1
+      0092EB 1A 06            [ 1]  209 	or	a, (0x06, sp)
+      0092ED C7 50 A1         [ 1]  210 	ld	0x50a1, a
+                                    211 ;	../src/stm8s_exti.c: 101: }
+      0092F0                        212 00108$:
+                                    213 ;	../src/stm8s_exti.c: 102: }
+      0092F0 85               [ 2]  214 	popw	x
+      0092F1 81               [ 4]  215 	ret
                                     216 ;	../src/stm8s_exti.c: 111: void EXTI_SetTLISensitivity(EXTI_TLISensitivity_TypeDef SensitivityValue)
                                     217 ;	-----------------------------------------
                                     218 ;	 function EXTI_SetTLISensitivity
                                     219 ;	-----------------------------------------
-      00947B                        220 _EXTI_SetTLISensitivity:
+      0092F2                        220 _EXTI_SetTLISensitivity:
                                     221 ;	../src/stm8s_exti.c: 114: assert_param(IS_EXTI_TLISENSITIVITY_OK(SensitivityValue));
-      00947B 0D 03            [ 1]  222 	tnz	(0x03, sp)
-      00947D 27 17            [ 1]  223 	jreq	00104$
-      00947F 7B 03            [ 1]  224 	ld	a, (0x03, sp)
-      009481 A1 04            [ 1]  225 	cp	a, #0x04
-      009483 27 11            [ 1]  226 	jreq	00104$
-      009485 90 AE 95 37      [ 2]  227 	ldw	y, #___str_0+0
-      009489 4B 72            [ 1]  228 	push	#0x72
-      00948B 5F               [ 1]  229 	clrw	x
-      00948C 89               [ 2]  230 	pushw	x
-      00948D 4B 00            [ 1]  231 	push	#0x00
-      00948F 90 89            [ 2]  232 	pushw	y
-      009491 CD 80 A8         [ 4]  233 	call	_assert_failed
-      009494 5B 06            [ 2]  234 	addw	sp, #6
-      009496                        235 00104$:
+      0092F2 0D 03            [ 1]  222 	tnz	(0x03, sp)
+      0092F4 27 15            [ 1]  223 	jreq	00104$
+      0092F6 7B 03            [ 1]  224 	ld	a, (0x03, sp)
+      0092F8 A1 04            [ 1]  225 	cp	a, #0x04
+      0092FA 27 0F            [ 1]  226 	jreq	00104$
+      0092FC 4B 72            [ 1]  227 	push	#0x72
+      0092FE 5F               [ 1]  228 	clrw	x
+      0092FF 89               [ 2]  229 	pushw	x
+      009300 4B 00            [ 1]  230 	push	#0x00
+      009302 4B 37            [ 1]  231 	push	#<___str_0
+      009304 4B 82            [ 1]  232 	push	#(___str_0 >> 8)
+      009306 CD 82 CE         [ 4]  233 	call	_assert_failed
+      009309 5B 06            [ 2]  234 	addw	sp, #6
+      00930B                        235 00104$:
                                     236 ;	../src/stm8s_exti.c: 117: EXTI->CR2 &= (uint8_t)(~EXTI_CR2_TLIS);
-      009496 AE 50 A1         [ 2]  237 	ldw	x, #0x50a1
-      009499 F6               [ 1]  238 	ld	a, (x)
-      00949A A4 FB            [ 1]  239 	and	a, #0xfb
-      00949C F7               [ 1]  240 	ld	(x), a
-                                    241 ;	../src/stm8s_exti.c: 118: EXTI->CR2 |= (uint8_t)(SensitivityValue);
-      00949D AE 50 A1         [ 2]  242 	ldw	x, #0x50a1
-      0094A0 F6               [ 1]  243 	ld	a, (x)
-      0094A1 1A 03            [ 1]  244 	or	a, (0x03, sp)
-      0094A3 AE 50 A1         [ 2]  245 	ldw	x, #0x50a1
-      0094A6 F7               [ 1]  246 	ld	(x), a
-      0094A7 81               [ 4]  247 	ret
-                                    248 ;	../src/stm8s_exti.c: 126: EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
+      00930B C6 50 A1         [ 1]  237 	ld	a, 0x50a1
+      00930E A4 FB            [ 1]  238 	and	a, #0xfb
+      009310 C7 50 A1         [ 1]  239 	ld	0x50a1, a
+                                    240 ;	../src/stm8s_exti.c: 118: EXTI->CR2 |= (uint8_t)(SensitivityValue);
+      009313 C6 50 A1         [ 1]  241 	ld	a, 0x50a1
+      009316 1A 03            [ 1]  242 	or	a, (0x03, sp)
+      009318 C7 50 A1         [ 1]  243 	ld	0x50a1, a
+                                    244 ;	../src/stm8s_exti.c: 119: }
+      00931B 81               [ 4]  245 	ret
+                                    246 ;	../src/stm8s_exti.c: 126: EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
+                                    247 ;	-----------------------------------------
+                                    248 ;	 function EXTI_GetExtIntSensitivity
                                     249 ;	-----------------------------------------
-                                    250 ;	 function EXTI_GetExtIntSensitivity
-                                    251 ;	-----------------------------------------
-      0094A8                        252 _EXTI_GetExtIntSensitivity:
-      0094A8 88               [ 1]  253 	push	a
-                                    254 ;	../src/stm8s_exti.c: 128: uint8_t value = 0;
-      0094A9 0F 01            [ 1]  255 	clr	(0x01, sp)
-                                    256 ;	../src/stm8s_exti.c: 131: assert_param(IS_EXTI_PORT_OK(Port));
-      0094AB 0D 04            [ 1]  257 	tnz	(0x04, sp)
-      0094AD 27 29            [ 1]  258 	jreq	00111$
-      0094AF 7B 04            [ 1]  259 	ld	a, (0x04, sp)
-      0094B1 A1 01            [ 1]  260 	cp	a, #0x01
-      0094B3 27 23            [ 1]  261 	jreq	00111$
-      0094B5 7B 04            [ 1]  262 	ld	a, (0x04, sp)
-      0094B7 A1 02            [ 1]  263 	cp	a, #0x02
-      0094B9 27 1D            [ 1]  264 	jreq	00111$
-      0094BB 7B 04            [ 1]  265 	ld	a, (0x04, sp)
-      0094BD A1 03            [ 1]  266 	cp	a, #0x03
-      0094BF 27 17            [ 1]  267 	jreq	00111$
-      0094C1 7B 04            [ 1]  268 	ld	a, (0x04, sp)
-      0094C3 A1 04            [ 1]  269 	cp	a, #0x04
-      0094C5 27 11            [ 1]  270 	jreq	00111$
-      0094C7 90 AE 95 37      [ 2]  271 	ldw	y, #___str_0+0
-      0094CB 4B 83            [ 1]  272 	push	#0x83
-      0094CD 5F               [ 1]  273 	clrw	x
-      0094CE 89               [ 2]  274 	pushw	x
-      0094CF 4B 00            [ 1]  275 	push	#0x00
-      0094D1 90 89            [ 2]  276 	pushw	y
-      0094D3 CD 80 A8         [ 4]  277 	call	_assert_failed
-      0094D6 5B 06            [ 2]  278 	addw	sp, #6
-      0094D8                        279 00111$:
-                                    280 ;	../src/stm8s_exti.c: 133: switch (Port)
-      0094D8 7B 04            [ 1]  281 	ld	a, (0x04, sp)
-      0094DA A1 04            [ 1]  282 	cp	a, #0x04
-      0094DC 22 4D            [ 1]  283 	jrugt	00107$
-      0094DE 5F               [ 1]  284 	clrw	x
-      0094DF 7B 04            [ 1]  285 	ld	a, (0x04, sp)
-      0094E1 97               [ 1]  286 	ld	xl, a
-      0094E2 58               [ 2]  287 	sllw	x
-      0094E3 DE 94 E7         [ 2]  288 	ldw	x, (#00162$, x)
-      0094E6 FC               [ 2]  289 	jp	(x)
-      0094E7                        290 00162$:
-      0094E7 94 F1                  291 	.dw	#00101$
-      0094E9 94 FB                  292 	.dw	#00102$
-      0094EB 95 07                  293 	.dw	#00103$
-      0094ED 95 14                  294 	.dw	#00104$
-      0094EF 95 23                  295 	.dw	#00105$
-                                    296 ;	../src/stm8s_exti.c: 135: case EXTI_PORT_GPIOA:
-      0094F1                        297 00101$:
-                                    298 ;	../src/stm8s_exti.c: 136: value = (uint8_t)(EXTI->CR1 & EXTI_CR1_PAIS);
-      0094F1 AE 50 A0         [ 2]  299 	ldw	x, #0x50a0
-      0094F4 F6               [ 1]  300 	ld	a, (x)
-      0094F5 A4 03            [ 1]  301 	and	a, #0x03
-      0094F7 6B 01            [ 1]  302 	ld	(0x01, sp), a
-                                    303 ;	../src/stm8s_exti.c: 137: break;
-      0094F9 20 30            [ 2]  304 	jra	00107$
-                                    305 ;	../src/stm8s_exti.c: 138: case EXTI_PORT_GPIOB:
-      0094FB                        306 00102$:
-                                    307 ;	../src/stm8s_exti.c: 139: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PBIS) >> 2);
-      0094FB AE 50 A0         [ 2]  308 	ldw	x, #0x50a0
-      0094FE F6               [ 1]  309 	ld	a, (x)
-      0094FF A4 0C            [ 1]  310 	and	a, #0x0c
-      009501 44               [ 1]  311 	srl	a
-      009502 44               [ 1]  312 	srl	a
-      009503 6B 01            [ 1]  313 	ld	(0x01, sp), a
-                                    314 ;	../src/stm8s_exti.c: 140: break;
-      009505 20 24            [ 2]  315 	jra	00107$
-                                    316 ;	../src/stm8s_exti.c: 141: case EXTI_PORT_GPIOC:
-      009507                        317 00103$:
-                                    318 ;	../src/stm8s_exti.c: 142: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PCIS) >> 4);
-      009507 AE 50 A0         [ 2]  319 	ldw	x, #0x50a0
-      00950A F6               [ 1]  320 	ld	a, (x)
-      00950B A4 30            [ 1]  321 	and	a, #0x30
-      00950D 4E               [ 1]  322 	swap	a
-      00950E A4 0F            [ 1]  323 	and	a, #0x0f
-      009510 6B 01            [ 1]  324 	ld	(0x01, sp), a
-                                    325 ;	../src/stm8s_exti.c: 143: break;
-      009512 20 17            [ 2]  326 	jra	00107$
-                                    327 ;	../src/stm8s_exti.c: 144: case EXTI_PORT_GPIOD:
-      009514                        328 00104$:
-                                    329 ;	../src/stm8s_exti.c: 145: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PDIS) >> 6);
-      009514 AE 50 A0         [ 2]  330 	ldw	x, #0x50a0
-      009517 F6               [ 1]  331 	ld	a, (x)
-      009518 A4 C0            [ 1]  332 	and	a, #0xc0
-      00951A 4E               [ 1]  333 	swap	a
-      00951B A4 0F            [ 1]  334 	and	a, #0x0f
-      00951D 44               [ 1]  335 	srl	a
-      00951E 44               [ 1]  336 	srl	a
-      00951F 6B 01            [ 1]  337 	ld	(0x01, sp), a
-                                    338 ;	../src/stm8s_exti.c: 146: break;
-      009521 20 08            [ 2]  339 	jra	00107$
-                                    340 ;	../src/stm8s_exti.c: 147: case EXTI_PORT_GPIOE:
-      009523                        341 00105$:
-                                    342 ;	../src/stm8s_exti.c: 148: value = (uint8_t)(EXTI->CR2 & EXTI_CR2_PEIS);
-      009523 AE 50 A1         [ 2]  343 	ldw	x, #0x50a1
-      009526 F6               [ 1]  344 	ld	a, (x)
-      009527 A4 03            [ 1]  345 	and	a, #0x03
-      009529 6B 01            [ 1]  346 	ld	(0x01, sp), a
-                                    347 ;	../src/stm8s_exti.c: 152: }
-      00952B                        348 00107$:
+      00931C                        250 _EXTI_GetExtIntSensitivity:
+                                    251 ;	../src/stm8s_exti.c: 128: uint8_t value = 0;
+      00931C 4F               [ 1]  252 	clr	a
+                                    253 ;	../src/stm8s_exti.c: 131: assert_param(IS_EXTI_PORT_OK(Port));
+      00931D 0D 03            [ 1]  254 	tnz	(0x03, sp)
+      00931F 27 30            [ 1]  255 	jreq	00111$
+      009321 88               [ 1]  256 	push	a
+      009322 7B 04            [ 1]  257 	ld	a, (0x04, sp)
+      009324 4A               [ 1]  258 	dec	a
+      009325 84               [ 1]  259 	pop	a
+      009326 27 29            [ 1]  260 	jreq	00111$
+      009328 88               [ 1]  261 	push	a
+      009329 7B 04            [ 1]  262 	ld	a, (0x04, sp)
+      00932B A1 02            [ 1]  263 	cp	a, #0x02
+      00932D 84               [ 1]  264 	pop	a
+      00932E 27 21            [ 1]  265 	jreq	00111$
+      009330 88               [ 1]  266 	push	a
+      009331 7B 04            [ 1]  267 	ld	a, (0x04, sp)
+      009333 A1 03            [ 1]  268 	cp	a, #0x03
+      009335 84               [ 1]  269 	pop	a
+      009336 27 19            [ 1]  270 	jreq	00111$
+      009338 88               [ 1]  271 	push	a
+      009339 7B 04            [ 1]  272 	ld	a, (0x04, sp)
+      00933B A1 04            [ 1]  273 	cp	a, #0x04
+      00933D 84               [ 1]  274 	pop	a
+      00933E 27 11            [ 1]  275 	jreq	00111$
+      009340 88               [ 1]  276 	push	a
+      009341 4B 83            [ 1]  277 	push	#0x83
+      009343 5F               [ 1]  278 	clrw	x
+      009344 89               [ 2]  279 	pushw	x
+      009345 4B 00            [ 1]  280 	push	#0x00
+      009347 4B 37            [ 1]  281 	push	#<___str_0
+      009349 4B 82            [ 1]  282 	push	#(___str_0 >> 8)
+      00934B CD 82 CE         [ 4]  283 	call	_assert_failed
+      00934E 5B 06            [ 2]  284 	addw	sp, #6
+      009350 84               [ 1]  285 	pop	a
+      009351                        286 00111$:
+                                    287 ;	../src/stm8s_exti.c: 133: switch (Port)
+      009351 88               [ 1]  288 	push	a
+      009352 7B 04            [ 1]  289 	ld	a, (0x04, sp)
+      009354 A1 04            [ 1]  290 	cp	a, #0x04
+      009356 84               [ 1]  291 	pop	a
+      009357 23 01            [ 2]  292 	jrule	00167$
+      009359 81               [ 4]  293 	ret
+      00935A                        294 00167$:
+      00935A 5F               [ 1]  295 	clrw	x
+      00935B 7B 03            [ 1]  296 	ld	a, (0x03, sp)
+      00935D 97               [ 1]  297 	ld	xl, a
+      00935E 58               [ 2]  298 	sllw	x
+      00935F DE 93 63         [ 2]  299 	ldw	x, (#00168$, x)
+      009362 FC               [ 2]  300 	jp	(x)
+      009363                        301 00168$:
+      009363 93 6D                  302 	.dw	#00101$
+      009365 93 73                  303 	.dw	#00102$
+      009367 93 7B                  304 	.dw	#00103$
+      009369 93 84                  305 	.dw	#00104$
+      00936B 93 8F                  306 	.dw	#00105$
+                                    307 ;	../src/stm8s_exti.c: 135: case EXTI_PORT_GPIOA:
+      00936D                        308 00101$:
+                                    309 ;	../src/stm8s_exti.c: 136: value = (uint8_t)(EXTI->CR1 & EXTI_CR1_PAIS);
+      00936D C6 50 A0         [ 1]  310 	ld	a, 0x50a0
+      009370 A4 03            [ 1]  311 	and	a, #0x03
+                                    312 ;	../src/stm8s_exti.c: 137: break;
+      009372 81               [ 4]  313 	ret
+                                    314 ;	../src/stm8s_exti.c: 138: case EXTI_PORT_GPIOB:
+      009373                        315 00102$:
+                                    316 ;	../src/stm8s_exti.c: 139: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PBIS) >> 2);
+      009373 C6 50 A0         [ 1]  317 	ld	a, 0x50a0
+      009376 A4 0C            [ 1]  318 	and	a, #0x0c
+      009378 44               [ 1]  319 	srl	a
+      009379 44               [ 1]  320 	srl	a
+                                    321 ;	../src/stm8s_exti.c: 140: break;
+      00937A 81               [ 4]  322 	ret
+                                    323 ;	../src/stm8s_exti.c: 141: case EXTI_PORT_GPIOC:
+      00937B                        324 00103$:
+                                    325 ;	../src/stm8s_exti.c: 142: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PCIS) >> 4);
+      00937B C6 50 A0         [ 1]  326 	ld	a, 0x50a0
+      00937E A4 30            [ 1]  327 	and	a, #0x30
+      009380 4E               [ 1]  328 	swap	a
+      009381 A4 0F            [ 1]  329 	and	a, #0x0f
+                                    330 ;	../src/stm8s_exti.c: 143: break;
+      009383 81               [ 4]  331 	ret
+                                    332 ;	../src/stm8s_exti.c: 144: case EXTI_PORT_GPIOD:
+      009384                        333 00104$:
+                                    334 ;	../src/stm8s_exti.c: 145: value = (uint8_t)((uint8_t)(EXTI->CR1 & EXTI_CR1_PDIS) >> 6);
+      009384 C6 50 A0         [ 1]  335 	ld	a, 0x50a0
+      009387 A4 C0            [ 1]  336 	and	a, #0xc0
+      009389 4E               [ 1]  337 	swap	a
+      00938A A4 0F            [ 1]  338 	and	a, #0x0f
+      00938C 44               [ 1]  339 	srl	a
+      00938D 44               [ 1]  340 	srl	a
+                                    341 ;	../src/stm8s_exti.c: 146: break;
+      00938E 81               [ 4]  342 	ret
+                                    343 ;	../src/stm8s_exti.c: 147: case EXTI_PORT_GPIOE:
+      00938F                        344 00105$:
+                                    345 ;	../src/stm8s_exti.c: 148: value = (uint8_t)(EXTI->CR2 & EXTI_CR2_PEIS);
+      00938F C6 50 A1         [ 1]  346 	ld	a, 0x50a1
+      009392 A4 03            [ 1]  347 	and	a, #0x03
+                                    348 ;	../src/stm8s_exti.c: 152: }
                                     349 ;	../src/stm8s_exti.c: 154: return((EXTI_Sensitivity_TypeDef)value);
-      00952B 7B 01            [ 1]  350 	ld	a, (0x01, sp)
-      00952D 5B 01            [ 2]  351 	addw	sp, #1
-      00952F 81               [ 4]  352 	ret
-                                    353 ;	../src/stm8s_exti.c: 162: EXTI_TLISensitivity_TypeDef EXTI_GetTLISensitivity(void)
-                                    354 ;	-----------------------------------------
-                                    355 ;	 function EXTI_GetTLISensitivity
-                                    356 ;	-----------------------------------------
-      009530                        357 _EXTI_GetTLISensitivity:
-                                    358 ;	../src/stm8s_exti.c: 167: value = (uint8_t)(EXTI->CR2 & EXTI_CR2_TLIS);
-      009530 AE 50 A1         [ 2]  359 	ldw	x, #0x50a1
-      009533 F6               [ 1]  360 	ld	a, (x)
-      009534 A4 04            [ 1]  361 	and	a, #0x04
-                                    362 ;	../src/stm8s_exti.c: 169: return((EXTI_TLISensitivity_TypeDef)value);
-      009536 81               [ 4]  363 	ret
-                                    364 	.area CODE
-      009537                        365 ___str_0:
-      009537 2E 2E 2F 73 72 63 2F   366 	.ascii "../src/stm8s_exti.c"
+                                    350 ;	../src/stm8s_exti.c: 155: }
+      009394 81               [ 4]  351 	ret
+                                    352 ;	../src/stm8s_exti.c: 162: EXTI_TLISensitivity_TypeDef EXTI_GetTLISensitivity(void)
+                                    353 ;	-----------------------------------------
+                                    354 ;	 function EXTI_GetTLISensitivity
+                                    355 ;	-----------------------------------------
+      009395                        356 _EXTI_GetTLISensitivity:
+                                    357 ;	../src/stm8s_exti.c: 167: value = (uint8_t)(EXTI->CR2 & EXTI_CR2_TLIS);
+      009395 C6 50 A1         [ 1]  358 	ld	a, 0x50a1
+      009398 A4 04            [ 1]  359 	and	a, #0x04
+                                    360 ;	../src/stm8s_exti.c: 169: return((EXTI_TLISensitivity_TypeDef)value);
+                                    361 ;	../src/stm8s_exti.c: 170: }
+      00939A 81               [ 4]  362 	ret
+                                    363 	.area CODE
+                                    364 	.area CONST
+      008237                        365 ___str_0:
+      008237 2E 2E 2F 73 72 63 2F   366 	.ascii "../src/stm8s_exti.c"
              73 74 6D 38 73 5F 65
              78 74 69 2E 63
-      00954A 00                     367 	.db 0x00
+      00824A 00                     367 	.db 0x00
                                     368 	.area INITIALIZER
                                     369 	.area CABS (ABS)

@@ -91,7 +91,6 @@ void system_clock_init()
     interrupts();
 }
 
-
 int putchar(int c)
 {
     while(!(UART1_SR & UART_SR_TXE));
@@ -724,7 +723,7 @@ exit:
 
 /********************************* SHELL END   *********************************/
 #define POS_REV "v1.0"
-char sys_banner[] = {"pos system buildtime [" __TIME__ " " __DATE__ "] " "rev " POS_REV};
+char sys_banner[] = {"EEPROM programmer system buildtime [" __TIME__ " " __DATE__ "] " "rev " POS_REV};
 
 #define UART_IO_SIZE    (550)
 
@@ -873,11 +872,11 @@ int8_t at28_init()
     at28_write(0, data1);
     data0 = at28_read(0);
     if (data0 == data1) {
-        printf("at28 test ok!\r\n");
+        printf("at28 probe ok!\r\n");
         data0 = ~data1;
         at28_write(0, data0);
     } else {
-        printf("at28 test fail!\r\n");
+        printf("at28 probe fail!\r\n");
     }
 
     return 0;
@@ -907,7 +906,7 @@ void at28_set_addr(uint16_t addr)
         mdelay(3);
     }
 
-    mdelay(3);
+    mdelay(2);
     hc595_set_rclk(1);
 
 }
@@ -943,7 +942,7 @@ void at28_write(uint16_t addr, uint8_t data)
 
     for(i = 0; i < 8; i++) {
 
-        gpio_init(pgi_at28_io[i]->base_addr, pgi_at28_io[i]->index, 1);
+        gpio_init(pgi_at28_io[i]->base_addr, pgi_at28_io[i]->index, 1); /* output */
 
         if (data & (0x1 << i)) {
             gpio_write(pgi_at28_io[i]->base_addr, pgi_at28_io[i]->index, 1);
@@ -970,7 +969,6 @@ void at28_write(uint16_t addr, uint8_t data)
     for(i = 0; i < 8; i++) {
         gpio_init(pgi_at28_io[i]->base_addr, pgi_at28_io[i]->index, 0);
     }
-
 }
 
 void at28_dump(uint16_t addr, uint16_t byte_num)

@@ -23,9 +23,10 @@
 volatile uint16_t int_count = 0;
 void uart_putc(uint8_t c);
 
-void putchar(char c)
+int putchar(int c)
 {
-	uart_putc(c);
+	uart_putc((uint8_t)c);
+    return 0;
 }
 
 void assert_failed(u8* file, u32 line)

@@ -12,7 +12,7 @@ all: $(OBJECT)
 clean:
 	rm -f $(OBJECT)
 
-flash: scp
+flash:
 	$(FLASH) -c $(PROGRAMMER) -p $(BOARD) -w $(OBJECT)
 
 scp:

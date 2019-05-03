@@ -8,32 +8,32 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000001 L
     _CLK_GetClockFreq                                              ****** GX
-  7 _UART1_ClearFlag                                               00038F GR
-  7 _UART1_ClearITPendingBit                                       000392 GR
-  7 _UART1_Cmd                                                     0002B5 GR
-  7 _UART1_DeInit                                                  000000 GR
-  7 _UART1_GetFlagStatus                                           0002E6 GR
-  7 _UART1_GetITStatus                                             000390 GR
-  7 _UART1_HalfDuplexCmd                                           0002CB GR
-  7 _UART1_ITConfig                                                0002CA GR
-  7 _UART1_Init                                                    00002D GR
-  7 _UART1_IrDACmd                                                 0002CD GR
-  7 _UART1_IrDAConfig                                              0002CC GR
-  7 _UART1_LINBreakDetectionConfig                                 0002CE GR
-  7 _UART1_LINCmd                                                  0002CF GR
-  7 _UART1_ReceiveData8                                            0002D4 GR
-  7 _UART1_ReceiveData9                                            0002D9 GR
-  7 _UART1_ReceiverWakeUpCmd                                       0002D3 GR
-  7 _UART1_SendBreak                                               0002E2 GR
-  7 _UART1_SendData8                                               0002DA GR
-  7 _UART1_SendData9                                               0002E1 GR
-  7 _UART1_SetAddress                                              0002E3 GR
-  7 _UART1_SetGuardTime                                            0002E4 GR
-  7 _UART1_SetPrescaler                                            0002E5 GR
-  7 _UART1_SmartCardCmd                                            0002D0 GR
-  7 _UART1_SmartCardNACKCmd                                        0002D1 GR
-  7 _UART1_WakeUpConfig                                            0002D2 GR
-  7 ___str_0                                                       000393 R
+  9 _UART1_ClearFlag                                               000353 GR
+  9 _UART1_ClearITPendingBit                                       000356 GR
+  9 _UART1_Cmd                                                     000287 GR
+  9 _UART1_DeInit                                                  000000 GR
+  9 _UART1_GetFlagStatus                                           0002B5 GR
+  9 _UART1_GetITStatus                                             000354 GR
+  9 _UART1_HalfDuplexCmd                                           00029B GR
+  9 _UART1_ITConfig                                                00029A GR
+  9 _UART1_Init                                                    00002B GR
+  9 _UART1_IrDACmd                                                 00029D GR
+  9 _UART1_IrDAConfig                                              00029C GR
+  9 _UART1_LINBreakDetectionConfig                                 00029E GR
+  9 _UART1_LINCmd                                                  00029F GR
+  9 _UART1_ReceiveData8                                            0002A4 GR
+  9 _UART1_ReceiveData9                                            0002A8 GR
+  9 _UART1_ReceiverWakeUpCmd                                       0002A3 GR
+  9 _UART1_SendBreak                                               0002B1 GR
+  9 _UART1_SendData8                                               0002A9 GR
+  9 _UART1_SendData9                                               0002B0 GR
+  9 _UART1_SetAddress                                              0002B2 GR
+  9 _UART1_SetGuardTime                                            0002B3 GR
+  9 _UART1_SetPrescaler                                            0002B4 GR
+  9 _UART1_SmartCardCmd                                            0002A0 GR
+  9 _UART1_SmartCardNACKCmd                                        0002A1 GR
+  9 _UART1_WakeUpConfig                                            0002A2 GR
+  7 ___str_0                                                       000000 R
     __divulong                                                     ****** GX
     __mullong                                                      ****** GX
     _assert_failed                                                 ****** GX
@@ -51,7 +51,8 @@ Area Table
    4 HOME                                       size      0   flags    0
    5 GSINIT                                     size      0   flags    0
    6 GSFINAL                                    size      0   flags    0
-   7 CODE                                       size    3A8   flags    0
+   7 CONST                                      size     15   flags    0
    8 INITIALIZER                                size      0   flags    0
-   9 CABS                                       size      0   flags    8
+   9 CODE                                       size    357   flags    0
+   A CABS                                       size      0   flags    8
 
