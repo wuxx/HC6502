@@ -1,5 +1,5 @@
 #include "gpio.h"
-#include "log.h"
+//#include "log.h"
 
 #define GPIO_ADDR(group) ((GPIO_TypeDef *)(GPIOA_BASE + 0x400 * (group - GROUPA)))
 
