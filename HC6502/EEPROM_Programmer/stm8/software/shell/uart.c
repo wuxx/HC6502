@@ -872,11 +872,11 @@ int8_t at28_init()
     at28_write(0, data1);
     data0 = at28_read(0);
     if (data0 == data1) {
-        printf("at28 probe ok!\r\n");
+        printf("\r\nat28 probe ok!\r\n");
         data0 = ~data1;
         at28_write(0, data0);
     } else {
-        printf("at28 probe fail!\r\n");
+        printf("\r\nat28 probe fail!\r\n");
     }
 
     return 0;
