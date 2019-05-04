@@ -38,13 +38,12 @@ long main()
 
   uart_puts("uart test ok.\r\n");
 
-  uart_printf("uart_printf test [%s]\r\n", sys_banner);
+  uart_printf("%s\r\n", sys_banner);
 
   uart_printf("sizeof(char):  %d \r\n", sizeof(char));
   uart_printf("sizeof(short): %d \r\n", sizeof(short));
   uart_printf("sizeof(int): %d \r\n", sizeof(int));
   uart_printf("sizeof(long): %d \r\n", sizeof(long));
-  uart_printf("VIA1_PA0: %lx \r\n", VIA1_PA0);
 
   ps2_init();
   vga_init();

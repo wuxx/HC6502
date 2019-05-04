@@ -14,208 +14,208 @@ acia.o:
 led.o:
     CODE              Offs=000192  Size=000027  Align=00001  Fill=0000
 main.o:
-    CODE              Offs=0001B9  Size=0000EE  Align=00001  Fill=0000
-    RODATA            Offs=000000  Size=0000B8  Align=00001  Fill=0000
+    CODE              Offs=0001B9  Size=0000D3  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000094  Align=00001  Fill=0000
     DATA              Offs=000000  Size=000038  Align=00001  Fill=0000
 uart.o:
-    CODE              Offs=0002A7  Size=000174  Align=00001  Fill=0000
-    RODATA            Offs=0000B8  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=00028C  Size=000174  Align=00001  Fill=0000
+    RODATA            Offs=000094  Size=00000F  Align=00001  Fill=0000
     BSS               Offs=000000  Size=000202  Align=00001  Fill=0000
     DATA              Offs=000038  Size=000100  Align=00001  Fill=0000
 gpio.o:
-    CODE              Offs=00041B  Size=00024F  Align=00001  Fill=0000
+    CODE              Offs=000400  Size=00024F  Align=00001  Fill=0000
 shell.o:
-    CODE              Offs=00066A  Size=000DED  Align=00001  Fill=0000
-    RODATA            Offs=0000C7  Size=0003B7  Align=00001  Fill=0000
+    CODE              Offs=00064F  Size=000DED  Align=00001  Fill=0000
+    RODATA            Offs=0000A3  Size=0003B7  Align=00001  Fill=0000
     BSS               Offs=000202  Size=000001  Align=00001  Fill=0000
     DATA              Offs=000138  Size=0002CA  Align=00001  Fill=0000
 ps2.o:
-    CODE              Offs=001457  Size=0001A2  Align=00001  Fill=0000
-    RODATA            Offs=00047E  Size=00001B  Align=00001  Fill=0000
+    CODE              Offs=00143C  Size=0001A2  Align=00001  Fill=0000
+    RODATA            Offs=00045A  Size=00001B  Align=00001  Fill=0000
     DATA              Offs=000402  Size=000028  Align=00001  Fill=0000
 vga.o:
-    CODE              Offs=0015F9  Size=0003EF  Align=00001  Fill=0000
+    CODE              Offs=0015DE  Size=0003EF  Align=00001  Fill=0000
     DATA              Offs=00042A  Size=0000B0  Align=00001  Fill=0000
 cc65.lib(_hextab.o):
-    RODATA            Offs=000499  Size=000010  Align=00001  Fill=0000
+    RODATA            Offs=000475  Size=000010  Align=00001  Fill=0000
 cc65.lib(_longminstr.o):
-    RODATA            Offs=0004A9  Size=00000C  Align=00001  Fill=0000
+    RODATA            Offs=000485  Size=00000C  Align=00001  Fill=0000
 cc65.lib(_printf.o):
-    CODE              Offs=0019E8  Size=0003A5  Align=00001  Fill=0000
+    CODE              Offs=0019CD  Size=0003A5  Align=00001  Fill=0000
     BSS               Offs=000203  Size=00002B  Align=00001  Fill=0000
     DATA              Offs=0004DA  Size=000003  Align=00001  Fill=0000
 cc65.lib(_seterrno.o):
-    CODE              Offs=001D8D  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001D72  Size=000009  Align=00001  Fill=0000
 cc65.lib(add.o):
-    CODE              Offs=001D96  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=001D7B  Size=00001A  Align=00001  Fill=0000
 cc65.lib(addeqsp.o):
-    CODE              Offs=001DB0  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=001D95  Size=000011  Align=00001  Fill=0000
 cc65.lib(addysp.o):
-    CODE              Offs=001DC1  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=001DA6  Size=00000E  Align=00001  Fill=0000
 cc65.lib(aslax1.o):
-    CODE              Offs=001DCF  Size=000008  Align=00001  Fill=0000
+    CODE              Offs=001DB4  Size=000008  Align=00001  Fill=0000
 cc65.lib(aslax2.o):
-    CODE              Offs=001DD7  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001DBC  Size=00000B  Align=00001  Fill=0000
 cc65.lib(asleax4.o):
-    CODE              Offs=001DE2  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=001DC7  Size=000011  Align=00001  Fill=0000
 cc65.lib(axlong.o):
-    CODE              Offs=001DF3  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=001DD8  Size=000012  Align=00001  Fill=0000
 cc65.lib(call.o):
-    CODE              Offs=001E05  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001DEA  Size=000007  Align=00001  Fill=0000
 cc65.lib(condes.o):
-    CODE              Offs=001E0C  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=001DF1  Size=00000C  Align=00001  Fill=0000
     DATA              Offs=0004DD  Size=000025  Align=00001  Fill=0000
     INIT              Offs=000000  Size=00000C  Align=00001  Fill=0000
 cc65.lib(copydata.o):
-    CODE              Offs=001E18  Size=00002D  Align=00001  Fill=0000
+    CODE              Offs=001DFD  Size=00002D  Align=00001  Fill=0000
 cc65.lib(ctype.o):
-    RODATA            Offs=0004B5  Size=000100  Align=00001  Fill=0000
+    RODATA            Offs=000491  Size=000100  Align=00001  Fill=0000
 cc65.lib(decax1.o):
-    CODE              Offs=001E45  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E2A  Size=000007  Align=00001  Fill=0000
 cc65.lib(decax2.o):
-    CODE              Offs=001E4C  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001E31  Size=000007  Align=00001  Fill=0000
 cc65.lib(decaxy.o):
-    CODE              Offs=001E53  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001E38  Size=000009  Align=00001  Fill=0000
 cc65.lib(decsp1.o):
-    CODE              Offs=001E5C  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001E41  Size=000009  Align=00001  Fill=0000
 cc65.lib(decsp2.o):
-    CODE              Offs=001E65  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E4A  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp3.o):
-    CODE              Offs=001E72  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E57  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp4.o):
-    CODE              Offs=001E7F  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E64  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp6.o):
-    CODE              Offs=001E8C  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E71  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp7.o):
-    CODE              Offs=001E99  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E7E  Size=00000D  Align=00001  Fill=0000
 cc65.lib(decsp8.o):
-    CODE              Offs=001EA6  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001E8B  Size=00000D  Align=00001  Fill=0000
 cc65.lib(enter.o):
-    CODE              Offs=001EB3  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=001E98  Size=00000E  Align=00001  Fill=0000
 cc65.lib(errno.o):
     BSS               Offs=00022E  Size=000002  Align=00001  Fill=0000
 cc65.lib(incax1.o):
-    CODE              Offs=001EC1  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001EA6  Size=000007  Align=00001  Fill=0000
 cc65.lib(incax2.o):
-    CODE              Offs=001EC8  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001EAD  Size=000007  Align=00001  Fill=0000
 cc65.lib(incax3.o):
-    CODE              Offs=001ECF  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EB4  Size=000005  Align=00001  Fill=0000
 cc65.lib(incax5.o):
-    CODE              Offs=001ED4  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EB9  Size=000005  Align=00001  Fill=0000
 cc65.lib(incax8.o):
-    CODE              Offs=001ED9  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EBE  Size=000005  Align=00001  Fill=0000
 cc65.lib(incaxy.o):
-    CODE              Offs=001EDE  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001EC3  Size=00000B  Align=00001  Fill=0000
 cc65.lib(incsp1.o):
-    CODE              Offs=001EE9  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001ECE  Size=000007  Align=00001  Fill=0000
 cc65.lib(incsp2.o):
-    CODE              Offs=001EF0  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=001ED5  Size=000016  Align=00001  Fill=0000
 cc65.lib(incsp3.o):
-    CODE              Offs=001F06  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EEB  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp4.o):
-    CODE              Offs=001F0B  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EF0  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp6.o):
-    CODE              Offs=001F10  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EF5  Size=000005  Align=00001  Fill=0000
 cc65.lib(incsp7.o):
-    CODE              Offs=001F15  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001EFA  Size=000005  Align=00001  Fill=0000
 cc65.lib(isdigit.o):
-    CODE              Offs=001F1A  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001EFF  Size=00000F  Align=00001  Fill=0000
 cc65.lib(islower.o):
-    CODE              Offs=001F29  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001F0E  Size=00000F  Align=00001  Fill=0000
 cc65.lib(isspace.o):
-    CODE              Offs=001F38  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001F1D  Size=00000F  Align=00001  Fill=0000
 cc65.lib(isupper.o):
-    CODE              Offs=001F47  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001F2C  Size=00000F  Align=00001  Fill=0000
 cc65.lib(ladd.o):
-    CODE              Offs=001F56  Size=000025  Align=00001  Fill=0000
+    CODE              Offs=001F3B  Size=000025  Align=00001  Fill=0000
 cc65.lib(land.o):
-    CODE              Offs=001F7B  Size=000024  Align=00001  Fill=0000
+    CODE              Offs=001F60  Size=000024  Align=00001  Fill=0000
 cc65.lib(lcmp.o):
-    CODE              Offs=001F9F  Size=00003B  Align=00001  Fill=0000
+    CODE              Offs=001F84  Size=00003B  Align=00001  Fill=0000
 cc65.lib(ldaxi.o):
-    CODE              Offs=001FDA  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001FBF  Size=00000D  Align=00001  Fill=0000
 cc65.lib(ldaxsp.o):
-    CODE              Offs=001FE7  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001FCC  Size=000009  Align=00001  Fill=0000
 cc65.lib(ldeaxi.o):
-    CODE              Offs=001FF0  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=001FD5  Size=000017  Align=00001  Fill=0000
 cc65.lib(ldeaxysp.o):
-    CODE              Offs=002007  Size=000013  Align=00001  Fill=0000
+    CODE              Offs=001FEC  Size=000013  Align=00001  Fill=0000
 cc65.lib(leaaxsp.o):
-    CODE              Offs=00201A  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=001FFF  Size=00000C  Align=00001  Fill=0000
 cc65.lib(leave.o):
-    CODE              Offs=002026  Size=00001D  Align=00001  Fill=0000
+    CODE              Offs=00200B  Size=00001D  Align=00001  Fill=0000
 cc65.lib(leq.o):
-    CODE              Offs=002043  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=002028  Size=000006  Align=00001  Fill=0000
 cc65.lib(linc.o):
-    CODE              Offs=002049  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=00202E  Size=000011  Align=00001  Fill=0000
 cc65.lib(lmul.o):
-    CODE              Offs=00205A  Size=00005C  Align=00001  Fill=0000
+    CODE              Offs=00203F  Size=00005C  Align=00001  Fill=0000
 cc65.lib(lne.o):
-    CODE              Offs=0020B6  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=00209B  Size=000006  Align=00001  Fill=0000
 cc65.lib(lneg.o):
-    CODE              Offs=0020BC  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=0020A1  Size=00001E  Align=00001  Fill=0000
 cc65.lib(lpush.o):
-    CODE              Offs=0020DA  Size=000021  Align=00001  Fill=0000
+    CODE              Offs=0020BF  Size=000021  Align=00001  Fill=0000
 cc65.lib(lsave.o):
-    CODE              Offs=0020FB  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=0020E0  Size=00001C  Align=00001  Fill=0000
 cc65.lib(ltoa.o):
-    CODE              Offs=002117  Size=0000AF  Align=00001  Fill=0000
+    CODE              Offs=0020FC  Size=0000AF  Align=00001  Fill=0000
 cc65.lib(ludiv.o):
-    CODE              Offs=0021C6  Size=00007A  Align=00001  Fill=0000
+    CODE              Offs=0021AB  Size=00007A  Align=00001  Fill=0000
 cc65.lib(lugt.o):
-    CODE              Offs=002240  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=002225  Size=000006  Align=00001  Fill=0000
 cc65.lib(lult.o):
-    CODE              Offs=002246  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=00222B  Size=000006  Align=00001  Fill=0000
 cc65.lib(lumod.o):
-    CODE              Offs=00224C  Size=000019  Align=00001  Fill=0000
+    CODE              Offs=002231  Size=000019  Align=00001  Fill=0000
 cc65.lib(makebool.o):
-    CODE              Offs=002265  Size=000031  Align=00001  Fill=0000
+    CODE              Offs=00224A  Size=000031  Align=00001  Fill=0000
 cc65.lib(memcpy.o):
-    CODE              Offs=002296  Size=000041  Align=00001  Fill=0000
+    CODE              Offs=00227B  Size=000041  Align=00001  Fill=0000
 cc65.lib(mul8.o):
-    CODE              Offs=0022D7  Size=00003A  Align=00001  Fill=0000
+    CODE              Offs=0022BC  Size=00003A  Align=00001  Fill=0000
 cc65.lib(mulax6.o):
-    CODE              Offs=002311  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0022F6  Size=000016  Align=00001  Fill=0000
 cc65.lib(or.o):
-    CODE              Offs=002327  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=00230C  Size=000012  Align=00001  Fill=0000
 cc65.lib(popsreg.o):
-    CODE              Offs=002339  Size=000010  Align=00001  Fill=0000
+    CODE              Offs=00231E  Size=000010  Align=00001  Fill=0000
 cc65.lib(push1.o):
-    CODE              Offs=002349  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=00232E  Size=000005  Align=00001  Fill=0000
 cc65.lib(pusha.o):
-    CODE              Offs=00234E  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=002333  Size=000016  Align=00001  Fill=0000
 cc65.lib(pushax.o):
-    CODE              Offs=002364  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=002349  Size=00001A  Align=00001  Fill=0000
 cc65.lib(pushw.o):
-    CODE              Offs=00237E  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=002363  Size=00000F  Align=00001  Fill=0000
 cc65.lib(pushwsp.o):
-    CODE              Offs=00238D  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=002372  Size=00001C  Align=00001  Fill=0000
 cc65.lib(shl.o):
-    CODE              Offs=0023A9  Size=000033  Align=00001  Fill=0000
+    CODE              Offs=00238E  Size=000033  Align=00001  Fill=0000
 cc65.lib(shrax4.o):
-    CODE              Offs=0023DC  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=0023C1  Size=000011  Align=00001  Fill=0000
 cc65.lib(staspidx.o):
-    CODE              Offs=0023ED  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0023D2  Size=000016  Align=00001  Fill=0000
 cc65.lib(staxsp.o):
-    CODE              Offs=002403  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=0023E8  Size=00000B  Align=00001  Fill=0000
 cc65.lib(staxspi.o):
-    CODE              Offs=00240E  Size=00001B  Align=00001  Fill=0000
+    CODE              Offs=0023F3  Size=00001B  Align=00001  Fill=0000
 cc65.lib(steaxsp.o):
-    CODE              Offs=002429  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=00240E  Size=000015  Align=00001  Fill=0000
 cc65.lib(strcmp.o):
-    CODE              Offs=00243E  Size=000027  Align=00001  Fill=0000
+    CODE              Offs=002423  Size=000027  Align=00001  Fill=0000
 cc65.lib(strlen.o):
-    CODE              Offs=002465  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=00244A  Size=000016  Align=00001  Fill=0000
 cc65.lib(strlower.o):
-    CODE              Offs=00247B  Size=000028  Align=00001  Fill=0000
+    CODE              Offs=002460  Size=000028  Align=00001  Fill=0000
 cc65.lib(strtoul.o):
-    CODE              Offs=0024A3  Size=000238  Align=00001  Fill=0000
+    CODE              Offs=002488  Size=000238  Align=00001  Fill=0000
 cc65.lib(subeqsp.o):
-    CODE              Offs=0026DB  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=0026C0  Size=000015  Align=00001  Fill=0000
 cc65.lib(subysp.o):
-    CODE              Offs=0026F0  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0026D5  Size=00000D  Align=00001  Fill=0000
 cc65.lib(vsnprintf.o):
-    CODE              Offs=0026FD  Size=0000C8  Align=00001  Fill=0000
+    CODE              Offs=0026E2  Size=0000C8  Align=00001  Fill=0000
     DATA              Offs=000502  Size=000008  Align=00001  Fill=0000
 cc65.lib(zerobss.o):
     INIT              Offs=00000C  Size=000023  Align=00001  Fill=0000
@@ -230,8 +230,8 @@ DATA                  000200  000709  00050A  00001
 BSS                   00070A  000939  000230  00001
 STARTUP               00850A  00852C  000023  00001
 INIT                  00852D  00855B  00002F  00001
-CODE                  008600  00ADC4  0027C5  00100
-RODATA                00ADC5  00B379  0005B5  00001
+CODE                  008600  00ADA9  0027AA  00100
+RODATA                00ADAA  00B33A  000591  00001
 VECTORS               00FFFA  00FFFF  000006  00001
 
 
@@ -243,82 +243,82 @@ __DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA
 __DATA_SIZE__             00050A REA    __DESTRUCTOR_COUNT__      000000 REA    
 __DESTRUCTOR_TABLE__      00852D RLA    __RAM_SIZE__              007D00 REA    
 __RAM_START__             000200 RLA    __STARTUP__               000001 REA    
-__ctype                   00B27A RLA    __errno                   000938 RLA    
-__hextab                  00B25E RLA    __longminstr              00B26E RLA    
-__printf                  00A0DB RLA    __seterrno                00A38D RLA    
-_delay_ms                 008700 RLA    _gpio_init                008A1B RLA    
-_gpio_read                008BDA RLA    _gpio_write               008B17 RLA    
+__ctype                   00B23B RLA    __errno                   000938 RLA    
+__hextab                  00B21F RLA    __longminstr              00B22F RLA    
+__printf                  00A0C0 RLA    __seterrno                00A372 RLA    
+_delay_ms                 008700 RLA    _gpio_init                008A00 RLA    
+_gpio_read                008BBF RLA    _gpio_write               008AFC RLA    
 _hours                    000022 RLZ    _interrupted              00002B RLZ    
-_isdigit                  00A51A RLA    _islower                  00A529 RLA    
-_isspace                  00A538 RLA    _isupper                  00A547 RLA    
+_isdigit                  00A4FF RLA    _islower                  00A50E RLA    
+_isspace                  00A51D RLA    _isupper                  00A52C RLA    
 _jiffies                  00001F RLZ    _led_init                 008792 RLA    
-_led_set                  0087A3 RLA    _ltoa                     00A733 RLA    
+_led_set                  0087A3 RLA    _ltoa                     00A718 RLA    
 _main                     0087C3 RLA    _mdelay                   0087B9 RLA    
-_memcpy                   00A896 RLA    _millis                   00001B RLZ    
-_minutes                  000021 RLZ    _ps2_getc                 009B19 RLA    
-_ps2_init                 009A91 RLA    _ps2_process              009A57 RLA    
-_seconds                  000020 RLZ    _strcmp                   00AA3E RLA    
-_strlen                   00AA65 RLA    _strlower                 00AA7B RLA    
-_strtoul                  00AAA3 RLA    _uart_handler             008987 RLA    
-_uart_init                0088A7 RLA    _uart_printf              008934 RLA    
-_uart_puts                0088F2 RLA    _uart_shell               00998A RLA    
-_ultoa                    00A78A RLA    _vga_ctrl                 009C4A RLA    
-_vga_init                 009D4A RLA    _vga_printf               009BF9 RLA    
-_vsnprintf                00ACFD RLA    addeqysp                  00A3B2 RLA    
-addysp                    00A3C2 RLA    addysp1                   00A3C1 RLA    
-aslax1                    00A3CF RLA    aslax2                    00A3D7 RLA    
-aslaxy                    00A9B0 RLA    axlong                    00A3FA RLA    
-axulong                   00A3F3 RLA    booleq                    00A86B RLA    
-boolne                    00A865 RLA    boolugt                   00A889 RLA    
-boolult                   00A883 RLA    callax                    00A405 RLA    
-copydata                  00A418 RLA    decax1                    00A445 RLA    
-decax2                    00A44C RLA    decaxy                    00A453 RLA    
-decsp1                    00A45C RLA    decsp2                    00A465 RLA    
-decsp3                    00A472 RLA    decsp4                    00A47F RLA    
-decsp6                    00A48C RLA    decsp7                    00A499 RLA    
-decsp8                    00A4A6 RLA    donelib                   00A40C RLA    
-enter                     00A4B3 RLA    getlop                    00A7D7 RLA    
-incax1                    00A4C1 RLA    incax2                    00A4C8 RLA    
-incax3                    00A4CF RLA    incax5                    00A4D4 RLA    
-incax8                    00A4D9 RLA    incaxy                    00A4E0 RLA    
-inceaxy                   00A649 RLA    incsp1                    00A4E9 RLA    
-incsp2                    00A4F8 RLA    incsp3                    00A506 RLA    
-incsp4                    00A50B RLA    incsp6                    00A510 RLA    
-incsp7                    00A515 RLA    initlib                   00852D RLA    
+_memcpy                   00A87B RLA    _millis                   00001B RLZ    
+_minutes                  000021 RLZ    _ps2_getc                 009AFE RLA    
+_ps2_init                 009A76 RLA    _ps2_process              009A3C RLA    
+_seconds                  000020 RLZ    _strcmp                   00AA23 RLA    
+_strlen                   00AA4A RLA    _strlower                 00AA60 RLA    
+_strtoul                  00AA88 RLA    _uart_handler             00896C RLA    
+_uart_init                00888C RLA    _uart_printf              008919 RLA    
+_uart_puts                0088D7 RLA    _uart_shell               00996F RLA    
+_ultoa                    00A76F RLA    _vga_ctrl                 009C2F RLA    
+_vga_init                 009D2F RLA    _vga_printf               009BDE RLA    
+_vsnprintf                00ACE2 RLA    addeqysp                  00A397 RLA    
+addysp                    00A3A7 RLA    addysp1                   00A3A6 RLA    
+aslax1                    00A3B4 RLA    aslax2                    00A3BC RLA    
+aslaxy                    00A995 RLA    axlong                    00A3DF RLA    
+axulong                   00A3D8 RLA    booleq                    00A850 RLA    
+boolne                    00A84A RLA    boolugt                   00A86E RLA    
+boolult                   00A868 RLA    callax                    00A3EA RLA    
+copydata                  00A3FD RLA    decax1                    00A42A RLA    
+decax2                    00A431 RLA    decaxy                    00A438 RLA    
+decsp1                    00A441 RLA    decsp2                    00A44A RLA    
+decsp3                    00A457 RLA    decsp4                    00A464 RLA    
+decsp6                    00A471 RLA    decsp7                    00A47E RLA    
+decsp8                    00A48B RLA    donelib                   00A3F1 RLA    
+enter                     00A498 RLA    getlop                    00A7BC RLA    
+incax1                    00A4A6 RLA    incax2                    00A4AD RLA    
+incax3                    00A4B4 RLA    incax5                    00A4B9 RLA    
+incax8                    00A4BE RLA    incaxy                    00A4C5 RLA    
+inceaxy                   00A62E RLA    incsp1                    00A4CE RLA    
+incsp2                    00A4DD RLA    incsp3                    00A4EB RLA    
+incsp4                    00A4F0 RLA    incsp6                    00A4F5 RLA    
+incsp7                    00A4FA RLA    initlib                   00852D RLA    
 irq_handler               008630 RLA    irq_init                  008600 RLA    
-ldax0sp                   00A5E7 RLA    ldaxidx                   00A5DC RLA    
-ldaxysp                   00A5E9 RLA    ldeax0sp                  00A607 RLA    
-ldeaxi                    00A5F0 RLA    ldeaxidx                  00A5F2 RLA    
-ldeaxysp                  00A609 RLA    leaa0sp                   00A61A RLA    
-leavey                    00A630 RLA    mulax6                    00A911 RLA    
-negeax                    00A6BC RLA    nmi_handler               008629 RLA    
-popax                     00A4F0 RLA    popsreg                   00A939 RLA    
+ldax0sp                   00A5CC RLA    ldaxidx                   00A5C1 RLA    
+ldaxysp                   00A5CE RLA    ldeax0sp                  00A5EC RLA    
+ldeaxi                    00A5D5 RLA    ldeaxidx                  00A5D7 RLA    
+ldeaxysp                  00A5EE RLA    leaa0sp                   00A5FF RLA    
+leavey                    00A615 RLA    mulax6                    00A8F6 RLA    
+negeax                    00A6A1 RLA    nmi_handler               008629 RLA    
+popax                     00A4D5 RLA    popsreg                   00A91E RLA    
 ptr1                      000008 RLZ    ptr2                      00000A RLZ    
 ptr3                      00000C RLZ    ptr4                      00000E RLZ    
-push0                     00A964 RLA    push0ax                   00A6DD RLA    
-push1                     00A949 RLA    pusha                     00A952 RLA    
-pusha0                    00A966 RLA    pushax                    00A968 RLA    
-pusheax                   00A6E3 RLA    pushl0                    00A6DA RLA    
-pushw                     00A97E RLA    pushw0sp                  00A98D RLA    
-pushwidx                  00A980 RLA    pushwysp                  00A98F RLA    
+push0                     00A949 RLA    push0ax                   00A6C2 RLA    
+push1                     00A92E RLA    pusha                     00A937 RLA    
+pusha0                    00A94B RLA    pushax                    00A94D RLA    
+pusheax                   00A6C8 RLA    pushl0                    00A6BF RLA    
+pushw                     00A963 RLA    pushw0sp                  00A972 RLA    
+pushwidx                  00A965 RLA    pushwysp                  00A974 RLA    
 regbank                   000014 RLZ    regsave                   000004 RLZ    
-resteax                   00A70A RLA    saveeax                   00A6FB RLA    
-shleax4                   00A3E2 RLA    shrax4                    00A9DC RLA    
+resteax                   00A6EF RLA    saveeax                   00A6E0 RLA    
+shleax4                   00A3C7 RLA    shrax4                    00A9C1 RLA    
 sp                        000000 RLZ    sreg                      000002 RLZ    
-staspidx                  00A9ED RLA    stax0sp                   00AA03 RLA    
-staxspidx                 00AA0E RLA    staxysp                   00AA05 RLA    
-steax0sp                  00AA29 RLA    steaxysp                  00AA2B RLA    
-subeq0sp                  00ACDB RLA    subysp                    00ACF0 RLA    
+staspidx                  00A9D2 RLA    stax0sp                   00A9E8 RLA    
+staxspidx                 00A9F3 RLA    staxysp                   00A9EA RLA    
+steax0sp                  00AA0E RLA    steaxysp                  00AA10 RLA    
+subeq0sp                  00ACC0 RLA    subysp                    00ACD5 RLA    
 tmp1                      000010 RLZ    tmp2                      000011 RLZ    
 tmp3                      000012 RLZ    tmp4                      000013 RLZ    
-tmpstack                  00001A RLZ    tosaddax                  00A398 RLA    
-tosaddeax                 00A55C RLA    tosand0ax                 00A57B RLA    
-toseqeax                  00A643 RLA    toslcmp                   00A59F RLA    
-tosmula0                  00A8D7 RLA    tosneeax                  00A6B6 RLA    
-tosorax                   00A929 RLA    tosudiveax                00A7CC RLA    
-tosugteax                 00A840 RLA    tosulteax                 00A846 RLA    
-tosumodeax                00A852 RLA    tosumuleax                00A660 RLA    
-udiv32                    00A7FB RLA    zerobss                   008539 RLA    
+tmpstack                  00001A RLZ    tosaddax                  00A37D RLA    
+tosaddeax                 00A541 RLA    tosand0ax                 00A560 RLA    
+toseqeax                  00A628 RLA    toslcmp                   00A584 RLA    
+tosmula0                  00A8BC RLA    tosneeax                  00A69B RLA    
+tosorax                   00A90E RLA    tosudiveax                00A7B1 RLA    
+tosugteax                 00A825 RLA    tosulteax                 00A82B RLA    
+tosumodeax                00A837 RLA    tosumuleax                00A645 RLA    
+udiv32                    00A7E0 RLA    zerobss                   008539 RLA    
 
 
 
@@ -345,67 +345,67 @@ irq_init                  008600 RLA    nmi_handler               008629 RLA
 irq_handler               008630 RLA    _delay_ms                 008700 RLA    
 _led_init                 008792 RLA    _led_set                  0087A3 RLA    
 _mdelay                   0087B9 RLA    _main                     0087C3 RLA    
-_uart_init                0088A7 RLA    _uart_puts                0088F2 RLA    
-_uart_printf              008934 RLA    _uart_handler             008987 RLA    
-_gpio_init                008A1B RLA    _gpio_write               008B17 RLA    
-_gpio_read                008BDA RLA    _uart_shell               00998A RLA    
-_ps2_process              009A57 RLA    _ps2_init                 009A91 RLA    
-_ps2_getc                 009B19 RLA    _vga_printf               009BF9 RLA    
-_vga_ctrl                 009C4A RLA    _vga_init                 009D4A RLA    
-__printf                  00A0DB RLA    __seterrno                00A38D RLA    
-tosaddax                  00A398 RLA    addeqysp                  00A3B2 RLA    
-addysp1                   00A3C1 RLA    addysp                    00A3C2 RLA    
-aslax1                    00A3CF RLA    aslax2                    00A3D7 RLA    
-shleax4                   00A3E2 RLA    axulong                   00A3F3 RLA    
-axlong                    00A3FA RLA    callax                    00A405 RLA    
-donelib                   00A40C RLA    copydata                  00A418 RLA    
-decax1                    00A445 RLA    decax2                    00A44C RLA    
-decaxy                    00A453 RLA    decsp1                    00A45C RLA    
-decsp2                    00A465 RLA    decsp3                    00A472 RLA    
-decsp4                    00A47F RLA    decsp6                    00A48C RLA    
-decsp7                    00A499 RLA    decsp8                    00A4A6 RLA    
-enter                     00A4B3 RLA    incax1                    00A4C1 RLA    
-incax2                    00A4C8 RLA    incax3                    00A4CF RLA    
-incax5                    00A4D4 RLA    incax8                    00A4D9 RLA    
-incaxy                    00A4E0 RLA    incsp1                    00A4E9 RLA    
-popax                     00A4F0 RLA    incsp2                    00A4F8 RLA    
-incsp3                    00A506 RLA    incsp4                    00A50B RLA    
-incsp6                    00A510 RLA    incsp7                    00A515 RLA    
-_isdigit                  00A51A RLA    _islower                  00A529 RLA    
-_isspace                  00A538 RLA    _isupper                  00A547 RLA    
-tosaddeax                 00A55C RLA    tosand0ax                 00A57B RLA    
-toslcmp                   00A59F RLA    ldaxidx                   00A5DC RLA    
-ldax0sp                   00A5E7 RLA    ldaxysp                   00A5E9 RLA    
-ldeaxi                    00A5F0 RLA    ldeaxidx                  00A5F2 RLA    
-ldeax0sp                  00A607 RLA    ldeaxysp                  00A609 RLA    
-leaa0sp                   00A61A RLA    leavey                    00A630 RLA    
-toseqeax                  00A643 RLA    inceaxy                   00A649 RLA    
-tosumuleax                00A660 RLA    tosneeax                  00A6B6 RLA    
-negeax                    00A6BC RLA    pushl0                    00A6DA RLA    
-push0ax                   00A6DD RLA    pusheax                   00A6E3 RLA    
-saveeax                   00A6FB RLA    resteax                   00A70A RLA    
-_ltoa                     00A733 RLA    _ultoa                    00A78A RLA    
-tosudiveax                00A7CC RLA    getlop                    00A7D7 RLA    
-udiv32                    00A7FB RLA    tosugteax                 00A840 RLA    
-tosulteax                 00A846 RLA    tosumodeax                00A852 RLA    
-boolne                    00A865 RLA    booleq                    00A86B RLA    
-boolult                   00A883 RLA    boolugt                   00A889 RLA    
-_memcpy                   00A896 RLA    tosmula0                  00A8D7 RLA    
-mulax6                    00A911 RLA    tosorax                   00A929 RLA    
-popsreg                   00A939 RLA    push1                     00A949 RLA    
-pusha                     00A952 RLA    push0                     00A964 RLA    
-pusha0                    00A966 RLA    pushax                    00A968 RLA    
-pushw                     00A97E RLA    pushwidx                  00A980 RLA    
-pushw0sp                  00A98D RLA    pushwysp                  00A98F RLA    
-aslaxy                    00A9B0 RLA    shrax4                    00A9DC RLA    
-staspidx                  00A9ED RLA    stax0sp                   00AA03 RLA    
-staxysp                   00AA05 RLA    staxspidx                 00AA0E RLA    
-steax0sp                  00AA29 RLA    steaxysp                  00AA2B RLA    
-_strcmp                   00AA3E RLA    _strlen                   00AA65 RLA    
-_strlower                 00AA7B RLA    _strtoul                  00AAA3 RLA    
-subeq0sp                  00ACDB RLA    subysp                    00ACF0 RLA    
-_vsnprintf                00ACFD RLA    __hextab                  00B25E RLA    
-__longminstr              00B26E RLA    __ctype                   00B27A RLA    
+_uart_init                00888C RLA    _uart_puts                0088D7 RLA    
+_uart_printf              008919 RLA    _uart_handler             00896C RLA    
+_gpio_init                008A00 RLA    _gpio_write               008AFC RLA    
+_gpio_read                008BBF RLA    _uart_shell               00996F RLA    
+_ps2_process              009A3C RLA    _ps2_init                 009A76 RLA    
+_ps2_getc                 009AFE RLA    _vga_printf               009BDE RLA    
+_vga_ctrl                 009C2F RLA    _vga_init                 009D2F RLA    
+__printf                  00A0C0 RLA    __seterrno                00A372 RLA    
+tosaddax                  00A37D RLA    addeqysp                  00A397 RLA    
+addysp1                   00A3A6 RLA    addysp                    00A3A7 RLA    
+aslax1                    00A3B4 RLA    aslax2                    00A3BC RLA    
+shleax4                   00A3C7 RLA    axulong                   00A3D8 RLA    
+axlong                    00A3DF RLA    callax                    00A3EA RLA    
+donelib                   00A3F1 RLA    copydata                  00A3FD RLA    
+decax1                    00A42A RLA    decax2                    00A431 RLA    
+decaxy                    00A438 RLA    decsp1                    00A441 RLA    
+decsp2                    00A44A RLA    decsp3                    00A457 RLA    
+decsp4                    00A464 RLA    decsp6                    00A471 RLA    
+decsp7                    00A47E RLA    decsp8                    00A48B RLA    
+enter                     00A498 RLA    incax1                    00A4A6 RLA    
+incax2                    00A4AD RLA    incax3                    00A4B4 RLA    
+incax5                    00A4B9 RLA    incax8                    00A4BE RLA    
+incaxy                    00A4C5 RLA    incsp1                    00A4CE RLA    
+popax                     00A4D5 RLA    incsp2                    00A4DD RLA    
+incsp3                    00A4EB RLA    incsp4                    00A4F0 RLA    
+incsp6                    00A4F5 RLA    incsp7                    00A4FA RLA    
+_isdigit                  00A4FF RLA    _islower                  00A50E RLA    
+_isspace                  00A51D RLA    _isupper                  00A52C RLA    
+tosaddeax                 00A541 RLA    tosand0ax                 00A560 RLA    
+toslcmp                   00A584 RLA    ldaxidx                   00A5C1 RLA    
+ldax0sp                   00A5CC RLA    ldaxysp                   00A5CE RLA    
+ldeaxi                    00A5D5 RLA    ldeaxidx                  00A5D7 RLA    
+ldeax0sp                  00A5EC RLA    ldeaxysp                  00A5EE RLA    
+leaa0sp                   00A5FF RLA    leavey                    00A615 RLA    
+toseqeax                  00A628 RLA    inceaxy                   00A62E RLA    
+tosumuleax                00A645 RLA    tosneeax                  00A69B RLA    
+negeax                    00A6A1 RLA    pushl0                    00A6BF RLA    
+push0ax                   00A6C2 RLA    pusheax                   00A6C8 RLA    
+saveeax                   00A6E0 RLA    resteax                   00A6EF RLA    
+_ltoa                     00A718 RLA    _ultoa                    00A76F RLA    
+tosudiveax                00A7B1 RLA    getlop                    00A7BC RLA    
+udiv32                    00A7E0 RLA    tosugteax                 00A825 RLA    
+tosulteax                 00A82B RLA    tosumodeax                00A837 RLA    
+boolne                    00A84A RLA    booleq                    00A850 RLA    
+boolult                   00A868 RLA    boolugt                   00A86E RLA    
+_memcpy                   00A87B RLA    tosmula0                  00A8BC RLA    
+mulax6                    00A8F6 RLA    tosorax                   00A90E RLA    
+popsreg                   00A91E RLA    push1                     00A92E RLA    
+pusha                     00A937 RLA    push0                     00A949 RLA    
+pusha0                    00A94B RLA    pushax                    00A94D RLA    
+pushw                     00A963 RLA    pushwidx                  00A965 RLA    
+pushw0sp                  00A972 RLA    pushwysp                  00A974 RLA    
+aslaxy                    00A995 RLA    shrax4                    00A9C1 RLA    
+staspidx                  00A9D2 RLA    stax0sp                   00A9E8 RLA    
+staxysp                   00A9EA RLA    staxspidx                 00A9F3 RLA    
+steax0sp                  00AA0E RLA    steaxysp                  00AA10 RLA    
+_strcmp                   00AA23 RLA    _strlen                   00AA4A RLA    
+_strlower                 00AA60 RLA    _strtoul                  00AA88 RLA    
+subeq0sp                  00ACC0 RLA    subysp                    00ACD5 RLA    
+_vsnprintf                00ACE2 RLA    __hextab                  00B21F RLA    
+__longminstr              00B22F RLA    __ctype                   00B23B RLA    
 
 
 
@@ -603,7 +603,7 @@ callax (call.o):
 copydata (copydata.o):
     startup.o                 startup.s65(11)
 decax1 (decax1.o):
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 decax2 (decax2.o):
     shell.o                   shell.s(2050)
 decaxy (decaxy.o):
@@ -703,7 +703,7 @@ incsp2 (incsp2.o):
     shell.o                   shell.s(2050)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 incsp3 (incsp3.o):
     shell.o                   shell.s(2050)
     shell.o                   shell.s(2050)
@@ -728,7 +728,7 @@ ldax0sp (ldaxsp.o):
     vga.o                     vga.s(550)
     shell.o                   shell.s(2050)
     uart.o                    uart.s(279)
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 ldaxidx (ldaxi.o):
     shell.o                   shell.s(2050)
 ldaxysp (ldaxsp.o):
@@ -885,7 +885,7 @@ pusha0 (pushax.o):
     shell.o                   shell.s(2050)
     shell.o                   shell.s(2050)
     shell.o                   shell.s(2050)
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 pushax (pushax.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
@@ -907,7 +907,7 @@ pushax (pushax.o):
     shell.o                   shell.s(2050)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 pusheax (lpush.o):
     _printf.o                 common/_printf.s(11)
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
@@ -926,7 +926,6 @@ pusheax (lpush.o):
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
     gpio.o                    gpio.s(321)
-    main.o                    main.s(187)
 pushl0 (lpush.o):
     strtoul.o                 ../libwrk/sim6502/strtoul.s(295)
     shell.o                   shell.s(2050)
@@ -1045,7 +1044,6 @@ sreg (zeropage.o):
     ps2.o                     ps2.s(10)
     shell.o                   shell.s(10)
     gpio.o                    gpio.s(10)
-    main.o                    main.s(10)
 staspidx (staspidx.o):
     shell.o                   shell.s(2050)
 stax0sp (staxsp.o):
@@ -1058,7 +1056,7 @@ stax0sp (staxsp.o):
     shell.o                   shell.s(2050)
     uart.o                    uart.s(279)
     uart.o                    uart.s(279)
-    main.o                    main.s(187)
+    main.o                    main.s(171)
 staxspidx (staxspi.o):
     shell.o                   shell.s(2050)
 staxysp (staxsp.o):
