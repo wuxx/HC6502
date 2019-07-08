@@ -25,7 +25,7 @@ HC6502 可以使用键盘，这里自制了一块驱动板，用于将键盘协�
 #### [自己动手做计算机之HC6502 VGA显示驱动板-软件] ####
 #### [自己动手做计算机之HC6502 后记] ####
 
-reference:
+reference:  
 6502-home-computer  
 http://www.grappendorf.net/projects/6502-home-computer/eeprom-and-a-first-program.html  
 红白机拆机  
