@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=PA1 Pin=U3-11
+Removed Pin From Net: NetName=PA2 Pin=U3-14
+Removed Pin From Net: NetName=PA1 Pin=U4-11
+Removed Pin From Net: NetName=PA3 Pin=U?-22
+Change Component Designator: OldDesignator=U? NewDesignator=U5
+Added Component: Designator=J3(HEADER_4x1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=J3-1
+Added Pin To Net: NetName=PD6 Pin=J3-2
+Added Pin To Net: NetName=PD5 Pin=J3-3
+Added Pin To Net: NetName=GND Pin=J3-4
+Added Pin To Net: NetName=PA2 Pin=U3-11
+Added Pin To Net: NetName=PA1 Pin=U3-12
+Added Pin To Net: NetName=PA3 Pin=U3-14
+Added Pin To Net: NetName=PA2 Pin=U4-11
+Added Pin To Net: NetName=PA1 Pin=U4-12
+Added Pin To Net: NetName=PB5 Pin=U5-22

@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=3V3 Pin=R8-2
+Removed Pin From Net: NetName=GND Pin=USB1-1
+Removed Pin From Net: NetName=5V Pin=USB1-4
+Removed Member From Class: ClassName=nanoDAP Member=logo1
+Removed Member From Class: ClassName=nanoDAP Member=R6
+Removed Member From Class: ClassName=nanoDAP Member=R7
+Removed Member From Class: ClassName=nanoDAP Member=R8
+Removed Member From Class: ClassName=nanoDAP Member=USB1
+Added Pin To Net: NetName=PA10 Pin=U1-31
+Added Net: Name=PA10
+Added Pin To Net: NetName=PA11 Pin=U1-32
+Added Net: Name=PA11
+Added Pin To Net: NetName=PA12 Pin=U1-33
+Added Net: Name=PA12

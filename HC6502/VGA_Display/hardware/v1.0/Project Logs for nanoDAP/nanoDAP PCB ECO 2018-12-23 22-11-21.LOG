@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=UART2_TX Pin=J2-4
+Added Pin To Net: NetName=UART2_RX Pin=J2-4

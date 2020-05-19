@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=TMS_SWDIO Pin=U1-12
+Removed Pin From Net: NetName=GND Pin=USB?-5
+Removed Pin From Net: NetName=GND Pin=USB?-6
+Added Pin To Net: NetName=TMS_SWDIO Pin=U1-10
+Added Pin To Net: NetName=UART2_RX Pin=U1-13
+Added Net: Name=UART2_RX
+Added Pin To Net: NetName=UART2_TX Pin=J1-1
+Added Pin To Net: NetName=UART2_TX Pin=J1-2
+Added Pin To Net: NetName=UART2_TX Pin=U1-12
+Added Net: Name=UART2_TX

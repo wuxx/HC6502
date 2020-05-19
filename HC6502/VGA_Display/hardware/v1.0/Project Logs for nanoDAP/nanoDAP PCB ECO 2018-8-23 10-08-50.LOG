@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=TDI Pin=J1-1
+Removed Pin From Net: NetName=TDO Pin=J1-2
+Removed Pin From Net: NetName=UART_TX Pin=J1-4
+Removed Pin From Net: NetName=UART_RX Pin=J1-5
+Added Pin To Net: NetName=UART_RX Pin=J1-1
+Added Pin To Net: NetName=UART_TX Pin=J1-2
+Added Pin To Net: NetName=TDO Pin=J1-4
+Added Pin To Net: NetName=TDI Pin=J1-5

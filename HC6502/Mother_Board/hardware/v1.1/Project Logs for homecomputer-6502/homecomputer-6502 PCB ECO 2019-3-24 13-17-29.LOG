@@ -1,0 +1,197 @@
+Removed Pin From Net: NetName=VIA1_PB0 Pin=IC9-10
+Removed Pin From Net: NetName=VIA1_PB1 Pin=IC9-11
+Removed Pin From Net: NetName=VIA1_PB2 Pin=IC9-12
+Removed Pin From Net: NetName=VIA1_PB3 Pin=IC9-13
+Removed Pin From Net: NetName=VIA1_PB4 Pin=IC9-14
+Removed Pin From Net: NetName=VIA1_PB5 Pin=IC9-15
+Removed Pin From Net: NetName=VIA2_PA0 Pin=IC10-2
+Removed Pin From Net: NetName=VIA2_PA1 Pin=IC10-3
+Removed Pin From Net: NetName=VIA2_PA2 Pin=IC10-4
+Removed Pin From Net: NetName=VIA2_PA3 Pin=IC10-5
+Removed Pin From Net: NetName=VIA2_PA4 Pin=IC10-6
+Removed Pin From Net: NetName=VIA2_PA5 Pin=IC10-7
+Removed Pin From Net: NetName=VIA2_PA6 Pin=IC10-8
+Removed Pin From Net: NetName=VIA2_PA7 Pin=IC10-9
+Removed Pin From Net: NetName=VIA2_PB0 Pin=IC10-10
+Removed Pin From Net: NetName=VIA2_PB1 Pin=IC10-11
+Removed Pin From Net: NetName=VIA2_PB2 Pin=IC10-12
+Removed Pin From Net: NetName=VIA2_PB3 Pin=IC10-13
+Removed Pin From Net: NetName=VIA2_PB4 Pin=IC10-14
+Removed Pin From Net: NetName=VIA2_PB5 Pin=IC10-15
+Removed Pin From Net: NetName=VIA2_PB6 Pin=IC10-16
+Removed Pin From Net: NetName=VIA2_PB7 Pin=IC10-17
+Change Component Comment : Designator=RESET Old Comment= New Comment=10-XX
+Change Component Comment : Designator=IC8 Old Comment= New Comment=61256
+Change Component Comment : Designator=FB1 Old Comment= New Comment=BL01RN1A
+Change Component Comment : Designator=LED1 Old Comment= New Comment=LED3MM
+Change Component Comment : Designator=LOGO1 Old Comment= New Comment=OSHW_LOGO_8MILX0350-NT
+Change Component Comment : Designator=QG1 Old Comment= New Comment=XO-14
+Change Component Comment : Designator=IC4 Old Comment=74LS30N New Comment=74*30N
+Change Component Comment : Designator=IC5 Old Comment=74LS137N New Comment=74*137N
+Change component parameters: Designator = "C4"; Footprint = "E2,5-6E"; UniqueID = "\DIJTOUWS"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "+"; Value = "+"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C18"; Footprint = "E2,5-5"; UniqueID = "\DOLFXHBW"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "+"; Value = "+"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R2"; Footprint = "0204/7"; UniqueID = "\SFWMXLKY"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R3"; Footprint = "0204/7"; UniqueID = "\PGRALAAV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R4"; Footprint = "0204/7"; UniqueID = "\HBLBDJSG"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R5"; Footprint = "0204/7"; UniqueID = "\VKSOAKUR"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R6"; Footprint = "0204/7"; UniqueID = "\AFUKVHHO"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R7"; Footprint = "0204/7"; UniqueID = "\CWPYAPWC"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R9"; Footprint = "0204/7"; UniqueID = "\FAJPITQY"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R10"; Footprint = "0204/7"; UniqueID = "\CYIKFFDR"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R11"; Footprint = "0204/7"; UniqueID = "\OQDJQGIR"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R12"; Footprint = "0204/7"; UniqueID = "\QJBXQJYF"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "R13"; Footprint = "0204/5"; UniqueID = "\LHOJGTCM"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC2"; Footprint = "DIL14"; UniqueID = "\NSRFVPFA"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC3"; Footprint = "DIL14"; UniqueID = "\UVDPRXDG"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC4"; Footprint = "DIL14"; UniqueID = "\EYKKIECA"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC5"; Footprint = "DIL16"; UniqueID = "\TBWOWEVH"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC6"; Footprint = "DIP40"; UniqueID = "\BDSKCUYP"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC8"; Footprint = "DIL28-3"; UniqueID = "\LKVTALLX"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC9"; Footprint = "DIP40"; UniqueID = "\CQGCXDYQ"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC10"; Footprint = "DIP40"; UniqueID = "\CENGXUDU"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC11"; Footprint = "DIP28"; UniqueID = "\PYTYKHFN"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "LOGO1"; Footprint = "OSHW_8X350_NOTEXT"; UniqueID = "\MIARLKON"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "LOGO"; Value = "LOGO"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OSHW"; Value = "OSHW"; VariantName = "[No Variations]"
+Change component parameters: Designator = "QG1"; Footprint = "DIL14S"; UniqueID = "\GSCOPJDU"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "GND"; Value = "GND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "NC/TS"; Value = "NC/TS"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OUT"; Value = "OUT"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "VCC"; Value = "VCC"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J1"; Footprint = "SPC4078"; UniqueID = "\SRTQLFOF"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MPN"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_FARNELL"; Value = "unknown"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_NEWARK"; Value = "unknown"; VariantName = "[No Variations]"
+Change component parameters: Designator = "RESET"; Footprint = "B3F-10XX"; UniqueID = "\UXINSTAV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MPN"; Value = "B3F-1000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_FARNELL"; Value = "176432"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_NEWARK"; Value = "36M3542"; VariantName = "[No Variations]"
+Change component parameters: Designator = "IC1"; Footprint = "DIL-08"; UniqueID = "\JHUBFJXO"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "MF"; Value = "Arrow Electronics"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MPN"; Value = "NE555N"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_FARNELL"; Value = "1467742"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_NEWARK"; Value = "89K1486"; VariantName = "[No Variations]"
+Change component parameters: Designator = "Q1"; Footprint = "HC49U-V"; UniqueID = "\VSLBPFHW"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "1"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "2"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MPN"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_FARNELL"; Value = "1666969"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "OC_NEWARK"; Value = "unknown"; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=!CS_ACIA New Net Name=NetIC5_15
+Change Net Name : Old Net Name=!CS_IO New Net Name=NetIC2_2
+Change Net Name : Old Net Name=!CS_RAM New Net Name=NetIC2_6
+Change Net Name : Old Net Name=!CS_ROM New Net Name=NetIC2_1
+Change Net Name : Old Net Name=!CS_SID New Net Name=NetIC5_12
+Change Net Name : Old Net Name=!CS_VIA1 New Net Name=NetIC5_14
+Change Net Name : Old Net Name=!CS_VIA2 New Net Name=NetIC5_13
+Change Net Name : Old Net Name=!IRQ New Net Name=NetIC6_4
+Change Net Name : Old Net Name=!RESET New Net Name=NetIC3_2
+Change Net Name : Old Net Name=CLK New Net Name=NetIC6_37
+Change Net Name : Old Net Name=LCD_D4 New Net Name=NetIC9_2
+Change Net Name : Old Net Name=LCD_D5 New Net Name=NetIC9_3
+Change Net Name : Old Net Name=LCD_D6 New Net Name=NetIC9_4
+Change Net Name : Old Net Name=LCD_D7 New Net Name=NetIC9_5
+Change Net Name : Old Net Name=LCD_E1 New Net Name=NetIC9_7
+Change Net Name : Old Net Name=LCD_E2 New Net Name=NetIC9_8
+Change Net Name : Old Net Name=LCD_RS New Net Name=NetIC9_6
+Change Net Name : Old Net Name=N$1 New Net Name=NetC7_2
+Change Net Name : Old Net Name=N$2 New Net Name=NetIC11_6
+Change Net Name : Old Net Name=N$3 New Net Name=NetIC6_2
+Change Net Name : Old Net Name=N$4 New Net Name=NetC4_+
+Change Net Name : Old Net Name=N$5 New Net Name=NetIC1_3
+Change Net Name : Old Net Name=N$6 New Net Name=NetC3_2
+Change Net Name : Old Net Name=N$7 New Net Name=NetIC2_3
+Change Net Name : Old Net Name=N$8 New Net Name=NetIC11_10
+Change Net Name : Old Net Name=N$9 New Net Name=NetIC9_9
+Change Net Name : Old Net Name=N$10 New Net Name=NetIC6_6
+Change Net Name : Old Net Name=N$11 New Net Name=NetIC6_38
+Change Net Name : Old Net Name=N$12 New Net Name=NetIC11_12
+Change Net Name : Old Net Name=N$13 New Net Name=NetIC2_4
+Change Net Name : Old Net Name=N$14 New Net Name=NetJP5_12
+Change Net Name : Old Net Name=N$15 New Net Name=NetJP5_17
+Change Net Name : Old Net Name=N$16 New Net Name=NetLED1_A
+Change Net Name : Old Net Name=N$17 New Net Name=NetFB1_1
+Change Net Name : Old Net Name=N$18 New Net Name=NetC19_2
+Change Net Name : Old Net Name=N$19 New Net Name=NetFB1_2
+Change Net Name : Old Net Name=N$20 New Net Name=NetC17_2
+Change Net Name : Old Net Name=N$21 New Net Name=NetC18_+
+Change Net Name : Old Net Name=N$22 New Net Name=NetC18_-
+Change Net Name : Old Net Name=N$24 New Net Name=NetC19_1
+Change Net Name : Old Net Name=N$25 New Net Name=NetC20_2
+Change Net Name : Old Net Name=N$26 New Net Name=NetC20_1
+Change Net Name : Old Net Name=PHI2 New Net Name=NetIC2_5
+Change Net Name : Old Net Name=R!W New Net Name=NetIC6_34
+Added Class: Name=homecomputer-6502_0
+Added Class: Name=homecomputer-6502_1
+Added Class: Name=homecomputer-6502_2
+Added Class: Name=homecomputer-6502_3
+Added Class: Name=homecomputer-6502_4
+Added Class: Name=A[0..15]
+Added Class: Name=D[0..7]
+Added Class: Name=VIA1_PB[0..7]
+Added Class: Name=VIA2_PA[0..7]
+Added Class: Name=VIA2_PB[0..7]

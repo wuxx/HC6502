@@ -1,0 +1,48 @@
+Change Net Name : Old Net Name=VIA2_PA0 New Net Name=NetJP6_22
+Change Net Name : Old Net Name=VIA2_PA1 New Net Name=NetJP6_21
+Change Net Name : Old Net Name=VIA2_PA2 New Net Name=NetJP6_20
+Change Net Name : Old Net Name=VIA2_PA3 New Net Name=NetJP6_19
+Change Net Name : Old Net Name=VIA2_PA4 New Net Name=NetJP6_18
+Change Net Name : Old Net Name=VIA2_PA5 New Net Name=NetJP6_17
+Change Net Name : Old Net Name=VIA2_PA6 New Net Name=NetJP6_16
+Change Net Name : Old Net Name=VIA2_PA7 New Net Name=NetJP6_15
+Change Net Name : Old Net Name=VIA2_PB0 New Net Name=NetJP6_14
+Change Net Name : Old Net Name=VIA2_PB1 New Net Name=NetJP6_13
+Change Net Name : Old Net Name=VIA2_PB2 New Net Name=NetJP6_12
+Change Net Name : Old Net Name=VIA2_PB3 New Net Name=NetJP6_11
+Change Net Name : Old Net Name=VIA2_PB4 New Net Name=NetJP6_10
+Change Net Name : Old Net Name=VIA2_PB5 New Net Name=NetJP6_9
+Change Net Name : Old Net Name=VIA2_PB6 New Net Name=NetJP6_8
+Change Net Name : Old Net Name=VIA2_PB7 New Net Name=NetJP6_7
+Added Pin To Net: NetName=VIA2_PA0 Pin=IC10-2
+Added Net: Name=VIA2_PA0
+Added Pin To Net: NetName=VIA2_PA1 Pin=IC10-3
+Added Net: Name=VIA2_PA1
+Added Pin To Net: NetName=VIA2_PA2 Pin=IC10-4
+Added Net: Name=VIA2_PA2
+Added Pin To Net: NetName=VIA2_PA3 Pin=IC10-5
+Added Net: Name=VIA2_PA3
+Added Pin To Net: NetName=VIA2_PA4 Pin=IC10-6
+Added Net: Name=VIA2_PA4
+Added Pin To Net: NetName=VIA2_PA5 Pin=IC10-7
+Added Net: Name=VIA2_PA5
+Added Pin To Net: NetName=VIA2_PA6 Pin=IC10-8
+Added Net: Name=VIA2_PA6
+Added Pin To Net: NetName=VIA2_PA7 Pin=IC10-9
+Added Net: Name=VIA2_PA7
+Added Pin To Net: NetName=VIA2_PB0 Pin=IC10-10
+Added Net: Name=VIA2_PB0
+Added Pin To Net: NetName=VIA2_PB1 Pin=IC10-11
+Added Net: Name=VIA2_PB1
+Added Pin To Net: NetName=VIA2_PB2 Pin=IC10-12
+Added Net: Name=VIA2_PB2
+Added Pin To Net: NetName=VIA2_PB3 Pin=IC10-13
+Added Net: Name=VIA2_PB3
+Added Pin To Net: NetName=VIA2_PB4 Pin=IC10-14
+Added Net: Name=VIA2_PB4
+Added Pin To Net: NetName=VIA2_PB5 Pin=IC10-15
+Added Net: Name=VIA2_PB5
+Added Pin To Net: NetName=VIA2_PB6 Pin=IC10-16
+Added Net: Name=VIA2_PB6
+Added Pin To Net: NetName=VIA2_PB7 Pin=IC10-17
+Added Net: Name=VIA2_PB7

@@ -1,0 +1,18 @@
+Change Net Name : Old Net Name=VIA1_PB0 New Net Name=NetJP6_6
+Change Net Name : Old Net Name=VIA1_PB1 New Net Name=NetJP6_5
+Change Net Name : Old Net Name=VIA1_PB2 New Net Name=NetJP6_4
+Change Net Name : Old Net Name=VIA1_PB3 New Net Name=NetJP6_3
+Change Net Name : Old Net Name=VIA1_PB4 New Net Name=NetJP6_2
+Change Net Name : Old Net Name=VIA1_PB5 New Net Name=NetJP6_1
+Added Pin To Net: NetName=VIA1_PB0 Pin=IC9-10
+Added Net: Name=VIA1_PB0
+Added Pin To Net: NetName=VIA1_PB1 Pin=IC9-11
+Added Net: Name=VIA1_PB1
+Added Pin To Net: NetName=VIA1_PB2 Pin=IC9-12
+Added Net: Name=VIA1_PB2
+Added Pin To Net: NetName=VIA1_PB3 Pin=IC9-13
+Added Net: Name=VIA1_PB3
+Added Pin To Net: NetName=VIA1_PB4 Pin=IC9-14
+Added Net: Name=VIA1_PB4
+Added Pin To Net: NetName=VIA1_PB5 Pin=IC9-15
+Added Net: Name=VIA1_PB5

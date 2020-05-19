@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : E:\private\6502\HC6502\VGA_Display\v1.0\nanoDAP.PcbDoc
+Date         : 2019/1/2
+Time         : 11:14:42
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 72
+    Connections routed, 72
+    Connections remaining, 0
+count : 4

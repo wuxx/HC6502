@@ -1,0 +1,75 @@
+Removed Pin From Net: NetName=UART2_RX Pin=J1-1
+Removed Pin From Net: NetName=UART2_TX Pin=J1-2
+Removed Pin From Net: NetName=GND Pin=J2-3
+Removed Pin From Net: NetName=3V3 Pin=J2-4
+Removed Pin From Net: NetName=5V_USB Pin=J2-5
+Removed Pin From Net: NetName=3V3 Pin=R9-1
+Removed Pin From Net: NetName=LED_RUN Pin=U1-30
+Removed Pin From Net: NetName=LED_CON Pin=U1-42
+Removed Member From Class: ClassName=nanoDAP Member=R9
+Removed Member From Class: ClassName=nanoDAP Member=R10
+Change Component Footprint: Designator=J1 Old Footprint=HEADER_SMT_5 New Footprint=VGA15B
+Change Component Comment : Designator=J2 Old Comment=Header 5 New Comment=IDC20
+Change Component Comment : Designator=J1 Old Comment=Header 5 New Comment=VGA_FEMALE
+Change component parameters: Designator = "J1"; Footprint = "VGA15B"; UniqueID = "\IVNXEJLQ"
+Change component parameters. Clean all parameters for all variants
+Change component parameters: Designator = "J2"; UniqueID = "\AYODGSSO"
+Change component parameters. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=J1-5
+Added Pin To Net: NetName=GND Pin=J1-6
+Added Pin To Net: NetName=GND Pin=J1-7
+Added Pin To Net: NetName=GND Pin=J1-8
+Added Pin To Net: NetName=GND Pin=J1-10
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=5V_USB Pin=J2-2
+Change Net Name : Old Net Name=5V_USB New Net Name=5V
+Added Pin To Net: NetName=PA0 Pin=U1-10
+Added Net: Name=PA0
+Added Pin To Net: NetName=PA1 Pin=J1-14
+Added Pin To Net: NetName=PA1 Pin=U1-11
+Added Net: Name=PA1
+Added Pin To Net: NetName=PA4 Pin=U1-14
+Added Net: Name=PA4
+Added Pin To Net: NetName=PA5 Pin=J1-1
+Added Pin To Net: NetName=PA5 Pin=U1-15
+Added Net: Name=PA5
+Added Pin To Net: NetName=PA6 Pin=J1-3
+Added Pin To Net: NetName=PA6 Pin=U1-16
+Added Net: Name=PA6
+Added Pin To Net: NetName=PA7 Pin=J1-2
+Added Pin To Net: NetName=PA7 Pin=U1-17
+Added Net: Name=PA7
+Added Pin To Net: NetName=PA8 Pin=J1-13
+Added Pin To Net: NetName=PA8 Pin=U1-29
+Added Net: Name=PA8
+Added Pin To Net: NetName=PA9 Pin=U1-30
+Added Net: Name=PA9
+Added Pin To Net: NetName=PB0 Pin=J2-3
+Added Pin To Net: NetName=PB0 Pin=U1-18
+Added Net: Name=PB0
+Added Pin To Net: NetName=PB1 Pin=J2-4
+Added Pin To Net: NetName=PB1 Pin=U1-19
+Added Net: Name=PB1
+Added Pin To Net: NetName=PB5 Pin=J2-5
+Added Pin To Net: NetName=PB5 Pin=U1-41
+Added Net: Name=PB5
+Added Pin To Net: NetName=PB6 Pin=U1-42
+Added Net: Name=PB6
+Added Pin To Net: NetName=PB7 Pin=U1-43
+Added Net: Name=PB7
+Added Pin To Net: NetName=PB8 Pin=U1-45
+Added Net: Name=PB8
+Added Pin To Net: NetName=PB9 Pin=U1-46
+Added Net: Name=PB9
+Added Pin To Net: NetName=PB10 Pin=U1-21
+Added Net: Name=PB10
+Added Pin To Net: NetName=PB11 Pin=U1-22
+Added Net: Name=PB11
+Added Pin To Net: NetName=PB12 Pin=U1-25
+Added Net: Name=PB12
+Added Pin To Net: NetName=PB13 Pin=U1-26
+Added Net: Name=PB13
+Added Pin To Net: NetName=PB14 Pin=U1-27
+Added Net: Name=PB14
+Added Pin To Net: NetName=PB15 Pin=U1-28
+Added Net: Name=PB15

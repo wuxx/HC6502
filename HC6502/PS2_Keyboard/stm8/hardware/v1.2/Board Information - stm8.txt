@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : E:\private\6502\HC6502\PS2_Keyboard\stm8\hardware\v1.0\stm8.PcbDoc
+Date         : 2018/12/23
+Time         : 15:06:37
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 92
+    Connections routed, 92
+    Connections remaining, 0
+count : 4

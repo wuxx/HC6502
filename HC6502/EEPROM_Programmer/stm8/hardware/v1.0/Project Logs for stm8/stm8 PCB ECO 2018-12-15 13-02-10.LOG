@@ -1,0 +1,84 @@
+Removed Pin From Net: NetName=PB4 Pin=D2-2
+Removed Pin From Net: NetName=PD4 Pin=U3-13
+Removed Pin From Net: NetName=PD4 Pin=U4-13
+Removed Pin From Net: NetName=PB5 Pin=U5-20
+Change component parameters: Designator = "C2"; Footprint = "0603_C"; UniqueID = "\VSUJWFAD"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=C3(0603_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=C8(0603_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=C9(0603_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=R6(0603_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7K"; VariantName = "[No Variations]"
+Added Component: Designator=R7(0603_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7K"; VariantName = "[No Variations]"
+Added Component: Designator=U6(CH340G)
+Add component. Clean all parameters for all variants
+Added Component: Designator=X1(49SMD)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "12MHz"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C3-2
+Added Pin To Net: NetName=GND Pin=C8-1
+Added Pin To Net: NetName=GND Pin=C9-1
+Added Pin To Net: NetName=PB4 Pin=R6-1
+Added Pin To Net: NetName=VCC Pin=R6-2
+Added Pin To Net: NetName=PB5 Pin=R7-1
+Added Pin To Net: NetName=VCC Pin=R7-2
+Added Pin To Net: NetName=GND Pin=U3-13
+Added Pin To Net: NetName=GND Pin=U4-13
+Added Pin To Net: NetName=PD4 Pin=U5-20
+Added Pin To Net: NetName=GND Pin=U6-1
+Added Pin To Net: NetName=PD6 Pin=U6-2
+Added Pin To Net: NetName=PD5 Pin=U6-3
+Added Pin To Net: NetName=5V Pin=U6-16
+Added Pin To Net: NetName=NetC3_1 Pin=C3-1
+Added Pin To Net: NetName=NetC3_1 Pin=U6-4
+Added Net: Name=NetC3_1
+Added Pin To Net: NetName=NetC8_2 Pin=C8-2
+Added Pin To Net: NetName=NetC8_2 Pin=U6-7
+Added Pin To Net: NetName=NetC8_2 Pin=X1-1
+Added Net: Name=NetC8_2
+Added Pin To Net: NetName=NetC9_2 Pin=C9-2
+Added Pin To Net: NetName=NetC9_2 Pin=U6-8
+Added Pin To Net: NetName=NetC9_2 Pin=X1-2
+Added Net: Name=NetC9_2
+Added Pin To Net: NetName=USB_N Pin=J1-2
+Added Pin To Net: NetName=USB_N Pin=U6-6
+Added Net: Name=USB_N
+Added Pin To Net: NetName=USB_P Pin=J1-3
+Added Pin To Net: NetName=USB_P Pin=U6-5
+Added Net: Name=USB_P
+Added Differential Pair: Name=USB
+Added Member To Class: ClassName=stm8 Member=Component C3 0.1uF
+Added Member To Class: ClassName=stm8 Member=Component C8 20pF
+Added Member To Class: ClassName=stm8 Member=Component C9 20pF
+Added Member To Class: ClassName=stm8 Member=Component R6 Res2
+Added Member To Class: ClassName=stm8 Member=Component R7 Res2
+Added Member To Class: ClassName=stm8 Member=Component U6 CH340G
+Added Member To Class: ClassName=stm8 Member=Component X1 XTAL

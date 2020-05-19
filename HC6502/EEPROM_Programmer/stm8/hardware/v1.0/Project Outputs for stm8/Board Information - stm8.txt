@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : E:\private\6502\HC6502\EEPROM_Programmer\stm8\eeprom_programmer\v1.0\stm8.PcbDoc
+Date         : 2018/12/15
+Time         : 16:22:14
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 88
+    Connections routed, 88
+    Connections remaining, 0
+count : 4

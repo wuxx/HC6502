@@ -1,0 +1,120 @@
+[1207/100321:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1207/100321:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1207/100321:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1207/100321:ERROR:cache_creator.cc(129)] Unable to create cache
+[1207/110849:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1207/110849:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1207/110849:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1207/110849:ERROR:cache_creator.cc(129)] Unable to create cache
+[1207/111357:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1207/111357:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1207/111357:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1207/111357:ERROR:cache_creator.cc(129)] Unable to create cache
+[1213/181744:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1213/181744:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1213/181744:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1213/181744:ERROR:cache_creator.cc(129)] Unable to create cache
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11526)] Trying to call glDeleteVertexArraysOES() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11465)] Trying to call glDeleteFramebuffersEXT() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11444)] Trying to call glDeleteBuffersARB() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11444)] Trying to call glDeleteBuffersARB() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11444)] Trying to call glDeleteBuffersARB() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11465)] Trying to call glDeleteFramebuffersEXT() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11511)] Trying to call glDeleteTextures() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11488)] Trying to call glDeleteRenderbuffersEXT() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11488)] Trying to call glDeleteRenderbuffersEXT() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11465)] Trying to call glDeleteFramebuffersEXT() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11511)] Trying to call glDeleteTextures() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11935)] Trying to call glGetError() without current GL context
+[1214/171118:ERROR:gl_bindings_autogen_gl.cc(11526)] Trying to call glDeleteVertexArraysOES() without current GL context
+[1214/171234:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1214/171234:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1214/171234:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1214/171234:ERROR:cache_creator.cc(129)] Unable to create cache
+[1215/105559:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1215/105559:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1215/105559:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1215/105559:ERROR:cache_creator.cc(129)] Unable to create cache
+[1215/105641:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1215/105641:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1215/105641:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1215/105641:ERROR:cache_creator.cc(129)] Unable to create cache
+[1215/162146:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1215/162146:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1215/162146:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1215/162146:ERROR:cache_creator.cc(129)] Unable to create cache
+[1217/191728:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1217/191728:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1217/191728:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1217/191728:ERROR:cache_creator.cc(129)] Unable to create cache
+[1217/200720:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1217/200720:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1217/200720:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1217/200720:ERROR:cache_creator.cc(129)] Unable to create cache
+[1218/132354:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1218/132354:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1218/132354:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1218/132354:ERROR:cache_creator.cc(129)] Unable to create cache
+[1218/142719:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1218/142719:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1218/142719:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1218/142719:ERROR:cache_creator.cc(129)] Unable to create cache
+[1218/142952:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1218/142952:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1218/142952:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1218/142952:ERROR:cache_creator.cc(129)] Unable to create cache
+[1219/100923:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1219/100923:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1219/100923:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1219/100923:ERROR:cache_creator.cc(129)] Unable to create cache
+[1226/113312:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[1226/113312:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[1226/113312:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[1226/113312:ERROR:cache_creator.cc(129)] Unable to create cache
+[0419/220028:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[0419/220028:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0419/220028:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[0419/220028:ERROR:cache_creator.cc(129)] Unable to create cache
+[0422/215148:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[0422/215148:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0422/215148:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[0422/215148:ERROR:cache_creator.cc(129)] Unable to create cache
+[0423/005647:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/005652:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/015714:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/015722:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/025746:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/035819:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/045853:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/080106:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/080109:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/080113:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/080114:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/081730:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/081730:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/090139:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/131922:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0423/192639:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0424/221916:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0424/221917:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0425/215827:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0504/110433:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[0504/110433:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0504/110433:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[0504/110433:ERROR:cache_creator.cc(129)] Unable to create cache
+[0603/223235:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[0603/223235:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0603/223235:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\BrowserCache to C:\ProgramData\Altium\Altium Designer {67983506-8AA5-4E98-BD5E-B69ABC7CD564}\old_BrowserCache_000
+[0603/223235:ERROR:cache_creator.cc(129)] Unable to create cache
+[0603/223546:INFO:CONSOLE(0)] "XMLHttpRequest cannot load https://ad-start.auxtool.com/ad-start-visitor/add. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://www.altium.com' is therefore not allowed access.", source: https://www.altium.com/ad-start/ (0)

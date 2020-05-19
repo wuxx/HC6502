@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=VIA1_PB0 Pin=JP6-1
+Added Pin To Net: NetName=VIA1_PB5 Pin=JP6-1

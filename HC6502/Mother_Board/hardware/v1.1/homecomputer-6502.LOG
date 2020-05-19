@@ -1,0 +1,119 @@
+Importer Log Report
+Project : homecomputer-6502.PrjPcb
+
+Section : Analyze Document - E:\private\6502\homecomputer-6502\eagle\homecomputer-6502.brd
+    Analyzing data of E:\private\6502\homecomputer-6502\eagle\homecomputer-6502.brd
+    Load settings
+    Load layers 96
+    Load Library "74xx-eu"
+    Load Packages 2
+    Load Library "rcl"
+    Load Packages 6
+    Load Library "con-jack"
+    Load Packages 1
+    Load Library "st-microelectronics"
+    Load Packages 1
+    Load Library "switch-omron"
+    Load Packages 1
+    Load Library "6502"
+    Load Packages 3
+    Load Library "crystal2"
+    Load Packages 1
+    Load Library "atmel-28c"
+    Load Packages 1
+    Load Library "crystal"
+    Load Packages 1
+    Load Library "pinhead-1"
+    Load Packages 4
+    Load Library "grapelabs"
+    Load Packages 1
+    Load Library "led"
+    Load Packages 1
+    Load Library "OSHW"
+    Load Packages 1
+    Load Library "inductors"
+    Load Packages 1
+    Load Library "transistor"
+    Load Packages 1
+EndSection
+
+Section : Analyze Document - E:\private\6502\homecomputer-6502\eagle\homecomputer-6502.sch
+    Analyzing data of E:\private\6502\homecomputer-6502\eagle\homecomputer-6502.sch
+    Load settings
+    Load layers 96
+    Load schematic
+    Load Libraries 17
+    Load Library "frames"
+    Load Packages 0
+    Load Symbols 2
+    Load DeviceSets 1
+    Load Library "74xx-eu"
+    Load Packages 5
+    Load Symbols 5
+    Load DeviceSets 4
+    Load Library "rcl"
+    Load Packages 342
+    Load Symbols 4
+    Load DeviceSets 4
+    Load Library "supply1"
+    Load Packages 0
+    Load Symbols 3
+    Load DeviceSets 3
+    Load Library "con-jack"
+    Load Packages 2
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "st-microelectronics"
+    Load Packages 1
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "switch-omron"
+    Load Packages 1
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "6502"
+    Load Packages 3
+    Load Symbols 8
+    Load DeviceSets 4
+    Load Library "crystal2"
+    Load Packages 2
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "atmel-28c"
+    Load Packages 2
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "crystal"
+    Load Packages 21
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "pinhead-1"
+    Load Packages 21
+    Load Symbols 4
+    Load DeviceSets 4
+    Load Library "grapelabs"
+    Load Packages 1
+    Load Symbols 2
+    Load DeviceSets 1
+    Load Library "led"
+    Load Packages 37
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "OSHW"
+    Load Packages 8
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "inductors"
+    Load Packages 4
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "transistor"
+    Load Packages 1
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Attributes 0
+    Load Classes 1
+    Load Parts 131
+    Load Sheets 5
+    ERROR: Unhandled typeerrors
+EndSection

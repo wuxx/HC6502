@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=UART_RX Pin=J1-1
+Removed Pin From Net: NetName=UART_TX Pin=J1-2
+Change Component Comment : Designator=D2 Old Comment=GREEN New Comment=BLUE
+Added Pin To Net: NetName=UART_TX Pin=J1-1
+Added Pin To Net: NetName=UART_RX Pin=J1-2

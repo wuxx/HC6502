@@ -1,0 +1,23 @@
+Added Component: Designator=J2(IDC20)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=5V Pin=J2-2
+Added Pin To Net: NetName=PB0 Pin=J2-3
+Added Pin To Net: NetName=PB1 Pin=J2-4
+Added Pin To Net: NetName=PB5 Pin=J2-5
+Added Pin To Net: NetName=PB6 Pin=J2-6
+Added Pin To Net: NetName=PB7 Pin=J2-7
+Added Pin To Net: NetName=PB8 Pin=J2-8
+Added Pin To Net: NetName=PB9 Pin=J2-9
+Added Pin To Net: NetName=PB10 Pin=J2-10
+Added Pin To Net: NetName=PB11 Pin=J2-11
+Added Pin To Net: NetName=PB12 Pin=J2-12
+Added Pin To Net: NetName=PB13 Pin=J2-13
+Added Pin To Net: NetName=PB14 Pin=J2-14
+Added Pin To Net: NetName=PB15 Pin=J2-15
+Added Pin To Net: NetName=UART2_TX Pin=J2-16
+Added Pin To Net: NetName=GND Pin=J2-17
+Added Pin To Net: NetName=UART2_TX Pin=J2-18
+Added Pin To Net: NetName=GND Pin=J2-19
+Added Pin To Net: NetName=5V Pin=J2-20
+Added Member To Class: ClassName=nanoDAP Member=Component J2 IDC20

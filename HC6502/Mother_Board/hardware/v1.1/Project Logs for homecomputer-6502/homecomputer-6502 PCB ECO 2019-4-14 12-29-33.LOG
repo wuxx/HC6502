@@ -1,0 +1,81 @@
+Added Component: Designator=J?(IDC20)
+Add component. Clean all parameters for all variants
+Added Component: Designator=J?(IDC20)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-1
+Added Pin To Net: NetName=VCC Pin=J?-2
+Added Pin To Net: NetName=VCC Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-15
+Added Pin To Net: NetName=GND Pin=J?-17
+Added Pin To Net: NetName=GND Pin=J?-17
+Added Pin To Net: NetName=VCC Pin=J?-18
+Added Pin To Net: NetName=GND Pin=J?-19
+Added Pin To Net: NetName=GND Pin=J?-19
+Added Pin To Net: NetName=VCC Pin=J?-20
+Added Pin To Net: NetName=VCC Pin=J?-20
+Change Net Name : Old Net Name=VIA1_PB0 New Net Name=NetIC9_10
+Change Net Name : Old Net Name=VIA1_PB1 New Net Name=NetIC9_11
+Change Net Name : Old Net Name=VIA1_PB2 New Net Name=NetIC9_12
+Change Net Name : Old Net Name=VIA1_PB3 New Net Name=NetIC9_13
+Change Net Name : Old Net Name=VIA1_PB4 New Net Name=NetIC9_14
+Change Net Name : Old Net Name=VIA1_PB5 New Net Name=NetIC9_15
+Change Net Name : Old Net Name=VIA1_PB6 New Net Name=NetIC9_16
+Change Net Name : Old Net Name=VIA1_PB7 New Net Name=NetIC9_17
+Change Net Name : Old Net Name=VIA2_PA0 New Net Name=NetIC10_2
+Change Net Name : Old Net Name=VIA2_PA1 New Net Name=NetIC10_3
+Change Net Name : Old Net Name=VIA2_PA2 New Net Name=NetIC10_4
+Change Net Name : Old Net Name=VIA2_PA3 New Net Name=NetIC10_5
+Change Net Name : Old Net Name=VIA2_PA4 New Net Name=NetIC10_6
+Change Net Name : Old Net Name=VIA2_PA5 New Net Name=NetIC10_7
+Change Net Name : Old Net Name=VIA2_PA6 New Net Name=NetIC10_8
+Change Net Name : Old Net Name=VIA2_PA7 New Net Name=NetIC10_9
+Change Net Name : Old Net Name=VIA2_PB0 New Net Name=NetIC10_10
+Change Net Name : Old Net Name=VIA2_PB1 New Net Name=NetIC10_11
+Change Net Name : Old Net Name=VIA2_PB2 New Net Name=NetIC10_12
+Change Net Name : Old Net Name=VIA2_PB3 New Net Name=NetIC10_13
+Change Net Name : Old Net Name=VIA2_PB4 New Net Name=NetIC10_14
+Change Net Name : Old Net Name=VIA2_PB5 New Net Name=NetIC10_15
+Change Net Name : Old Net Name=VIA2_PB6 New Net Name=NetIC10_16
+Change Net Name : Old Net Name=VIA2_PB7 New Net Name=NetIC10_17
+Added Pin To Net: NetName=VIA1_PB0 Pin=J?-4
+Added Net: Name=VIA1_PB0
+Added Pin To Net: NetName=VIA1_PB1 Pin=J?-5
+Added Net: Name=VIA1_PB1
+Added Pin To Net: NetName=VIA1_PB2 Pin=J?-13
+Added Net: Name=VIA1_PB2
+Added Pin To Net: NetName=VIA1_PB3 Pin=J?-18
+Added Net: Name=VIA1_PB3
+Added Pin To Net: NetName=VIA2_PA0 Pin=J?-16
+Added Net: Name=VIA2_PA0
+Added Pin To Net: NetName=VIA2_PA1 Pin=J?-15
+Added Net: Name=VIA2_PA1
+Added Pin To Net: NetName=VIA2_PA2 Pin=J?-12
+Added Net: Name=VIA2_PA2
+Added Pin To Net: NetName=VIA2_PA3 Pin=J?-9
+Added Net: Name=VIA2_PA3
+Added Pin To Net: NetName=VIA2_PA4 Pin=J?-10
+Added Net: Name=VIA2_PA4
+Added Pin To Net: NetName=VIA2_PA5 Pin=J?-8
+Added Net: Name=VIA2_PA5
+Added Pin To Net: NetName=VIA2_PA6 Pin=J?-5
+Added Net: Name=VIA2_PA6
+Added Pin To Net: NetName=VIA2_PA7 Pin=J?-6
+Added Net: Name=VIA2_PA7
+Added Pin To Net: NetName=VIA2_PB0 Pin=J?-7
+Added Net: Name=VIA2_PB0
+Added Pin To Net: NetName=VIA2_PB1 Pin=J?-9
+Added Net: Name=VIA2_PB1
+Added Pin To Net: NetName=VIA2_PB2 Pin=J?-11
+Added Net: Name=VIA2_PB2
+Added Pin To Net: NetName=VIA2_PB3 Pin=J?-13
+Added Net: Name=VIA2_PB3
+Added Pin To Net: NetName=VIA2_PB4 Pin=J?-8
+Added Net: Name=VIA2_PB4
+Added Pin To Net: NetName=VIA2_PB5 Pin=J?-10
+Added Net: Name=VIA2_PB5
+Added Pin To Net: NetName=VIA2_PB6 Pin=J?-12
+Added Net: Name=VIA2_PB6
+Added Pin To Net: NetName=VIA2_PB7 Pin=J?-14
+Added Net: Name=VIA2_PB7
+Added Class: Name=homecomputer-6502_5

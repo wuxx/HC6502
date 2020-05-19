@@ -1,0 +1,3 @@
+Change Component Designator: OldDesignator=J? NewDesignator=J2
+Change Component Designator: OldDesignator=J? NewDesignator=J3
+Added Member To Class: ClassName=homecomputer-6502_5 Member=Component J2 IDC20

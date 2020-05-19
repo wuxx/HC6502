@@ -1,0 +1,12 @@
+Added Component: Designator=LED2(LED3MM)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R11(0204/7)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "NAME"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=LED2-K
+Added Pin To Net: NetName=VCC Pin=R11-2
+Added Pin To Net: NetName=NetLED2_A Pin=LED2-A
+Added Pin To Net: NetName=NetLED2_A Pin=R11-1
+Added Net: Name=NetLED2_A
+Added Member To Class: ClassName=homecomputer-6502_0 Member=Component LED2 LED3MM
+Added Member To Class: ClassName=homecomputer-6502_0 Member=Component R11 270
